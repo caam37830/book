@@ -1,0 +1,7 @@
+- file: preface
+- file: introduction
+- file: 00_python/python
+  sections:
+    - file: 00_python/using_python
+    - file: markdown
+    - file: notebooks

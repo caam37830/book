@@ -1,0 +1,8 @@
+# Book settings
+title: Scientific Computing with Python
+author: Brad Nelson
+#logo: logo.png
+
+latex:
+  latex_documents:
+    targetname: book.tex

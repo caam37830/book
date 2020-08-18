@@ -1,0 +1,79 @@
+preface
+- not meant to be read in sequential order groupings are topical
+introduction
+
+0 Python fundamentals
+- python = syntax, functions, classes, decorators, etc
+- packages = numpy, scipy, sympy, matplotlib
+
+1 Notation and Analysis
+- asymptotic notation
+- master theorem
+- convergence of algorithms
+
+2 linear algebra
+- matrix factorizations, SVD, variational problems
+- forward/backward substitution
+- dense
+- BLAS
+- sparse
+- ARPACK
+- randomized algorithms
+- Low rank approximations
+- image compression
+- pytorch for GPU
+
+3 optimization
+- defintions - objectives, contraints, LP, QP, etc.
+- modeling languages, various solvers
+- kkt conditions
+- scipy optimization
+- cvx
+- SGD with Pytorch
+
+4 functions
+- root finding
+- interpolation
+- numerical differentiation
+- numerical integration/quadrature
+- sympy
+- ODES
+
+5 graphs
+- definitions
+- networkx
+- spectral embeddings
+- shortest paths
+- dynamic programming
+- computation graphs
+
+6 probability and statistics
+- generating random numbers
+- distributions
+- random matrices
+- histograms
+- parameter estimation
+- regression with QR
+
+7 data
+- pandas, various operations
+- data visualization in plotly, matplotlib
+- dimensionality reduction
+- machine learning (sklearn)
+- dask
+
+8 geometry
+- metrics, distances
+- nearest neighbor search
+- clustering
+- optimal transport?
+
+9 computing
+- bash
+- environments, conda
+- ipython notebooks
+- git
+- profiling code
+- packagetools
+- slurm
+- dask
