@@ -1,3 +1,22 @@
+# Scientific Computing with Python
+
+You can find a table of contents to your left.
+
+Or skip [to the introduction](#introduction).
+
+```{tableofcontents}
+```
+
+# Preface
+
+This book is designed to be a course reader for STAT 37380 / CAAM 37380 taught at the University of Chicago in the fall quarter of 2020.  The course is designed for students who want to *do* scientific computing, whether they are embarking on a research project in some domain that will require computational components, or want to work on algorithms and implementations to support domain scientists.  Scientific computing is a gateway to a diverse set of topics, including continuous and discrete mathematics, algorithms, computer hardware, programming languages, modeling, simulation, and data analysis.  The student is not expected to be familiar with all of the above when first beginning.  The minimal prerequisites for this course are a solid background in multivariable calculus and linear algebra, some programming experience (not necessarily formally taught), and some exposure to applications such as physics, chemistry, biology, or the social sciences.  An advanced undergraduate or beginning graduate student will likely be prepared.  This course focuses on practical implementations and use, and for the most part leaves theory to other courses aside from some basic notions of what may make one algorithm better than another.
+
+Teaching scientific computing can be a bit challenging because the instructor wants to show students interesting problems as quickly as possible, but also needs to build up many technical skills to solve these problems effectively. This necessarily leads to introducing a mix of ideas at once, and spreading out some topics throughout the course.  The challenge for the student is that their new-found knowledge of a topic like numerical linear algebra may be spread out over many lectures, and mixed in with other areas like optimization or image processing.  This book attempts to help organize this information by putting content for a topic into a single chapter.  The trade-off is that the book is not intended to be read (or taught) sequentially as it appears in the table of contents, an issue that is perhaps mitigated by the online format and ability to add hyperlinks to relevant information across this book.  The potential advantage is that this allows students or instructors to carve their own path through the content without getting too hung up on doing things in the "right" order.  Each chapter begins with the basics and increases in order of complexity.  The chapters of the book are necessarily dependent on each other, but this typically doesn't occur until well into the chapter.  The exceptions are that basic python syntax and computing setup are necessary to do just about anything else.
+
+
+The course is designed to be taught remotely, out of necessity during the Coronavirus pandemic.  We'll see how it goes.  It is built using [Jupyter Book](https://jupyterbook.org/intro.html).
+
+
 # Introduction
 
 ## What is Scientific Computing?

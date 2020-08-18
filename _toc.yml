@@ -1,7 +1,26 @@
-- file: preface
+
+
 - file: introduction
+  title: Start Here
+
 - file: 00_python/python
   sections:
-    - file: 00_python/using_python
-    - file: markdown
-    - file: notebooks
+  - file: 00_python/using_python
+
+- file: 01_analysis/analysis
+
+- file: 02_linear_algebra/linear_algebra
+
+- file: 03_optimization/optimization
+
+- file: 04_functions/functions
+
+- file: 05_graphs/graphs
+
+- file: 06_probability_statistics/prob_stat
+
+- file: 07_data/data
+
+- file: 08_geometry/geometry
+
+- file: 09_computing/computing
