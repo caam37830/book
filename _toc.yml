@@ -6,21 +6,38 @@
 - file: 00_python/python
   sections:
   - file: 00_python/using_python
+  - file: 00_python/functions
+  - file: 00_python/classes
+  - file: 00_python/modules
+  - file: 00_python/decorators
+  - file: 00_python/iterators
 
 - file: 01_analysis/analysis
 
 - file: 02_linear_algebra/linear_algebra
+  sections:
+  - file: 02_linear_algebra/memory
+  - file: 02_linear_algebra/blas_lapack
+  - file: 02_linear_algebra/sparse
 
 - file: 03_optimization/optimization
 
 - file: 04_functions/functions
+  sections:
+  - file: 04_functions/roots
 
 - file: 05_graphs/graphs
 
 - file: 06_probability_statistics/prob_stat
+  sections:
+  - file: 06_probability_statistics/generating_random
 
 - file: 07_data/data
+  sections:
+  - file: 07_data/dimension_reduction
 
 - file: 08_geometry/geometry
 
 - file: 09_computing/computing
+  sections:
+  - file: 09_computing/git

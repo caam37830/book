@@ -1,13 +1,11 @@
-# Scientific Computing with Python
+# Introduction
 
-You can find a table of contents to your left.
-
-Or skip [to the introduction](#introduction).
+You can find a table of contents to your left, or below.
 
 ```{tableofcontents}
 ```
 
-# Preface
+## Preface
 
 This book is designed to be a course reader for STAT 37380 / CAAM 37380 taught at the University of Chicago in the fall quarter of 2020.  The course is designed for students who want to *do* scientific computing, whether they are embarking on a research project in some domain that will require computational components, or want to work on algorithms and implementations to support domain scientists.  Scientific computing is a gateway to a diverse set of topics, including continuous and discrete mathematics, algorithms, computer hardware, programming languages, modeling, simulation, and data analysis.  The student is not expected to be familiar with all of the above when first beginning.  The minimal prerequisites for this course are a solid background in multivariable calculus and linear algebra, some programming experience (not necessarily formally taught), and some exposure to applications such as physics, chemistry, biology, or the social sciences.  An advanced undergraduate or beginning graduate student will likely be prepared.  This course focuses on practical implementations and use, and for the most part leaves theory to other courses aside from some basic notions of what may make one algorithm better than another.
 
@@ -16,8 +14,6 @@ Teaching scientific computing can be a bit challenging because the instructor wa
 
 The course is designed to be taught remotely, out of necessity during the Coronavirus pandemic.  We'll see how it goes.  It is built using [Jupyter Book](https://jupyterbook.org/intro.html).
 
-
-# Introduction
 
 ## What is Scientific Computing?
 By definition, computing to support science!  Scientific method (with some computational topics):

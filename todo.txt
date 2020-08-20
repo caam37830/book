@@ -1,3 +1,5 @@
+fancy visualization of dependencies
+
 preface
 - not meant to be read in sequential order groupings are topical
 introduction
@@ -77,3 +79,8 @@ introduction
 - packagetools
 - slurm
 - dask
+
+
+Other:
+integrate with binder: https://mybinder.org/
+setup github pages
