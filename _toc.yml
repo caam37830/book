@@ -19,6 +19,7 @@
   - file: 02_linear_algebra/memory
   - file: 02_linear_algebra/blas_lapack
   - file: 02_linear_algebra/sparse
+  - file: 02_linear_algebra/pytorch
 
 - file: 03_optimization/optimization
 
@@ -27,6 +28,8 @@
   - file: 04_functions/roots
 
 - file: 05_graphs/graphs
+  sections:
+  - file: 05_graphs/networkx
 
 - file: 06_probability_statistics/prob_stat
   sections:
@@ -37,6 +40,9 @@
   - file: 07_data/dimension_reduction
 
 - file: 08_geometry/geometry
+  sections:
+  - file: 08_geometry/distances
+  - file: 08_geometry/nearestneighbor
 
 - file: 09_computing/computing
   sections:
