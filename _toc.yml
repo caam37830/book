@@ -6,11 +6,14 @@
 - file: 00_python/python
   sections:
   - file: 00_python/using_python
+  - file: 00_python/basics
+  - file: 00_python/bitsbytes
   - file: 00_python/functions
   - file: 00_python/classes
   - file: 00_python/modules
   - file: 00_python/decorators
   - file: 00_python/iterators
+  - file: 00_python/misc
 
 - file: 01_analysis/analysis
 
@@ -19,6 +22,7 @@
   - file: 02_linear_algebra/memory
   - file: 02_linear_algebra/blas_lapack
   - file: 02_linear_algebra/sparse
+  - file: 02_linear_algebra/linearoperators
   - file: 02_linear_algebra/pytorch
 
 - file: 03_optimization/optimization
@@ -47,3 +51,7 @@
 - file: 09_computing/computing
   sections:
   - file: 09_computing/git
+  - file: 09_computing/performance/performance
+    sections:
+    - file: 09_computing/performance/ipython
+  - file: 09_computing/environments
