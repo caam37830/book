@@ -1,0 +1,438 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Sparse Matrices &#8212; Scientific Computing with Python</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/mystnb.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Linear Operators" href="linearoperators.html" />
+    <link rel="prev" title="BLAS and LAPACK" href="blas_lapack.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Scientific Computing with Python</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../introduction.html">
+   Introduction
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_python/python.html">
+   Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01_analysis/analysis.html">
+   Analysis of Algorithms
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="linear_algebra.html">
+   Linear Algebra
+  </a>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="memory.html">
+     Memory and Performance
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="blas_lapack.html">
+     BLAS and LAPACK
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Sparse Matrices
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="linearoperators.html">
+     Linear Operators
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pytorch.html">
+     Linear Algebra in PyTorch
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03_optimization/optimization.html">
+   Optimization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04_functions/functions.html">
+   Functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05_graphs/graphs.html">
+   Graphs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06_probability_statistics/prob_stat.html">
+   Probability and Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../07_data/data.html">
+   Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../08_geometry/geometry.html">
+   Geometry
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../09_computing/computing.html">
+   Computing
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/02_linear_algebra/sparse.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sparse-matrix-formats">
+   Sparse Matrix Formats
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#coordinate-format">
+     COOrdinate Format
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#compressed-sparse-row-column-formats">
+     Compressed Sparse Row/Column Formats
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#other-sparse-matrix-types">
+     Other Sparse Matrix Types
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise">
+     Exercise
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="sparse-matrices">
+<h1>Sparse Matrices<a class="headerlink" href="#sparse-matrices" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">pylab</span> <span class="n">inline</span>
+<span class="kn">import</span> <span class="nn">scipy</span> <span class="k">as</span> <span class="nn">sp</span>
+<span class="kn">import</span> <span class="nn">scipy.sparse</span> <span class="k">as</span> <span class="nn">sparse</span>
+<span class="kn">import</span> <span class="nn">scipy.sparse.linalg</span> <span class="k">as</span> <span class="nn">sla</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Populating the interactive namespace from numpy and matplotlib
+</pre></div>
+</div>
+</div>
+</div>
+<p>A <span class="math notranslate nohighlight">\(m\times n\)</span> matrix is <strong>sparse</strong> if it has few non-zero entries in comparison to all <span class="math notranslate nohighlight">\(mn\)</span> total entries.  Sparsity is a qualitative notion - it might mean we have <span class="math notranslate nohighlight">\(O(\min\{m,n\})\)</span> non-zero entries (for example, a diagonal matrix), it might also mean we have <span class="math notranslate nohighlight">\(O(mn)\)</span> entries, but the constant is small (for example, <span class="math notranslate nohighlight">\(mn/100\)</span>).  A <strong>dense</strong> matrix is not sparse, meaning that most (or all) of the entries are non-zero.</p>
+<p>Recall the formula for matrix-vector multiplication:</p>
+<div class="math notranslate nohighlight" id="equation-matvec">
+<span class="eqno">(1)<a class="headerlink" href="#equation-matvec" title="Permalink to this equation">¶</a></span>\[y_i = \sum_j A_{i,j} x_j\]</div>
+<p>When we multiply a vector (or matrix) by a sparse matrix, most of the coefficients are zero, and so we might expect that we can apply the matrix more quickly than we might apply a dense matrix.  We can re-write the matrix-vector multiplication formula as</p>
+<div class="math notranslate nohighlight" id="equation-sparse-matvec">
+<span class="eqno">(2)<a class="headerlink" href="#equation-sparse-matvec" title="Permalink to this equation">¶</a></span>\[y_i = \sum_{j\in nz(i)} A_{i,j} x_j\]</div>
+<p>Where <span class="math notranslate nohighlight">\(nz(i)\)</span> denotes the column indices <span class="math notranslate nohighlight">\(j\)</span> for which <span class="math notranslate nohighlight">\(A_{i,j}\)</span> is non-zero.  We see the complexity of multiplying a sparse matrix is <span class="math notranslate nohighlight">\(O(nnz(A))\)</span>, where <span class="math notranslate nohighlight">\(nnz(A)\)</span> is the number of non-zeros (note that when <span class="math notranslate nohighlight">\(A\)</span> is dense, <span class="math notranslate nohighlight">\(nnz(A) = mn\)</span>).</p>
+<div class="section" id="sparse-matrix-formats">
+<h2>Sparse Matrix Formats<a class="headerlink" href="#sparse-matrix-formats" title="Permalink to this headline">¶</a></h2>
+<p>There are a variety of ways sparse matrices are stored in practice.  The utility of each format depends on whether there is any structure in the non-zeros, or what the matrix will be used for.</p>
+<p>Scipy provides several standard types of sparse matrices in <code class="docutils literal notranslate"><span class="pre">sicpy.sparse</span></code>.  See the <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/sparse.html#sparse-matrix-classes">documentation</a>.</p>
+<div class="section" id="coordinate-format">
+<h3>COOrdinate Format<a class="headerlink" href="#coordinate-format" title="Permalink to this headline">¶</a></h3>
+<p>Perhaps the easiest to describe is the COO (COOrdinate format), which just stores three lists <code class="docutils literal notranslate"><span class="pre">i,j,data</span></code>, where <code class="docutils literal notranslate"><span class="pre">i[k]</span></code> and  <code class="docutils literal notranslate"><span class="pre">j[k]</span></code> are the row and column indices for a non-zero entry with value <code class="docutils literal notranslate"><span class="pre">data[k]</span></code>.</p>
+<p>Scipy documentation is <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.coo_matrix.html#scipy.sparse.coo_matrix">here</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">row</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">col</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">S</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">coo_matrix</span><span class="p">((</span><span class="n">data</span><span class="p">,</span> <span class="p">(</span><span class="n">row</span><span class="p">,</span><span class="n">col</span><span class="p">)),</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">S</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([[1, 0, 0],
+       [0, 1, 0],
+       [0, 0, 1]])
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="compressed-sparse-row-column-formats">
+<h3>Compressed Sparse Row/Column Formats<a class="headerlink" href="#compressed-sparse-row-column-formats" title="Permalink to this headline">¶</a></h3>
+<p>One of the disadvantages of COO Matrices are that entries need not be ordered in any way, which can lead to inefficiencies in memory access in matrix-vector or matrix-matrix multiplication.</p>
+<p>Commonly used formats which keeps entries in a sensible order (without additional structure assumed) are Compressed Sparse Row (CSR) and Compressed Sparse Column (CSC) matrices.  You might think of these as the sparse equivalents of row-major and column-major dense matrices.</p>
+<p>We’ll describe CSC matrices - the transpose is a CSR matrix.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">S</span></code> is a CSC matrix with <code class="docutils literal notranslate"><span class="pre">m</span></code> rows, <code class="docutils literal notranslate"><span class="pre">n</span></code> columns, and <code class="docutils literal notranslate"><span class="pre">nnz</span></code> non-zeros, we specify <code class="docutils literal notranslate"><span class="pre">S</span></code> with three lists: <code class="docutils literal notranslate"><span class="pre">ptr</span></code> (length <code class="docutils literal notranslate"><span class="pre">n+1</span></code>), <code class="docutils literal notranslate"><span class="pre">row</span></code> (length <code class="docutils literal notranslate"><span class="pre">nnz</span></code>) and <code class="docutils literal notranslate"><span class="pre">val</span></code> (length <code class="docutils literal notranslate"><span class="pre">nnz</span></code>).  The non-zero row indices for column <code class="docutils literal notranslate"><span class="pre">j</span></code> are stored in <code class="docutils literal notranslate"><span class="pre">row[ptr[j]:ptr[j+1]]</span></code>, and the non-zero values for those rows are stored in <code class="docutils literal notranslate"><span class="pre">val[ptr[j]:ptr[j+1]]</span></code>.  If you’re familiar with pointers in a language like C, <code class="docutils literal notranslate"><span class="pre">ptr</span></code> is an array of pointer offsets.</p>
+<p>Basically, the non-zero entries for each column are stored in contiguous blocks of memory.  This can make it much faster to apply CSC matrices.</p>
+<p>Scipy documentation is <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.csc_matrix.html#scipy.sparse.csc_matrix">here</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ptr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">row</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">val</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">S</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">csc_matrix</span><span class="p">((</span><span class="n">val</span><span class="p">,</span> <span class="n">row</span><span class="p">,</span> <span class="n">ptr</span><span class="p">),</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">S</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([[1, 0, 0],
+       [0, 1, 0],
+       [0, 0, 1]])
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="other-sparse-matrix-types">
+<h3>Other Sparse Matrix Types<a class="headerlink" href="#other-sparse-matrix-types" title="Permalink to this headline">¶</a></h3>
+<p>Other matrix types in <code class="docutils literal notranslate"><span class="pre">scipy.sparse</span></code> include:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.dia_matrix.html#scipy.sparse.dia_matrix"><code class="docutils literal notranslate"><span class="pre">dia_matrix</span></code></a>, which is good for diagonal/banded matrices</p></li>
+<li><p><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.lil_matrix.html#scipy.sparse.lil_matrix"><code class="docutils literal notranslate"><span class="pre">lil_matrix</span></code></a>, or a (row-based) list-of-lists matrix, which is good for mutating row operations</p></li>
+<li><p><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.bsr_matrix.html#scipy.sparse.bsr_matrix"><code class="docutils literal notranslate"><span class="pre">bsr_matrix</span></code></a>, or block sparse row, which is good for sparse matrices with dense blocks</p></li>
+<li><p><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.dok_matrix.html#scipy.sparse.dok_matrix"><code class="docutils literal notranslate"><span class="pre">dok_matrix</span></code></a>, or dictionary of keys, which is good for when you want to access and change individual entries quickly.</p></li>
+</ul>
+</div>
+<div class="section" id="exercise">
+<h3>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h3>
+<p>In this exercise, you will implement a basic Dictionary of Keys matrix.</p>
+<p>The class should wrap a python dictionary, which takes tuples of ints as keys, and floats as values.  It should also store the shape of the matrix.</p>
+<p>for example, the data for a <span class="math notranslate nohighlight">\(3\times 3\)</span> identity matrix is</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">{(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">):</span> <span class="mf">1.0</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">):</span> <span class="mf">1.0</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">):</span> <span class="mf">1.0</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Implement the following methods:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/reference/datamodel.html#object.__getitem__"><code class="docutils literal notranslate"><span class="pre">__getitem__</span></code></a> for accessing an element</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/reference/datamodel.html#object.__setitem__"><code class="docutils literal notranslate"><span class="pre">__setitem__</span></code></a> for setting a value (delete the key if the value is zero)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nnz()</span></code> to return the total number of non-zeros</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">matvec(x)</span></code> to apply the matrix to a vector, using equation <a class="reference internal" href="#equation-sparse-matvec">(2)</a></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "pycourse"
+        },
+        kernelOptions: {
+            kernelName: "pycourse",
+            path: "./02_linear_algebra"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'pycourse'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="blas_lapack.html" title="previous page">BLAS and LAPACK</a>
+    <a class='right-next' id="next-link" href="linearoperators.html" title="next page">Linear Operators</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Brad Nelson<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../_static/js/index.js"></script>
+    
+  </body>
+</html>

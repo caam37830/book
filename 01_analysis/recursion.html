@@ -1,0 +1,552 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Recursion &#8212; Scientific Computing with Python</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/mystnb.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Linear Algebra" href="../02_linear_algebra/linear_algebra.html" />
+    <link rel="prev" title="Analysis of Algorithms" href="analysis.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Scientific Computing with Python</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../introduction.html">
+   Introduction
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_python/python.html">
+   Python
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="analysis.html">
+   Analysis of Algorithms
+  </a>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Recursion
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02_linear_algebra/linear_algebra.html">
+   Linear Algebra
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03_optimization/optimization.html">
+   Optimization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04_functions/functions.html">
+   Functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05_graphs/graphs.html">
+   Graphs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06_probability_statistics/prob_stat.html">
+   Probability and Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../07_data/data.html">
+   Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../08_geometry/geometry.html">
+   Geometry
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../09_computing/computing.html">
+   Computing
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/01_analysis/recursion.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#recursive-functions">
+   Recursive Functions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#divide-and-conquer">
+   Divide and Conquer
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mergesort">
+     Mergesort
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#quick-sort">
+     Quick Sort
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#analysis-of-recursive-algorithms">
+   Analysis of Recursive Algorithms
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#todo">
+   TODO
+  </a>
+ </li>
+</ul>
+
+        </nav>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="recursion">
+<h1>Recursion<a class="headerlink" href="#recursion" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="recursive-functions">
+<h2>Recursive Functions<a class="headerlink" href="#recursive-functions" title="Permalink to this headline">¶</a></h2>
+<p><strong>Definition 1</strong> A function is recursive if it is recursive.</p>
+<p><strong>Definition 2</strong> A function is recursive if it refers to itself.</p>
+<p>It is probably easier to see an example.  The <a class="reference external" href="https://en.wikipedia.org/wiki/Fibonacci_number">Fibonacci numbers</a> are one such example. We have <span class="math notranslate nohighlight">\(F_0 = 0\)</span>, <span class="math notranslate nohighlight">\(F_1 = 1\)</span>, and <span class="math notranslate nohighlight">\(F_n = F_{n-1} + F_{n-2}\)</span> for <span class="math notranslate nohighlight">\(n \ge 2\)</span>.  The definition was <em>recursive</em> because the expression for <span class="math notranslate nohighlight">\(F_n\)</span> is stated in terms of other Fibonnaci numbers.  We can expand the definition:
+\begin{align}
+F_n &amp;= F_{n-1} + F_{n-2}\
+&amp;= (F_{n-2} + F_{n-3}) + (F_{n-3} + F_{n-4})\
+&amp;= \dots
+\end{align}</p>
+<p>If we want to write a function to compute the <span class="math notranslate nohighlight">\(n\)</span>th fibonacci number, we might write</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    compute the nth fibonacci number recursively</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">elif</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+    
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span> <span class="s2">&quot;F_</span><span class="si">{}</span><span class="s2"> = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="p">))</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>F_0 = 0
+F_1 = 1
+F_2 = 1
+F_3 = 2
+F_4 = 3
+F_5 = 5
+F_6 = 8
+F_7 = 13
+F_8 = 21
+F_9 = 34
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="divide-and-conquer">
+<h2>Divide and Conquer<a class="headerlink" href="#divide-and-conquer" title="Permalink to this headline">¶</a></h2>
+<p>A common situation in which recursion is used is in <em>Divide and Conquer</em> algorithms.</p>
+<div class="section" id="mergesort">
+<h3>Mergesort<a class="headerlink" href="#mergesort" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Merge_sort">Mergesort</a> is an example of a sorting algorithm.  The input is a list <code class="docutils literal notranslate"><span class="pre">a</span></code>, and the output is a list <code class="docutils literal notranslate"><span class="pre">b</span></code> which has the same elements as <code class="docutils literal notranslate"><span class="pre">a</span></code>, but appearing in sorted order.</p>
+<p>Python has the <code class="docutils literal notranslate"><span class="pre">sorted</span></code> function built-in to sort iterables like lists:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<span class="nb">sorted</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[1, 2, 3]
+</pre></div>
+</div>
+</div>
+</div>
+<p>There are a variety of sorting algorithms which use different techniques.</p>
+<p>Merge sort uses the observation that if two arrays <code class="docutils literal notranslate"><span class="pre">a1</span></code> and <code class="docutils literal notranslate"><span class="pre">a2</span></code> are already sorted, that it is easy to merge the two arrays into a single sorted array in a single loop</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">merge</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    merge sorted lists a1 and a2 into a sorted list b</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">i1</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">i2</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="c1"># insert the smallest element into b</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">i1</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span> <span class="ow">and</span> <span class="n">i2</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">a2</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">a1</span><span class="p">[</span><span class="n">i1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">a2</span><span class="p">[</span><span class="n">i2</span><span class="p">]:</span>
+            <span class="n">b</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="n">i1</span><span class="p">])</span>
+            <span class="n">i1</span> <span class="o">=</span> <span class="n">i1</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">b</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a2</span><span class="p">[</span><span class="n">i2</span><span class="p">])</span>
+            <span class="n">i2</span> <span class="o">=</span> <span class="n">i2</span> <span class="o">+</span> <span class="mi">1</span>
+            
+    <span class="c1"># at most one of the following while-loops will do anything</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">i1</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">a1</span><span class="p">)):</span>
+        <span class="n">b</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="n">i1</span><span class="p">])</span>
+        <span class="n">i1</span> <span class="o">=</span> <span class="n">i1</span> <span class="o">+</span> <span class="mi">1</span>
+        
+    <span class="k">while</span> <span class="p">(</span><span class="n">i2</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">a2</span><span class="p">)):</span>
+        <span class="n">b</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a2</span><span class="p">[</span><span class="n">i2</span><span class="p">])</span>
+        <span class="n">i2</span> <span class="o">=</span> <span class="n">i2</span> <span class="o">+</span> <span class="mi">1</span>
+        
+    <span class="k">return</span> <span class="n">b</span>
+
+<span class="n">merge</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[0, 1, 2, 3, 4, 5]
+</pre></div>
+</div>
+</div>
+</div>
+<p>The divide-and-conquer strategy is to start with an input list <code class="docutils literal notranslate"><span class="pre">a</span></code>, sort the left and right halves, and then merge the two halves to sort <code class="docutils literal notranslate"><span class="pre">a</span></code>.  We can employ recursion by using merge sort to sort each half. By definition, an list with 1 or no elements is already sorted.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mergesort</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    sort a using merge-sort algorithm</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># if a has 1 or zero elements, it is already sorted</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">a</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+    <span class="n">L</span> <span class="o">=</span> <span class="n">a</span><span class="p">[:</span><span class="n">k</span><span class="p">]</span> <span class="c1"># left half</span>
+    <span class="n">R</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">k</span><span class="p">:]</span> <span class="c1"># right half</span>
+    
+    <span class="c1"># recurse to sort L and R</span>
+    <span class="n">L</span> <span class="o">=</span> <span class="n">mergesort</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
+    <span class="n">R</span> <span class="o">=</span> <span class="n">mergesort</span><span class="p">(</span><span class="n">R</span><span class="p">)</span>
+    
+    <span class="c1"># now merge L and R</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">merge</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">R</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">a</span>
+    
+    
+<span class="n">mergesort</span><span class="p">([</span><span class="mi">6</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[0, 1, 2, 3, 4, 5, 6]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="quick-sort">
+<h3>Quick Sort<a class="headerlink" href="#quick-sort" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Quicksort">Quicksort</a> was named by SIAM editors as one of the <a class="reference external" href="https://archive.siam.org/pdf/news/637.pdf">top-10 algorithms of the 20th centry</a>.  Like mergesort, it also uses a divide and conquer strategy.</p>
+<p>Quicksort works by partitioning a list into two halves divided by a <em>pivot</em>.  All elements less than the pivot are moved to the first part of the list, and all elements greater than the pivot are moved to the second part of the list.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">swap</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    swap elements i and j in-place in list a</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">swap</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[1, 2, 3]
+[3, 2, 1]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy.random</span> <span class="kn">import</span> <span class="n">randint</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">partition</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">lo</span><span class="p">,</span> <span class="n">hi</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    choose a pivot in a[lo:hi+1] randomly</span>
+<span class="sd">    swap all elements of a[lo:hi+1] less than the pivot value to appear before the pivot</span>
+<span class="sd">    swap all elements of a[lo:hi+1] greater than the pivot value to appear after the pivot</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pi</span> <span class="o">=</span> <span class="n">randint</span><span class="p">(</span><span class="n">lo</span><span class="p">,</span> <span class="n">hi</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># pivot index</span>
+    <span class="n">swap</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">pi</span><span class="p">,</span> <span class="n">hi</span><span class="p">)</span> <span class="c1"># put pivot index in last position</span>
+    <span class="n">pivot</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">hi</span><span class="p">]</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">lo</span> <span class="c1"># i is the pivot index for elements we have seen so far</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">lo</span><span class="p">,</span> <span class="n">hi</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">pivot</span><span class="p">:</span>
+            <span class="n">swap</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
+            <span class="n">i</span> <span class="o">=</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span> <span class="c1"># increment pivot index</span>
+    <span class="n">swap</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">hi</span><span class="p">)</span> <span class="c1"># put pivot in correct place</span>
+    <span class="k">return</span> <span class="n">i</span>
+
+<span class="k">def</span> <span class="nf">quicksort</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">lo</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">hi</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    perform quicksort algorithm on array a</span>
+<span class="sd">    performs operations in-place</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">hi</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">hi</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+        
+    <span class="k">if</span> <span class="n">lo</span> <span class="o">&lt;</span> <span class="n">hi</span><span class="p">:</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="n">partition</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">lo</span><span class="p">,</span> <span class="n">hi</span><span class="p">)</span>
+        <span class="n">quicksort</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">lo</span><span class="p">,</span> <span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># recurse on lower half</span>
+        <span class="n">quicksort</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">hi</span><span class="p">)</span> <span class="c1"># recurse on higher half</span>
+        
+    <span class="k">return</span> <span class="n">a</span>
+
+<span class="n">quicksort</span><span class="p">([</span><span class="mi">6</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[0, 1, 2, 3, 4, 5, 6]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="analysis-of-recursive-algorithms">
+<h2>Analysis of Recursive Algorithms<a class="headerlink" href="#analysis-of-recursive-algorithms" title="Permalink to this headline">¶</a></h2>
+<p>Recursive algorithms are usually easy to implement, but they aren’t always fast.  For example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">time</span> <span class="n">fibonacci</span><span class="p">(</span><span class="mi">35</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 2.97 s, sys: 546 µs, total: 2.97 s
+Wall time: 2.97 s
+</pre></div>
+</div>
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>9227465
+</pre></div>
+</div>
+</div>
+</div>
+<p>the recursive definition of <code class="docutils literal notranslate"><span class="pre">fibonacci</span></code> takes much longer to compute than is possible.</p>
+<p>On the other hand, <code class="docutils literal notranslate"><span class="pre">mergesort</span></code> has optimal asymptotic complexity for a sorting algorithm: <span class="math notranslate nohighlight">\(O(n\log n)\)</span></p>
+<p>if <code class="docutils literal notranslate"><span class="pre">quicksort</span></code> is very unlucky with choice of pivot, it can take <span class="math notranslate nohighlight">\(O(n^2)\)</span> time, but its expected runtime is <span class="math notranslate nohighlight">\(O(n \log n)\)</span>.  It also does all operations in-place, unlike <code class="docutils literal notranslate"><span class="pre">mergesort</span></code>, which uses auxillary memory.</p>
+</div>
+<div class="section" id="todo">
+<h2>TODO<a class="headerlink" href="#todo" title="Permalink to this headline">¶</a></h2>
+<p>master theorem</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "pycourse"
+        },
+        kernelOptions: {
+            kernelName: "pycourse",
+            path: "./01_analysis"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'pycourse'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="analysis.html" title="previous page">Analysis of Algorithms</a>
+    <a class='right-next' id="next-link" href="../02_linear_algebra/linear_algebra.html" title="next page">Linear Algebra</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Brad Nelson<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../_static/js/index.js"></script>
+    
+  </body>
+</html>

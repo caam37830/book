@@ -1,0 +1,611 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>NetworkX &#8212; Scientific Computing with Python</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/mystnb.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Probability and Statistics" href="../06_probability_statistics/prob_stat.html" />
+    <link rel="prev" title="Graphs" href="graphs.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Scientific Computing with Python</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../introduction.html">
+   Introduction
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_python/python.html">
+   Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01_analysis/analysis.html">
+   Analysis of Algorithms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02_linear_algebra/linear_algebra.html">
+   Linear Algebra
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03_optimization/optimization.html">
+   Optimization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04_functions/functions.html">
+   Functions
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="graphs.html">
+   Graphs
+  </a>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     NetworkX
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06_probability_statistics/prob_stat.html">
+   Probability and Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../07_data/data.html">
+   Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../08_geometry/geometry.html">
+   Geometry
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../09_computing/computing.html">
+   Computing
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/05_graphs/networkx.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#generating-graphs">
+   Generating Graphs
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#random-graphs">
+     Random Graphs
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#erdos-renyi-graphs">
+       Erdos-Renyi Graphs
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#stochastic-block-models">
+       Stochastic Block Models
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#visualization">
+   Visualization
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#layouts">
+     Layouts
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#algorithms">
+   Algorithms
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#shortest-paths">
+     Shortest Paths
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   Shortest Paths
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reading-graphs">
+   Reading Graphs
+  </a>
+ </li>
+</ul>
+
+        </nav>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="networkx">
+<h1>NetworkX<a class="headerlink" href="#networkx" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">pylab</span> <span class="n">inline</span>
+<span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Populating the interactive namespace from numpy and matplotlib
+</pre></div>
+</div>
+</div>
+</div>
+<p>This section will cover the <a class="reference external" href="https://networkx.github.io/">NetworkX package</a>.  You can find additional information in the <a class="reference external" href="https://networkx.github.io/documentation/stable/">NetworkX documentation</a>, which includes <a class="reference external" href="https://networkx.github.io/documentation/stable/tutorial.html">a tutorial</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
+
+<span class="c1"># add nodes</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span> <span class="c1"># adds nodes 0, 1</span>
+
+<span class="c1"># add edge from node 0 to node 1</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># draws the graph to pyplot axes</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">with_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">font_weight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/networkx_3_0.png" src="../_images/networkx_3_0.png" />
+</div>
+</div>
+<div class="section" id="generating-graphs">
+<h2>Generating Graphs<a class="headerlink" href="#generating-graphs" title="Permalink to this headline">¶</a></h2>
+<p>NetworkX provides <a class="reference external" href="https://networkx.github.io/documentation/stable/reference/generators.html">Graph generators</a> to</p>
+<div class="section" id="random-graphs">
+<h3>Random Graphs<a class="headerlink" href="#random-graphs" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="erdos-renyi-graphs">
+<h4>Erdos-Renyi Graphs<a class="headerlink" href="#erdos-renyi-graphs" title="Permalink to this headline">¶</a></h4>
+<p>An Erdos-Renyi random graph <span class="math notranslate nohighlight">\(G_{n,p}\)</span> is a graph on <span class="math notranslate nohighlight">\(n\)</span> nodes, where the probability of an edge <span class="math notranslate nohighlight">\((i,j)\)</span> existing is <span class="math notranslate nohighlight">\(p\)</span>.  In NetworkX, this is called a <code class="docutils literal notranslate"><span class="pre">gnp</span></code> graph.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">p</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">/</span> <span class="n">n</span> <span class="c1"># expected number of edges</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">gnp_random_graph</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">with_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$G(</span><span class="si">{}</span><span class="s1">,</span><span class="si">{}</span><span class="s1">)$&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">p</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/networkx_5_0.png" src="../_images/networkx_5_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="stochastic-block-models">
+<h4>Stochastic Block Models<a class="headerlink" href="#stochastic-block-models" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ns</span> <span class="o">=</span> <span class="p">[</span><span class="mi">25</span><span class="p">,</span> <span class="mi">25</span><span class="p">]</span>
+<span class="n">ps</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">]]</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">stochastic_block_model</span><span class="p">(</span><span class="n">ns</span><span class="p">,</span> <span class="n">ps</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">with_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/networkx_7_0.png" src="../_images/networkx_7_0.png" />
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="visualization">
+<h2>Visualization<a class="headerlink" href="#visualization" title="Permalink to this headline">¶</a></h2>
+<p>Visualizing graphs is often a great way to see and understand information.</p>
+<p>Unless there is some “ground truth” way to lay out nodes (meaning each node has an associated coordinate), we must choose some way to place nodes in our visualization.  There are a variety of methods for this.</p>
+<div class="section" id="layouts">
+<h3>Layouts<a class="headerlink" href="#layouts" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nx</span><span class="o">.</span><span class="n">draw_spectral</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/networkx_9_0.png" src="../_images/networkx_9_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nx</span><span class="o">.</span><span class="n">draw_spring</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/networkx_10_0.png" src="../_images/networkx_10_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nx</span><span class="o">.</span><span class="n">draw_kamada_kawai</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/networkx_11_0.png" src="../_images/networkx_11_0.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="algorithms">
+<h2>Algorithms<a class="headerlink" href="#algorithms" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="shortest-paths">
+<h3>Shortest Paths<a class="headerlink" href="#shortest-paths" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">grid_2d_graph</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">kamada_kawai_layout</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/networkx_13_0.png" src="../_images/networkx_13_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">shortest_path</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="mi">9</span><span class="p">))</span>
+<span class="n">elist</span> <span class="o">=</span> <span class="p">[[</span><span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)]</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">elist</span><span class="p">,</span> <span class="n">edge_color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/networkx_14_0.png" src="../_images/networkx_14_0.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id1">
+<h2>Shortest Paths<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>You can compute shortest path lengths in a graph using</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dists</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">shortest_path_length</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This creates an iterator over shortest path lengths for each node</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">dists</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>((0, 0),
+ {(0, 0): 0,
+  (1, 0): 1,
+  (0, 1): 1,
+  (2, 0): 2,
+  (1, 1): 2,
+  (0, 2): 2,
+  (3, 0): 3,
+  (2, 1): 3,
+  (1, 2): 3,
+  (0, 3): 3,
+  (4, 0): 4,
+  (3, 1): 4,
+  (2, 2): 4,
+  (1, 3): 4,
+  (0, 4): 4,
+  (5, 0): 5,
+  (4, 1): 5,
+  (3, 2): 5,
+  (2, 3): 5,
+  (1, 4): 5,
+  (0, 5): 5,
+  (6, 0): 6,
+  (5, 1): 6,
+  (4, 2): 6,
+  (3, 3): 6,
+  (2, 4): 6,
+  (1, 5): 6,
+  (0, 6): 6,
+  (7, 0): 7,
+  (6, 1): 7,
+  (5, 2): 7,
+  (4, 3): 7,
+  (3, 4): 7,
+  (2, 5): 7,
+  (1, 6): 7,
+  (0, 7): 7,
+  (8, 0): 8,
+  (7, 1): 8,
+  (6, 2): 8,
+  (5, 3): 8,
+  (4, 4): 8,
+  (3, 5): 8,
+  (2, 6): 8,
+  (1, 7): 8,
+  (0, 8): 8,
+  (9, 0): 9,
+  (8, 1): 9,
+  (7, 2): 9,
+  (6, 3): 9,
+  (5, 4): 9,
+  (4, 5): 9,
+  (3, 6): 9,
+  (2, 7): 9,
+  (1, 8): 9,
+  (0, 9): 9,
+  (9, 1): 10,
+  (8, 2): 10,
+  (7, 3): 10,
+  (6, 4): 10,
+  (5, 5): 10,
+  (4, 6): 10,
+  (3, 7): 10,
+  (2, 8): 10,
+  (1, 9): 10,
+  (9, 2): 11,
+  (8, 3): 11,
+  (7, 4): 11,
+  (6, 5): 11,
+  (5, 6): 11,
+  (4, 7): 11,
+  (3, 8): 11,
+  (2, 9): 11,
+  (9, 3): 12,
+  (8, 4): 12,
+  (7, 5): 12,
+  (6, 6): 12,
+  (5, 7): 12,
+  (4, 8): 12,
+  (3, 9): 12,
+  (9, 4): 13,
+  (8, 5): 13,
+  (7, 6): 13,
+  (6, 7): 13,
+  (5, 8): 13,
+  (4, 9): 13,
+  (9, 5): 14,
+  (8, 6): 14,
+  (7, 7): 14,
+  (6, 8): 14,
+  (5, 9): 14,
+  (9, 6): 15,
+  (8, 7): 15,
+  (7, 8): 15,
+  (6, 9): 15,
+  (9, 7): 16,
+  (8, 8): 16,
+  (7, 9): 16,
+  (9, 8): 17,
+  (8, 9): 17,
+  (9, 9): 18})
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="reading-graphs">
+<h2>Reading Graphs<a class="headerlink" href="#reading-graphs" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "pycourse"
+        },
+        kernelOptions: {
+            kernelName: "pycourse",
+            path: "./05_graphs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'pycourse'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="graphs.html" title="previous page">Graphs</a>
+    <a class='right-next' id="next-link" href="../06_probability_statistics/prob_stat.html" title="next page">Probability and Statistics</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Brad Nelson<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../_static/js/index.js"></script>
+    
+  </body>
+</html>

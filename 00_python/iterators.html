@@ -1,0 +1,1106 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Iterators and Generators &#8212; Scientific Computing with Python</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/mystnb.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Miscellaneous" href="misc.html" />
+    <link rel="prev" title="Decorators" href="decorators.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Scientific Computing with Python</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../introduction.html">
+   Introduction
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="python.html">
+   Python
+  </a>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="using_python.html">
+     Using Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="basics.html">
+     Basics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="bitsbytes.html">
+     Bits, Bytes, and Numbers
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="functions.html">
+     Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="classes.html">
+     Object-Oriented Programming
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="modules.html">
+     Modules and Packages
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="decorators.html">
+     Decorators
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Iterators and Generators
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="misc.html">
+     Miscellaneous
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01_analysis/analysis.html">
+   Analysis of Algorithms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02_linear_algebra/linear_algebra.html">
+   Linear Algebra
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03_optimization/optimization.html">
+   Optimization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04_functions/functions.html">
+   Functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05_graphs/graphs.html">
+   Graphs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06_probability_statistics/prob_stat.html">
+   Probability and Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../07_data/data.html">
+   Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../08_geometry/geometry.html">
+   Geometry
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../09_computing/computing.html">
+   Computing
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/00_python/iterators.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-basic-iterator">
+   A Basic Iterator
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#using-iterators-for-computation">
+   Using Iterators for Computation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercises">
+     Exercises
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#generators">
+   Generators
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Exercises
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#zip-and-reverse">
+   zip and reverse
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-itertools-package">
+   The Itertools Package
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#iterators-for-scientific-computing">
+   Iterators for Scientific Computing
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Exercises
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="iterators-and-generators">
+<h1>Iterators and Generators<a class="headerlink" href="#iterators-and-generators" title="Permalink to this headline">¶</a></h1>
+<p>So far, you have seen things like</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">a</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>1
+2
+3
+</pre></div>
+</div>
+</div>
+</div>
+<p>This looks very different from a C-style for loop where we loop over the variable index:</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Or for instance, we can use something called a <code class="docutils literal notranslate"><span class="pre">range</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>0
+1
+2
+</pre></div>
+</div>
+</div>
+</div>
+<p>or other data types</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;hello&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;goodbye&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
+<span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="s1">&#39; : &#39;</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>hello  :  1
+goodbye  :  2
+</pre></div>
+</div>
+</div>
+</div>
+<p>The key to using this sort of syntax is the concept of <a class="reference external" href="https://wiki.python.org/moin/Iterator">iterator</a>.  This is common in object-oriented programming (not just in Python), but you probably haven’t seen iterators before if you’ve only used imperative languages.</p>
+<p>An object is <strong>iterable</strong> if it implements the <code class="docutils literal notranslate"><span class="pre">__iter__</span></code> method, which is expected to return an iterator object.
+An object is an <strong>iterator</strong> if it implements the <code class="docutils literal notranslate"><span class="pre">__next__</span></code> method, which either</p>
+<ol class="simple">
+<li><p>returns the next element of the iterable object</p></li>
+<li><p>raises the <code class="docutils literal notranslate"><span class="pre">StopIteration</span></code> exception if there are no more elements to iterate over</p></li>
+</ol>
+<div class="section" id="a-basic-iterator">
+<h2>A Basic Iterator<a class="headerlink" href="#a-basic-iterator" title="Permalink to this headline">¶</a></h2>
+<p>What if we want to replicate <code class="docutils literal notranslate"><span class="pre">range</span></code>?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>range
+</pre></div>
+</div>
+</div>
+</div>
+<p>we can produce an iterator using the <code class="docutils literal notranslate"><span class="pre">iter</span></code> function</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ri</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">ri</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>range_iterator
+</pre></div>
+</div>
+</div>
+</div>
+<p>we can explicitly run through the iterator using the <code class="docutils literal notranslate"><span class="pre">next</span></code> function</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">ri</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">my_range_iterator</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">,</span> <span class="n">stride</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">start</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stop</span> <span class="o">=</span> <span class="n">stop</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stride</span> <span class="o">=</span> <span class="n">stride</span>
+        
+    <span class="k">def</span> <span class="fm">__next__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stop</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">StopIteration</span>  <span class="c1"># signals &quot;the end&quot;</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="c1"># we&#39;ll return current state</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stride</span> <span class="c1"># increment state</span>
+        <span class="k">return</span> <span class="n">ret</span>
+        
+        
+<span class="c1"># an iterable</span>
+<span class="k">class</span> <span class="nc">my_range</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start</span> <span class="o">=</span> <span class="n">start</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stop</span> <span class="o">=</span> <span class="n">stop</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stride</span> <span class="o">=</span> <span class="n">stride</span>
+    
+    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">my_range_iterator</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stop</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stride</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">my_range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>__main__.my_range
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ri</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">ri</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>__main__.my_range_iterator
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">ri</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">my_range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>0
+1
+2
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can also create classes that are both iterators and iterables</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># an iterable and iterator</span>
+<span class="k">class</span> <span class="nc">my_range2</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start</span> <span class="o">=</span> <span class="n">start</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stop</span> <span class="o">=</span> <span class="n">stop</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stride</span> <span class="o">=</span> <span class="n">stride</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">start</span>
+    
+    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span>
+    
+    <span class="k">def</span> <span class="fm">__next__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stop</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">StopIteration</span>  <span class="c1"># signals &quot;the end&quot;</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="c1"># we&#39;ll return current state</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stride</span> <span class="c1"># increment state</span>
+        <span class="k">return</span> <span class="n">ret</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">my_range2</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>0
+1
+2
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="using-iterators-for-computation">
+<h2>Using Iterators for Computation<a class="headerlink" href="#using-iterators-for-computation" title="Permalink to this headline">¶</a></h2>
+<p>Let’s now use iterators for something more interesting - computing the Fibonacci numbers.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">FibonacciIterator</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># current number</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># next number</span>
+        
+    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span>
+    
+    <span class="k">def</span> <span class="fm">__next__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span> <span class="c1"># advance the iteration</span>
+        <span class="k">return</span> <span class="n">ret</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">FibonacciIterator</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">1000</span><span class="p">:</span>
+        <span class="k">break</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>0
+1
+1
+2
+3
+5
+8
+13
+21
+34
+55
+89
+144
+233
+377
+610
+987
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that we never raise a <code class="docutils literal notranslate"><span class="pre">StopIteration</span></code> exception - the iterator will just keep going if we let it.</p>
+<div class="section" id="exercises">
+<h3>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="generators">
+<h2>Generators<a class="headerlink" href="#generators" title="Permalink to this headline">¶</a></h2>
+<p>Often, a more elegant way to define an iterator is using a <a class="reference external" href="https://wiki.python.org/moin/Generators">generator</a></p>
+<p>This is a special kind of iterator defined using a function instead of using classes that implement the <code class="docutils literal notranslate"><span class="pre">__iter__</span></code> and <code class="docutils literal notranslate"><span class="pre">__next__</span></code> methods.</p>
+<p>See <a class="reference external" href="https://nvie.com/posts/iterators-vs-generators/">this post</a> for more discussion.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_range3</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">stop</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">while</span> <span class="n">state</span> <span class="o">&lt;</span> <span class="n">stop</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">state</span>
+        <span class="n">state</span> <span class="o">+=</span> <span class="n">stride</span>
+        
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that we use the <code class="docutils literal notranslate"><span class="pre">def</span></code> keyword instead of the <code class="docutils literal notranslate"><span class="pre">class</span></code> keyword for our declaration.  The <code class="docutils literal notranslate"><span class="pre">yield</span></code> keyword returns subsequent values of the iteration.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">my_range3</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>generator
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ri</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">ri</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>generator
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">ri</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">my_range3</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>0
+1
+2
+</pre></div>
+</div>
+</div>
+</div>
+<p>Our Fibonacci example re-written using a generator:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">FibonacciGenerator</span><span class="p">():</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">a</span>
+        <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">FibonacciGenerator</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">1000</span><span class="p">:</span>
+        <span class="k">break</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>0
+1
+1
+2
+3
+5
+8
+13
+21
+34
+55
+89
+144
+233
+377
+610
+987
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id1">
+<h3>Exercises<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="zip-and-reverse">
+<h2>zip and reverse<a class="headerlink" href="#zip-and-reverse" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">]):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>0 a
+1 b
+2 c
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>2
+1
+0
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="the-itertools-package">
+<h2>The Itertools Package<a class="headerlink" href="#the-itertools-package" title="Permalink to this headline">¶</a></h2>
+<p>A useful package for dealing with iterators is the <a class="reference external" href="https://docs.python.org/3.8/library/itertools.html">itertools package</a></p>
+</div>
+<div class="section" id="iterators-for-scientific-computing">
+<h2>Iterators for Scientific Computing<a class="headerlink" href="#iterators-for-scientific-computing" title="Permalink to this headline">¶</a></h2>
+<p>One way to use iterators for scientific computing</p>
+<p>Iterator for power method</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="k">def</span> <span class="nf">PowerMethodIterator</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+    
+    <span class="k">def</span> <span class="nf">RayleighQuotient</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">A</span> <span class="o">@</span> <span class="n">x</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+    
+    <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">rq_prev</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+    <span class="n">rq</span> <span class="o">=</span> <span class="n">RayleighQuotient</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+    
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="c1"># yield state: RayleighQuotient, x, and difference from previous iteration</span>
+        <span class="k">yield</span> <span class="n">rq</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">rq</span> <span class="o">-</span> <span class="n">rq_prev</span><span class="p">)</span>
+        
+        <span class="c1"># compute next iteration</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">x</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">rq_prev</span> <span class="o">=</span> <span class="n">rq</span>
+        <span class="n">rq</span> <span class="o">=</span> <span class="n">RayleighQuotient</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+    
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">A</span><span class="o">.</span><span class="n">T</span>
+<span class="n">x0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+<span class="n">solver</span> <span class="o">=</span> <span class="n">PowerMethodIterator</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">x0</span><span class="p">)</span>
+<span class="n">tol</span> <span class="o">=</span> <span class="mf">1e-4</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">rq</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">eps</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">solver</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">rq</span><span class="p">,</span> <span class="n">eps</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">eps</span> <span class="o">&lt;</span> <span class="n">tol</span><span class="p">:</span>
+        <span class="k">break</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>126.21167032913272 inf
+270.4587145034898 144.24704417435706
+314.5734594675012 44.114744964011436
+333.14900277642244 18.575543308921226
+342.38428419491174 9.235281418489308
+347.9008345085033 5.5165503135915515
+351.55042275593195 3.649588247428653
+354.08599526449024 2.535572508558289
+355.9032311821727 1.817235917682467
+357.243640489528 1.3404093073552872
+358.26315545947506 1.0195149699470676
+359.06429655906925 0.8011410995941901
+359.71510074244947 0.6508041833802167
+360.2611828548228 0.5460821123733126
+360.73351557238595 0.47233271756317663
+361.15342937414516 0.41991380175920767
+361.5358198580676 0.3823904839224497
+361.89121370370856 0.3553938456409469
+362.22711329725183 0.3358995935432745
+362.5488855604656 0.3217722632137452
+362.8603609237684 0.31147536330280445
+363.16424576747636 0.3038848437079764
+363.4624128736472 0.2981671061708653
+363.75611056299203 0.29369768934481044
+364.0461164922621 0.2900059292700803
+364.33285297622655 0.2867364839644324
+364.61647498612626 0.283622009899716
+364.8969383401349 0.28046335400864564
+365.1740532444845 0.2771149043496166
+365.4475267866863 0.27347354220177067
+365.71699693387797 0.26947014719166873
+365.9820598716048 0.26506293772683875
+366.24229202039834 0.2602321487935342
+366.4972677189047 0.2549756985063709
+366.7465733171276 0.24930559822291798
+366.9898182508084 0.24324493368078492
+367.2266435468593 0.2368252960508812
+367.4567281250554 0.23008457819611294
+367.6797932020167 0.22306507696129074
+367.89560506191583 0.21581185989913365
+368.1039764284968 0.20837136658099098
+368.30476665062633 0.20079022212951259
+368.49788089570075 0.19311424507441188
+368.68326852971205 0.1853876340113061
+368.8609208482839 0.1776523185718588
+369.0308683087283 0.1699474604444049
+369.1931773987786 0.1623090900502575
+369.3479472630102 0.15476986423163908
+369.4953061931907 0.14735893018047364
+369.63540807410646 0.14010188091577902
+369.76842886205344 0.13302078794697536
+369.8945631594271 0.12613429737365323
+370.0140209359336 0.1194577765065219
+370.1270244350694 0.11300349913580021
+370.2338052938126 0.10678085874320686
+370.3346018940272 0.10079660021455084
+370.42965695592073 0.09505506189356083
+370.51921537701435 0.08955842109361356
+370.60352231440936 0.08430693739501294
+370.6828215036064 0.0792991891970587
+370.7573538036274 0.07453230002096234
+370.82735595560996 0.0700021519825782
+370.89305954026116 0.06570358465120307
+370.95469011845256 0.061630578191397944
+371.01246653870965 0.05777642025708474
+371.066600395269 0.05413385655936054
+</pre></div>
+</div>
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>371.11729562067376 0.05069522540475191
+371.16474819744667 0.047452576772911925
+371.20914597416197 0.0443977767153001
+371.2506685721499 0.04152259798792102
+371.28948737008847 0.03881879793857479
+371.32576555478335 0.0362781846948792
+371.35965822751353 0.03389267273018959
+371.3913125563738 0.0316543288602702
+371.4208679660616 0.029555409687816336
+371.44845635753404 0.027588391472420426
+371.47420235086656 0.02574599333252081
+371.4982235454973 0.024021194630734044
+371.5206307928142 0.0224072473168917
+371.5415284767563 0.02089768394210978
+371.5610147987359 0.01948632197962752
+371.5791820637685 0.0181672650325595
+371.59611696520346 0.01693490143497911
+371.61190086590557 0.015783900702103892
+371.6266100741336 0.014709208228055104
+371.64031611271037 0.013706038576742685
+371.65308598038075 0.012769867670385793
+371.6649824045165 0.011896424135727557
+371.6760640845466 0.01108168003014498
+371.6863859256884 0.010321841141774257
+371.6959992627092 0.009613337020823565
+371.70495207358925 0.008952810880032303
+371.71328918306517 0.00833710947591726
+371.7210524561293 0.007763273064142595
+371.72828098163154 0.007228525502227967
+371.7350112461947 0.006730264563145738
+371.7412772987009 0.0062660525061914996
+371.7471109056399 0.005833606939006586
+371.75254169764384 0.005430792003949136
+371.75759730754606 0.005055609902228753
+371.76230350031824 0.004706192772175655
+371.7666842952456 0.004380794927385523
+371.7707620807038 0.004077785458150629
+371.7745577218962 0.0037956411924255917
+371.77809066191355 0.0035329400173509384
+371.7813790164621 0.003288354548544703
+371.7844396626031 0.0030606461410229713
+371.7872883218372 0.0028486592340755124
+371.7899396378516 0.002651316014407712
+371.79240724923943 0.0024676113878285832
+371.7947038574865 0.0022966082470929905
+371.7968412905082 0.0021374330216872295
+371.7988305620051 0.0019892714968818836
+371.8006819268959 0.0018513648907969582
+371.8024049330682 0.00172300617231258
+371.8040084696799 0.0016035366116966543
+371.80550081222907 0.0014923425491701892
+371.8068896645972 0.0013888523681089282
+371.8081821982626 0.001292533665434803
+371.8093850888645 0.0012028906018599628
+371.8105045502933 0.0011194614288001503
+371.81154636646625 0.0010418161729717212
+371.8125159209433 0.0009695544770806919
+371.8134182245248 0.0009023035814834657
+371.814257940965 0.0008397164401685586
+371.8150394109285 0.0007814699634991484
+371.8157666743054 0.0007272633769161985
+371.8164434909978 0.0006768166924189245
+371.8170733602779 0.0006298692800896788
+371.81765953881626 0.0005861785383558527
+371.81820505747083 0.0005455186545759716
+</pre></div>
+</div>
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>371.8187127369177 0.0005076794468550361
+371.8191852022066 0.00047246528890809714
+371.81962489631115 0.0004396941045570202
+371.820034092745 0.0004091964338499565
+371.82041490730495 0.00038081455994642965
+371.82076930900433 0.0003544016993828336
+371.8210991302491 0.00032982124474756347
+371.8214060763105 0.0003069460614142372
+371.82169173414235 0.0002856578318528591
+371.82195758058725 0.00026584644490412757
+371.82220499001556 0.00024740942831158463
+371.82243524143297 0.00023025141740617983
+371.8226495250988 0.00021428366585496406
+371.8228489486826 0.00019942358375146796
+371.82303454299483 0.00018559431225639855
+371.8232072673214 0.0001727243265463585
+371.8233680143861 0.00016074706474000777
+371.82351761497046 0.00014960058433644008
+371.8236568422125 0.0001392272420162044
+371.8237864156069 0.00012957339441754812
+371.82390700472814 0.00012058912125212373
+371.82401923269515 0.00011222796700849358
+371.8241236793951 0.00010444669993603384
+371.82422088448396 9.72050888776721e-05
+</pre></div>
+</div>
+</div>
+</div>
+<p>If we decide that we’re not satisfied with convergence yet, we can resume where we left off</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tol</span> <span class="o">=</span> <span class="mf">1e-6</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">rq</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">eps</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">solver</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">rq</span><span class="p">,</span> <span class="n">eps</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">eps</span> <span class="o">&lt;</span> <span class="n">tol</span><span class="p">:</span>
+        <span class="k">break</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>371.82431135017845 9.046569448400987e-05
+371.8243955438543 8.419367583201165e-05
+371.8244739004645 7.835661023136709e-05
+371.8245468247888 7.292432428585016e-05
+371.824614693528 6.786873922237646e-05
+371.8246778572523 6.316372429182593e-05
+371.82473664221476 5.87849624480441e-05
+371.82479135203846 5.4709823700704874e-05
+371.8248422692869 5.091724841577161e-05
+371.82488965692517 4.7387638289819733e-05
+371.8249337596799 4.410275471400382e-05
+371.82497480530463 4.104562475504281e-05
+371.82501300575746 3.820045282054707e-05
+371.82504855829677 3.555253931608604e-05
+371.8250816465013 3.308820453185035e-05
+371.8251124412188 3.0794717474691424e-05
+371.82514110144945 2.8660230668720033e-05
+371.82516777516804 2.6673718593883677e-05
+371.8251926000878 2.4824919762522768e-05
+371.82521570437325 2.310428544660681e-05
+371.82523720730194 2.1502928689187684e-05
+371.82525721988105 2.0012579113881657e-05
+371.825275845421 1.862553995124472e-05
+371.8252931800692 1.7334648191535962e-05
+371.82530931330683 1.6133237636495323e-05
+371.82532432841117 1.5015104338544916e-05
+371.8253383028863 1.3974475109534978e-05
+371.82535130886265 1.3005976370550343e-05
+371.82536341347003 1.2104607378660148e-05
+371.8253746791847 1.1265714647379355e-05
+371.82538516415156 1.0484966878721025e-05
+371.8253949224849 9.758333362697158e-06
+371.82540400454764 9.082062717880035e-06
+371.82541245721137 8.452663735170063e-06
+371.82542032409873 7.866887358431995e-06
+371.82542764580836 7.321709631469275e-06
+371.8254344601249 6.8143165208311984e-06
+371.8254408022138 6.342088909150334e-06
+371.82544670480274 5.902588952721999e-06
+371.82545219835146 5.493548712820484e-06
+371.82545731120786 5.112856399591692e-06
+371.82546206975553 4.75854767501005e-06
+371.8254664985489 4.428793374700035e-06
+371.8254706204407 4.1218917772312125e-06
+371.8254744566998 3.836259111267282e-06
+371.825478027121 3.5704211995835067e-06
+371.8254813501268 3.3230057852051686e-06
+371.8254844428632 3.092736449161748e-06
+371.8254873212881 2.87842487978196e-06
+371.8254900002528 2.6789646767610975e-06
+371.8254924935797 2.493326917374361e-06
+371.8254948141334 2.3205536763271084e-06
+371.8254969738864 2.1597530235339946e-06
+371.825498983982 2.0100956135138404e-06
+371.825500854791 1.8708090010477463e-06
+371.82550259596553 1.7411745147910551e-06
+371.82550421648875 1.6205232213906129e-06
+371.8255057247214 1.5082326285664749e-06
+371.82550712844454 1.4037231608199363e-06
+371.8255084349005 1.3064559425401967e-06
+371.8255096508291 1.2159285915913642e-06
+371.82551078250356 1.1316744803480105e-06
+371.82551183576237 1.0532588134992693e-06
+371.825512816039 9.802766385291761e-07
+</pre></div>
+</div>
+</div>
+</div>
+<p>Implement a class which contains the state of an optimization problem.  Make this class an iterator.</p>
+<p>Use this for introspection of the solver.</p>
+<div class="section" id="id2">
+<h3>Exercises<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>Implement the game of life using an Iterator or Generator</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "pycourse"
+        },
+        kernelOptions: {
+            kernelName: "pycourse",
+            path: "./00_python"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'pycourse'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="decorators.html" title="previous page">Decorators</a>
+    <a class='right-next' id="next-link" href="misc.html" title="next page">Miscellaneous</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Brad Nelson<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../_static/js/index.js"></script>
+    
+  </body>
+</html>

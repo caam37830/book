@@ -1,0 +1,346 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Introduction &#8212; Scientific Computing with Python</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/mystnb.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Python" href="00_python/python.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Scientific Computing with Python</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="#">
+   Introduction
+  </a>
+ </li>
+</ul>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="00_python/python.html">
+   Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_analysis/analysis.html">
+   Analysis of Algorithms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02_linear_algebra/linear_algebra.html">
+   Linear Algebra
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_optimization/optimization.html">
+   Optimization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_functions/functions.html">
+   Functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_graphs/graphs.html">
+   Graphs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_probability_statistics/prob_stat.html">
+   Probability and Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_data/data.html">
+   Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08_geometry/geometry.html">
+   Geometry
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_computing/computing.html">
+   Computing
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/introduction.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#preface">
+   Preface
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-is-scientific-computing">
+   What is Scientific Computing?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#why-python">
+   Why Python?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#about-this-book">
+   About this “Book”
+  </a>
+ </li>
+</ul>
+
+        </nav>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<p>You can find a table of contents to your left, or below.</p>
+<div class="tableofcontents-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="00_python/python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_analysis/analysis.html">Analysis of Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_linear_algebra/linear_algebra.html">Linear Algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_optimization/optimization.html">Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_functions/functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_graphs/graphs.html">Graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_probability_statistics/prob_stat.html">Probability and Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_data/data.html">Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_geometry/geometry.html">Geometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_computing/computing.html">Computing</a></li>
+</ul>
+</div>
+<div class="section" id="preface">
+<h2>Preface<a class="headerlink" href="#preface" title="Permalink to this headline">¶</a></h2>
+<p>This book is designed to be a course reader for STAT 37380 / CAAM 37380 taught at the University of Chicago in the fall quarter of 2020.  The course is designed for students who want to <em>do</em> scientific computing, whether they are embarking on a research project in some domain that will require computational components, or want to work on algorithms and implementations to support domain scientists.  Scientific computing is a gateway to a diverse set of topics, including continuous and discrete mathematics, algorithms, computer hardware, programming languages, modeling, simulation, and data analysis.  The student is not expected to be familiar with all of the above when first beginning.  The minimal prerequisites for this course are a solid background in multivariable calculus and linear algebra, some programming experience (not necessarily formally taught), and some exposure to applications such as physics, chemistry, biology, or the social sciences.  An advanced undergraduate or beginning graduate student will likely be prepared.  This course focuses on practical implementations and use, and for the most part leaves theory to other courses aside from some basic notions of what may make one algorithm better than another.</p>
+<p>Teaching scientific computing can be a bit challenging because the instructor wants to show students interesting problems as quickly as possible, but also needs to build up many technical skills to solve these problems effectively. This necessarily leads to introducing a mix of ideas at once, and spreading out some topics throughout the course.  The challenge for the student is that their new-found knowledge of a topic like numerical linear algebra may be spread out over many lectures, and mixed in with other areas like optimization or image processing.  This book attempts to help organize this information by putting content for a topic into a single chapter.  The trade-off is that the book is not intended to be read (or taught) sequentially as it appears in the table of contents, an issue that is perhaps mitigated by the online format and ability to add hyperlinks to relevant information across this book.  The potential advantage is that this allows students or instructors to carve their own path through the content without getting too hung up on doing things in the “right” order.  Each chapter begins with the basics and increases in order of complexity.  The chapters of the book are necessarily dependent on each other, but this typically doesn’t occur until well into the chapter.  The exceptions are that basic python syntax and computing setup are necessary to do just about anything else.</p>
+<p>The course is designed to be taught remotely, out of necessity during the Coronavirus pandemic.  We’ll see how it goes.  It is built using <a class="reference external" href="https://jupyterbook.org/intro.html">Jupyter Book</a>.</p>
+</div>
+<div class="section" id="what-is-scientific-computing">
+<h2>What is Scientific Computing?<a class="headerlink" href="#what-is-scientific-computing" title="Permalink to this headline">¶</a></h2>
+<p>By definition, computing to support science!  Scientific method (with some computational topics):</p>
+<ol class="simple">
+<li><p>Ask a question (exploratory data analysis)</p></li>
+<li><p>Formulate a hypothesis (use a model)</p></li>
+<li><p>Design an experiment to test hypothesis (simulation)</p></li>
+<li><p>Analyze data (fit a model, perform uncertainty quantification)</p></li>
+</ol>
+</div>
+<div class="section" id="why-python">
+<h2>Why Python?<a class="headerlink" href="#why-python" title="Permalink to this headline">¶</a></h2>
+<p>Python has become an extremely popular language in academia and industry.  Chances are that you will use it at some point in the future no matter where you end up.</p>
+<ol class="simple">
+<li><p>scripted language, easy to develop in</p></li>
+<li><p>lots of great libraries</p></li>
+<li><p>lots of community support</p></li>
+</ol>
+<p>Languages that fill similar roles as Python for scientific computing: Matlab, R, Julia</p>
+<p>If you’re serious about scientific computing, I would recommend (at least) learning some C++ after this course, which is the language of choice for performance-critical code, and which is often wrapped by high-level languages (such as Python).  Unfortunately, we can’t do everything in a single quarter.</p>
+</div>
+<div class="section" id="about-this-book">
+<h2>About this “Book”<a class="headerlink" href="#about-this-book" title="Permalink to this headline">¶</a></h2>
+<p>This book organizes material into chapters that more or less contain information about a single topic.  This is done in an attempt to organize information in a sensible way.  However, it is not intended to be read or taught in the sequential order seen in the table of contents.  The course will carve some path through the content of the book, and any reader can likewise choose their own adventure through the content.</p>
+<p>The chapters are as follows:</p>
+<ol start="0">
+	<li>Python - syntax, basic packages, basic and advanced topics</li>
+	<li> Analysis - asymptotics and convergence</li>
+	<li> Linear algebra - dense and sparse</li>
+	<li> Optimization - specifying and solving problems</li>
+	<li> Functions - root finding, interpolation, calculus on computers</li>
+	<li> Graphs - the network kind</li>
+	<li> Probability and Statistics - generating random numbers, distributions, parameter estimation</li>
+	<li> Data - reading data, visualization, machine learning</li>
+	<li> Geometry - metrics, nearest neighbor search, clustering</li>
+	<li> Computing - how to use computing resources, how to work with other people</li>
+</ol>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='right-next' id="next-link" href="00_python/python.html" title="next page">Python</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Brad Nelson<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="_static/js/index.js"></script>
+    
+  </body>
+</html>

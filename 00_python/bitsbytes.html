@@ -1,0 +1,719 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Bits, Bytes, and Numbers &#8212; Scientific Computing with Python</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/mystnb.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Functions" href="functions.html" />
+    <link rel="prev" title="Basics" href="basics.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Scientific Computing with Python</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../introduction.html">
+   Introduction
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="python.html">
+   Python
+  </a>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="using_python.html">
+     Using Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="basics.html">
+     Basics
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Bits, Bytes, and Numbers
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="functions.html">
+     Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="classes.html">
+     Object-Oriented Programming
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="modules.html">
+     Modules and Packages
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="decorators.html">
+     Decorators
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="iterators.html">
+     Iterators and Generators
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="misc.html">
+     Miscellaneous
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01_analysis/analysis.html">
+   Analysis of Algorithms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02_linear_algebra/linear_algebra.html">
+   Linear Algebra
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03_optimization/optimization.html">
+   Optimization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04_functions/functions.html">
+   Functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05_graphs/graphs.html">
+   Graphs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06_probability_statistics/prob_stat.html">
+   Probability and Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../07_data/data.html">
+   Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../08_geometry/geometry.html">
+   Geometry
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../09_computing/computing.html">
+   Computing
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/00_python/bitsbytes.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bits-and-bytes">
+   Bits and Bytes
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#integers">
+   Integers
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bitwise-operations">
+   Bitwise operations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#floating-point-numbers">
+   Floating Point Numbers
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#print-formatting">
+     Print Formatting
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise">
+   Exercise
+  </a>
+ </li>
+</ul>
+
+        </nav>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="bits-bytes-and-numbers">
+<h1>Bits, Bytes, and Numbers<a class="headerlink" href="#bits-bytes-and-numbers" title="Permalink to this headline">¶</a></h1>
+<p>In order to do math on a computer, you should have some idea of how computers represent numbers and do computations.</p>
+<p>Unlike strongly typed languages (e.g. C), you don’t have to worry too much about type if you’re just scripting.  However, you will have to think about this for most algorithms.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">5</span> <span class="c1"># an integer type</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mf">5.0</span> <span class="c1"># float type</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;int&#39;&gt;
+&lt;class &#39;float&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="mi">4</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span>  <span class="c1"># division of ints -&gt; float</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">4</span><span class="o">//</span><span class="mi">3</span><span class="p">)</span> <span class="c1"># integer division -&gt; int</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>1.3333333333333333
+1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="bits-and-bytes">
+<h2>Bits and Bytes<a class="headerlink" href="#bits-and-bytes" title="Permalink to this headline">¶</a></h2>
+<p>A bit is a 0/1 value, and a byte is 8 bits.  Most modern computers are 64-bit architectures on which Python 3 will use 64-bits to represent numbers.  Some computers may be 32-bit architectures, and Python may use 32-bits to represent numbers - beware!</p>
+<p>You can represent strings of bits using the <code class="docutils literal notranslate"><span class="pre">0b</span></code> prefix.  Be default, these will be interpreted as integers written in base-2.  For example, on a 32-bit system,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mb">0b101</span> <span class="o">=</span> <span class="mi">00000000000000000000000000000101</span> <span class="p">(</span><span class="n">base</span> <span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="mi">5</span> <span class="p">(</span><span class="n">base</span> <span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mb">0b101</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>5
+</pre></div>
+</div>
+</div>
+</div>
+<p>It is often easier to deal with hexadecimal (base-16), denoted with the <code class="docutils literal notranslate"><span class="pre">0x</span></code> prefix</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mh">0xF</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>15
+</pre></div>
+</div>
+</div>
+</div>
+<p>To count in hexadecimal:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">17</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:x}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+a
+b
+c
+d
+e
+f
+10
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mh">0xF</span> <span class="o">==</span> <span class="mb">0b1111</span> <span class="o">==</span> <span class="mi">15</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can also use octal (base 8) if you’d like using the <code class="docutils literal notranslate"><span class="pre">0o</span></code> prefix</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mo">0o10</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>8
+</pre></div>
+</div>
+</div>
+</div>
+<p>hexadecimal is often used because it breaks up bits into blocks of 4 (16 = 2^4).  So a 64-bit type has some representation as a length-16 string in hexadecimal</p>
+</div>
+<div class="section" id="integers">
+<h2>Integers<a class="headerlink" href="#integers" title="Permalink to this headline">¶</a></h2>
+<p>Integers are represented in base-2 using bits.  Most modern computers are 64-bit architectures, and Python 3 will by default use 64-bit integers.  However, unlike some languages, Python will use arbitrary precision so you don’t run into overflow errors:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="mi">65</span><span class="p">)</span> <span class="c1"># ** for exponentiation</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>36893488147419103232
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="mi">256</span><span class="p">)</span> <span class="c1"># size in bytes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>60
+</pre></div>
+</div>
+</div>
+</div>
+<p>However, when we call code written in C/C++ or fortran such as numpy, you can run into overflow issues</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">**</span> <span class="mi">63</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>-9223372036854775808
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">**</span><span class="mi">65</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="bitwise-operations">
+<h2>Bitwise operations<a class="headerlink" href="#bitwise-operations" title="Permalink to this headline">¶</a></h2>
+<p>You can perform operations on bit strings in Python:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">hexprint</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:04x}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+    
+<span class="n">hexprint</span><span class="p">(</span><span class="mh">0x1100</span> <span class="o">&amp;</span> <span class="mh">0x0101</span><span class="p">)</span> <span class="c1"># bitwise and</span>
+<span class="n">hexprint</span><span class="p">(</span><span class="mh">0x1100</span> <span class="o">|</span> <span class="mh">0x0101</span><span class="p">)</span> <span class="c1"># bitwise or</span>
+<span class="n">hexprint</span><span class="p">(</span><span class="mh">0x1100</span> <span class="o">^</span> <span class="mh">0x0101</span><span class="p">)</span> <span class="c1"># bitwise xor</span>
+<span class="n">hexprint</span><span class="p">(</span><span class="o">~</span><span class="mh">0x1100</span><span class="p">)</span> <span class="c1"># negation</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>0100
+1101
+1001
+-1101
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="floating-point-numbers">
+<h2>Floating Point Numbers<a class="headerlink" href="#floating-point-numbers" title="Permalink to this headline">¶</a></h2>
+<p>Real numbers are represented as floating point numbers on a computer.  Almost all real numbers must be approximated, which means you can’t always ask for exact equality</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.0</span><span class="o">/</span><span class="mf">3.0</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.3333333333333333
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.2</span> <span class="o">-</span> <span class="mf">1.0</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.19999999999999996
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.2</span> <span class="o">-</span> <span class="mf">1.0</span> <span class="o">==</span> <span class="mf">0.2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<p>The approximation error is called <strong>machine precision</strong>, typically denoted <span class="math notranslate nohighlight">\(\epsilon\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">finfo</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float16</span><span class="p">)</span><span class="o">.</span><span class="n">eps</span><span class="p">)</span> <span class="c1"># 16-bit float</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">finfo</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">.</span><span class="n">eps</span><span class="p">)</span> <span class="c1"># 32-bit float</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">finfo</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span><span class="o">.</span><span class="n">eps</span><span class="p">)</span> <span class="c1"># 64-bit float</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">finfo</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float128</span><span class="p">)</span><span class="o">.</span><span class="n">eps</span><span class="p">)</span> <span class="c1"># 128-bit float</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>0.000977
+1.1920929e-07
+2.220446049250313e-16
+1.084202172485504434e-19
+</pre></div>
+</div>
+</div>
+</div>
+<p>32-bit floating point numbers corrsepond to a <code class="docutils literal notranslate"><span class="pre">float</span></code> in C, and are also known as <strong>single precision</strong> numbers.  64-bit floating point numbers correspond to a <code class="docutils literal notranslate"><span class="pre">double</span></code> in C, and are also known as <strong>double precision</strong> numbers.  16-bit floats are half-precision, and 128-bit floats are quad-precision.</p>
+<p>Double precision is the standard for numerical codes.  Quad- (or higher) precision is sometimes useful.  A big trend in deep learning is to use lower-precision formats.</p>
+<p>Floating point numbers are numbers written in scientific notation (in base-2).  E.g. <span class="math notranslate nohighlight">\(1.1 * 2^{10} = 1.5 * 2^2\)</span> in base-10 = 6.  They contain a sign bit, a set of bits for the decimal (called the significand or mantissa), and a set of bits for the exponent.</p>
+<p>For further reading on potential considerations with floating point numbers, see <a class="reference external" href="https://docs.python.org/3/tutorial/floatingpoint.html">the Python documentation</a></p>
+<div class="section" id="print-formatting">
+<h3>Print Formatting<a class="headerlink" href="#print-formatting" title="Permalink to this headline">¶</a></h3>
+<p>It is often convenient to format floating point numbers for printing without showing full precision.  An explanation of available options can be found in the <a class="reference external" href="https://docs.python.org/3/library/string.html#format-specification-mini-language">format specification mini-language documentation</a>.  We’ll cover a few examples.</p>
+<p>When formatting a floating point number with <code class="docutils literal notranslate"><span class="pre">format</span></code>, you put format specification in the curly braces <code class="docutils literal notranslate"><span class="pre">{}</span></code>, as in <code class="docutils literal notranslate"><span class="pre">&quot;{:width.precision}}</span></code></p>
+<p>The <em>width</em> denotes the total field width.</p>
+<p>The <em>precision</em> denotes how many digits should be displayed after the decimal.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:e}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pi</span><span class="p">))</span>      <span class="c1"># exponential notation</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:.2e}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pi</span><span class="p">))</span>    <span class="c1"># exponential, precision 2</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pi</span><span class="p">))</span>      <span class="c1"># fixed-point notation</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pi</span><span class="p">))</span>    <span class="c1"># fixed-point, precision 2</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:6.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pi</span><span class="p">))</span>   <span class="c1"># minimum field width of 5</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:+6.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pi</span><span class="p">))</span>  <span class="c1"># minimum field width of 5, explicit sign</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">pi</span><span class="si">:</span><span class="s2">+6.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>          <span class="c1"># f-string instead of format</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:06.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pi</span><span class="p">))</span>  <span class="c1"># 0-pad to to fill width</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{: .2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pi</span><span class="p">))</span>   <span class="c1"># use space for sign alignment</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{: .2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">-</span><span class="n">pi</span><span class="p">))</span>  <span class="c1"># use space for sign alignment</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>3.141593e+00
+3.14e+00
+3.141593
+3.14
+  3.14
+ +3.14
+ +3.14
+003.14
+ 3.14
+-3.14
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="exercise">
+<h2>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h2>
+<ol class="simple">
+<li><p>What is <span class="math notranslate nohighlight">\(\log_2(\epsilon)\)</span> for 32 and 64-bit floats?  (hint: use <code class="docutils literal notranslate"><span class="pre">np.log2</span></code>)</p></li>
+<li><p>How many bits do you think are used to represent the decimal part of a number in both these formats?</p></li>
+<li><p>If you take into account a sign bit, how many bits are left for the exponent?</p></li>
+<li><p>What is the largest exponent you can have for 32- and 64-bit floats? Keep in mind that you should have an equal number of positive and negative expoenents.</p></li>
+<li><p>Design an experiment to check your answer to part 4.</p></li>
+</ol>
+<p>Check your answer with e.g. <code class="docutils literal notranslate"><span class="pre">np.finfo(np.float32).max)</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">32</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">finfo</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">.</span><span class="n">eps</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>8.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mb">0b1111111</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>127
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">*</span><span class="mi">2</span><span class="o">**</span><span class="mi">127</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>1.7014118e+38
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">*</span><span class="mi">2</span><span class="o">**</span><span class="mi">128</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>inf
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "pycourse"
+        },
+        kernelOptions: {
+            kernelName: "pycourse",
+            path: "./00_python"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'pycourse'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="basics.html" title="previous page">Basics</a>
+    <a class='right-next' id="next-link" href="functions.html" title="next page">Functions</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Brad Nelson<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../_static/js/index.js"></script>
+    
+  </body>
+</html>

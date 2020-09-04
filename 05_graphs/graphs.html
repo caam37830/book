@@ -1,0 +1,537 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Graphs &#8212; Scientific Computing with Python</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/mystnb.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="NetworkX" href="networkx.html" />
+    <link rel="prev" title="Root Finding" href="../04_functions/roots.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Scientific Computing with Python</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../introduction.html">
+   Introduction
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_python/python.html">
+   Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01_analysis/analysis.html">
+   Analysis of Algorithms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02_linear_algebra/linear_algebra.html">
+   Linear Algebra
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03_optimization/optimization.html">
+   Optimization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04_functions/functions.html">
+   Functions
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Graphs
+  </a>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="networkx.html">
+     NetworkX
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06_probability_statistics/prob_stat.html">
+   Probability and Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../07_data/data.html">
+   Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../08_geometry/geometry.html">
+   Geometry
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../09_computing/computing.html">
+   Computing
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/05_graphs/graphs.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#applications-of-graphs">
+   Applications of Graphs
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#representing-graphs">
+   Representing Graphs
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#edge-lists">
+     Edge Lists
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#adjacency-list">
+     Adjacency List
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#adjacency-matrix">
+     Adjacency Matrix
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercises">
+     Exercises
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-graph-class">
+   A Graph Class
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise">
+     Exercise
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#spectral-embeddings">
+   Spectral Embeddings
+  </a>
+ </li>
+</ul>
+
+        </nav>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="graphs">
+<h1>Graphs<a class="headerlink" href="#graphs" title="Permalink to this headline">¶</a></h1>
+<p>In mathematics, a graph is a way of representing relational data.  A graph <span class="math notranslate nohighlight">\(G(V, E)\)</span> consists of a <strong>vertex set</strong> <span class="math notranslate nohighlight">\(V\)</span>, and an <strong>edge set</strong> <span class="math notranslate nohighlight">\(E\subseteq V\times V\)</span>.</p>
+<p>Often vertices are referred to as <strong>nodes</strong>.</p>
+<p>In a <strong>directed graph</strong>, there can be an edge <span class="math notranslate nohighlight">\((v_0, v_1)\)</span> as well as an edge <span class="math notranslate nohighlight">\((v_1, v_0)\)</span>.  This is good for representing asymmetric relations like <span class="math notranslate nohighlight">\(v_1\)</span> is better than <span class="math notranslate nohighlight">\(v_0\)</span> at some task.</p>
+<p>In an <strong>undirected graph</strong>, the edge <span class="math notranslate nohighlight">\((v_0, v_1)\)</span> is the same as the edge <span class="math notranslate nohighlight">\((v_1, v_0)\)</span>.  This is good for representing relations like friendship.</p>
+<p>In a <strong>multigraph</strong>, there can be multiple edges between the same vertices.  Multigraphs can be directed or undirected.</p>
+<p>We’ll primarily consider undirected graphs today.</p>
+<p>The <strong>neighbors</strong> of a vertex <span class="math notranslate nohighlight">\(v\)</span> are all vertices that participate in an edge with <span class="math notranslate nohighlight">\(v\)</span>
+<span class="math notranslate nohighlight">\($N(v) = \{ w \in V \mid (v,w) \in E\}\)</span>$</p>
+<p>The <strong>degree</strong> of a vertex is the size of its neighborhood set.</p>
+<div class="section" id="applications-of-graphs">
+<h2>Applications of Graphs<a class="headerlink" href="#applications-of-graphs" title="Permalink to this headline">¶</a></h2>
+<p>Graphs come up in a variety of situations studied in scientific computing</p>
+<ol class="simple">
+<li><p>Studying social networks (e.g. Facebook)</p></li>
+<li><p>Studying food webs</p></li>
+<li><p>Control processes</p></li>
+<li><p>PDE meshes</p></li>
+</ol>
+<p>and more!</p>
+</div>
+<div class="section" id="representing-graphs">
+<h2>Representing Graphs<a class="headerlink" href="#representing-graphs" title="Permalink to this headline">¶</a></h2>
+<p>There are a variety of ways we might represent graphs on a computer</p>
+<p>Here are some common representations:</p>
+<ol class="simple">
+<li><p>Edge list</p></li>
+<li><p>Adjacency list</p></li>
+<li><p>Ajacency matrix</p></li>
+<li><p>…</p></li>
+</ol>
+<p>We’ll typically treat the vertex set as <span class="math notranslate nohighlight">\([0, 1, ..., N-1]\)</span> where <span class="math notranslate nohighlight">\(N\)</span> is the number of vertices in the graph</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">pylab</span> <span class="n">inline</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Populating the interactive namespace from numpy and matplotlib
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="edge-lists">
+<h3>Edge Lists<a class="headerlink" href="#edge-lists" title="Permalink to this headline">¶</a></h3>
+<p>An edge list is exactly what you might think - a list of edges.</p>
+<p>For example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">elist</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)]</span>
+<span class="n">elist</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[(0, 1), (1, 2), (2, 3)]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="adjacency-list">
+<h3>Adjacency List<a class="headerlink" href="#adjacency-list" title="Permalink to this headline">¶</a></h3>
+<p>An adjacency list is a list of lists - every vertex has a list of <strong>neighbors</strong></p>
+<p>For our example above, we would have</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">adjlist</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">],</span>
+           <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span>
+           <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span>
+           <span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+          <span class="p">]</span>
+<span class="n">adjlist</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[[1], [0, 2], [1, 3], [2]]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="adjacency-matrix">
+<h3>Adjacency Matrix<a class="headerlink" href="#adjacency-matrix" title="Permalink to this headline">¶</a></h3>
+<p>An adjacency matrix <span class="math notranslate nohighlight">\(A\)</span> is a <span class="math notranslate nohighlight">\(|V| \times |V|\)</span> matrix, where
+<span class="math notranslate nohighlight">\($
+A[i,j] = \begin{cases}
+1 &amp; (i,j) \in E\\
+0 &amp; \text{otherwise}
+\end{cases}
+$\)</span>
+Continuing our example, we would have</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">elist</span><span class="p">:</span>
+    <span class="n">A</span><span class="p">[</span><span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">A</span><span class="p">[</span><span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="n">A</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([[0., 1., 0., 0.],
+       [1., 0., 1., 0.],
+       [0., 1., 0., 1.],
+       [0., 0., 1., 0.]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>the adjacency matrix of an undirected graph is always symmetric (why?)</p>
+<p>Often adjacency matrices are sparse, so it makes sense to use a sparse matrix format.</p>
+</div>
+<div class="section" id="exercises">
+<h3>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h3>
+<p>Assume we are working with undirected graphs</p>
+<ol class="simple">
+<li><p>Write a function to return an adjacency list from an edge list</p></li>
+<li><p>Write a function to return an adjacency matrix from an adjacency list</p></li>
+<li><p>Write a function to return an edge list from an adjacency matrix</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="a-graph-class">
+<h2>A Graph Class<a class="headerlink" href="#a-graph-class" title="Permalink to this headline">¶</a></h2>
+<p>Usually, there is data associated with vertices and/or edges in a graph.</p>
+<p>Let’s define a graph class that allows us to store data.</p>
+<p>We’ll represent the graph as an edge list.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Graph</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">elist</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">edata</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span> <span class="c1"># edge data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ndata</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span> <span class="c1"># node data</span>
+        
+    <span class="k">def</span> <span class="nf">add_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        add a node to the graph, with data indexed by keywords</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ndata</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">add_edge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        add an edge to the graph, with data indexed by keywords</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">elist</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">edata</span><span class="p">[(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">node_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ndata</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ndata</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;No such node!&quot;</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">edge_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">edata</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">edata</span><span class="p">[(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)]</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">edata</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">edata</span><span class="p">[(</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">)]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;No such edge!&quot;</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">edge_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">elist</span>
+    
+    <span class="k">def</span> <span class="nf">adjacency_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+    
+    <span class="k">def</span> <span class="nf">adjacency_matrix</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+        
+    
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">Graph</span><span class="p">()</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;dog&quot;</span><span class="p">)</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;cat&quot;</span><span class="p">)</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="exercise">
+<h3>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
+<li><p>Implement the <code class="docutils literal notranslate"><span class="pre">adjacency_list</span></code> method</p></li>
+<li><p>Implement the <code class="docutils literal notranslate"><span class="pre">adjacency_matrix</span></code> method</p></li>
+</ol>
+</div>
+</div>
+<div class="section" id="spectral-embeddings">
+<h2>Spectral Embeddings<a class="headerlink" href="#spectral-embeddings" title="Permalink to this headline">¶</a></h2>
+<p>One thing we would like to be able to do is visualize a Graph</p>
+<p>Variational form</p>
+<p>Laplacian</p>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "pycourse"
+        },
+        kernelOptions: {
+            kernelName: "pycourse",
+            path: "./05_graphs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'pycourse'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="../04_functions/roots.html" title="previous page">Root Finding</a>
+    <a class='right-next' id="next-link" href="networkx.html" title="next page">NetworkX</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Brad Nelson<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../_static/js/index.js"></script>
+    
+  </body>
+</html>

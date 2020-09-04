@@ -1,0 +1,531 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Root Finding &#8212; Scientific Computing with Python</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/mystnb.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Graphs" href="../05_graphs/graphs.html" />
+    <link rel="prev" title="Functions" href="functions.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Scientific Computing with Python</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../introduction.html">
+   Introduction
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_python/python.html">
+   Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01_analysis/analysis.html">
+   Analysis of Algorithms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02_linear_algebra/linear_algebra.html">
+   Linear Algebra
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03_optimization/optimization.html">
+   Optimization
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="functions.html">
+   Functions
+  </a>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Root Finding
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05_graphs/graphs.html">
+   Graphs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06_probability_statistics/prob_stat.html">
+   Probability and Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../07_data/data.html">
+   Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../08_geometry/geometry.html">
+   Geometry
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../09_computing/computing.html">
+   Computing
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/04_functions/roots.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#an-application-of-decorators">
+   An Application of Decorators
+  </a>
+ </li>
+</ul>
+
+        </nav>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="root-finding">
+<h1>Root Finding<a class="headerlink" href="#root-finding" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">pylab</span> <span class="n">inline</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Populating the interactive namespace from numpy and matplotlib
+</pre></div>
+</div>
+</div>
+</div>
+<p>One thing we want to be able to do compare two different algorithms that compute the same result.</p>
+<p>Many numerical algorithms operate through some sort of iterative process, where we get better and better approximations to the answer at each iteration.</p>
+<p>One example of this is <a class="reference external" href="https://en.wikipedia.org/wiki/Newton%27s_method">Newton’s method</a> for root finding.  A <strong>root</strong> of a continuous function <span class="math notranslate nohighlight">\(f\)</span> is a value <span class="math notranslate nohighlight">\(x\)</span> so that <span class="math notranslate nohighlight">\(f(x) = 0\)</span>.</p>
+<p>Given a function <span class="math notranslate nohighlight">\(f\)</span>, we would like to find some root <span class="math notranslate nohighlight">\(x\)</span>. Newton’s method computes a sequence of iterations
+<span class="math notranslate nohighlight">\($ x_k = x_{k-1} - \frac{f(x_{k-1})}{f'(x_{k-1})}\)</span>$</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">newton_root</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">fp</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    numerically approximate a root of f using Newton&#39;s method</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">fx</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">iters</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">fs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">while</span> <span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">fx</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">tol</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="n">fx</span> <span class="o">/</span> <span class="n">fp</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">fx</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">iters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">fs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fx</span><span class="p">)</span>
+        
+    <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">iters</span><span class="p">,</span> <span class="n">fs</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">2</span>
+<span class="n">fp</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span>
+
+<span class="n">x</span> <span class="p">,</span> <span class="n">ix</span><span class="p">,</span> <span class="n">iy</span> <span class="o">=</span> <span class="n">newton_root</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">fp</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span> <span class="c1"># roots are +- sqrt(2)</span>
+
+<span class="n">x</span><span class="p">,</span> <span class="n">ix</span><span class="p">,</span> <span class="n">iy</span> <span class="o">=</span> <span class="n">newton_root</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">fp</span><span class="p">,</span> <span class="n">x</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>1.4142156862745099
+1.4142135623730951
+-1.4142156862745099
+</pre></div>
+</div>
+</div>
+</div>
+<p>Another root finding algorithm is the <a class="reference external" href="https://en.wikipedia.org/wiki/Bisection_method">bisection method</a>.  This operates by narrowing an interval which is known to contain a root.  Using the <a class="reference external" href="https://en.wikipedia.org/wiki/Intermediate_value_theorem">intermediate value theorem</a>, we know that if <span class="math notranslate nohighlight">\(f(a) &lt; 0\)</span>, and <span class="math notranslate nohighlight">\(f(b) &gt; 0\)</span>, there must be some <span class="math notranslate nohighlight">\(c\in (a,b)\)</span> so that <span class="math notranslate nohighlight">\(f(c) = 0\)</span>.  At each iteration, we narrow the interval.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">bisection_root</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">lb</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">ub</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    numerically approximate a root of f using bisection method</span>
+<span class="sd">    </span>
+<span class="sd">    assume signs of f(inf), f(-inf) are different</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># first increase range until signs of f(lb), f(ub) are different</span>
+    <span class="k">while</span> <span class="n">f</span><span class="p">(</span><span class="n">lb</span><span class="p">)</span> <span class="o">*</span> <span class="n">f</span><span class="p">(</span><span class="n">ub</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">lb</span> <span class="o">*=</span> <span class="mi">2</span>
+        <span class="n">ub</span> <span class="o">*=</span> <span class="mi">2</span>
+        
+        
+    <span class="n">iters</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">fs</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="c1"># see if we found a root with one of our bounds</span>
+    <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">lb</span><span class="p">))</span> <span class="o">&lt;</span> <span class="n">tol</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">lb</span><span class="p">,</span> <span class="n">iters</span><span class="p">,</span> <span class="n">fs</span>
+    <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">ub</span><span class="p">))</span> <span class="o">&lt;</span> <span class="n">tol</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">ub</span><span class="p">,</span> <span class="n">iters</span><span class="p">,</span> <span class="n">fs</span>
+        
+    <span class="c1"># make lb correspond to negative sign</span>
+    <span class="k">if</span> <span class="n">f</span><span class="p">(</span><span class="n">lb</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="c1"># swap upper and lower</span>
+        <span class="n">lb</span><span class="p">,</span> <span class="n">ub</span> <span class="o">=</span> <span class="n">ub</span><span class="p">,</span> <span class="n">lb</span>
+        
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="n">ub</span> <span class="o">+</span> <span class="n">lb</span><span class="p">)</span><span class="o">/</span><span class="mf">2.0</span> <span class="c1"># mean</span>
+        <span class="n">iters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        
+        <span class="n">fx</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">fs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fx</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">fx</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">tol</span><span class="p">:</span>
+            <span class="c1"># found a root</span>
+            <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">iters</span><span class="p">,</span> <span class="n">fs</span>
+        <span class="k">elif</span> <span class="n">fx</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c1"># f(x) &gt; 0</span>
+            <span class="n">ub</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># f(x) &lt; 0</span>
+            <span class="n">lb</span> <span class="o">=</span> <span class="n">x</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">3</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">ix</span><span class="p">,</span> <span class="n">iy</span> <span class="o">=</span> <span class="n">bisection_root</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="n">x</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>2
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s test these two methods on the same function</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="n">x</span><span class="o">**</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">5</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="n">fp</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="mi">3</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">4</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">5</span>
+
+<span class="n">tol</span> <span class="o">=</span> <span class="mf">1e-8</span>
+
+<span class="n">x_newton</span><span class="p">,</span> <span class="n">iter_newton</span><span class="p">,</span> <span class="n">f_newton</span> <span class="o">=</span> <span class="n">newton_root</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">fp</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="n">tol</span><span class="p">)</span>
+<span class="n">x_bisect</span><span class="p">,</span> <span class="n">iter_bisect</span><span class="p">,</span> <span class="n">f_bisect</span> <span class="o">=</span> <span class="n">bisection_root</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="n">tol</span><span class="p">)</span>
+
+<span class="n">x_newton</span><span class="p">,</span> <span class="n">x_bisect</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(-0.21675657195055742, -0.21675657108426094)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s see how many iterations each method performed</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">iter_newton</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">iter_bisect</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>5
+29
+</pre></div>
+</div>
+</div>
+</div>
+<p>It looks like one algorithm is converging faster than the other - let’s track how close each iteration is to a root:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">f_newton</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;newton&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">f_bisect</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;bisection&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/roots_13_0.png" src="../_images/roots_13_0.png" />
+</div>
+</div>
+<div class="section" id="an-application-of-decorators">
+<h2>An Application of Decorators<a class="headerlink" href="#an-application-of-decorators" title="Permalink to this headline">¶</a></h2>
+<p>While Newton’s method converges faster, it required us to provide the derivative of the function we’re trying to find a root for.  This might not always be easy to implement.</p>
+<p>Instead, we might consider numerically approximating the derivative.  Recall
+<span class="math notranslate nohighlight">\($f'(x) = \lim_{h\to 0^+} \frac{f(x) - f(x + h)}{h}\)</span>$
+We’ll use the symmetric definition
+<span class="math notranslate nohighlight">\($f'(x) = \lim_{h\to 0^+} \frac{f(x+h) - f(x - h)}{2h}\)</span>$</p>
+<p>Let’s define a non-limit version
+<span class="math notranslate nohighlight">\($\Delta_h f(x) = \frac{f(x + h) - f(x - h)}{2h}\)</span>$
+for fixed <span class="math notranslate nohighlight">\(x\)</span>, if <span class="math notranslate nohighlight">\(h\)</span> is sufficiently small, then <span class="math notranslate nohighlight">\(\Delta_h f \approx f'\)</span> near <span class="math notranslate nohighlight">\(x\)</span></p>
+<p>We can explicitly define a numerical derivative of a function <span class="math notranslate nohighlight">\(f\)</span> via</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">delta</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">h</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">):</span>
+    
+    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">h</span><span class="p">)</span> <span class="o">-</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">h</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">h</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">wrapper</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">fp</span> <span class="o">=</span> <span class="n">delta</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x_newton</span><span class="p">,</span> <span class="n">iter_newton</span><span class="p">,</span> <span class="n">f_newton</span> <span class="o">=</span> <span class="n">newton_root</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">fp</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>we might also consider defining a decorator that returns <span class="math notranslate nohighlight">\(f(x), \Delta_h(x)\)</span> from a function definition</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">wraps</span>
+
+<span class="k">def</span> <span class="nf">add_numerical_derivative</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">default_h</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">):</span>
+    
+    <span class="nd">@wraps</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">h</span><span class="o">=</span><span class="n">default_h</span><span class="p">):</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">deriv</span> <span class="o">=</span> <span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">h</span><span class="p">)</span> <span class="o">-</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">h</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">h</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ret</span><span class="p">,</span> <span class="n">deriv</span>
+    
+    <span class="k">return</span> <span class="n">wrapper</span>
+        
+<span class="nd">@add_numerical_derivative</span>
+<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">f</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span> <span class="c1"># returns value, numerical derivative</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(-0.7119902382706651, 1.4907910239614353)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">h</span><span class="o">=</span><span class="mf">1e-7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(-0.7119902382706651, 1.4907910206307662)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "pycourse"
+        },
+        kernelOptions: {
+            kernelName: "pycourse",
+            path: "./04_functions"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'pycourse'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="functions.html" title="previous page">Functions</a>
+    <a class='right-next' id="next-link" href="../05_graphs/graphs.html" title="next page">Graphs</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Brad Nelson<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../_static/js/index.js"></script>
+    
+  </body>
+</html>

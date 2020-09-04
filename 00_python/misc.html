@@ -1,0 +1,617 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Miscellaneous &#8212; Scientific Computing with Python</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/mystnb.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Analysis of Algorithms" href="../01_analysis/analysis.html" />
+    <link rel="prev" title="Iterators and Generators" href="iterators.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Scientific Computing with Python</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../introduction.html">
+   Introduction
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="python.html">
+   Python
+  </a>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="using_python.html">
+     Using Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="basics.html">
+     Basics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="bitsbytes.html">
+     Bits, Bytes, and Numbers
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="functions.html">
+     Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="classes.html">
+     Object-Oriented Programming
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="modules.html">
+     Modules and Packages
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="decorators.html">
+     Decorators
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="iterators.html">
+     Iterators and Generators
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Miscellaneous
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01_analysis/analysis.html">
+   Analysis of Algorithms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02_linear_algebra/linear_algebra.html">
+   Linear Algebra
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03_optimization/optimization.html">
+   Optimization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04_functions/functions.html">
+   Functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05_graphs/graphs.html">
+   Graphs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06_probability_statistics/prob_stat.html">
+   Probability and Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../07_data/data.html">
+   Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../08_geometry/geometry.html">
+   Geometry
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../09_computing/computing.html">
+   Computing
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/00_python/misc.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ternary-operator">
+   Ternary Operator
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hash-tables-dictionaries">
+   Hash Tables &amp; Dictionaries
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hash-functions">
+     Hash Functions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dictionaries">
+     Dictionaries
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#slots-magic">
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     __slots__
+    </span>
+   </code>
+   Magic
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exceptions">
+   Exceptions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#coroutines">
+   Coroutines
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#type-hints">
+   Type Hints
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#other">
+   Other
+  </a>
+ </li>
+</ul>
+
+        </nav>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="miscellaneous">
+<h1>Miscellaneous<a class="headerlink" href="#miscellaneous" title="Permalink to this headline">¶</a></h1>
+<p>There is a lot of interesting stuff in the Python language which we don’t have time to cover entirely.  In this section, we’ll sample some topics which may be useful to know about.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">pylab</span> <span class="n">inline</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Populating the interactive namespace from numpy and matplotlib
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="ternary-operator">
+<h2>Ternary Operator<a class="headerlink" href="#ternary-operator" title="Permalink to this headline">¶</a></h2>
+<p>Consider the computation of an absolute value <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">abs(a)</span></code>.</p>
+<p>If we were to write the expression using <code class="docutils literal notranslate"><span class="pre">if/else</span></code> statements, we would have</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">a</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">a</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="o">-</span><span class="n">a</span>
+</pre></div>
+</div>
+<p>There are a few things that are not very satisfactory about the <code class="docutils literal notranslate"><span class="pre">if/else</span></code> statements.  First is that we have to initialize the variable <code class="docutils literal notranslate"><span class="pre">x</span></code> in the appropriate scope.  The second issue is that it is much more verbose.  An alternative is</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">a</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">a</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="o">-</span><span class="n">a</span>
+</pre></div>
+</div>
+<p>This is less verbose, and doesn’t waste the initial assignment of <code class="docutils literal notranslate"><span class="pre">x</span></code>.  However, it might be a bit confusing to read the code, since <code class="docutils literal notranslate"><span class="pre">x</span></code> is assigned, but perhaps immediately re-assigned.</p>
+<p>The <strong>ternary operator</strong> solves these issues with a compact, readable syntax</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">a</span> <span class="k">if</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="o">-</span><span class="n">a</span>
+</pre></div>
+</div>
+<p>This expression is easy to read in plain English: “<code class="docutils literal notranslate"><span class="pre">x</span></code> is <code class="docutils literal notranslate"><span class="pre">a</span></code> if <code class="docutils literal notranslate"><span class="pre">a</span></code> is greater than zero, otherwise <code class="docutils literal notranslate"><span class="pre">x</span></code> is <code class="docutils literal notranslate"><span class="pre">-a</span></code>”</p>
+<p>If you’re familiar with <code class="docutils literal notranslate"><span class="pre">C</span></code>, you’ve probably already seen the ternary operator <code class="docutils literal notranslate"><span class="pre">?</span></code>.  As an example, the above translates to</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">?</span> <span class="nl">a</span> <span class="p">:</span> <span class="o">-</span><span class="n">a</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="hash-tables-dictionaries">
+<h2>Hash Tables &amp; Dictionaries<a class="headerlink" href="#hash-tables-dictionaries" title="Permalink to this headline">¶</a></h2>
+<p>You can read a good overview <a class="reference external" href="http://thepythoncorner.com/dev/hash-tables-understanding-dictionaries/">here</a>.</p>
+<div class="section" id="hash-functions">
+<h3>Hash Functions<a class="headerlink" href="#hash-functions" title="Permalink to this headline">¶</a></h3>
+<p>A hash function is a map from some type to an integer.  Not all classes are “hashable”, particularly if data is mutable.  Built-in hashable classes can be hashed using <code class="docutils literal notranslate"><span class="pre">hash</span></code>, or the <code class="docutils literal notranslate"><span class="pre">__hash__()</span></code> method</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="fm">__hash__</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">hash</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>1
+1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mf">1.1</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="fm">__hash__</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">hash</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>230584300921369601
+230584300921369601
+</pre></div>
+</div>
+</div>
+</div>
+<p>The hash function of an integer is the identiy.  For non-integer types, the function can be more complex.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">hash</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">4</span><span class="n">j</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">hash</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>4000013
+-2888955070629007278
+</pre></div>
+</div>
+</div>
+</div>
+<p>Hash functions are typically “one-way” functions, meaning that you can’t compute the input from the output.  This makes hash functions very useful for things like checking passwords without storing the password itself, or checking that source code has not been altered (why websites often provide MD5 sums with downloads).</p>
+</div>
+<div class="section" id="dictionaries">
+<h3>Dictionaries<a class="headerlink" href="#dictionaries" title="Permalink to this headline">¶</a></h3>
+<p>Python dictionaries are implemented as a <a class="reference external" href="https://en.wikipedia.org/wiki/Hash_table">hash table</a>, which uses hash functions to quickly map keys to values.</p>
+</div>
+</div>
+<div class="section" id="slots-magic">
+<h2><code class="docutils literal notranslate"><span class="pre">__slots__</span></code> Magic<a class="headerlink" href="#slots-magic" title="Permalink to this headline">¶</a></h2>
+<p>When defining a class, we might specify instance attributes</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyComplex</span><span class="p">():</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">re</span><span class="p">,</span> <span class="n">im</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">re</span> <span class="o">=</span> <span class="n">re</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">im</span> <span class="o">=</span> <span class="n">im</span>
+        
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">re</span><span class="si">}</span><span class="s2"> + </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">im</span><span class="si">}</span><span class="s2">i&quot;</span>
+        
+<span class="n">x</span> <span class="o">=</span> <span class="n">MyComplex</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">x</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>1 + 2i
+</pre></div>
+</div>
+</div>
+</div>
+<p>However, we can add attributes arbitarily</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">.</span><span class="n">attr</span> <span class="o">=</span> <span class="mi">5</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>By defautlt, instance atrributes and their values are stored in a <code class="docutils literal notranslate"><span class="pre">dict</span></code>, which you can access using <code class="docutils literal notranslate"><span class="pre">__dict__</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">.</span><span class="vm">__dict__</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;re&#39;: 1, &#39;im&#39;: 2, &#39;attr&#39;: 5}
+</pre></div>
+</div>
+</div>
+</div>
+<p>However, if we’re creating many instances of “small” objects, this might not be very efficient because of the (slight) dictionary overhead compared to data structures like a list or tuple.</p>
+<p>The way around this is to use <code class="docutils literal notranslate"><span class="pre">__slots__</span></code>, which allows us to specify what attributes are allowed in an instance</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyComplex2</span><span class="p">():</span>
+    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;re&#39;</span><span class="p">,</span> <span class="s1">&#39;im&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">re</span><span class="p">,</span> <span class="n">im</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">re</span> <span class="o">=</span> <span class="n">re</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">im</span> <span class="o">=</span> <span class="n">im</span>
+    
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">re</span><span class="si">}</span><span class="s2"> + </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">im</span><span class="si">}</span><span class="s2">i&quot;</span>
+        
+<span class="n">x</span> <span class="o">=</span> <span class="n">MyComplex2</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">x</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>1 + 2i
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we can’t set arbitrary attributes</p>
+<div class="cell tag_raises-exception docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">.</span><span class="n">attr</span> <span class="o">=</span> <span class="mi">5</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">9</span><span class="o">-</span><span class="mi">5577</span><span class="n">da64b395</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">x</span><span class="o">.</span><span class="n">attr</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="ne">AttributeError</span>: &#39;MyComplex2&#39; object has no attribute &#39;attr&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">200000</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">a</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">MyComplex</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+    
+<span class="n">b</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">b</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">MyComplex2</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">sum</span><span class="p">([</span><span class="n">x</span><span class="o">.</span><span class="n">re</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">a</span> <span class="p">])</span>
+<span class="nb">sum</span><span class="p">([</span><span class="n">x</span><span class="o">.</span><span class="n">re</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">b</span><span class="p">])</span>
+
+
+<span class="o">%</span><span class="n">timeit</span> <span class="nb">sum</span><span class="p">([</span><span class="n">x</span><span class="o">.</span><span class="n">re</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">a</span> <span class="p">])</span>
+
+<span class="o">%</span><span class="n">timeit</span> <span class="nb">sum</span><span class="p">([</span><span class="n">x</span><span class="o">.</span><span class="n">re</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">b</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>21 ms ± 307 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+</pre></div>
+</div>
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>20.8 ms ± 657 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+</pre></div>
+</div>
+</div>
+</div>
+<p>We see the version of the data structure that uses <code class="docutils literal notranslate"><span class="pre">__slots__</span></code> is a bit faster to access.</p>
+</div>
+<div class="section" id="exceptions">
+<h2>Exceptions<a class="headerlink" href="#exceptions" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">try</span></code>, <code class="docutils literal notranslate"><span class="pre">except</span></code>, <code class="docutils literal notranslate"><span class="pre">final</span></code> keywords, as well as exceptions</p>
+</div>
+<div class="section" id="coroutines">
+<h2>Coroutines<a class="headerlink" href="#coroutines" title="Permalink to this headline">¶</a></h2>
+<p>See <a class="reference external" href="https://speakerdeck.com/dabeaz/a-curious-course-on-coroutines-and-concurrency">this slide deck</a></p>
+</div>
+<div class="section" id="type-hints">
+<h2>Type Hints<a class="headerlink" href="#type-hints" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://docs.python.org/3/library/typing.html">Type Hints</a> are not enforced by the interpreter, but can be useful for documentation, and code analysis libraries</p>
+</div>
+<div class="section" id="other">
+<h2>Other<a class="headerlink" href="#other" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sa">b</span><span class="s1">&#39;abc&#39;</span> <span class="c1"># byte string - ascii only</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>b&#39;abc&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "pycourse"
+        },
+        kernelOptions: {
+            kernelName: "pycourse",
+            path: "./00_python"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'pycourse'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="iterators.html" title="previous page">Iterators and Generators</a>
+    <a class='right-next' id="next-link" href="../01_analysis/analysis.html" title="next page">Analysis of Algorithms</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Brad Nelson<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../_static/js/index.js"></script>
+    
+  </body>
+</html>
