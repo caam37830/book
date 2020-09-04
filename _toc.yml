@@ -16,6 +16,8 @@
   - file: 00_python/misc
 
 - file: 01_analysis/analysis
+  sections:
+  - file: 01_analysis/recursion
 
 - file: 02_linear_algebra/linear_algebra
   sections:
@@ -51,6 +53,7 @@
 - file: 09_computing/computing
   sections:
   - file: 09_computing/git
+  - file: 09_computing/unittest
   - file: 09_computing/performance/performance
     sections:
     - file: 09_computing/performance/ipython
