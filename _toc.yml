@@ -31,7 +31,11 @@
 
 - file: 04_functions/functions
   sections:
+  - file: 04_functions/sympy
   - file: 04_functions/roots
+  - file: 04_functions/differentiation
+  - file: 04_functions/integration
+  - file: 04_functions/interpolation
 
 - file: 05_graphs/graphs
   sections:
