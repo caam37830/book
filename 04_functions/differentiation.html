@@ -1,0 +1,938 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Differentiation &#8212; Scientific Computing with Python</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/mystnb.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Integration / Quadrature" href="integration.html" />
+    <link rel="prev" title="Root Finding" href="roots.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Scientific Computing with Python</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../introduction.html">
+   Introduction
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_python/python.html">
+   Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01_analysis/analysis.html">
+   Analysis of Algorithms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02_linear_algebra/linear_algebra.html">
+   Linear Algebra
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03_optimization/optimization.html">
+   Optimization
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="functions.html">
+   Functions
+  </a>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="sympy.html">
+     Symbolic Computing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="roots.html">
+     Root Finding
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Differentiation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="integration.html">
+     Integration / Quadrature
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="interpolation.html">
+     Interpolation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05_graphs/graphs.html">
+   Graphs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06_probability_statistics/prob_stat.html">
+   Probability and Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../07_data/data.html">
+   Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../08_geometry/geometry.html">
+   Geometry
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../09_computing/computing.html">
+   Computing
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/04_functions/differentiation.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#symbolic-differentiation">
+   Symbolic Differentiation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#numerical-differentiation">
+   Numerical Differentiation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise">
+     Exercise
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#numerical-differentiation-on-a-grid">
+   Numerical Differentiation on a Grid
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#higher-order-derivatives">
+   Higher Order Derivatives
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Exercise
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#higher-dimensional-grids">
+   Higher Dimensional Grids
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise-the-laplacian">
+     Exercise: The Laplacian
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="differentiation">
+<h1>Differentiation<a class="headerlink" href="#differentiation" title="Permalink to this headline">¶</a></h1>
+<p>Recall that a derivative measures the rate of change in a function
+\begin{equation}
+\frac{df}{dx} = \lim_{h\to 0} \frac{f(x+h) - f(x)}{h}
+\end{equation}</p>
+<p>Or we can write symmetrically
+\begin{equation}
+\frac{df}{dx} = \lim_{h\to 0+} \frac{f(x+h) - f(x-h)}{2h}
+\end{equation}</p>
+<p>When we have a function of more than one variable, we can take partial derivatives
+\begin{equation}
+\frac{\partial f}{\partial x_i} = \lim_{h\to 0} \frac{f(x+h e_i) - f(x)}{h}
+\end{equation}
+where <span class="math notranslate nohighlight">\(e_i\)</span> is the vector with a 1 in the <span class="math notranslate nohighlight">\(i\)</span>th entry and 0 elsewhere.</p>
+<p>The <strong>gradient</strong> of <span class="math notranslate nohighlight">\(f\)</span> is the vector
+\begin{equation}
+\nabla f = \bigg[ \frac{\partial f}{\partial x_0}, \frac{\partial f}{\partial x_1}, \dots \bigg]^T
+\end{equation}</p>
+<p>The <strong>Hessian</strong> of <span class="math notranslate nohighlight">\(f\)</span> is the symmetric matrix <span class="math notranslate nohighlight">\(H\)</span>, where
+\begin{equation}
+H[i,j] = \frac{\partial^2 f}{\partial x_i \partial x_j}
+\end{equation}</p>
+<div class="section" id="symbolic-differentiation">
+<h2>Symbolic Differentiation<a class="headerlink" href="#symbolic-differentiation" title="Permalink to this headline">¶</a></h2>
+<p>Let’s consider the function
+\begin{equation}
+f(x) = \exp(-(x^2 - x - 1)^2)
+\end{equation}</p>
+<p>In principle, we could calculate the derivative of <span class="math notranslate nohighlight">\(f\)</span> with respect to <span class="math notranslate nohighlight">\(x\)</span> using rules learned in calculus, however, we’ll just use <code class="docutils literal notranslate"><span class="pre">sympy</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sympy</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">f</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle e^{- \left(x^{2} - x - 1\right)^{2}}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/differentiation_2_0.png" src="../_images/differentiation_2_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f1</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="n">f1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle - \left(4 x - 2\right) \left(x^{2} - x - 1\right) e^{- \left(x^{2} - x - 1\right)^{2}}\]</div>
+</div>
+</div>
+<p>There we go.  We probably could have done that by hand without too much trouble</p>
+<p>It is just as easy to take a second derivative.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f2</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">f1</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="n">f2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \left(2 - 4 x\right) \left(2 x - 1\right) e^{- \left(x^{2} - x - 1\right)^{2}} - \left(2 - 4 x\right) \left(4 x - 2\right) \left(x^{2} - x - 1\right)^{2} e^{- \left(x^{2} - x - 1\right)^{2}} + \left(- 4 x^{2} + 4 x + 4\right) e^{- \left(x^{2} - x - 1\right)^{2}}\]</div>
+</div>
+</div>
+<p>This probably would have been a bit of a pain to do by hand.</p>
+<p>We can see if there’s a good way to simplify the expression using sympy:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sympy</span><span class="o">.</span><span class="n">factor</span><span class="p">(</span><span class="n">sympy</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">f2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{2 \left(8 x^{6} - 24 x^{5} + 10 x^{4} + 20 x^{3} - 16 x^{2} + 2 x + 3\right) e^{- 2 x} e^{x^{2}} e^{2 x^{3}} e^{- x^{4}}}{e}\]</div>
+</div>
+</div>
+<p>Now, let’s plot</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sympy</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">f1</span><span class="p">,</span> <span class="n">f2</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">line_color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/differentiation_9_0.png" src="../_images/differentiation_9_0.png" />
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;sympy.plotting.plot.Plot at 0x7f521b25a2b0&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="numerical-differentiation">
+<h2>Numerical Differentiation<a class="headerlink" href="#numerical-differentiation" title="Permalink to this headline">¶</a></h2>
+<p>Numerical differentiation approximates the derivative instead of obtaining an exact expression.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="s1">&#39;numpy&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">g</span><span class="p">(</span><span class="n">xs</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/differentiation_12_0.png" src="../_images/differentiation_12_0.png" />
+</div>
+</div>
+<p>The most straightforward way to obtain an approximation is to return to the definition of derivative in terms of a limit.  Because we can not take <span class="math notranslate nohighlight">\(h\)</span> arbitrarily close to zero, we’ll just choose a suitably small value of <span class="math notranslate nohighlight">\(h\)</span>.  <span class="math notranslate nohighlight">\(\sqrt{\epsilon}\)</span> (about <span class="math notranslate nohighlight">\(10^{-8}\)</span> in double precision) is often a good starting point.</p>
+<p>An approximation of the derivative in this way is called a finite difference scheme.</p>
+<p>Because we don’t actually reach the limit, there are several ways we might actually implement this (assume <span class="math notranslate nohighlight">\(h &gt; 0\)</span>).</p>
+<ul class="simple">
+<li><p>A forward difference - <span class="math notranslate nohighlight">\(f'(x) \approx \frac{f(x + h) - f(x)}{h}\)</span></p></li>
+<li><p>A backward difference - <span class="math notranslate nohighlight">\(f'(x) \approx \frac{f(x) - f(x-h)}{h}\)</span></p></li>
+<li><p>A central difference - <span class="math notranslate nohighlight">\(f'(x) \approx \frac{f(x + h) - f(x - h)}{2h}\)</span></p></li>
+</ul>
+<p>Each of these will generally give a slightly different result</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">exp</span>
+
+<span class="k">def</span> <span class="nf">forward_difference</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">h</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">g</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">h</span><span class="p">)</span> <span class="o">-</span> <span class="n">g</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="o">/</span> <span class="n">h</span>
+
+<span class="k">def</span> <span class="nf">backward_difference</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">h</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">g</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">g</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">h</span><span class="p">))</span> <span class="o">/</span> <span class="n">h</span>
+
+<span class="k">def</span> <span class="nf">central_difference</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">h</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">g</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">h</span><span class="p">)</span> <span class="o">-</span> <span class="n">g</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">h</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">h</span><span class="p">)</span>
+
+<span class="n">x0</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">h</span> <span class="o">=</span> <span class="mf">1e-8</span>
+<span class="k">for</span> <span class="n">diff</span> <span class="ow">in</span> <span class="p">[</span><span class="n">forward_difference</span><span class="p">,</span> <span class="n">backward_difference</span><span class="p">,</span> <span class="n">central_difference</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> : </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">diff</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">diff</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">h</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>forward_difference : 0.7357588815981586
+backward_difference : 0.7357588704959284
+central_difference : 0.7357588760470435
+</pre></div>
+</div>
+</div>
+</div>
+<p>evaluating the exact expression gives</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f1</span><span class="o">.</span><span class="n">evalf</span><span class="p">(</span><span class="n">subs</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="n">x0</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle 0.735758882342885\]</div>
+</div>
+</div>
+<div class="section" id="exercise">
+<h3>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h3>
+<p>Evaluate each difference scheme at <span class="math notranslate nohighlight">\(x =1.0\)</span> for logarithmically spaced values of <span class="math notranslate nohighlight">\(h\)</span> between <span class="math notranslate nohighlight">\(10^{-2}\)</span> and <span class="math notranslate nohighlight">\(10^{-16}\)</span>.  Make a plot of the error with <span class="math notranslate nohighlight">\(h\)</span> compared to the exact expression, with <span class="math notranslate nohighlight">\(h\)</span> on the horizontal axis.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="numerical-differentiation-on-a-grid">
+<h2>Numerical Differentiation on a Grid<a class="headerlink" href="#numerical-differentiation-on-a-grid" title="Permalink to this headline">¶</a></h2>
+<p>Suppose we have evaluated a function on a grid</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">h</span> <span class="o">=</span> <span class="mi">10</span><span class="o">/</span><span class="mi">99</span>
+<span class="n">gx</span> <span class="o">=</span> <span class="n">g</span><span class="p">(</span><span class="n">xs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>What if we want to evaluate the derivative at each point on the grid?</p>
+<p><code class="docutils literal notranslate"><span class="pre">numpy</span></code> provides a function to efficiently compute this using differences: <code class="docutils literal notranslate"><span class="pre">diff</span></code>. This is equivalent to</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">gx</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">gx</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">gx</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)])</span>
+</pre></div>
+</div>
+<p>In order to approximate the derivative using a forward difference, we need to then divide by <code class="docutils literal notranslate"><span class="pre">h</span></code>.  Note that the resulting array will have one less entry than the input.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gx1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">gx</span><span class="p">)</span><span class="o">/</span><span class="n">h</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">gx1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/differentiation_22_0.png" src="../_images/differentiation_22_0.png" />
+</div>
+</div>
+<p>Note that finite difference schemes are linear operators on vectors of functions evaluated on an equispaced grid.  This means we can represent them as (sparse) matrices.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy.sparse</span> <span class="k">as</span> <span class="nn">sparse</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># create matrix A to apply forward difference scheme</span>
+<span class="k">def</span> <span class="nf">forward_diff_matrix</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">i</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+        <span class="n">j</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="n">i</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+        <span class="n">j</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        
+    <span class="c1"># we&#39;ll just set the last entry to 0 to have a square matrix</span>
+    <span class="k">return</span> <span class="n">sparse</span><span class="o">.</span><span class="n">coo_matrix</span><span class="p">((</span><span class="n">data</span><span class="p">,</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)),</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span><span class="o">.</span><span class="n">tocsr</span><span class="p">()</span>
+    
+<span class="n">D</span> <span class="o">=</span> <span class="n">forward_diff_matrix</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">gx</span><span class="p">))</span> <span class="o">/</span> <span class="n">h</span>
+<span class="n">gx1</span> <span class="o">=</span> <span class="n">D</span><span class="o">*</span><span class="n">gx</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">gx1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/differentiation_25_0.png" src="../_images/differentiation_25_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># create matrix A to apply forward difference scheme</span>
+<span class="k">def</span> <span class="nf">backward_diff_matrix</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">i</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+        <span class="n">j</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="n">i</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+        <span class="n">j</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        
+    <span class="c1"># we&#39;ll just set the last entry to 0 to have a square matrix</span>
+    <span class="k">return</span> <span class="n">sparse</span><span class="o">.</span><span class="n">coo_matrix</span><span class="p">((</span><span class="n">data</span><span class="p">,</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)),</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span><span class="o">.</span><span class="n">tocsr</span><span class="p">()</span>
+
+<span class="n">D</span> <span class="o">=</span> <span class="n">backward_diff_matrix</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">gx</span><span class="p">))</span> <span class="o">/</span> <span class="n">h</span>
+<span class="n">gx1</span> <span class="o">=</span> <span class="n">D</span><span class="o">*</span><span class="n">gx</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">gx1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/differentiation_26_0.png" src="../_images/differentiation_26_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># create matrix A to apply central difference scheme</span>
+<span class="k">def</span> <span class="nf">central_diff_matrix</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span>  <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">i</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+        <span class="n">j</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="n">i</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+        <span class="n">j</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        
+    <span class="k">return</span> <span class="n">sparse</span><span class="o">.</span><span class="n">coo_matrix</span><span class="p">((</span><span class="n">data</span><span class="p">,</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)),</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">))</span><span class="o">.</span><span class="n">tocsr</span><span class="p">()</span> 
+    
+<span class="n">D1</span> <span class="o">=</span> <span class="n">central_diff_matrix</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">gx</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">h</span><span class="p">)</span>
+<span class="n">gx1</span> <span class="o">=</span> <span class="n">D1</span><span class="o">*</span><span class="n">gx</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">gx1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/differentiation_27_0.png" src="../_images/differentiation_27_0.png" />
+</div>
+</div>
+<p>Note that central difference schemes can’t compute a derivative at the two end points.</p>
+<p>One way we might compute a derivative for all points on the grid (including the end points) is to use</p>
+<ol class="simple">
+<li><p>a central difference scheme in the interior.</p></li>
+<li><p>a forward difference on the left</p></li>
+<li><p>a backward difference on the right</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">diff_matrix</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create a matrix that acts as a finite difference derivative on vector of length n</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># forward difference</span>
+    <span class="n">i</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">j</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">i</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">j</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># central differences in interior</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">i</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+        <span class="n">j</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="n">i</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+        <span class="n">j</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># backward difference</span>
+    <span class="n">i</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">j</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">i</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">j</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">sparse</span><span class="o">.</span><span class="n">coo_matrix</span><span class="p">((</span><span class="n">data</span><span class="p">,</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)),</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span><span class="o">.</span><span class="n">tocsr</span><span class="p">()</span>
+
+<span class="n">D1</span> <span class="o">=</span> <span class="n">diff_matrix</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">gx</span><span class="p">))</span> <span class="o">/</span> <span class="n">h</span>
+<span class="n">gx1</span> <span class="o">=</span> <span class="n">D1</span><span class="o">*</span><span class="n">gx</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">gx1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/differentiation_29_0.png" src="../_images/differentiation_29_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="higher-order-derivatives">
+<h2>Higher Order Derivatives<a class="headerlink" href="#higher-order-derivatives" title="Permalink to this headline">¶</a></h2>
+<p>For simplicity, we’ll use the square difference operator we defined above, and we’ll remove the scaling by <code class="docutils literal notranslate"><span class="pre">h</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">D1</span> <span class="o">=</span> <span class="n">diff_matrix</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">gx</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">spy</span><span class="p">(</span><span class="n">D1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x7f521a8385b0&gt;
+</pre></div>
+</div>
+<img alt="../_images/differentiation_32_1.png" src="../_images/differentiation_32_1.png" />
+</div>
+</div>
+<p>Because differentiation is a linear operator, we can compute higher order derivatives by repeatedly applying the differentiation operator.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># second derivative </span>
+<span class="n">D2</span> <span class="o">=</span> <span class="n">D1</span> <span class="o">@</span> <span class="n">D1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># third derivative</span>
+<span class="n">D3</span> <span class="o">=</span> <span class="n">D1</span> <span class="o">@</span> <span class="n">D2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gx2</span> <span class="o">=</span> <span class="n">D2</span> <span class="o">@</span> <span class="n">gx</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">gx2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/differentiation_36_0.png" src="../_images/differentiation_36_0.png" />
+</div>
+</div>
+<p>Let’s inspect the entries of the second-order derivative matrix</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">D2</span><span class="p">[:</span><span class="mi">8</span><span class="p">,:</span><span class="mi">8</span><span class="p">]</span><span class="o">.</span><span class="n">todense</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>matrix([[ 0, -1,  1,  0,  0,  0,  0,  0],
+        [ 1, -2,  0,  1,  0,  0,  0,  0],
+        [ 1,  0, -2,  0,  1,  0,  0,  0],
+        [ 0,  1,  0, -2,  0,  1,  0,  0],
+        [ 0,  0,  1,  0, -2,  0,  1,  0],
+        [ 0,  0,  0,  1,  0, -2,  0,  1],
+        [ 0,  0,  0,  0,  1,  0, -2,  0],
+        [ 0,  0,  0,  0,  0,  1,  0, -2]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>After the first few rows, we see a recurring pattern, where</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>repeats along the diagonal.  This is a stencil for a second derivative, based on squaring a central difference.</p>
+<p>We can derive a different stencil for second derivatives by applying a forward difference operator to the backward difference operator:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">D2</span> <span class="o">=</span> <span class="n">forward_diff_matrix</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">gx</span><span class="p">))</span> <span class="o">@</span> <span class="n">backward_diff_matrix</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">gx</span><span class="p">))</span>
+<span class="n">D2</span><span class="p">[:</span><span class="mi">8</span><span class="p">,:</span><span class="mi">8</span><span class="p">]</span><span class="o">.</span><span class="n">todense</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>matrix([[-1,  1,  0,  0,  0,  0,  0,  0],
+        [ 1, -2,  1,  0,  0,  0,  0,  0],
+        [ 0,  1, -2,  1,  0,  0,  0,  0],
+        [ 0,  0,  1, -2,  1,  0,  0,  0],
+        [ 0,  0,  0,  1, -2,  1,  0,  0],
+        [ 0,  0,  0,  0,  1, -2,  1,  0],
+        [ 0,  0,  0,  0,  0,  1, -2,  1],
+        [ 0,  0,  0,  0,  0,  0,  1, -2]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, we see the recurring pattern</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Along the diagonal.</p>
+<div class="section" id="id1">
+<h3>Exercise<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
+<li><p>Create a second-order difference from a backward difference applied to a forward difference.  Is this different from the second-order difference operator above?</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="higher-dimensional-grids">
+<h2>Higher Dimensional Grids<a class="headerlink" href="#higher-dimensional-grids" title="Permalink to this headline">¶</a></h2>
+<p>What if we want to compute partial derivatives on higher-dimensional grids?</p>
+<p>We want to create an operator that will act as a derivative on the function treated as a vector.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">100</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">100</span><span class="p">))</span>
+<span class="n">g2d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">xx</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">yy</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">g2d</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/differentiation_45_0.png" src="../_images/differentiation_45_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># turn 2-dimensional function to a vector</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">g2d</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Recall that numpy arrays are row-major by default.  This means that if we want to compute derivatives along the x axis, we can simply create a block matrix with a derivative operator for in each block for a contiguous row.</p>
+<p><code class="docutils literal notranslate"><span class="pre">numpy.sparse.kron</span></code> is a very useful function to create such a sparse matrix</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">D</span> <span class="o">=</span> <span class="n">diff_matrix</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">Dx</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">sparse</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="n">D</span><span class="p">)</span><span class="o">.</span><span class="n">tocsr</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">spy</span><span class="p">(</span><span class="n">Dx</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x7f521a92bb20&gt;
+</pre></div>
+</div>
+<img alt="../_images/differentiation_48_1.png" src="../_images/differentiation_48_1.png" />
+</div>
+</div>
+<p>The derivative of our function <code class="docutils literal notranslate"><span class="pre">g</span></code> with respect to the <code class="docutils literal notranslate"><span class="pre">x</span></code> variable is <code class="docutils literal notranslate"><span class="pre">cos(x)</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gx</span> <span class="o">=</span> <span class="n">Dx</span> <span class="o">@</span> <span class="n">g</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">gx</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">100</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/differentiation_50_0.png" src="../_images/differentiation_50_0.png" />
+</div>
+</div>
+<p>If we want to create a y derivative, we can reverse the arguments of <code class="docutils literal notranslate"><span class="pre">kron</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Dy</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">sparse</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span><span class="o">.</span><span class="n">tocsr</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">spy</span><span class="p">(</span><span class="n">Dy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x7f521b159d30&gt;
+</pre></div>
+</div>
+<img alt="../_images/differentiation_52_1.png" src="../_images/differentiation_52_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gy</span> <span class="o">=</span> <span class="n">Dy</span> <span class="o">@</span> <span class="n">g</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">gy</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">100</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/differentiation_53_0.png" src="../_images/differentiation_53_0.png" />
+</div>
+</div>
+<div class="section" id="exercise-the-laplacian">
+<h3>Exercise: The Laplacian<a class="headerlink" href="#exercise-the-laplacian" title="Permalink to this headline">¶</a></h3>
+<p>Recall the Laplacian
+\begin{equation}
+\Delta = \frac{\partial^2}{\partial x^2} + \frac{\partial^2}{\partial y^2}
+\end{equation}</p>
+<p>This comes up in modeling a variety of physical phenomena such as waves and diffusion.</p>
+<ol class="simple">
+<li><p>Create a sparse matrix <code class="docutils literal notranslate"><span class="pre">L</span></code> which acts as the Laplacian on a 2-dimensional grid.  Use the second derivative stencil <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">-2,</span> <span class="pre">1]</span></code>.  use <code class="docutils literal notranslate"><span class="pre">kron</span></code></p></li>
+<li><p>Create the same matrix using <code class="docutils literal notranslate"><span class="pre">kronsum</span></code></p></li>
+<li><p>Calculate <span class="math notranslate nohighlight">\(\Delta g\)</span>, where <span class="math notranslate nohighlight">\(g(x,y) = \sin(x) + \cos(y)\)</span>, as above</p></li>
+<li><p>Visualize the 4 smallest eigenvectors of the Laplacian on a <span class="math notranslate nohighlight">\(100 \times 100\)</span> grid.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "pycourse"
+        },
+        kernelOptions: {
+            kernelName: "pycourse",
+            path: "./04_functions"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'pycourse'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="roots.html" title="previous page">Root Finding</a>
+    <a class='right-next' id="next-link" href="integration.html" title="next page">Integration / Quadrature</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Brad Nelson<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../_static/js/index.js"></script>
+    
+  </body>
+</html>
