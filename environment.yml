@@ -1,0 +1,18 @@
+name: pycourse
+channels:
+  - defaults
+dependencies:
+  - python=3
+  - ipykernel
+  - numpy
+  - matplotlib
+  - pandas
+  - mkl
+  - scipy
+  - plotly
+  - nbformat
+  - scikit-learn
+  - mpmath
+  - networkx
+  - pytorch
+  - sympy
