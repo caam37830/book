@@ -217,6 +217,28 @@
 
         <!-- Launch buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/caam37380/book/master?urlpath=tree/02_linear_algebra/pytorch.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/caam37380/book/blob/master/02_linear_algebra/pytorch.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
     </div>
 
     <!-- Table of contents -->
@@ -291,8 +313,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([[0.69515326, 0.09293741],
-       [0.92497456, 0.22117672]])
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([[0.99707031, 0.06703737],
+       [0.95346993, 0.73494857]])
 </pre></div>
 </div>
 </div>
@@ -305,8 +327,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>tensor([[0.6952, 0.0929],
-        [0.9250, 0.2212]])
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>tensor([[0.9971, 0.0670],
+        [0.9535, 0.7349]])
 </pre></div>
 </div>
 </div>
@@ -322,10 +344,10 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>tensor([[0.6952, 0.0929],
-        [0.9250, 0.2212]], device=&#39;cuda:0&#39;)
-tensor([[0.6952, 0.0929],
-        [0.9250, 0.2212]])
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>tensor([[0.9971, 0.0670],
+        [0.9535, 0.7349]], device=&#39;cuda:0&#39;)
+tensor([[0.9971, 0.0670],
+        [0.9535, 0.7349]])
 </pre></div>
 </div>
 </div>
@@ -337,8 +359,8 @@ tensor([[0.6952, 0.0929],
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>tensor([[0.6952, 0.0929],
-        [0.9250, 0.2212]], device=&#39;cuda:0&#39;)
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>tensor([[0.9971, 0.0670],
+        [0.9535, 0.7349]], device=&#39;cuda:0&#39;)
 </pre></div>
 </div>
 </div>
@@ -392,11 +414,11 @@ tensor([[0.6952, 0.0929],
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>device = cpu
-CPU times: user 133 µs, sys: 46 µs, total: 179 µs
-Wall time: 123 µs
+CPU times: user 463 µs, sys: 148 µs, total: 611 µs
+Wall time: 279 µs
 device = cuda
-CPU times: user 199 µs, sys: 0 ns, total: 199 µs
-Wall time: 56.7 µs
+CPU times: user 122 µs, sys: 39 µs, total: 161 µs
+Wall time: 45.1 µs
 </pre></div>
 </div>
 </div>
@@ -419,11 +441,11 @@ Wall time: 56.7 µs
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>device = cpu
-CPU times: user 461 µs, sys: 151 µs, total: 612 µs
-Wall time: 292 µs
+CPU times: user 220 µs, sys: 67 µs, total: 287 µs
+Wall time: 246 µs
 device = cuda
-CPU times: user 112 µs, sys: 37 µs, total: 149 µs
-Wall time: 46.7 µs
+CPU times: user 178 µs, sys: 0 ns, total: 178 µs
+Wall time: 47.9 µs
 </pre></div>
 </div>
 </div>
@@ -449,11 +471,11 @@ Wall time: 46.7 µs
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>device = cpu
-CPU times: user 27.5 ms, sys: 0 ns, total: 27.5 ms
-Wall time: 6.91 ms
+CPU times: user 27 ms, sys: 0 ns, total: 27 ms
+Wall time: 6.78 ms
 device = cuda
-CPU times: user 87 µs, sys: 26 µs, total: 113 µs
-Wall time: 33.9 µs
+CPU times: user 104 µs, sys: 29 µs, total: 133 µs
+Wall time: 36 µs
 </pre></div>
 </div>
 </div>
@@ -482,11 +504,11 @@ Wall time: 33.9 µs
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>device = cpu
 </pre></div>
 </div>
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 127 ms, sys: 12.9 ms, total: 140 ms
-Wall time: 35.3 ms
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 113 ms, sys: 14.9 ms, total: 128 ms
+Wall time: 32.1 ms
 device = cuda
-CPU times: user 775 µs, sys: 163 µs, total: 938 µs
-Wall time: 240 µs
+CPU times: user 447 µs, sys: 515 µs, total: 962 µs
+Wall time: 247 µs
 </pre></div>
 </div>
 </div>
