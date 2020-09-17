@@ -12,6 +12,8 @@ introduction
 - asymptotic notation
 - master theorem
 - convergence of algorithms
+- recursion
+- dynamic programming
 
 2 linear algebra
 - matrix factorizations, SVD, variational problems
@@ -26,7 +28,7 @@ introduction
 - pytorch for GPU
 
 3 optimization
-- defintions - objectives, contraints, LP, QP, etc.
+- definitions - objectives, constraints, LP, QP, etc.
 - modeling languages, various solvers
 - kkt conditions
 - scipy optimization
@@ -39,7 +41,7 @@ introduction
 - numerical differentiation
 - numerical integration/quadrature
 - sympy
-- ODES
+- ODES, PDEs
 
 5 graphs
 - definitions
