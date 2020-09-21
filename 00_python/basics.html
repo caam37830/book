@@ -503,7 +503,7 @@ a
     <span class="c1"># a is a keyword argument</span>
     <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">,</span> <span class="n">a</span> <span class="o">*</span> <span class="n">x</span>
 
-<span class="n">w</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">w</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
 </pre></div>
@@ -511,7 +511,7 @@ a
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>4
-2
+1
 </pre></div>
 </div>
 </div>
@@ -915,12 +915,12 @@ square(x)
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
-<span class="n">a</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([1, 2, 3])
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>numpy.ndarray
 </pre></div>
 </div>
 </div>
