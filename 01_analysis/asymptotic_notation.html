@@ -39,6 +39,8 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Recursion" href="recursion.html" />
+    <link rel="prev" title="Analysis of Algorithms" href="analysis.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
@@ -76,16 +78,28 @@
   </a>
  </li>
 </ul>
-<ul class="nav sidenav_l1">
+<ul class="current nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="../00_python/python.html">
    Python
   </a>
  </li>
- <li class="toctree-l1">
+ <li class="toctree-l1 current active">
   <a class="reference internal" href="analysis.html">
    Analysis of Algorithms
   </a>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Asymptotic Notation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="recursion.html">
+     Recursion
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../02_linear_algebra/linear_algebra.html">
@@ -169,9 +183,9 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/01_analysis/asymptotic_notation.md"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/01_analysis/asymptotic_notation.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
+                data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
             onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
@@ -188,6 +202,28 @@
 
         <!-- Launch buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/caam37380/book/master?urlpath=tree/01_analysis/asymptotic_notation.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/caam37380/book/blob/master/01_analysis/asymptotic_notation.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
     </div>
 
     <!-- Table of contents -->
@@ -202,6 +238,11 @@
    Examples
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#complexity">
+   Complexity
+  </a>
+ </li>
 </ul>
 
         </nav>
@@ -214,7 +255,7 @@
                 
   <div class="section" id="asymptotic-notation">
 <h1>Asymptotic Notation<a class="headerlink" href="#asymptotic-notation" title="Permalink to this headline">¶</a></h1>
-<p>First, let’s review some asymptotic notation.  We’ll see it a fair amount</p>
+<p>First, let’s review some asymptotic notation.  We’ll see it a fair amount in this course.</p>
 <p>Let <span class="math notranslate nohighlight">\(f(x), g(x)\)</span> be some functions.  We say
 <span class="math notranslate nohighlight">\($f = O(g)\)</span>$
 as <span class="math notranslate nohighlight">\(x\to \infty\)</span> if there exists some constant <span class="math notranslate nohighlight">\(c\ge 0\)</span> and <span class="math notranslate nohighlight">\(x_0\ge 0\)</span> so that $ |f(x)| \le c g(x) )$ for all <span class="math notranslate nohighlight">\(x \ge x_0\)</span>.</p>
@@ -228,7 +269,7 @@ if <span class="math notranslate nohighlight">\(f = O(g)\)</span> and <span clas
 <p>Note that because we can scale by constant multiples, we typically drop them.</p>
 <ol class="simple">
 <li><p><span class="math notranslate nohighlight">\(O(5x) = O(x)\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(O(c = O(1)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(O(c) = O(1)\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(O(c f(x)) = O(f(x))\)</span></p></li>
 </ol>
 <div class="section" id="examples">
@@ -238,7 +279,68 @@ if <span class="math notranslate nohighlight">\(f = O(g)\)</span> and <span clas
 <li><p><span class="math notranslate nohighlight">\(x = O(x^2)\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(x^a = O(x^b)\)</span> for <span class="math notranslate nohighlight">\(a \le b\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(x^a = O(b^x)\)</span> for any <span class="math notranslate nohighlight">\(a, b &gt; 0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(f = O(g)\)</span> and <span class="math notranslate nohighlight">\(g = O(h)\)</span> implies <span class="math notranslate nohighlight">\(f = O(h)\)</span> (exercise: prove this)</p></li>
+<li><p><span class="math notranslate nohighlight">\(f = O(g)\)</span> and <span class="math notranslate nohighlight">\(h = O(k)\)</span> implies <span class="math notranslate nohighlight">\(f\times h = O(g \times k)\)</span> (exercise: prove this as well)</p></li>
 </ol>
+</div>
+<div class="section" id="complexity">
+<h2>Complexity<a class="headerlink" href="#complexity" title="Permalink to this headline">¶</a></h2>
+<p>When we talk about <a class="reference external" href="https://en.wikipedia.org/wiki/Computational_complexity">computational complexity</a>, we are typically talking about the time or memory resources needed for an algorithm.</p>
+<p>For example, if an algorithm operates on an array of <span class="math notranslate nohighlight">\(n\)</span> elements, we say the algorithm runs in <span class="math notranslate nohighlight">\(O(n^2)\)</span> time if the run time scales (at worst) quadratically with the size <span class="math notranslate nohighlight">\(n\)</span>.</p>
+<p>For example, consider the following function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="k">def</span> <span class="nf">maximum</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    returns the maximum value in an array x</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">xmax</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">infty</span>
+    <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">xi</span> <span class="o">&gt;</span> <span class="n">xmax</span><span class="p">:</span>
+            <span class="n">xmax</span> <span class="o">=</span> <span class="n">xi</span>
+            
+    <span class="k">return</span> <span class="n">xmax</span>
+
+<span class="n">maximum</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>3
+</pre></div>
+</div>
+</div>
+</div>
+<p>our <code class="docutils literal notranslate"><span class="pre">maximum</span></code> function loops over the list once, and at each step of the iteration we do a constant amount of work. If <code class="docutils literal notranslate"><span class="pre">maximum</span></code> takes in an array of length <code class="docutils literal notranslate"><span class="pre">n</span></code> as input, this means there are <code class="docutils literal notranslate"><span class="pre">n</span></code> iterations of the for-loop, so <code class="docutils literal notranslate"><span class="pre">maximum</span></code> takes <span class="math notranslate nohighlight">\(O(n)\)</span> time to compute.  Note that we don’t need to create any additional arrays, so we can also say <code class="docutils literal notranslate"><span class="pre">maximum</span></code> uses <span class="math notranslate nohighlight">\(O(1)\)</span> (constant) extra space.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">time</span>
+
+<span class="n">ns</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="o">**</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">)]</span>
+<span class="n">ts</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">ns</span><span class="p">:</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
+    <span class="n">amax</span> <span class="o">=</span> <span class="n">maximum</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
+    <span class="n">ts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span>
+    
+<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">ns</span><span class="p">,</span> <span class="n">ts</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;n&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;time (sec.)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;time to compute maximum&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/asymptotic_notation_4_0.png" src="../_images/asymptotic_notation_4_0.png" />
+</div>
+</div>
+<p>When pl</p>
 </div>
 </div>
 
@@ -251,16 +353,16 @@ if <span class="math notranslate nohighlight">\(f = O(g)\)</span> and <span clas
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "pycourse"
         },
         kernelOptions: {
-            kernelName: "python3",
+            kernelName: "pycourse",
             path: "./01_analysis"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'pycourse'</script>
 
               </div>
               
@@ -270,6 +372,8 @@ if <span class="math notranslate nohighlight">\(f = O(g)\)</span> and <span clas
     
     <div class='prev-next-bottom'>
         
+    <a class='left-prev' id="prev-link" href="analysis.html" title="previous page">Analysis of Algorithms</a>
+    <a class='right-next' id="next-link" href="recursion.html" title="next page">Recursion</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
