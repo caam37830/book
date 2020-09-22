@@ -8,6 +8,7 @@
   - file: 00_python/using_python
   - file: 00_python/basics
   - file: 00_python/bitsbytes
+  - file: 00_python/basic_packages
   - file: 00_python/functions
   - file: 00_python/classes
   - file: 00_python/modules
@@ -61,4 +62,5 @@
   - file: 09_computing/performance/performance
     sections:
     - file: 09_computing/performance/ipython
+    - file: 09_computing/performance/numpy_ufuncs
   - file: 09_computing/environments
