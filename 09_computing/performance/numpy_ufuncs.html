@@ -130,6 +130,11 @@
   </a>
   <ul class="current">
    <li class="toctree-l2">
+    <a class="reference internal" href="../basic_bash.html">
+     Basic Bash
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../git.html">
      Git Version Control
     </a>
@@ -365,8 +370,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>time for naive add: 3.969e-01 sec
-time for numpy add: 2.979e-03 sec
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>time for naive add: 4.154e-01 sec
+time for numpy add: 2.715e-03 sec
 </pre></div>
 </div>
 </div>
@@ -396,9 +401,11 @@ time for numpy add: 2.979e-03 sec
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>time for naive add: 3.916e-01 sec
-time for numpy add: 2.359e-03 sec
-time for numpy add (vectorize): 1.869e-01 sec
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>time for naive add: 4.381e-01 sec
+time for numpy add: 3.070e-03 sec
+</pre></div>
+</div>
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>time for numpy add (vectorize): 2.117e-01 sec
 </pre></div>
 </div>
 </div>
@@ -468,11 +475,11 @@ y_i = \sum_j A_{i,j} x_j
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>time for naive matvec: 3.100e-01 sec
-time for numpy matvec: 1.463e-02 sec
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>time for naive matvec: 3.387e-01 sec
+time for numpy matvec: 1.499e-02 sec
 </pre></div>
 </div>
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>7.16770180693793e-13
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>8.074218463379498e-13
 </pre></div>
 </div>
 </div>
@@ -537,9 +544,9 @@ time for numpy matvec: 1.463e-02 sec
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>time for naive add: 4.211e-01 sec
-time for numpy add: 3.313e-03 sec
-time for numba add: 1.893e-01 sec
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>time for naive add: 4.504e-01 sec
+time for numpy add: 2.367e-03 sec
+time for numba add: 1.930e-01 sec
 </pre></div>
 </div>
 </div>
@@ -570,9 +577,9 @@ time for numba add: 1.893e-01 sec
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>time for naive add: 4.346e-01 sec
-time for numpy add: 2.276e-03 sec
-time for numba add: 4.050e-03 sec
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>time for naive add: 4.314e-01 sec
+time for numpy add: 2.472e-03 sec
+time for numba add: 3.769e-03 sec
 </pre></div>
 </div>
 </div>
@@ -628,9 +635,9 @@ time for numba add: 4.050e-03 sec
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>time for numba add: 4.672e-02 sec
-time for numpy add: 2.582e-02 sec
-time for numba parallel add: 2.182e-02 sec
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>time for numba add: 4.648e-02 sec
+time for numpy add: 2.313e-02 sec
+time for numba parallel add: 2.183e-02 sec
 </pre></div>
 </div>
 </div>
@@ -678,11 +685,11 @@ time for numba parallel add: 2.182e-02 sec
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>time for numba parallel matvec: 1.286e-03 sec
-time for numpy matvec: 1.282e-03 sec
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>time for numba parallel matvec: 1.539e-03 sec
+time for numpy matvec: 1.189e-03 sec
 </pre></div>
 </div>
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>1.6262112098119543e-12
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>1.5222061767627805e-12
 </pre></div>
 </div>
 </div>
@@ -723,8 +730,8 @@ time for numpy matvec: 1.282e-03 sec
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>time for numba add: 1.150e-01 sec
-time for numba add (vectorized): 4.079e-04 sec
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>time for numba add: 1.414e-01 sec
+time for numba add (vectorized): 2.401e-04 sec
 </pre></div>
 </div>
 </div>
@@ -764,9 +771,9 @@ time for numba add (vectorized): 4.079e-04 sec
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>time for numba add: 1.819e-04 sec
-time for numba add (vectorized): 3.586e-04 sec
-time for numba add (cuda): 2.315e-03 sec
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>time for numba add: 1.674e-04 sec
+time for numba add (vectorized): 4.067e-04 sec
+time for numba add (cuda): 1.771e-03 sec
 </pre></div>
 </div>
 </div>

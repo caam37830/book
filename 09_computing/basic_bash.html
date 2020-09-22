@@ -1,0 +1,366 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Basic Bash &#8212; Scientific Computing with Python</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/mystnb.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Git Version Control" href="git.html" />
+    <link rel="prev" title="Computing" href="computing.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Scientific Computing with Python</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../introduction.html">
+   Introduction
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_python/python.html">
+   Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01_analysis/analysis.html">
+   Analysis of Algorithms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02_linear_algebra/linear_algebra.html">
+   Linear Algebra
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03_optimization/optimization.html">
+   Optimization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04_functions/functions.html">
+   Functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05_graphs/graphs.html">
+   Graphs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06_probability_statistics/prob_stat.html">
+   Probability and Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../07_data/data.html">
+   Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../08_geometry/geometry.html">
+   Geometry
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="computing.html">
+   Computing
+  </a>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Basic Bash
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="git.html">
+     Git Version Control
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="unittest.html">
+     Unit Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="performance/performance.html">
+     Performance
+    </a>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="performance/ipython.html">
+       Measuring Performance in Python
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="performance/numpy_ufuncs.html">
+       Vectorization, Numpy Universal Functions
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="environments.html">
+     Environments
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/09_computing/basic_bash.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            
+        </nav>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="basic-bash">
+<h1>Basic Bash<a class="headerlink" href="#basic-bash" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://www.gnu.org/software/bash/">Bash</a> (Bourne Again SHell) is used as the GNU shell, and is what you will most commonly use when you open a terminal.</p>
+<p>You can use bash to navigate and modify your computer’s file system, execute programs, control jobs, and as a scripting language (so basically you can do everything).</p>
+<p>Importantly, you can do many things in bash that are impossible to do just using your standard file system graphical browers.  Also importantly, when you access remote machines, you will have no other choice than to use bash.</p>
+<p>Here is basic use, which will assume you have opened a terminal.  Comments follow a pound symbol (<code class="docutils literal notranslate"><span class="pre">#</span></code>).  Open up a terminal and follow along.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">pwd</span> <span class="c1"># print working directory</span>
+</pre></div>
+</div>
+<p>should print your working directory.  Usually this will start out as <code class="docutils literal notranslate"><span class="pre">/home/user</span></code> where <code class="docutils literal notranslate"><span class="pre">user</span></code> is your user name</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>whoami <span class="c1"># prints your user name</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir <span class="nb">test</span> <span class="c1"># makes a directory called test</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls <span class="c1"># lists files and directories</span>
+</pre></div>
+</div>
+<p>You will likely see a variety of files if you execute this in your home directory</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nb">test</span> <span class="c1"># changes working directory to test</span>
+</pre></div>
+</div>
+<p>Now, if you execute <code class="docutils literal notranslate"><span class="pre">pwd</span></code>, you should see something like <code class="docutils literal notranslate"><span class="pre">home/user/test</span></code>.  If you execute <code class="docutils literal notranslate"><span class="pre">ls</span></code>, you shouldn’t see anything (because there is nothing in test)</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>touch a.txt <span class="c1"># creates empty file a.txt</span>
+</pre></div>
+</div>
+<p>Now, try <code class="docutils literal notranslate"><span class="pre">ls</span></code> - what do you see?</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mv a.txt b.txt <span class="c1"># moves a.txt to b.txt</span>
+</pre></div>
+</div>
+<p>Now what do you see with <code class="docutils literal notranslate"><span class="pre">ls</span></code>?</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp b.txt c.txt <span class="c1"># makes a copy of b.txt and calls it c.txt</span>
+</pre></div>
+</div>
+<p>Now what do you see with <code class="docutils literal notranslate"><span class="pre">ls</span></code>?</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm c.txt <span class="c1"># deletes c.txt</span>
+</pre></div>
+</div>
+<p>try using <code class="docutils literal notranslate"><span class="pre">ls</span></code> again.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> <span class="s1">&#39;print(&quot;hello world!&quot;)&#39;</span> &gt;&gt; hello.py <span class="c1"># prints text to file hello.py</span>
+</pre></div>
+</div>
+<p>try using <code class="docutils literal notranslate"><span class="pre">ls</span></code> again.</p>
+<p>Let’s see what is in <code class="docutils literal notranslate"><span class="pre">hello.py</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat hello.py <span class="c1"># prints contents of hello.py</span>
+</pre></div>
+</div>
+<p>Assuming you have python installed, you can run <code class="docutils literal notranslate"><span class="pre">hello.py</span></code> as a python script</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python hello.py
+</pre></div>
+</div>
+<p>This should print <code class="docutils literal notranslate"><span class="pre">hello</span> <span class="pre">world!</span></code> to the terminal.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> .. <span class="c1"># goes up one directory level</span>
+</pre></div>
+</div>
+<p>Now if you <code class="docutils literal notranslate"><span class="pre">pwd</span></code>, you should be back at <code class="docutils literal notranslate"><span class="pre">/home/user</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm -r <span class="nb">test</span> <span class="c1"># removes test folder recursively</span>
+</pre></div>
+</div>
+<p>What happens if you try <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">test</span></code>?</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">exit</span> <span class="c1"># closes terminal</span>
+</pre></div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./09_computing"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="computing.html" title="previous page">Computing</a>
+    <a class='right-next' id="next-link" href="git.html" title="next page">Git Version Control</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Brad Nelson<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../_static/js/index.js"></script>
+    
+  </body>
+</html>
