@@ -71,14 +71,7 @@
 </form>
 
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-  <ul class="nav sidenav_l1">
- <li class="toctree-l1">
-  <a class="reference internal" href="../introduction.html">
-   Introduction
-  </a>
- </li>
-</ul>
-<ul class="current nav sidenav_l1">
+  <ul class="current nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="../00_python/python.html">
    Python
@@ -147,10 +140,6 @@
 
  <!-- To handle the deprecated key -->
 
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
 </div>
 
 
@@ -193,6 +182,22 @@
     
 </div>
         <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/caam37380/book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/caam37380/book/issues/new?title=Issue%20on%20page%20%2F01_analysis/asymptotic_notation.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
 
 
         <!-- Full screen (wrap in <a> to have style consistency -->
@@ -341,7 +346,7 @@ if <span class="math notranslate nohighlight">\(f = O(g)\)</span> and <span clas
 </div>
 </div>
 <p>When plotting functions with polynomial complexity (<span class="math notranslate nohighlight">\(O(x^a)\)</span> for some <span class="math notranslate nohighlight">\(a\)</span>), it is standard to use a <code class="docutils literal notranslate"><span class="pre">loglog</span></code> plot.</p>
-<p>Why?  If <span class="math notranslate nohighlight">\(t(n) = \Omega(n^a)\)</span>, then
+<p>Why?  If <span class="math notranslate nohighlight">\(t(n) = \Theta(n^a)\)</span>, then
 \begin{align*}
 t(n) &amp;\sim   c n^a\
 \log t(n) &amp;\sim a \log n + \log c
@@ -357,7 +362,7 @@ t(n) &amp;\sim   c n^a\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.919813145489191
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.9016915655823468
 </pre></div>
 </div>
 </div>
