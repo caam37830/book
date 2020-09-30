@@ -228,11 +228,11 @@
         aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
     <div class="dropdown-buttons sourcebuttons">
         <a class="repository-button"
-            href="https://github.com/caam37380/book"><button type="button" class="btn btn-secondary topbarbtn"
+            href="https://github.com/caam37830/book"><button type="button" class="btn btn-secondary topbarbtn"
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/caam37380/book/issues/new?title=Issue%20on%20page%20%2F00_python/basic_packages.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/caam37830/book/issues/new?title=Issue%20on%20page%20%2F00_python/basic_packages.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -252,7 +252,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/caam37380/book/master?urlpath=tree/00_python/basic_packages.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/caam37830/book/master?urlpath=tree/00_python/basic_packages.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../_static/images/logo_binder.svg"
@@ -260,7 +260,7 @@
         
         
         
-        <a class="colab-button" href="https://colab.research.google.com/github/caam37380/book/blob/master/00_python/basic_packages.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+        <a class="colab-button" href="https://colab.research.google.com/github/caam37830/book/blob/master/00_python/basic_packages.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
                 title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
                     src="../_static/images/logo_colab.png"
                     alt="Interact on Colab">Colab</button></a>
@@ -294,13 +294,6 @@
   <a class="reference internal nav-link" href="#other-python-collections">
    Other Python Collections
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#exercises">
-     Exercises
-    </a>
-   </li>
-  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#numpy">
@@ -318,25 +311,11 @@
   <a class="reference internal nav-link" href="#pyplot">
    PyPlot
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
-     Exercises
-    </a>
-   </li>
-  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#csv-files-pandas">
    CSV files, Pandas
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id2">
-     Exercises
-    </a>
-   </li>
-  </ul>
  </li>
 </ul>
 
@@ -571,7 +550,15 @@ cat
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="c1"># tuple</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span> <span class="c1"># tuple comprehension</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>(1, 2, 3)
+(1, 2, 3)
 </pre></div>
 </div>
 </div>
@@ -631,14 +618,6 @@ cat
 </pre></div>
 </div>
 </div>
-</div>
-<div class="section" id="exercises">
-<h3>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h3>
-<p>TODO</p>
-<ol class="simple">
-<li><p>…</p></li>
-<li><p>…</p></li>
-</ol>
 </div>
 </div>
 <div class="section" id="numpy">
@@ -712,7 +691,7 @@ cat
 6
 int64
 8
-&lt;memory at 0x7f072b294e10&gt;
+&lt;memory at 0x7f71138e8e10&gt;
   C_CONTIGUOUS : True
   F_CONTIGUOUS : False
   OWNDATA : True
@@ -754,9 +733,9 @@ int64
 [[1. 1.]
  [1. 1.]
  [1. 1.]]
-[[ 0.78544352 -0.63910389]
- [ 0.22832898  0.8202869 ]
- [ 0.03790592  0.12662422]]
+[[ 1.10682661  1.45566355]
+ [ 0.04805478 -0.18064755]
+ [-1.21970638 -0.75886556]]
 </pre></div>
 </div>
 </div>
@@ -863,8 +842,8 @@ int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>time for loop over list: 0.152 sec.
-time for numpy vectorization: 0.00261 sec.
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>time for loop over list: 0.132 sec.
+time for numpy vectorization: 0.00182 sec.
 </pre></div>
 </div>
 </div>
@@ -895,7 +874,7 @@ time for numpy vectorization: 0.00261 sec.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/basic_packages_48_0.png" src="../_images/basic_packages_48_0.png" />
+<img alt="../_images/basic_packages_47_0.png" src="../_images/basic_packages_47_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -912,12 +891,8 @@ time for numpy vectorization: 0.00261 sec.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/basic_packages_49_0.png" src="../_images/basic_packages_49_0.png" />
+<img alt="../_images/basic_packages_48_0.png" src="../_images/basic_packages_48_0.png" />
 </div>
-</div>
-<div class="section" id="id1">
-<h3>Exercises<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
-<p>TODO…</p>
 </div>
 </div>
 <div class="section" id="csv-files-pandas">
@@ -1410,12 +1385,8 @@ Name: temperature, Length: 1000, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/basic_packages_65_0.png" src="../_images/basic_packages_65_0.png" />
+<img alt="../_images/basic_packages_63_0.png" src="../_images/basic_packages_63_0.png" />
 </div>
-</div>
-<div class="section" id="id2">
-<h3>Exercises<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
-<p>Load dataset from UCI repository, do some plotting</p>
 </div>
 </div>
 </div>
