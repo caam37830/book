@@ -9,8 +9,12 @@ latex:
 
 # Information about where the book exists on the web
 repository:
-  url : https://github.com/caam37380/book
+  url : https://github.com/caam37830/book
   branch : master
+
+html:
+  use_repository_button: true
+  use_issues_button: true
 
 launch_buttons:
   binderhub_url: "https://mybinder.org"

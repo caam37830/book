@@ -18,6 +18,7 @@
 
 - file: 01_analysis/analysis
   sections:
+  - file: 01_analysis/asymptotic_notation
   - file: 01_analysis/recursion
 
 - file: 02_linear_algebra/linear_algebra
@@ -57,6 +58,7 @@
 
 - file: 09_computing/computing
   sections:
+  - file: 09_computing/basic_bash
   - file: 09_computing/git
   - file: 09_computing/unittest
   - file: 09_computing/performance/performance
