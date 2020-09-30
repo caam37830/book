@@ -248,6 +248,11 @@
    Complexity
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise">
+   Exercise
+  </a>
+ </li>
 </ul>
 
         </nav>
@@ -270,7 +275,8 @@ as <span class="math notranslate nohighlight">\(x\to \infty\)</span> if there ex
 <p>Finally,
 <span class="math notranslate nohighlight">\($f = \Theta(g)\)</span>$
 if <span class="math notranslate nohighlight">\(f = O(g)\)</span> and <span class="math notranslate nohighlight">\(f = \Omega(g)\)</span> (some constant multiples of <span class="math notranslate nohighlight">\(g\)</span> bound <span class="math notranslate nohighlight">\(f\)</span> above and below).</p>
-<p>Often we’re interested in bounding worst-case behavior.  This means you’ll see a lot of <span class="math notranslate nohighlight">\(O()\)</span>, and less of <span class="math notranslate nohighlight">\(\Omega\)</span> and <span class="math notranslate nohighlight">\(\Theta\)</span>.</p>
+<p>Often we’re interested in bounding worst-case behavior.  This means you’ll see a lot of <span class="math notranslate nohighlight">\(O\)</span>, and less of <span class="math notranslate nohighlight">\(\Omega\)</span> and <span class="math notranslate nohighlight">\(\Theta\)</span>.</p>
+<p>You may also see little-o notation such as <span class="math notranslate nohighlight">\(f = o(g)\)</span>, or the corresponding <span class="math notranslate nohighlight">\(f = \omega(g)\)</span>.  In these cases the inequalities are strict.  If <span class="math notranslate nohighlight">\(f = o(g)\)</span>, then for any <span class="math notranslate nohighlight">\(c &gt; 0\)</span>, there exists an <span class="math notranslate nohighlight">\(x_0\ge 0\)</span> so that <span class="math notranslate nohighlight">\(|f(x)| &lt; c g(x)\)</span> for <span class="math notranslate nohighlight">\(x\ge x_0\)</span>.  If <span class="math notranslate nohighlight">\(f = O(g)\)</span> it can grow at the same rate, but if <span class="math notranslate nohighlight">\(f = o(g)\)</span>, it grows at a slower rate.</p>
 <p>Note that because we can scale by constant multiples, we typically drop them.</p>
 <ol class="simple">
 <li><p><span class="math notranslate nohighlight">\(O(5x) = O(x)\)</span></p></li>
@@ -283,7 +289,7 @@ if <span class="math notranslate nohighlight">\(f = O(g)\)</span> and <span clas
 <li><p><span class="math notranslate nohighlight">\(x = O(x)\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(x = O(x^2)\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(x^a = O(x^b)\)</span> for <span class="math notranslate nohighlight">\(a \le b\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(x^a = O(b^x)\)</span> for any <span class="math notranslate nohighlight">\(a, b &gt; 0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(x^a = O(b^x)\)</span> for any <span class="math notranslate nohighlight">\(a, b &gt; 1\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(f = O(g)\)</span> and <span class="math notranslate nohighlight">\(g = O(h)\)</span> implies <span class="math notranslate nohighlight">\(f = O(h)\)</span> (exercise: prove this)</p></li>
 <li><p><span class="math notranslate nohighlight">\(f = O(g)\)</span> and <span class="math notranslate nohighlight">\(h = O(k)\)</span> implies <span class="math notranslate nohighlight">\(f\times h = O(g \times k)\)</span> (exercise: prove this as well)</p></li>
 </ol>
@@ -351,7 +357,7 @@ if <span class="math notranslate nohighlight">\(f = O(g)\)</span> and <span clas
 t(n) &amp;\sim   c n^a\
 \log t(n) &amp;\sim a \log n + \log c
 \end{align*}</p>
-<p>I.e. the polynomial expoenent is the slope of the line.</p>
+<p>I.e. the polynomial exponent is the slope of the line.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ln</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">ns</span><span class="p">)</span>
@@ -362,7 +368,7 @@ t(n) &amp;\sim   c n^a\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.9179682227479844
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.9174743090707956
 </pre></div>
 </div>
 </div>
@@ -386,12 +392,12 @@ t(n) &amp;\sim   c n^a\
             <span class="n">ret</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">scpy</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">ret</span>
         
-<span class="n">all_subarrays</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">all_subarrays</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[[0], [], [0, 1], [1]]
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[[0], [], [0, 1], [1], [0, 2], [2], [0, 1, 2], [1, 2]]
 </pre></div>
 </div>
 </div>
@@ -399,7 +405,7 @@ t(n) &amp;\sim   c n^a\
 <p>we see that the length of output of <code class="docutils literal notranslate"><span class="pre">all_subarrays</span></code> grows as <span class="math notranslate nohighlight">\(2^n\)</span>, where <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">=</span> <span class="pre">len(x)</span></code>.  This is a good hint that the function has exponential time and space complexity <span class="math notranslate nohighlight">\(O(2^n)\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ns</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ns</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
 <span class="n">ts</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">ns</span><span class="p">:</span>
     <span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
@@ -426,6 +432,11 @@ t(n) &amp;\sim   c n^a\
 <img alt="../_images/asymptotic_notation_12_0.png" src="../_images/asymptotic_notation_12_0.png" />
 </div>
 </div>
+</div>
+<div class="section" id="exercise">
+<h2>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h2>
+<p>Why does a semilogy plot make sense for plotting the time it takes to run a function with exponential time complextiy?</p>
+<p>How can you interpret the expected slope?</p>
 </div>
 </div>
 
