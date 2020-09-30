@@ -301,6 +301,11 @@
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Indexing
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#arithmetic">
      Arithmetic
     </a>
@@ -691,7 +696,7 @@ cat
 6
 int64
 8
-&lt;memory at 0x7f71138e8e10&gt;
+&lt;memory at 0x7fdd94777e10&gt;
   C_CONTIGUOUS : True
   F_CONTIGUOUS : False
   OWNDATA : True
@@ -733,10 +738,86 @@ int64
 [[1. 1.]
  [1. 1.]
  [1. 1.]]
-[[ 1.10682661  1.45566355]
- [ 0.04805478 -0.18064755]
- [-1.21970638 -0.75886556]]
+[[ 0.67763394 -0.82530351]
+ [-0.77986975  1.7233795 ]
+ [-0.65009044  0.3408185 ]]
 </pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id1">
+<h3>Indexing<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>1-dimensional arrays are indexed in the same way as lists (0-indexed, can use slices, etc)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[0 1]
+</pre></div>
+</div>
+</div>
+</div>
+<p>you can also index using lists of indices</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">inds</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">a</span><span class="p">[</span><span class="n">inds</span><span class="p">]</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([0, 2])
+</pre></div>
+</div>
+</div>
+</div>
+<p>2-dimensional arrays are a bit different from lists of lists:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]]</span> <span class="c1"># list of lists</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># like indexing in C</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[[0, 1], [2, 3]]
+</pre></div>
+</div>
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>3
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">anp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="c1"># 2-dimensional array</span>
+<span class="n">anp</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># like indexing in Matlab, Julia</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>3
+</pre></div>
+</div>
+</div>
+</div>
+<p>you can also use slices, index sets, etc. in multi-dimensional arrays.</p>
+<p>If you only provide 1 index, you’ll get the corresponding row (or set of rows if slicing)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">anp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([0, 1])
+</pre></div>
+</div>
 </div>
 </div>
 </div>
@@ -842,8 +923,8 @@ int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>time for loop over list: 0.132 sec.
-time for numpy vectorization: 0.00182 sec.
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>time for loop over list: 0.139 sec.
+time for numpy vectorization: 0.00179 sec.
 </pre></div>
 </div>
 </div>
@@ -874,7 +955,7 @@ time for numpy vectorization: 0.00182 sec.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/basic_packages_47_0.png" src="../_images/basic_packages_47_0.png" />
+<img alt="../_images/basic_packages_56_0.png" src="../_images/basic_packages_56_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -891,7 +972,7 @@ time for numpy vectorization: 0.00182 sec.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/basic_packages_48_0.png" src="../_images/basic_packages_48_0.png" />
+<img alt="../_images/basic_packages_57_0.png" src="../_images/basic_packages_57_0.png" />
 </div>
 </div>
 </div>
@@ -1385,7 +1466,7 @@ Name: temperature, Length: 1000, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/basic_packages_63_0.png" src="../_images/basic_packages_63_0.png" />
+<img alt="../_images/basic_packages_72_0.png" src="../_images/basic_packages_72_0.png" />
 </div>
 </div>
 </div>
