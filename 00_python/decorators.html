@@ -346,11 +346,11 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>0.0012676715850830078 sec. elapsed
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>0.0017409324645996094 sec. elapsed
 </pre></div>
 </div>
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([0.41507637, 0.55657063, 0.12175622, ..., 0.50175667, 0.80638111,
-       0.15046206])
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([0.43230354, 0.70419331, 0.04651577, ..., 0.07993371, 0.42899957,
+       0.50400633])
 </pre></div>
 </div>
 </div>
@@ -370,11 +370,11 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>0.0010912418365478516 sec. elapsed
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>0.0017597675323486328 sec. elapsed
 </pre></div>
 </div>
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([0.45275162, 0.47757332, 0.18522623, ..., 0.61831069, 0.16434829,
-       0.34017845])
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([0.38942842, 0.41884117, 0.60683823, ..., 0.69053928, 0.61609264,
+       0.44294803])
 </pre></div>
 </div>
 </div>
@@ -383,7 +383,15 @@
 <p>Another problem we may encounter is that we now can’t access the docstring we wrote</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>?generate_random2
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">generate_random2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Help on function inner_wrapper in module __main__:
+
+inner_wrapper(*args, **kwargs)
+
 </pre></div>
 </div>
 </div>
@@ -417,11 +425,11 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>0.0011005401611328125 sec. elapsed
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>0.0012352466583251953 sec. elapsed
 </pre></div>
 </div>
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([0.10246577, 0.78512263, 0.78267542, ..., 0.93973753, 0.96407934,
-       0.01189422])
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([0.72266004, 0.14507098, 0.96926864, ..., 0.06560945, 0.96869635,
+       0.81289372])
 </pre></div>
 </div>
 </div>
@@ -429,7 +437,16 @@
 <p>now, we can access the metadata from <code class="docutils literal notranslate"><span class="pre">generate_random3</span></code>, such as the docstring</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>?generate_random3
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">generate_random3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Help on function generate_random3 in module __main__:
+
+generate_random3(n)
+    return a random numpy vector
+
 </pre></div>
 </div>
 </div>

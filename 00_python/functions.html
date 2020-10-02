@@ -289,6 +289,11 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#helper-functions">
+   Helper Functions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#lambda-functions">
    Lambda Functions
   </a>
@@ -336,14 +341,31 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>0.15220190304702785
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>0.7318942454754448
 3
 (5, 6)
 </pre></div>
 </div>
 </div>
 </div>
-<p>You can look up a function call signature with <code class="docutils literal notranslate"><span class="pre">?</span></code> in ipython</p>
+<p>You can look up a function call signature and documentation with <code class="docutils literal notranslate"><span class="pre">help()</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">plus_times</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Help on function plus_times in module __main__:
+
+plus_times(a, b)
+    # function with 2 outputs
+
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can also use <code class="docutils literal notranslate"><span class="pre">?</span></code> in ipython</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>?plus_times
@@ -411,7 +433,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">  File</span><span class="nn"> &quot;&lt;ipython-input-7-d4ea7ae5bf83&gt;&quot;</span><span class="gt">, line </span><span class="mi">1</span>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">  File</span><span class="nn"> &quot;&lt;ipython-input-8-d4ea7ae5bf83&gt;&quot;</span><span class="gt">, line </span><span class="mi">1</span>
     <span class="k">def</span> <span class="nf">kw_example</span><span class="p">(</span><span class="n">b</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
                    <span class="o">^</span>
 <span class="ne">SyntaxError</span>: non-default argument follows default argument
@@ -492,13 +514,13 @@ list:
 
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
 
-<span class="n">plot_f</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">plot_f</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/functions_20_0.png" src="../_images/functions_20_0.png" />
+<img alt="../_images/functions_22_0.png" src="../_images/functions_22_0.png" />
 </div>
 </div>
 <p>A good way to extract keyword arguments from <code class="docutils literal notranslate"><span class="pre">kwargs</span></code> is to use the <code class="docutils literal notranslate"><span class="pre">get</span></code> method for Python dictionaries</p>
@@ -536,6 +558,44 @@ goodbye
 </div>
 </div>
 </div>
+<div class="section" id="helper-functions">
+<h2>Helper Functions<a class="headerlink" href="#helper-functions" title="Permalink to this headline">¶</a></h2>
+<p>You can define helper functions inside the definition of a function</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">alternate</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    returns -x if x is odd, x if x is even</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">is_odd</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        returns true if x is odd</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span> <span class="c1"># % is mod operator</span>
+    
+    <span class="c1"># we now return to the function alternate</span>
+    <span class="k">if</span> <span class="n">is_odd</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="k">return</span> <span class="o">-</span><span class="n">x</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">x</span>
+    
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:+d}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">alternate</span><span class="p">(</span><span class="n">i</span><span class="p">)))</span>
+    
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>+0
+-1
++2
+-3
++4
+</pre></div>
+</div>
+</div>
+</div>
+</div>
 <div class="section" id="lambda-functions">
 <h2>Lambda Functions<a class="headerlink" href="#lambda-functions" title="Permalink to this headline">¶</a></h2>
 <p>A Lambda Function is an <a class="reference external" href="https://en.wikipedia.org/wiki/Anonymous_function">anonymous function</a>, meaning you don’t give it a name e.g. by declaring it in a <code class="docutils literal notranslate"><span class="pre">def</span></code> block.</p>
@@ -552,7 +612,7 @@ goodbye
 </div>
 </div>
 </div>
-<p>lambda functions (and the <a class="reference external" href="https://en.wikipedia.org/wiki/Lambda_calculus">lambda calculus</a>) play an important role in the theory of computing.  They can be found in a variety of languages other than Python.</p>
+<p>lambda functions (and the <a class="reference external" href="https://en.wikipedia.org/wiki/Lambda_calculus">lambda calculus</a>) play an important role in the theory of computing.  They can be found in a many languages other than Python.</p>
 <p>The semantics of a lambda function are very similar to a function declared using <code class="docutils literal notranslate"><span class="pre">def</span></code>:</p>
 <p><code class="docutils literal notranslate"><span class="pre">lambda</span> <span class="pre">*args</span> <span class="pre">:</span> <span class="pre">outputs</span></code></p>
 <div class="cell docutils container">
@@ -577,7 +637,7 @@ goodbye
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/functions_28_0.png" src="../_images/functions_28_0.png" />
+<img alt="../_images/functions_32_0.png" src="../_images/functions_32_0.png" />
 </div>
 </div>
 </div>
@@ -593,7 +653,7 @@ goodbye
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">I</span> <span class="o">=</span> <span class="k">lambda</span> <span class="o">*</span><span class="n">args</span> <span class="p">:</span> <span class="n">args</span>
 </pre></div>
@@ -620,7 +680,7 @@ goodbye
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sumfun</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
     <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>

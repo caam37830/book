@@ -249,6 +249,11 @@
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#finding-the-maximum-element-of-a-list">
+     Finding the maximum element of a list
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#mergesort">
      Mergesort
     </a>
@@ -264,11 +269,18 @@
   <a class="reference internal nav-link" href="#analysis-of-recursive-algorithms">
    Analysis of Recursive Algorithms
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#todo">
-   TODO
-  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-master-theorem">
+     The Master Theorem
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise">
+     Exercise
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -286,50 +298,58 @@
 <h2>Recursive Functions<a class="headerlink" href="#recursive-functions" title="Permalink to this headline">¶</a></h2>
 <p><strong>Definition 1</strong> A function is recursive if it is recursive.</p>
 <p><strong>Definition 2</strong> A function is recursive if it refers to itself.</p>
-<p>It is probably easier to see an example.  The <a class="reference external" href="https://en.wikipedia.org/wiki/Fibonacci_number">Fibonacci numbers</a> are one such example. We have <span class="math notranslate nohighlight">\(F_0 = 0\)</span>, <span class="math notranslate nohighlight">\(F_1 = 1\)</span>, and <span class="math notranslate nohighlight">\(F_n = F_{n-1} + F_{n-2}\)</span> for <span class="math notranslate nohighlight">\(n \ge 2\)</span>.  The definition was <em>recursive</em> because the expression for <span class="math notranslate nohighlight">\(F_n\)</span> is stated in terms of other Fibonnaci numbers.  We can expand the definition:
-\begin{align}
-F_n &amp;= F_{n-1} + F_{n-2}\
-&amp;= (F_{n-2} + F_{n-3}) + (F_{n-3} + F_{n-4})\
-&amp;= \dots
-\end{align}</p>
-<p>If we want to write a function to compute the <span class="math notranslate nohighlight">\(n\)</span>th fibonacci number, we might write</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    compute the nth fibonacci number recursively</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">return</span> <span class="mi">0</span>
-    <span class="k">elif</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">return</span> <span class="mi">1</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
-    
-<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span> <span class="s2">&quot;F_</span><span class="si">{}</span><span class="s2"> = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="p">))</span> <span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>F_0 = 0
-F_1 = 1
-F_2 = 1
-F_3 = 2
-F_4 = 3
-F_5 = 5
-F_6 = 8
-F_7 = 13
-F_8 = 21
-F_9 = 34
-</pre></div>
-</div>
-</div>
-</div>
+<p>It is probably easier to see some examples.</p>
 </div>
 <div class="section" id="divide-and-conquer">
 <h2>Divide and Conquer<a class="headerlink" href="#divide-and-conquer" title="Permalink to this headline">¶</a></h2>
 <p>A common situation in which recursion is used is in <em>Divide and Conquer</em> algorithms.</p>
+<p>The basic idea is to break up a problem into two (or more) sub-problems and combine the answer to get the final solution</p>
+<div class="section" id="finding-the-maximum-element-of-a-list">
+<h3>Finding the maximum element of a list<a class="headerlink" href="#finding-the-maximum-element-of-a-list" title="Permalink to this headline">¶</a></h3>
+<p>One way to find the maximum element of a list <code class="docutils literal notranslate"><span class="pre">A</span></code> is to find the maximum element in the first half of the list, and find the maximum element in the second half of the list, and then take the maximum of these two values.</p>
+<p>How do we find the maximum element of each half of the list?  We can use this function recursively to break up the problem into smaller and smaller pieces.</p>
+<p>At some point, the pieces will be trivial to solve.  In this case, we don’t recurse further, we just solve the problem explicitly.  For this problem, we’ll just solve the problem directly if the list is length 3 or less by using the built-in <code class="docutils literal notranslate"><span class="pre">max</span></code> function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>2
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">maximum</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    find the maximum element of a list A recursively</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># check if the list is short enough to do explicitly</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+
+    <span class="c1"># else, we will use recursion to solve the problem</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span> <span class="c1"># partition the list into two halves here</span>
+    <span class="n">max1</span> <span class="o">=</span> <span class="n">maximum</span><span class="p">(</span><span class="n">A</span><span class="p">[:</span><span class="n">n</span><span class="p">])</span> <span class="c1"># left half</span>
+    <span class="n">max2</span> <span class="o">=</span> <span class="n">maximum</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">n</span><span class="p">:])</span> <span class="c1"># right half</span>
+    
+    <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">max1</span><span class="p">,</span> <span class="n">max2</span><span class="p">)</span>
+    
+<span class="n">A</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">maximum</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>9
+</pre></div>
+</div>
+</div>
+</div>
+</div>
 <div class="section" id="mergesort">
 <h3>Mergesort<a class="headerlink" href="#mergesort" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Merge_sort">Mergesort</a> is an example of a sorting algorithm.  The input is a list <code class="docutils literal notranslate"><span class="pre">a</span></code>, and the output is a list <code class="docutils literal notranslate"><span class="pre">b</span></code> which has the same elements as <code class="docutils literal notranslate"><span class="pre">a</span></code>, but appearing in sorted order.</p>
@@ -503,30 +523,26 @@ F_9 = 34
 </div>
 <div class="section" id="analysis-of-recursive-algorithms">
 <h2>Analysis of Recursive Algorithms<a class="headerlink" href="#analysis-of-recursive-algorithms" title="Permalink to this headline">¶</a></h2>
-<p>Recursive algorithms are usually easy to implement, but they aren’t always fast.  For example:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">time</span> <span class="n">fibonacci</span><span class="p">(</span><span class="mi">35</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 2.84 s, sys: 573 µs, total: 2.84 s
-Wall time: 2.84 s
-</pre></div>
-</div>
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>9227465
-</pre></div>
-</div>
-</div>
-</div>
-<p>the recursive definition of <code class="docutils literal notranslate"><span class="pre">fibonacci</span></code> takes much longer to compute than is possible.</p>
+<p>Recursive algorithms are usually easy to implement, but they aren’t always fast.  You’ll see an example in homework 0.</p>
 <p>On the other hand, <code class="docutils literal notranslate"><span class="pre">mergesort</span></code> has optimal asymptotic complexity for a sorting algorithm: <span class="math notranslate nohighlight">\(O(n\log n)\)</span></p>
 <p>if <code class="docutils literal notranslate"><span class="pre">quicksort</span></code> is very unlucky with choice of pivot, it can take <span class="math notranslate nohighlight">\(O(n^2)\)</span> time, but its expected runtime is <span class="math notranslate nohighlight">\(O(n \log n)\)</span>.  It also does all operations in-place, unlike <code class="docutils literal notranslate"><span class="pre">mergesort</span></code>, which uses auxillary memory.</p>
+<div class="section" id="the-master-theorem">
+<h3>The Master Theorem<a class="headerlink" href="#the-master-theorem" title="Permalink to this headline">¶</a></h3>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Master_theorem_(analysis_of_algorithms)">master theorem</a> helps us to obtain asymptotic time complexity for divide and conquer algorithms.  The first step is to write down the time it takes to run a function on input size <span class="math notranslate nohighlight">\(n\)</span>, <span class="math notranslate nohighlight">\(T(n)\)</span>, in terms of the time it takes to run subproblems
+<span class="math notranslate nohighlight">\($ T(n) = a T(n/b) + f(n)\)</span>$
+where <span class="math notranslate nohighlight">\(f(n)\)</span> is the work done to stitch the subproblems together.</p>
+<p>The critical exponent is defined as <span class="math notranslate nohighlight">\(c = \log_b a\)</span>.  There are three regimes:</p>
+<ol class="simple">
+<li><p><span class="math notranslate nohighlight">\(f(n) = o(n^c)\)</span>.  In this case, the work to do the subproblems dominate, and the time complexity is <span class="math notranslate nohighlight">\(T(n) = \Theta(n^c)\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(f(n) = \Theta(n^c)\)</span>.  In this case, the work to do subproblems and combine them is comparible.  The complexity is <span class="math notranslate nohighlight">\(T(n) = \Theta(n^c \log n)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(f(n) = \omega(n^c)\)</span>.  In this case, the work to combine subproblems dominates, and the complexity is <span class="math notranslate nohighlight">\(T(n) = \Theta(f(n))\)</span>.</p></li>
+</ol>
+<p>For example, in our <code class="docutils literal notranslate"><span class="pre">maximum</span></code> function, we split into two subproblems of size <span class="math notranslate nohighlight">\(n/2\)</span>, so <span class="math notranslate nohighlight">\(a = 2, b=2\)</span>, and <span class="math notranslate nohighlight">\(c = 1\)</span>.  <span class="math notranslate nohighlight">\(f(n)\)</span> is the time to take the max of two numbers, so is <span class="math notranslate nohighlight">\(O(1)\)</span>.  This means we are in case 1 above, and the time complexity of <code class="docutils literal notranslate"><span class="pre">maximum</span></code> is <span class="math notranslate nohighlight">\(\Theta(n^c) = \Theta(n)\)</span>.</p>
 </div>
-<div class="section" id="todo">
-<h2>TODO<a class="headerlink" href="#todo" title="Permalink to this headline">¶</a></h2>
-<p>master theorem</p>
+<div class="section" id="exercise">
+<h3>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h3>
+<p>Apply the master theorem to obtain the complexity of merge sort.</p>
+</div>
 </div>
 </div>
 
