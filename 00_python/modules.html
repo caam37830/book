@@ -284,6 +284,11 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#modules-vs-scripts">
+   Modules vs. Scripts
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#packages">
    Packages
   </a>
@@ -342,16 +347,18 @@
 </div>
 </div>
 </div>
-<p>We can also import specific functions from a module using the <code class="docutils literal notranslate"><span class="pre">from</span></code> keyword</p>
+<p>We can also import specific functions or classes from a module using the <code class="docutils literal notranslate"><span class="pre">from</span></code> keyword</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mymod</span> <span class="kn">import</span> <span class="n">plus1</span>
-<span class="n">plus1</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mymod</span> <span class="kn">import</span> <span class="n">plus1</span><span class="p">,</span> <span class="n">myclass</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">myclass</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">plus1</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>2
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;mymod.myclass object at 0x7f96b0fd0550&gt;
+2
 </pre></div>
 </div>
 </div>
@@ -370,11 +377,76 @@
 </div>
 </div>
 </div>
+<p>you can see what is available in the <code class="docutils literal notranslate"><span class="pre">mymod</span></code> namespace using <code class="docutils literal notranslate"><span class="pre">dir</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">dir</span><span class="p">(</span><span class="n">mymod</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&#39;__builtins__&#39;,
+ &#39;__cached__&#39;,
+ &#39;__doc__&#39;,
+ &#39;__file__&#39;,
+ &#39;__loader__&#39;,
+ &#39;__name__&#39;,
+ &#39;__package__&#39;,
+ &#39;__spec__&#39;,
+ &#39;myclass&#39;,
+ &#39;plus1&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="modules-vs-scripts">
+<h2>Modules vs. Scripts<a class="headerlink" href="#modules-vs-scripts" title="Permalink to this headline">¶</a></h2>
+<p>What is the difference between a module and a script?  Both are plain text files with a <code class="docutils literal notranslate"><span class="pre">*.py</span></code> extension.</p>
+<p>Conceptually, a <em>module</em> contains functionality (e.g. functions, classes) that we would like to use and re-use, without needing to redefine in our interpreter every time.  Typically, we use modules with an <code class="docutils literal notranslate"><span class="pre">import</span></code> statement.  A <em>script</em> contains code that <em>does something</em>.  This might include defining classes and functions, but usually also includes some sort of task such as analyzing data in a <code class="docutils literal notranslate"><span class="pre">*.csv</span></code> file, which it wouldn’t make sense to do in an <code class="docutils literal notranslate"><span class="pre">import</span></code> statement.</p>
+<p>There isn’t really a clear cut line between modules and scripts - you might run a <code class="docutils literal notranslate"><span class="pre">*.py</span></code> file that was written for a module as a script, or import a <code class="docutils literal notranslate"><span class="pre">*.py</span></code> file that was written as a script.</p>
+<p>If you want to have a file that can be used as <em>both</em> a module and a script, you can put the “scripting” part of the file in a block that begins with</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="c1"># scripting code here</span>
+</pre></div>
+</div>
+<p>An example can be found in <span class="xref myst"><code class="docutils literal notranslate"><span class="pre">mymod.py</span></code></span></p>
+<p><code class="docutils literal notranslate"><span class="pre">__name__</span></code> is a global variable, which is set to <code class="docutils literal notranslate"><span class="pre">__main__</span></code> when the file is executed from the command line, as in</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">mymod</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>If the file is imported as a module, you see that <code class="docutils literal notranslate"><span class="pre">__name__</span></code> is set to be the name of the file</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mymod</span><span class="o">.</span><span class="vm">__name__</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;mymod&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">mymod</span> <span class="k">as</span> <span class="nn">mm</span>
+<span class="n">mm</span><span class="o">.</span><span class="vm">__name__</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;mymod&#39;
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 <div class="section" id="packages">
 <h2>Packages<a class="headerlink" href="#packages" title="Permalink to this headline">¶</a></h2>
 <p>Python packages are contained in a directory with an <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> file.  These directories may contain muliple <code class="docutils literal notranslate"><span class="pre">*.py</span></code> files, as well as nested directories with <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> files (sub-packages).  These directories might also contain other sorts of files such as documentation files or shared object libraries.</p>
 <p>You can use the <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> file to automate import of modules inside a package, or modify namespaces.</p>
+<p>An example can be found in the <span class="xref myst"><code class="docutils literal notranslate"><span class="pre">mypack</span></code></span> directory.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">mypack</span>
@@ -382,6 +454,31 @@
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">dir</span><span class="p">(</span><span class="n">mypack</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&#39;__builtins__&#39;,
+ &#39;__cached__&#39;,
+ &#39;__doc__&#39;,
+ &#39;__file__&#39;,
+ &#39;__loader__&#39;,
+ &#39;__name__&#39;,
+ &#39;__package__&#39;,
+ &#39;__path__&#39;,
+ &#39;__spec__&#39;,
+ &#39;functions&#39;,
+ &#39;hello&#39;,
+ &#39;more&#39;,
+ &#39;mypack&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>The following function is imported from <code class="docutils literal notranslate"><span class="pre">mypack/mypack.py</span></code> in <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mypack</span><span class="o">.</span><span class="n">hello</span><span class="p">()</span>
@@ -394,6 +491,7 @@
 </div>
 </div>
 </div>
+<p><code class="docutils literal notranslate"><span class="pre">cube</span></code> is in <code class="docutils literal notranslate"><span class="pre">mypack/functions.py</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mypack</span><span class="o">.</span><span class="n">functions</span><span class="o">.</span><span class="n">cube</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
@@ -406,13 +504,21 @@
 </div>
 </div>
 </div>
+<p>we can import a submodule from a package into a new namespace:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">mypack.functions</span> <span class="k">as</span> <span class="nn">fun1</span>
+<span class="n">fun1</span><span class="o">.</span><span class="vm">__name__</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;mypack.functions&#39;
 </pre></div>
 </div>
 </div>
 </div>
+<p><code class="docutils literal notranslate"><span class="pre">square</span></code> is also in <code class="docutils literal notranslate"><span class="pre">mypack/functions.py</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fun1</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
@@ -425,6 +531,8 @@
 </div>
 </div>
 </div>
+<p>We can also have subpackages in packages (subdirectories of our directory).</p>
+<p><code class="docutils literal notranslate"><span class="pre">plus2</span></code> is defined in <code class="docutils literal notranslate"><span class="pre">mypack/subpackage/functions.py</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">mypack.subpackage.functions</span> <span class="k">as</span> <span class="nn">fun2</span>

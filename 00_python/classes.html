@@ -331,7 +331,7 @@
 <div class="section" id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h2>
 <p>A Python <code class="docutils literal notranslate"><span class="pre">class</span></code> is a recipe for creating objects of a certain type.  An object created from a class is an <strong>instantiation</strong> of the class.</p>
-<p>Typicall, there are operations you may like to perform on objects in a certain class.  You can define these operations as functions declared within the class, called <strong>methods</strong>.</p>
+<p>Typically, there are operations you may like to perform on objects in a certain class.  You can define these operations as functions declared within the class, called <strong>methods</strong>.</p>
 <p>Classes typically hold some sort of data.  The <code class="docutils literal notranslate"><span class="pre">__init__()</span></code> method defines how this data is stored.  To allow an object to refer to its own data, we typically use <code class="docutils literal notranslate"><span class="pre">self</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -355,13 +355,13 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;__main__.Rational object at 0x7f96c844a2e0&gt;
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;__main__.Rational object at 0x7fb390d24580&gt;
 x = 1 / 2
 </pre></div>
 </div>
 </div>
 </div>
-<p>Clearly, we might like to have a method that turns a <code class="docutils literal notranslate"><span class="pre">Rational</span></code> into a nicely formatted string.  We can accomplish this using the <code class="docutils literal notranslate"><span class="pre">__str__()</span></code> method.</p>
+<p>Clearly, we might like to have a method that turns a <code class="docutils literal notranslate"><span class="pre">Rational</span></code> into a nicely formatted string.  We might accomplish by adding a method <code class="docutils literal notranslate"><span class="pre">tostring</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Rational</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -392,7 +392,7 @@ x = 1 / 2
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>1 / 2
-&lt;__main__.Rational object at 0x7f96c84ad310&gt;
+&lt;__main__.Rational object at 0x7fb390d249a0&gt;
 </pre></div>
 </div>
 </div>
@@ -657,7 +657,7 @@ x = 1 / 2
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Rational</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -728,7 +728,7 @@ x = 1 / 2
 <h2>Class Inheritance<a class="headerlink" href="#class-inheritance" title="Permalink to this headline">¶</a></h2>
 <p>Sometimes, multiple classes are related even though they have different data.  In mathematics, we might say that the objects are in the same group/ring etc.</p>
 <p>One example is a class of linear maps <span class="math notranslate nohighlight">\(f: \mathbb{R}^m \to \mathbb{R}^n\)</span>.  Linear maps can be added, scaled, or composed (multiplied).</p>
-<p>Linear maps can generally be defined using a dense matrix, but that isn’t always the most efficient</p>
+<p>Linear maps can generally be defined using a dense matrix, but that isn’t always the most efficient representation.</p>
 <p>We’ll define a <strong>base class</strong> (also called a parent class) which will define how linear maps behave.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -794,7 +794,7 @@ x = 1 / 2
 </div>
 </div>
 </div>
-<p>You’ll see above that we use several classes above: <code class="docutils literal notranslate"><span class="pre">ScaleMap</span></code>, <code class="docutils literal notranslate"><span class="pre">ProdMap</span></code>, and <code class="docutils literal notranslate"><span class="pre">SumMap</span></code>.  We also define a <code class="docutils literal notranslate"><span class="pre">matmul</span></code> function, but we haven’t implemented it, unless we pass in a <code class="docutils literal notranslate"><span class="pre">data</span></code> parameter.</p>
+<p>You’ll see above that we use several classes above: <code class="docutils literal notranslate"><span class="pre">ProdMap</span></code>, and <code class="docutils literal notranslate"><span class="pre">SumMap</span></code>.  We also define a <code class="docutils literal notranslate"><span class="pre">matmul</span></code> function, but we haven’t implemented it, unless we pass in a <code class="docutils literal notranslate"><span class="pre">data</span></code> parameter.</p>
 <div class="cell tag_raises-exception docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">LinearMap</span><span class="p">()</span>
@@ -842,7 +842,7 @@ x = 1 / 2
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>LinearMap(&lt;class &#39;numpy.ndarray&#39;&gt;)
 </pre></div>
 </div>
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([0.3337018 , 0.87886696])
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([0.65182662, 0.06429081])
 </pre></div>
 </div>
 </div>
@@ -950,7 +950,7 @@ x = 1 / 2
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
 <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">AB</span> <span class="o">*</span> <span class="n">x</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">AB</span> <span class="o">@</span> <span class="n">x</span>
 <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;time elapsed: </span><span class="si">{}</span><span class="s2"> sec.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t1</span> <span class="o">-</span> <span class="n">t0</span><span class="p">))</span>
 
@@ -963,8 +963,8 @@ x = 1 / 2
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>time elapsed: 0.07576370239257812 sec.
-time elapsed: 0.0013837814331054688 sec.
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>time elapsed: 0.021699905395507812 sec.
+time elapsed: 0.0009174346923828125 sec.
 </pre></div>
 </div>
 </div>
@@ -1009,7 +1009,7 @@ where <code class="docutils literal notranslate"><span class="pre">tol</span></c
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">IdentityMap</span><span class="p">(</span><span class="n">LinearMap</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -1042,20 +1042,7 @@ where <code class="docutils literal notranslate"><span class="pre">tol</span></c
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">x</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.3892451775487917
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
+<div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">RayleighQuotient</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -1084,7 +1071,7 @@ where <code class="docutils literal notranslate"><span class="pre">tol</span></c
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
@@ -1096,7 +1083,7 @@ where <code class="docutils literal notranslate"><span class="pre">tol</span></c
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
 <span class="n">RayleighQuotient</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">x0</span><span class="p">)</span>
@@ -1104,12 +1091,12 @@ where <code class="docutils literal notranslate"><span class="pre">tol</span></c
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>1.0001443883189383
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>1.0023156735646082
 </pre></div>
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x1</span><span class="p">,</span> <span class="n">lam</span> <span class="o">=</span> <span class="n">PowerMethod</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">x0</span><span class="p">)</span>
 </pre></div>
