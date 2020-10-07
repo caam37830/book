@@ -555,8 +555,11 @@
 <div class="section" id="id1">
 <h2>Exercise<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>Prove that the bisection method converges linearly.</p>
-<p><strong>Sketch of Answer</strong> Let <span class="math notranslate nohighlight">\(L = |b - a|\)</span> be the inital width of the interval that contains the root.  The maximum distance to the root from either <span class="math notranslate nohighlight">\(a\)</span> or <span class="math notranslate nohighlight">\(b\)</span> is <span class="math notranslate nohighlight">\(L\)</span>, so <span class="math notranslate nohighlight">\(\epsilon_0 \le L\)</span>. At each step of the algorithm, we look at the midpoint, and reduce the length of the interval we are looking at by 2.  This means <span class="math notranslate nohighlight">\(\epsilon_k \le L/2^k\)</span>. We now look at the ratio <span class="math notranslate nohighlight">\(\epsilon_{k+1}/\epsilon_k \sim 1/2\)</span>, so the algorithm converges linearly.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Sketch of Answer</p>
+<p>Let <span class="math notranslate nohighlight">\(L = |b - a|\)</span> be the inital width of the interval that contains the root.  The maximum distance to the root from either <span class="math notranslate nohighlight">\(a\)</span> or <span class="math notranslate nohighlight">\(b\)</span> is <span class="math notranslate nohighlight">\(L\)</span>, so <span class="math notranslate nohighlight">\(\epsilon_0 \le L\)</span>. At each step of the algorithm, we look at the midpoint, and reduce the length of the interval we are looking at by 2.  This means <span class="math notranslate nohighlight">\(\epsilon_k \le L/2^k\)</span>. We now look at the ratio <span class="math notranslate nohighlight">\(\epsilon_{k+1}/\epsilon_k \sim 1/2\)</span>, so the algorithm converges linearly.</p>
 <p><em>Note you would need to be a bit more careful with the ratio to really prove convergence.</em></p>
+</div>
 </div>
 <div class="section" id="an-application-of-decorators">
 <h2>An Application of Decorators<a class="headerlink" href="#an-application-of-decorators" title="Permalink to this headline">¶</a></h2>
