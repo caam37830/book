@@ -1,0 +1,476 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Convergence of Algorithms &#8212; Scientific Computing with Python</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/mystnb.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Scientific Computing with Python</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_python/python.html">
+   Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="analysis.html">
+   Analysis of Algorithms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02_linear_algebra/linear_algebra.html">
+   Linear Algebra
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03_optimization/optimization.html">
+   Optimization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04_functions/functions.html">
+   Functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05_graphs/graphs.html">
+   Graphs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06_probability_statistics/prob_stat.html">
+   Probability and Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../07_data/data.html">
+   Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../08_geometry/geometry.html">
+   Geometry
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../09_computing/computing.html">
+   Computing
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/01_analysis/convergence.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/caam37830/book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/caam37830/book/issues/new?title=Issue%20on%20page%20%2F01_analysis/convergence.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/caam37830/book/master?urlpath=tree/01_analysis/convergence.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/caam37830/book/blob/master/01_analysis/convergence.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rate-of-convergence">
+   Rate of Convergence
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#measuring-the-rate-of-convergence">
+     Measuring the Rate of Convergence
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#estimating-q">
+     Estimating q
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercises">
+     Exercises
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="convergence-of-algorithms">
+<h1>Convergence of Algorithms<a class="headerlink" href="#convergence-of-algorithms" title="Permalink to this headline">¶</a></h1>
+<p>Many numerical algorithms <em>converge</em> to a solution, meaning they produce better and better approximations to a solution.  We’ll let <span class="math notranslate nohighlight">\(x_\ast\)</span> denote the true solution, and <span class="math notranslate nohighlight">\(x_k\)</span> denote the <span class="math notranslate nohighlight">\(k\)</span>th iterate of an algorithm.  Let <span class="math notranslate nohighlight">\(\epsilon_k = |x_k - x_\ast|\)</span> denote the <em>error</em>.  An algorithm converges if
+<span class="math notranslate nohighlight">\($\lim_{k\to\infty} \epsilon_k = 0\)</span>$</p>
+<p>In practice, we typically don’t know the value of <span class="math notranslate nohighlight">\(x_\ast\)</span>.  We can either truncate the algorithm after <span class="math notranslate nohighlight">\(N\)</span> iterations, in which case we estimate <span class="math notranslate nohighlight">\(\tilde{\epsilon}_k = |x_k - x_N|\)</span></p>
+<p>Alternatively, we can monitor the difference <span class="math notranslate nohighlight">\(\delta_k = |x_k - x_{k-1}|\)</span>.  If the algorithm is converging, we expect <span class="math notranslate nohighlight">\(\delta_k \to 0\)</span> as well, and we can stop the algorithm when <span class="math notranslate nohighlight">\(\delta_k\)</span> is sufficiently small.</p>
+<p>In this class, we aren’t going to worry too much about proving that algorithms converge.  However, we do want to be able verify that an algorithm is converging, measure the <em>rate</em> of convergence, and generally compare two algorithms using experimental convergence data.</p>
+<div class="section" id="rate-of-convergence">
+<h2>Rate of Convergence<a class="headerlink" href="#rate-of-convergence" title="Permalink to this headline">¶</a></h2>
+<p>There are a <a class="reference external" href="https://en.wikipedia.org/wiki/Rate_of_convergence">variety of ways</a> in which the rate of convergence is defined.  Mostly, we’re interested in the ratio <span class="math notranslate nohighlight">\(\epsilon_{k+1} / \epsilon_k\)</span>.  We say the convergence of <span class="math notranslate nohighlight">\(\epsilon\)</span> is of order <span class="math notranslate nohighlight">\(q\)</span> if
+<span class="math notranslate nohighlight">\($\lim_{k\to \infty} \frac{\epsilon_{k+1}}{\epsilon_k^q} &lt; C\)</span>$
+for some constant <span class="math notranslate nohighlight">\(C&gt; 0\)</span>.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(q = 1\)</span> and <span class="math notranslate nohighlight">\(C \in (0,1)\)</span> is called <em>linear</em> convergence</p></li>
+<li><p><span class="math notranslate nohighlight">\(q = 2\)</span> is called <em>quadratic</em> convergence</p></li>
+</ul>
+<p>Larger values of <span class="math notranslate nohighlight">\(q\)</span> indicate faster convergence.</p>
+<p>Additionally, we have the following terms:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(q = 1\)</span> and <span class="math notranslate nohighlight">\(C = 1\)</span> is called <em>sublinear</em> (slower than linear) convergence</p></li>
+<li><p><span class="math notranslate nohighlight">\(q &gt; 1\)</span> is <em>superlinear</em> (faster than linear) convergence</p></li>
+</ul>
+<p>Clearly, if <span class="math notranslate nohighlight">\(q= 1, C &gt; 1\)</span>, or if <span class="math notranslate nohighlight">\(q &lt; 1\)</span>, the sequence actually diverges.</p>
+<div class="section" id="measuring-the-rate-of-convergence">
+<h3>Measuring the Rate of Convergence<a class="headerlink" href="#measuring-the-rate-of-convergence" title="Permalink to this headline">¶</a></h3>
+<p>Let’s say we have a sequence <span class="math notranslate nohighlight">\(\epsilon_k \to 0\)</span>.  How might we measure <span class="math notranslate nohighlight">\(q\)</span>?</p>
+<p>Assume we look at large enough <span class="math notranslate nohighlight">\(k\)</span> so that the sequence is converging. Note that this potentially may not happen for many iterations.</p>
+<p>Let’s look at the ratio <span class="math notranslate nohighlight">\(\epsilon_{k+1} / \epsilon_{k}^q \approx C\)</span>. Taking the logarithm, we have</p>
+<p><span class="math notranslate nohighlight">\(\log \epsilon_{k+1} - q \log \epsilon_{k} \approx \log C\)</span></p>
+<p>This means that if <span class="math notranslate nohighlight">\(q = 1\)</span>, the line <span class="math notranslate nohighlight">\(\log \epsilon_k\)</span> has slope <span class="math notranslate nohighlight">\(\log C\)</span>.</p>
+<p>If <span class="math notranslate nohighlight">\(q &gt; 1\)</span>, then <span class="math notranslate nohighlight">\(\log \epsilon_k\)</span> will go to <span class="math notranslate nohighlight">\(-\infty\)</span> at an exponential rate.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># generates a linearly converging sequence</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">C</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">q</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">eps1</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">eps1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">C</span> <span class="o">*</span> <span class="n">eps1</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="n">q</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">eps1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\epsilon$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;linear convergence&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/convergence_4_0.png" src="../_images/convergence_4_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># generates a quadratically converging sequence</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">9</span>
+<span class="n">C</span> <span class="o">=</span> <span class="mf">2.0</span>
+<span class="n">q</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">eps2</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">eps2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">C</span> <span class="o">*</span> <span class="n">eps2</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="n">q</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">eps2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\epsilon$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;quadratic convergence&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/convergence_5_0.png" src="../_images/convergence_5_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># generates a sub-linear (logarithmic) converging sequence</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">eps3</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">eps3</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mf">1.0</span><span class="o">/</span><span class="n">k</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">eps3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\epsilon$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;sublinear convergence&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/convergence_6_0.png" src="../_images/convergence_6_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># all three in same plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">eps1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">eps2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;superlinear&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">eps3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;sublinear&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\epsilon$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mf">1e-16</span><span class="p">,</span> <span class="mf">1e0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;types of convergence&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/convergence_7_0.png" src="../_images/convergence_7_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="estimating-q">
+<h3>Estimating q<a class="headerlink" href="#estimating-q" title="Permalink to this headline">¶</a></h3>
+<p>There are a variety of ways to estimate <span class="math notranslate nohighlight">\(q\)</span>.  A rough, but easy estimate comes from finding the slope of the sequence <span class="math notranslate nohighlight">\(\log|\log(\epsilon_{k+1}/\epsilon_k)| = \log|\log \epsilon_{k+1} - \log \epsilon_k|\)</span>. Because <span class="math notranslate nohighlight">\(\epsilon_k\)</span> shrinks exponentially (asymptotically) with base <span class="math notranslate nohighlight">\(1/q\)</span>.  The slope of the line will be <span class="math notranslate nohighlight">\(\log q\)</span>, from which we can estimate <span class="math notranslate nohighlight">\(q\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">estimate_q</span><span class="p">(</span><span class="n">eps</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    estimate rate of convergence q from sequence esp</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">eps</span><span class="p">)</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">eps</span><span class="p">))))</span>
+    <span class="n">line</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># fit degree 1 polynomial</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="c1"># find q</span>
+    <span class="k">return</span> <span class="n">q</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">estimate_q</span><span class="p">(</span><span class="n">eps1</span><span class="p">))</span> <span class="c1"># linear</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">estimate_q</span><span class="p">(</span><span class="n">eps2</span><span class="p">))</span> <span class="c1"># quadratic</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">estimate_q</span><span class="p">(</span><span class="n">eps3</span><span class="p">))</span> <span class="c1"># sublinear</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>1.0
+2.0
+0.9466399163308074
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="exercises">
+<h3>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
+<li><p>Generate a converging sequence with <span class="math notranslate nohighlight">\(q = 1.5\)</span>, and estimate <span class="math notranslate nohighlight">\(q\)</span> using the above method</p></li>
+<li><p>Generate sublinear sequences with <span class="math notranslate nohighlight">\(\epsilon_k = 1/k\)</span> (as above) for lengths 50, 100, 500, 1000, 5000, and 10000. How does our estimate of <span class="math notranslate nohighlight">\(q\)</span> change with the length of the sequence?</p></li>
+</ol>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "pycourse"
+        },
+        kernelOptions: {
+            kernelName: "pycourse",
+            path: "./01_analysis"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'pycourse'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Brad Nelson<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../_static/js/index.js"></script>
+    
+  </body>
+</html>

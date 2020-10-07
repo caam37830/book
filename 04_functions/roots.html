@@ -254,8 +254,23 @@
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise">
+   Exercise
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   Exercise
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#an-application-of-decorators">
    An Application of Decorators
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   Exercise
   </a>
  </li>
 </ul>
@@ -286,12 +301,23 @@
 <p>Many numerical algorithms operate through some sort of iterative process, where we get better and better approximations to the answer at each iteration.</p>
 <p>One example of this is <a class="reference external" href="https://en.wikipedia.org/wiki/Newton%27s_method">Newton’s method</a> for root finding.  A <strong>root</strong> of a continuous function <span class="math notranslate nohighlight">\(f\)</span> is a value <span class="math notranslate nohighlight">\(x\)</span> so that <span class="math notranslate nohighlight">\(f(x) = 0\)</span>.</p>
 <p>Given a function <span class="math notranslate nohighlight">\(f\)</span>, we would like to find some root <span class="math notranslate nohighlight">\(x\)</span>. Newton’s method computes a sequence of iterations
-<span class="math notranslate nohighlight">\($ x_k = x_{k-1} - \frac{f(x_{k-1})}{f'(x_{k-1})}\)</span>$</p>
+<span class="math notranslate nohighlight">\($ x_{k+1} = x_{k} - \frac{f(x_{k})}{f'(x_{k})}\)</span>$</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">newton_root</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">fp</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    numerically approximate a root of f using Newton&#39;s method</span>
+<span class="sd">    </span>
+<span class="sd">    inputs:</span>
+<span class="sd">        f - function</span>
+<span class="sd">        fp - derivative of function f</span>
+<span class="sd">        x - starting point (default 1)</span>
+<span class="sd">        tol - tolerance for terminating the algorithm (default 1e-4)</span>
+<span class="sd">    </span>
+<span class="sd">    returns:</span>
+<span class="sd">        x - the root</span>
+<span class="sd">        iters = a list of all x visited</span>
+<span class="sd">        fs - f(x) for each iteration</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">fx</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
     <span class="n">iters</span> <span class="o">=</span> <span class="p">[]</span>
@@ -305,6 +331,34 @@
     <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">iters</span><span class="p">,</span> <span class="n">fs</span>
 </pre></div>
 </div>
+</div>
+</div>
+<p>The idea is that if we draw a straight line with slope <span class="math notranslate nohighlight">\(f'(x_k)\)</span> through the point <span class="math notranslate nohighlight">\((x_k, f(x_k))\)</span>, the intercept would be at <span class="math notranslate nohighlight">\(x_{k+1}\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">2</span>
+<span class="n">fp</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span>
+
+<span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span>
+<span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">x0</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">xs</span><span class="p">),</span> <span class="s1">&#39;k-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;f&#39;</span><span class="p">)</span> <span class="c1"># plot the function</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">linestyles</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">)</span> <span class="c1"># dashed line for y = 0</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x0</span><span class="p">),</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">x0</span> <span class="o">+</span> <span class="mf">0.05</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.1</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$x_0$&#39;</span><span class="p">)</span> <span class="c1"># x0 label</span>
+<span class="n">x1</span> <span class="o">=</span> <span class="n">x0</span> <span class="o">-</span> <span class="n">f</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span><span class="o">/</span><span class="n">fp</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">fp</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">xs</span> <span class="o">-</span> <span class="n">x1</span><span class="p">),</span> <span class="s1">&#39;k--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;tangent&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">x1</span> <span class="o">+</span> <span class="mf">0.05</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$x_1$&#39;</span><span class="p">)</span> <span class="c1"># x1 label</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/roots_5_0.png" src="../_images/roots_5_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -330,7 +384,18 @@
 </div>
 </div>
 </div>
-<p>Another root finding algorithm is the <a class="reference external" href="https://en.wikipedia.org/wiki/Bisection_method">bisection method</a>.  This operates by narrowing an interval which is known to contain a root.  Using the <a class="reference external" href="https://en.wikipedia.org/wiki/Intermediate_value_theorem">intermediate value theorem</a>, we know that if <span class="math notranslate nohighlight">\(f(a) &lt; 0\)</span>, and <span class="math notranslate nohighlight">\(f(b) &gt; 0\)</span>, there must be some <span class="math notranslate nohighlight">\(c\in (a,b)\)</span> so that <span class="math notranslate nohighlight">\(f(c) = 0\)</span>.  At each iteration, we narrow the interval.</p>
+<p>Another root finding algorithm is the <a class="reference external" href="https://en.wikipedia.org/wiki/Bisection_method">bisection method</a>.  This operates by narrowing an interval which is known to contain a root.  Assuming <span class="math notranslate nohighlight">\(f\)</span> is continuous, we can use the <a class="reference external" href="https://en.wikipedia.org/wiki/Intermediate_value_theorem">intermediate value theorem</a>. We know that if <span class="math notranslate nohighlight">\(f(a) &lt; 0\)</span>, and <span class="math notranslate nohighlight">\(f(b) &gt; 0\)</span>, there must be some <span class="math notranslate nohighlight">\(c\in (a,b)\)</span> so that <span class="math notranslate nohighlight">\(f(c) = 0\)</span>.  At each iteration, we narrow the interval by looking at the midpoint <span class="math notranslate nohighlight">\(c = (a + b)/2\)</span> and then looking at the interval <span class="math notranslate nohighlight">\((a,c)\)</span> or the interval <span class="math notranslate nohighlight">\((c,b)\)</span> depending on which one contains a root based on the intermediate value theorem.</p>
+<div class="section" id="exercise">
+<h2>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h2>
+<p>Implement the bisection method as a recursive function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here’s a sequential implementation which keeps track of the iterates.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">bisection_root</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">lb</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">ub</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">):</span>
@@ -338,6 +403,17 @@
 <span class="sd">    numerically approximate a root of f using bisection method</span>
 <span class="sd">    </span>
 <span class="sd">    assume signs of f(inf), f(-inf) are different</span>
+<span class="sd">    </span>
+<span class="sd">    inputs:</span>
+<span class="sd">        f - function</span>
+<span class="sd">        lb - lower bound of interval containing root</span>
+<span class="sd">        ub - upper bound of interval containing root</span>
+<span class="sd">        tol - tolerance for terminating the algorithm (default 1e-4)</span>
+<span class="sd">    </span>
+<span class="sd">    returns</span>
+<span class="sd">        x - the root</span>
+<span class="sd">        iters = a list of all x visited</span>
+<span class="sd">        fs - f(x) for each iteration</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># first increase range until signs of f(lb), f(ub) are different</span>
     <span class="k">while</span> <span class="n">f</span><span class="p">(</span><span class="n">lb</span><span class="p">)</span> <span class="o">*</span> <span class="n">f</span><span class="p">(</span><span class="n">ub</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
@@ -403,12 +479,14 @@
 <span class="n">x_newton</span><span class="p">,</span> <span class="n">iter_newton</span><span class="p">,</span> <span class="n">f_newton</span> <span class="o">=</span> <span class="n">newton_root</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">fp</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="n">tol</span><span class="p">)</span>
 <span class="n">x_bisect</span><span class="p">,</span> <span class="n">iter_bisect</span><span class="p">,</span> <span class="n">f_bisect</span> <span class="o">=</span> <span class="n">bisection_root</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="n">tol</span><span class="p">)</span>
 
-<span class="n">x_newton</span><span class="p">,</span> <span class="n">x_bisect</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x_newton</span><span class="p">,</span> <span class="n">x_bisect</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">x_newton</span> <span class="o">-</span> <span class="n">x_bisect</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(-0.21675657195055742, -0.21675657108426094)
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>-0.21675657195055742 -0.21675657108426094
+8.662964789962757e-10
 </pre></div>
 </div>
 </div>
@@ -439,8 +517,46 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/roots_13_0.png" src="../_images/roots_13_0.png" />
+<img alt="../_images/roots_17_0.png" src="../_images/roots_17_0.png" />
 </div>
+</div>
+<p>The below function comes from the section on <a class="reference internal" href="../01_analysis/convergence.html"><span class="doc std std-doc">convergence</span></a>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">estimate_q</span><span class="p">(</span><span class="n">eps</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    estimate rate of convergence q from sequence esp</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">eps</span><span class="p">)</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">eps</span><span class="p">))))</span>
+    <span class="n">line</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># fit degree 1 polynomial</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="c1"># find q</span>
+    <span class="k">return</span> <span class="n">q</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">estimate_q</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">f_newton</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">estimate_q</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">f_bisect</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>1.97097165113398
+1.0000974769330462
+</pre></div>
+</div>
+</div>
+</div>
+<p>experimentally, we see that the bisection converges linearly, and Newton’s method converges close to its theoretical guarantee of quadratically.</p>
+</div>
+<div class="section" id="id1">
+<h2>Exercise<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>Prove that the bisection method converges linearly.</p>
+<p><strong>Sketch of Answer</strong> Let <span class="math notranslate nohighlight">\(L = |b - a|\)</span> be the inital width of the interval that contains the root.  The maximum distance to the root from either <span class="math notranslate nohighlight">\(a\)</span> or <span class="math notranslate nohighlight">\(b\)</span> is <span class="math notranslate nohighlight">\(L\)</span>, so <span class="math notranslate nohighlight">\(\epsilon_0 \le L\)</span>. At each step of the algorithm, we look at the midpoint, and reduce the length of the interval we are looking at by 2.  This means <span class="math notranslate nohighlight">\(\epsilon_k \le L/2^k\)</span>. We now look at the ratio <span class="math notranslate nohighlight">\(\epsilon_{k+1}/\epsilon_k \sim 1/2\)</span>, so the algorithm converges linearly.</p>
+<p><em>Note you would need to be a bit more careful with the ratio to really prove convergence.</em></p>
 </div>
 <div class="section" id="an-application-of-decorators">
 <h2>An Application of Decorators<a class="headerlink" href="#an-application-of-decorators" title="Permalink to this headline">¶</a></h2>
@@ -451,7 +567,7 @@ We’ll use the symmetric definition
 <span class="math notranslate nohighlight">\($f'(x) = \lim_{h\to 0^+} \frac{f(x+h) - f(x - h)}{2h}\)</span>$</p>
 <p>Let’s define a non-limit version
 <span class="math notranslate nohighlight">\($\Delta_h f(x) = \frac{f(x + h) - f(x - h)}{2h}\)</span>$
-for fixed <span class="math notranslate nohighlight">\(x\)</span>, if <span class="math notranslate nohighlight">\(h\)</span> is sufficiently small, then <span class="math notranslate nohighlight">\(\Delta_h f \approx f'\)</span> near <span class="math notranslate nohighlight">\(x\)</span></p>
+for fixed <span class="math notranslate nohighlight">\(x\)</span>, if <span class="math notranslate nohighlight">\(h\)</span> is sufficiently small, then <span class="math notranslate nohighlight">\(\Delta_h f \approx f'\)</span> near <span class="math notranslate nohighlight">\(x\)</span>.  <span class="math notranslate nohighlight">\(\Delta_h f\)</span> is known as <em>finite difference</em>.</p>
 <p>We can explicitly define a numerical derivative of a function <span class="math notranslate nohighlight">\(f\)</span> via</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -476,6 +592,18 @@ for fixed <span class="math notranslate nohighlight">\(x\)</span>, if <span clas
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x_newton</span><span class="p">,</span> <span class="n">iter_newton</span><span class="p">,</span> <span class="n">f_newton</span> <span class="o">=</span> <span class="n">newton_root</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">fp</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">iter_newton</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>5
 </pre></div>
 </div>
 </div>
@@ -521,6 +649,11 @@ for fixed <span class="math notranslate nohighlight">\(x\)</span>, if <span clas
 </div>
 </div>
 </div>
+</div>
+<div class="section" id="id2">
+<h2>Exercise<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>Estimate the rate of convergence for Newton’s method when we use a finite difference to approximate the derivative.</p>
+<p>Does this change with the value of <span class="math notranslate nohighlight">\(h\)</span>?</p>
 </div>
 </div>
 
