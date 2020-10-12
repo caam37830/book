@@ -93,6 +93,11 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="numpy_scipy_linalg.html">
+     Dense Linear Algebra in NumPy and SciPy
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="blas_lapack.html">
      BLAS and LAPACK
     </a>
@@ -318,8 +323,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([[0.93063647, 0.84612586],
-       [0.62947735, 0.16719019]])
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([[0.79970122, 0.21669242],
+       [0.71823992, 0.18628568]])
 </pre></div>
 </div>
 </div>
@@ -332,8 +337,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>tensor([[0.9306, 0.8461],
-        [0.6295, 0.1672]])
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>tensor([[0.7997, 0.2167],
+        [0.7182, 0.1863]])
 </pre></div>
 </div>
 </div>
@@ -349,10 +354,10 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>tensor([[0.9306, 0.8461],
-        [0.6295, 0.1672]], device=&#39;cuda:0&#39;)
-tensor([[0.9306, 0.8461],
-        [0.6295, 0.1672]])
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>tensor([[0.7997, 0.2167],
+        [0.7182, 0.1863]], device=&#39;cuda:0&#39;)
+tensor([[0.7997, 0.2167],
+        [0.7182, 0.1863]])
 </pre></div>
 </div>
 </div>
@@ -364,8 +369,8 @@ tensor([[0.9306, 0.8461],
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>tensor([[0.9306, 0.8461],
-        [0.6295, 0.1672]], device=&#39;cuda:0&#39;)
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>tensor([[0.7997, 0.2167],
+        [0.7182, 0.1863]], device=&#39;cuda:0&#39;)
 </pre></div>
 </div>
 </div>
@@ -419,11 +424,11 @@ tensor([[0.9306, 0.8461],
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>device = cpu
-CPU times: user 152 µs, sys: 51 µs, total: 203 µs
-Wall time: 146 µs
+CPU times: user 283 µs, sys: 90 µs, total: 373 µs
+Wall time: 169 µs
 device = cuda
-CPU times: user 190 µs, sys: 0 ns, total: 190 µs
-Wall time: 62.5 µs
+CPU times: user 192 µs, sys: 60 µs, total: 252 µs
+Wall time: 68.2 µs
 </pre></div>
 </div>
 </div>
@@ -446,11 +451,11 @@ Wall time: 62.5 µs
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>device = cpu
-CPU times: user 562 µs, sys: 177 µs, total: 739 µs
-Wall time: 352 µs
+CPU times: user 1.98 ms, sys: 0 ns, total: 1.98 ms
+Wall time: 553 µs
 device = cuda
-CPU times: user 82 µs, sys: 26 µs, total: 108 µs
-Wall time: 31.9 µs
+CPU times: user 117 µs, sys: 35 µs, total: 152 µs
+Wall time: 45.3 µs
 </pre></div>
 </div>
 </div>
@@ -476,13 +481,11 @@ Wall time: 31.9 µs
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>device = cpu
-</pre></div>
-</div>
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 57.3 ms, sys: 1.42 ms, total: 58.7 ms
-Wall time: 14.8 ms
+CPU times: user 31.6 ms, sys: 2.68 ms, total: 34.3 ms
+Wall time: 8.66 ms
 device = cuda
-CPU times: user 155 µs, sys: 42 µs, total: 197 µs
-Wall time: 61.3 µs
+CPU times: user 114 µs, sys: 30 µs, total: 144 µs
+Wall time: 38.4 µs
 </pre></div>
 </div>
 </div>
@@ -511,11 +514,13 @@ Wall time: 61.3 µs
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>device = cpu
 </pre></div>
 </div>
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 137 ms, sys: 11.8 ms, total: 149 ms
-Wall time: 38.3 ms
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 189 ms, sys: 21.7 ms, total: 211 ms
+Wall time: 56.4 ms
 device = cuda
-CPU times: user 867 µs, sys: 167 µs, total: 1.03 ms
-Wall time: 264 µs
+</pre></div>
+</div>
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 523 µs, sys: 0 ns, total: 523 µs
+Wall time: 531 µs
 </pre></div>
 </div>
 </div>

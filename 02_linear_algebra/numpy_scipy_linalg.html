@@ -1,0 +1,1119 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Dense Linear Algebra in NumPy and SciPy &#8212; Scientific Computing with Python</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/mystnb.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="BLAS and LAPACK" href="blas_lapack.html" />
+    <link rel="prev" title="Memory and Performance" href="memory.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Scientific Computing with Python</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_python/python.html">
+   Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01_analysis/analysis.html">
+   Analysis of Algorithms
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="linear_algebra.html">
+   Linear Algebra
+  </a>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="memory.html">
+     Memory and Performance
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Dense Linear Algebra in NumPy and SciPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="blas_lapack.html">
+     BLAS and LAPACK
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="sparse.html">
+     Sparse Matrices
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="linearoperators.html">
+     Linear Operators
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pytorch.html">
+     Linear Algebra in PyTorch
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03_optimization/optimization.html">
+   Optimization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04_functions/functions.html">
+   Functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05_graphs/graphs.html">
+   Graphs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06_probability_statistics/prob_stat.html">
+   Probability and Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../07_data/data.html">
+   Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../08_geometry/geometry.html">
+   Geometry
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../09_computing/computing.html">
+   Computing
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/02_linear_algebra/numpy_scipy_linalg.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/caam37830/book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/caam37830/book/issues/new?title=Issue%20on%20page%20%2F02_linear_algebra/numpy_scipy_linalg.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/caam37830/book/master?urlpath=tree/02_linear_algebra/numpy_scipy_linalg.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/caam37830/book/blob/master/02_linear_algebra/numpy_scipy_linalg.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#linear-algebra">
+   Linear Algebra
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#householder-notation">
+     Householder Notation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-do-we-compute">
+     What Do we Compute?
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#some-places-where-linear-algebra-appears">
+   Some Places where Linear Algebra Appears
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-diffusion">
+     Example: Diffusion
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#linear-algebra-in-numpy">
+   Linear Algebra In NumPy
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#basic-operations">
+     Basic Operations
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#solving-linear-systems">
+     Solving Linear Systems
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scipy-linear-algebra">
+   SciPy Linear Algebra
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#matrix-factorizations">
+   Matrix Factorizations
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#lu-decomposition">
+     LU decomposition
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise">
+     Exercise
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#qr-decomposition">
+     QR decomposition
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#excercise">
+     Excercise
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#eigenvalue-decompositions">
+     Eigenvalue Decompositions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercises">
+     Exercises
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#svd">
+     SVD
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Exercises
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="dense-linear-algebra-in-numpy-and-scipy">
+<h1>Dense Linear Algebra in NumPy and SciPy<a class="headerlink" href="#dense-linear-algebra-in-numpy-and-scipy" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="linear-algebra">
+<h2>Linear Algebra<a class="headerlink" href="#linear-algebra" title="Permalink to this headline">¶</a></h2>
+<p>Linear Algebra is <em>the</em> fundamental building block in scientific computing.  Why?  Even if we are dealing with complicated functions, we can always deal with approximations.  If we want to understand a function near a point (sample), the simplest approximation is the <em>constant</em> function, which says the function is the same everywhere.  This isn’t very interesting.  The next level of approximation is a <em>linear</em> approximation, where we model the rate of change near that point. This is <em>much</em> more useful, even if it isn’t exact, and opens up the possibility of saying all kinds of things about the system that we’re studying.</p>
+<p>In other words, you can do a lot with degree-1 Taylor series.</p>
+<p>Let’s first recall some definitions from your mathematics classes:</p>
+<p>A <strong>vector space</strong> <span class="math notranslate nohighlight">\(V\)</span> over a field <span class="math notranslate nohighlight">\(\mathbb{F}\)</span> consists of a set of vectors which are related by addition and scalar multiplication</p>
+<ol class="simple">
+<li><p><span class="math notranslate nohighlight">\(v, w\in V\)</span> implies <span class="math notranslate nohighlight">\(v + w \in V\)</span> (addition)</p></li>
+<li><p><span class="math notranslate nohighlight">\(v \in V, \alpha \in \mathbb{F}\)</span> implies <span class="math notranslate nohighlight">\(\alpha v \in \mathbb{F}\)</span></p></li>
+</ol>
+<p>These operations are associative and commutative, etc.  Usually what makes things interesting is the existence of a linear map.</p>
+<p>A <strong>linear map</strong> <span class="math notranslate nohighlight">\(M: V\to W\)</span> is a map from one vector space (<span class="math notranslate nohighlight">\(V\)</span>) to another (<span class="math notranslate nohighlight">\(W\)</span>, over the same field <span class="math notranslate nohighlight">\(\mathbb{F}\)</span>) which satisfies
+<span class="math notranslate nohighlight">\(M(\alpha v + \beta w) = \alpha M v + \beta M w\)</span></p>
+<p>Matrices encode a linear map when we have chosen bases for both <span class="math notranslate nohighlight">\(V\)</span> and <span class="math notranslate nohighlight">\(W\)</span>.</p>
+<p>In scientific computing the field <span class="math notranslate nohighlight">\(\mathbb{F}\)</span> is typically either the real numbers <span class="math notranslate nohighlight">\(\mathbb{R}\)</span> or complex numbers <span class="math notranslate nohighlight">\(\mathbb{C}\)</span> (but remember we use floating point arithmetic)</p>
+<p>We will also deal with finite dimensional vector spaces. Sometimes these are explicitly vectors in Euclidean space (e.g. in computational geometry), but more often are some sort of function space.</p>
+<div class="section" id="householder-notation">
+<h3>Householder Notation<a class="headerlink" href="#householder-notation" title="Permalink to this headline">¶</a></h3>
+<p>Householder notations is standard in numerical linear algebra:</p>
+<ul class="simple">
+<li><p>scalars (elements of <span class="math notranslate nohighlight">\(\mathbb{F}\)</span>) are denoted with lower-case Greek letters <span class="math notranslate nohighlight">\(\alpha, \beta, \dots\)</span></p></li>
+<li><p>vectors are denoted with lower-case Latin letters <span class="math notranslate nohighlight">\(a, b, \dots, w, v, \dots\)</span></p></li>
+<li><p>matrices are denoted with capital letters (Latin or Greek), such as <span class="math notranslate nohighlight">\(A, B, \dots\)</span></p></li>
+</ul>
+<p>This was introduced by Householder (see his book “Theory of Matrices in Numerical Analysis”, or the modern text “Matrix Computations” by Golub and Van Loan).</p>
+</div>
+<div class="section" id="what-do-we-compute">
+<h3>What Do we Compute?<a class="headerlink" href="#what-do-we-compute" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><strong>basic operations</strong> - e.g. compute <span class="math notranslate nohighlight">\(y\)</span> where <span class="math notranslate nohighlight">\(y = Ax\)</span></p></li>
+<li><p><strong>solving linear systems</strong> - find <span class="math notranslate nohighlight">\(x\)</span> where <span class="math notranslate nohighlight">\(Ax = b\)</span>.</p></li>
+<li><p><strong>matrix analysis</strong> - understand the action of the matrix <span class="math notranslate nohighlight">\(A\)</span> via eigenvalues, SVD, etc.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="some-places-where-linear-algebra-appears">
+<h2>Some Places where Linear Algebra Appears<a class="headerlink" href="#some-places-where-linear-algebra-appears" title="Permalink to this headline">¶</a></h2>
+<ol class="simple">
+<li><p>Linear regresssion (example of linear system)</p></li>
+<li><p>Principal components analysis (example of matrix analysis)</p></li>
+<li><p>Solving ODE/PDE (depending on details, involves basic operations and solving linear systems)</p></li>
+<li><p>Data Visualization (often use matrix analysis)</p></li>
+<li><p>Optimization (gradient descent uses basic operations, Newton’s method solves a linear system)</p></li>
+<li><p>Imaging - (basic operations, solving systems, some matrix analysis)</p></li>
+</ol>
+<p>And the list goes on.</p>
+<div class="section" id="example-diffusion">
+<h3>Example: Diffusion<a class="headerlink" href="#example-diffusion" title="Permalink to this headline">¶</a></h3>
+<p>One example where linear algebra appears is in measuring the strength of a signal at several sources from receivers.  Consider a simplified problem where we have several points that emit some pollutant.  We aren’t able to measure this pollutant directly at the sources.  This can happen for a variety of reasons, such as:</p>
+<ol class="simple">
+<li><p>The pollutant is completely incaccesible (e.g. far underwater)</p></li>
+<li><p>We’re not able to get close for political reasons (people responsible won’t cooperate)</p></li>
+<li><p>It is much cheaper to measure from other locations where we already have equipment</p></li>
+</ol>
+<p>And so on.  This problem is related to a variety of other problems in modeling heat or electromagnetic or acoustic signals, and is useful in imaging/remote sensing.  We’ll denote the source locations with <span class="math notranslate nohighlight">\(x\)</span>, and the receiver locations with <span class="math notranslate nohighlight">\(y\)</span>.  We’ll put these in a 2-dimensional plane</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">pylab</span> <span class="n">inline</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Populating the interactive namespace from numpy and matplotlib
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nx</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">ny</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">nx</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">ny</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">x</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;source&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">y</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;receiver&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/numpy_scipy_linalg_4_0.png" src="../_images/numpy_scipy_linalg_4_0.png" />
+</div>
+</div>
+<p>Each source emits the pollutant at rate <span class="math notranslate nohighlight">\(f\)</span>.  We represent this with a vector, where <code class="docutils literal notranslate"><span class="pre">f[i]</span></code> is the pollutant emitted by source <code class="docutils literal notranslate"><span class="pre">i</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">nx</span><span class="p">)</span>
+<span class="n">f</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([0.56804456, 0.92559664, 0.07103606])
+</pre></div>
+</div>
+</div>
+</div>
+<p>We’ll assume the pollutant spreads via diffusion.  What follows next might look familiar if you have taken some Physics classes before.  If not, don’t worry - the basic idea is that polution spreads out evenly from each source.  As we get further away from the source, the pollution becomes less concentrated because it is spread out over a larger area.  The function that tells us the concentration of a unit of pollution emitted by the source some distance away is called the <em>Greens function</em>.</p>
+<p>Let <span class="math notranslate nohighlight">\(p\)</span> denote the strength of the pollutant as a funciton in the 2-dimensional plane.  This means that diffusion obeys the PDE $\Delta p = \sum_i f_i \delta_{x_i} $, where <span class="math notranslate nohighlight">\(\Delta\)</span> is the laplacian, and <span class="math notranslate nohighlight">\(\delta\)</span> is a dirac delta. We’re just going to measure the polutant at the points <span class="math notranslate nohighlight">\(y\)</span>, where the receivers are located. The amount of polutant at receiver <span class="math notranslate nohighlight">\(j\)</span> from source <span class="math notranslate nohighlight">\(i\)</span> is <span class="math notranslate nohighlight">\(-f_i \frac{1}{2\pi} \log \| x_i - y_j\|_2\)</span> (this is the Green’s function for <span class="math notranslate nohighlight">\(\Delta\)</span>).  Because the total amount of polution at each reciever is the sum of the pollution from each source measured at that receiver, we can write</p>
+<p><span class="math notranslate nohighlight">\(p = G f\)</span></p>
+<p>where <code class="docutils literal notranslate"><span class="pre">p[j]</span></code> is the pollution at <code class="docutils literal notranslate"><span class="pre">y[j]</span></code>, <code class="docutils literal notranslate"><span class="pre">f[i]</span></code> is the rate of polution at source <code class="docutils literal notranslate"><span class="pre">x[i]</span></code>, and <code class="docutils literal notranslate"><span class="pre">G[i,j]</span></code> is <span class="math notranslate nohighlight">\(-\frac{1}{2\pi} \log \|x_i - y_j\|_2\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">ny</span><span class="p">,</span> <span class="n">nx</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nx</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ny</span><span class="p">):</span>
+        <span class="n">G</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">y</span><span class="p">[</span><span class="n">j</span><span class="p">]))</span>
+        
+<span class="n">G</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([[0.2493779 , 0.10068884, 0.18840228],
+       [0.15224308, 0.14768804, 0.26461807],
+       [0.22302595, 0.08119219, 0.15141249]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, we can calculate the concentration of polution at the receivers using matrix-vector multipication</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">G</span> <span class="o">@</span> <span class="n">f</span>
+<span class="n">p</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([0.24823837, 0.24197783, 0.21259564])
+</pre></div>
+</div>
+</div>
+</div>
+<p>However, the point is that we want to solve the inverse problem, which is to determine how much each source is polluting from our measurements at the receivers.  In words, we want to find <span class="math notranslate nohighlight">\(f\)</span> so that <span class="math notranslate nohighlight">\(Gf = p\)</span> for some known <span class="math notranslate nohighlight">\(p\)</span>.</p>
+<p>If you were to write down the solution, you would find <span class="math notranslate nohighlight">\(f = G^{-1} p\)</span>.  However, you should <strong>never</strong> explicilty invert a matrix on a computer, because you often run into inaccuracy due to floating point representation error. For now, we’ll use <code class="docutils literal notranslate"><span class="pre">np.linalg.solve</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">f2</span> <span class="o">-</span> <span class="n">f</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>1.1131646879500669e-14
+</pre></div>
+</div>
+</div>
+</div>
+<p>We see that the vector we solved for (<code class="docutils literal notranslate"><span class="pre">f2</span></code>) is very close to the true solution of <code class="docutils literal notranslate"><span class="pre">f</span></code>, and is close to machine precision.</p>
+<p>We are able to accurately obtain the rates at which the sources release polution based on measurements from some randomly placed sensors.</p>
+</div>
+</div>
+<div class="section" id="linear-algebra-in-numpy">
+<h2>Linear Algebra In NumPy<a class="headerlink" href="#linear-algebra-in-numpy" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="basic-operations">
+<h3>Basic Operations<a class="headerlink" href="#basic-operations" title="Permalink to this headline">¶</a></h3>
+<p>Vectors and matrices in NumPy are represented using <code class="docutils literal notranslate"><span class="pre">np.ndarray</span></code>, which we have seen already.  Here is a review:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">3</span> <span class="c1"># dimension of vector space</span>
+<span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">2.0</span> <span class="c1"># scalars</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+<span class="n">a</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">b</span><span class="o">*</span><span class="n">y</span> <span class="c1"># scalar multiplication and vector addition</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([1.68700745, 1.77035189, 3.20616645])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="mi">4</span> <span class="c1"># dimension of target vector space</span>
+
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="c1"># random linear transformation</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">b</span><span class="o">*</span><span class="n">y</span><span class="p">)</span>
+<span class="n">z</span> <span class="c1"># image</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([ 0.98960871, -0.02812151, -3.75157541,  3.47067757])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">z2</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">A</span> <span class="o">@</span> <span class="n">x</span> <span class="o">+</span> <span class="n">b</span> <span class="o">*</span> <span class="n">A</span> <span class="o">@</span> <span class="n">y</span>
+<span class="n">z2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([ 0.98960871, -0.02812151, -3.75157541,  3.47067757])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">z</span> <span class="o">-</span> <span class="n">z2</span> <span class="c1"># difference of image computed in two ways</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([-2.22044605e-16, -2.77555756e-16,  0.00000000e+00, -4.44089210e-16])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">k</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span> <span class="c1"># new linear map</span>
+<span class="n">z</span> <span class="o">=</span> <span class="p">(</span><span class="n">B</span> <span class="o">@</span> <span class="n">A</span><span class="p">)</span> <span class="o">@</span> <span class="n">x</span>
+<span class="n">z2</span> <span class="o">=</span> <span class="n">B</span> <span class="o">@</span> <span class="p">(</span><span class="n">A</span> <span class="o">@</span> <span class="n">x</span><span class="p">)</span>
+<span class="n">z</span> <span class="o">-</span> <span class="n">z2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([-9.71445147e-17,  0.00000000e+00, -2.22044605e-16])
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="solving-linear-systems">
+<h3>Solving Linear Systems<a class="headerlink" href="#solving-linear-systems" title="Permalink to this headline">¶</a></h3>
+<p>Recall from our example that we said that you shouldn’t ever invert a matrix to solve a linear system for numerical reasons.  Let’s see an example where we solve <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">*</span> <span class="pre">x</span> <span class="pre">=</span> <span class="pre">b</span></code> for <code class="docutils literal notranslate"><span class="pre">x</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy.linalg</span> <span class="k">as</span> <span class="nn">la</span>
+<span class="kn">import</span> <span class="nn">time</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">x</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">Ainv</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="c1"># use inversion</span>
+<span class="n">x2</span> <span class="o">=</span> <span class="n">Ainv</span> <span class="o">@</span> <span class="n">b</span>
+<span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> sec.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t1</span> <span class="o">-</span> <span class="n">t0</span><span class="p">))</span>
+<span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">x2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>0.058893442153930664 sec.
+</pre></div>
+</div>
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>3.4804090830990304e-11
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">x2</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="c1"># use solve function</span>
+<span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> sec.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t1</span> <span class="o">-</span> <span class="n">t0</span><span class="p">))</span>
+<span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">x2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>0.013506412506103516 sec.
+</pre></div>
+</div>
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>3.6248541274337918e-12
+</pre></div>
+</div>
+</div>
+</div>
+<p>We see that you will get a more precise answer, and faster when using <code class="docutils literal notranslate"><span class="pre">solve</span></code> instead of a matrix inverse.</p>
+<p>If we want to do a least squares solve: <span class="math notranslate nohighlight">\(\min_x \|Ax - b\|\)</span></p>
+<p>We can use <code class="docutils literal notranslate"><span class="pre">lstsq</span></code>.  For full-rank (square) matrices, this is equivalent to <code class="docutils literal notranslate"><span class="pre">solve</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x1</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="n">x2</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">lstsq</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">rcond</span><span class="o">=</span><span class="kc">None</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x1</span> <span class="o">-</span> <span class="n">x2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>3.4290020694403317e-12
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">lstsq</span></code> can also be used with over-and under determined linear systems</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">x</span>
+
+<span class="n">x2</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">lstsq</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">rcond</span><span class="o">=</span><span class="kc">None</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">x2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>4.634515912304845e-14
+</pre></div>
+</div>
+</div>
+</div>
+<p>in the above case, we are able to solve the system exactly because <code class="docutils literal notranslate"><span class="pre">b</span></code> in in the image of <code class="docutils literal notranslate"><span class="pre">A</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">x</span>
+
+<span class="n">x2</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">lstsq</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">rcond</span><span class="o">=</span><span class="kc">None</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">x2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>12.784556981877794
+</pre></div>
+</div>
+</div>
+</div>
+<p>in the above case, there are many possiblities for <code class="docutils literal notranslate"><span class="pre">x</span></code> where <code class="docutils literal notranslate"><span class="pre">A*x</span> <span class="pre">=</span> <span class="pre">b</span></code>, so we find the smallest-norm solution</p>
+</div>
+</div>
+<div class="section" id="scipy-linear-algebra">
+<h2>SciPy Linear Algebra<a class="headerlink" href="#scipy-linear-algebra" title="Permalink to this headline">¶</a></h2>
+<p>We’re now going to switch gears and start using <code class="docutils literal notranslate"><span class="pre">scipy.linalg</span></code> instead of <code class="docutils literal notranslate"><span class="pre">numpy.linalg</span></code>.  From the user’s point of view, there isn’t really any difference, except <code class="docutils literal notranslate"><span class="pre">scipy.linalg</span></code> has all the same functions as <code class="docutils literal notranslate"><span class="pre">numpy.linalg</span></code> as well as additional functions.  The call signatures are essentially the same, but there are sometimes different implementations under the hood.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://numpy.org/doc/stable/reference/routines.linalg.html">NumPy linear algebra documentation</a></p></li>
+<li><p><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/linalg.html">SciPy linear algebra documentation</a></p></li>
+</ul>
+<p>SciPy is built on top of the NumPy <code class="docutils literal notranslate"><span class="pre">ndarray</span></code> data type, so it is fully interoperable.  For example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy</span> <span class="k">as</span> <span class="nn">sp</span>
+<span class="kn">import</span> <span class="nn">scipy.linalg</span> <span class="k">as</span> <span class="nn">sla</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">x</span>
+
+<span class="n">x1</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="c1"># numpy</span>
+<span class="n">x2</span> <span class="o">=</span> <span class="n">sla</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="c1"># scipy</span>
+<span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x1</span> <span class="o">-</span> <span class="n">x2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>We’ll just import <code class="docutils literal notranslate"><span class="pre">scipy.linalg</span></code> into the <code class="docutils literal notranslate"><span class="pre">la</span></code> namespace, replacing <code class="docutils literal notranslate"><span class="pre">numpy.linalg</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy.linalg</span> <span class="k">as</span> <span class="nn">la</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="matrix-factorizations">
+<h2>Matrix Factorizations<a class="headerlink" href="#matrix-factorizations" title="Permalink to this headline">¶</a></h2>
+<p>A <strong>matrix factorization</strong> or <strong>matrix decomposition</strong> writes a matrix <span class="math notranslate nohighlight">\(A\)</span> as the product of matrices <span class="math notranslate nohighlight">\(A = BCD\dots\)</span>, where the matrices in the product typically have some special structure.</p>
+<p>Here are some examples:</p>
+<ul class="simple">
+<li><p>Diagonal matrices - easy to apply and solve linear systems</p></li>
+<li><p>Triangular matrices (upper or lower) - fast to solve linear systems</p></li>
+<li><p>Orthonormal matrices: <span class="math notranslate nohighlight">\(Q\)</span> orthogonal means <span class="math notranslate nohighlight">\(Q^T = Q^{\dagger}\)</span> (pseudoinverse)</p></li>
+<li><p>Permutation matrices: sparse orthonormal matrices</p></li>
+</ul>
+<p>Most of the matrix factorizations we will see run in <span class="math notranslate nohighlight">\(O(n^3)\)</span> time for a <span class="math notranslate nohighlight">\(n\times n\)</span> matrix <span class="math notranslate nohighlight">\(A\)</span>, or <span class="math notranslate nohighlight">\(O(\min(m,n)^2 \max(m,n))\)</span> for a <span class="math notranslate nohighlight">\(m\times n\)</span> matrix <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<p>If you want to get really in-depth into how to compute matrix factorizations, take a numerical linear algebra course.  We’ll get them treating scipy as a black box (meaning we don’t look inside).</p>
+<div class="section" id="lu-decomposition">
+<h3>LU decomposition<a class="headerlink" href="#lu-decomposition" title="Permalink to this headline">¶</a></h3>
+<p>The first type of factorization we’ll look at is a <span class="math notranslate nohighlight">\(LU\)</span> decomposition, where <span class="math notranslate nohighlight">\(L\)</span> is lower-triangular and <span class="math notranslate nohighlight">\(U\)</span> is upper triangular.  For numerical stability, this is often computed with a <em>pivoting</em> strategy, which means there is also row or column permutation matrix <span class="math notranslate nohighlight">\(P\)</span>.
+<span class="math notranslate nohighlight">\($ A = PLU\)</span>$</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">x</span>
+
+<span class="n">P</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">U</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">lu</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">P</span> <span class="o">@</span> <span class="n">L</span> <span class="o">@</span> <span class="n">U</span> <span class="o">-</span> <span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>5.71100842029916e-12
+</pre></div>
+</div>
+</div>
+</div>
+<p>The nice thing about triangular matrices is that they can solve linear systems in <span class="math notranslate nohighlight">\(O(n^2)\)</span> time, instead of <span class="math notranslate nohighlight">\(O(n^3)\)</span> time for general matrices, using the forward or backward substitution algorithms.  There is a special function <code class="docutils literal notranslate"><span class="pre">solve_triangular</span></code> for this reason:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">L</span> <span class="o">@</span> <span class="n">x</span>
+<span class="n">x2</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">solve_triangular</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lower</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x2</span> <span class="o">-</span> <span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>9.432085149145724e-13
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can replicate the functionality of <code class="docutils literal notranslate"><span class="pre">solve</span></code> using an LU factorization, using the expression
+<span class="math notranslate nohighlight">\($A^{-1} = U^{-1} L^{-1} P^T\)</span>$</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    solve A * x = b for x</span>
+<span class="sd">    </span>
+<span class="sd">    use LU decomposition</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">P</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">U</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">lu</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">solve_triangular</span><span class="p">(</span>
+            <span class="n">U</span><span class="p">,</span>
+            <span class="n">la</span><span class="o">.</span><span class="n">solve_triangular</span><span class="p">(</span>
+                <span class="n">L</span><span class="p">,</span>
+                <span class="n">P</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">b</span><span class="p">,</span>
+                <span class="n">lower</span><span class="o">=</span><span class="kc">True</span>
+            <span class="p">),</span>
+            <span class="n">lower</span><span class="o">=</span><span class="kc">False</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">x</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">x</span>
+<span class="n">x2</span> <span class="o">=</span> <span class="n">my_solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">x2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>9.292467134909439e-12
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="exercise">
+<h3>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
+<li><p>Use the <code class="docutils literal notranslate"><span class="pre">time</span></code> module to perform an experiment to verify that <code class="docutils literal notranslate"><span class="pre">solve_triangular</span></code> takes <span class="math notranslate nohighlight">\(O(n^2)\)</span> time.  Hint: take LU decompositions of random matrices to get triangular factors of different sizes.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ol class="simple">
+<li><p>Suppose <span class="math notranslate nohighlight">\(A\)</span> is <span class="math notranslate nohighlight">\(n\times n\)</span>, so the <span class="math notranslate nohighlight">\(LU\)</span> factorization above takes <span class="math notranslate nohighlight">\(O(n^3)\)</span> time.  What is a big-O expression for the time to run <code class="docutils literal notranslate"><span class="pre">my_solve</span></code> on <span class="math notranslate nohighlight">\(A\)</span>?</p></li>
+</ol>
+</div>
+<div class="section" id="qr-decomposition">
+<h3>QR decomposition<a class="headerlink" href="#qr-decomposition" title="Permalink to this headline">¶</a></h3>
+<p>The <span class="math notranslate nohighlight">\(QR\)</span> decomposition, <span class="math notranslate nohighlight">\(A = QR\)</span>, contains a matrix <span class="math notranslate nohighlight">\(Q\)</span> with orthonormal columns, and an upper triangular matrix <span class="math notranslate nohighlight">\(R\)</span>.  For stability reasons, column pivoting is often used which means there is often a permutation matrix <span class="math notranslate nohighlight">\(P\)</span> and <span class="math notranslate nohighlight">\(A = QRP\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+
+<span class="n">Q</span><span class="p">,</span> <span class="n">R</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">qr</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;economic&#39;</span><span class="p">)</span> <span class="c1"># no pivoting</span>
+<span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">Q</span> <span class="o">@</span> <span class="n">R</span>  <span class="o">-</span> <span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>4.927955366355708e-13
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Q</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">R</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>((1000, 500), (500, 500))
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Q</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">P</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">qr</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">pivoting</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># pivoting</span>
+<span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">((</span><span class="n">Q</span> <span class="o">@</span> <span class="n">R</span><span class="p">)</span>  <span class="o">-</span> <span class="n">A</span><span class="p">[:,</span><span class="n">P</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>5.347174088985807e-13
+</pre></div>
+</div>
+</div>
+</div>
+<p>The QR factorization is used for least-squares solutions, because <code class="docutils literal notranslate"><span class="pre">Q</span> <span class="pre">&#64;</span> <span class="pre">Q.T</span></code> projects a vector onto the subspace spanned by the matrix <code class="docutils literal notranslate"><span class="pre">A</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_lstsq</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    least squares solution ||b - A*x||</span>
+<span class="sd">    </span>
+<span class="sd">    Uses QR decomposition</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">Q</span><span class="p">,</span> <span class="n">R</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">qr</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;economic&#39;</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">solve_triangular</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">Q</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">b</span><span class="p">,</span> <span class="n">lower</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">x</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">x</span>
+
+<span class="n">x1</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">lstsq</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">x2</span> <span class="o">=</span> <span class="n">my_lstsq</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x1</span> <span class="o">-</span> <span class="n">x2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>4.6070186663912334e-14
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="excercise">
+<h3>Excercise<a class="headerlink" href="#excercise" title="Permalink to this headline">¶</a></h3>
+<p>Suppose <span class="math notranslate nohighlight">\(A\)</span> is a <span class="math notranslate nohighlight">\(n\times n\)</span> matrix, and that the <span class="math notranslate nohighlight">\(QR\)</span> factorization takes <span class="math notranslate nohighlight">\(O(n^3)\)</span> time.  What is the time to run <code class="docutils literal notranslate"><span class="pre">my_lstsq</span></code> using <span class="math notranslate nohighlight">\(A\)</span> in big-O notation?</p>
+</div>
+<div class="section" id="eigenvalue-decompositions">
+<h3>Eigenvalue Decompositions<a class="headerlink" href="#eigenvalue-decompositions" title="Permalink to this headline">¶</a></h3>
+<p>A vector <span class="math notranslate nohighlight">\(x\)</span> is an eigenvector of <span class="math notranslate nohighlight">\(A\)</span> with eigenvalue <span class="math notranslate nohighlight">\(\lambda\)</span> if <span class="math notranslate nohighlight">\(Ax = x \lambda\)</span>.  An eigenvalue decomposition is a decomposition <span class="math notranslate nohighlight">\(A = X \Lambda X^{-1}\)</span> where <span class="math notranslate nohighlight">\(\Lambda\)</span> is a diagonal matrix.  We can compute such a decomposition using <code class="docutils literal notranslate"><span class="pre">eig</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+<span class="n">Lam</span><span class="p">,</span> <span class="n">X</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>columns of <code class="docutils literal notranslate"><span class="pre">X</span></code> are eigenvectors, and eigenvalues are diagonal entries of <code class="docutils literal notranslate"><span class="pre">Lam</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">A</span> <span class="o">@</span> <span class="n">x</span> <span class="o">-</span> <span class="n">Lam</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>2.796406180190815e-13
+</pre></div>
+</div>
+</div>
+</div>
+<p>When <code class="docutils literal notranslate"><span class="pre">A</span></code> is symmetric (or hermitian), there exists and orthonormal basis where every basis element is an eigenvector.  In this case, we can write <span class="math notranslate nohighlight">\(A = U\Lambda U^H\)</span>.  There is a special function <code class="docutils literal notranslate"><span class="pre">eigh</span></code> for such a situation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">A</span> <span class="o">+</span> <span class="n">A</span><span class="o">.</span><span class="n">T</span> <span class="c1"># make symmetric</span>
+<span class="n">Lam</span><span class="p">,</span> <span class="n">U</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">U</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">A</span> <span class="o">@</span> <span class="n">x</span> <span class="o">-</span> <span class="n">Lam</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>1.0536849602724264e-13
+</pre></div>
+</div>
+</div>
+</div>
+<p>Computing eigenvector decompositions takes <span class="math notranslate nohighlight">\(O(n^3)\)</span> time for a <span class="math notranslate nohighlight">\(n\times n\)</span> matrix.</p>
+</div>
+<div class="section" id="exercises">
+<h3>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
+<li><p>Both <code class="docutils literal notranslate"><span class="pre">eig</span></code> and <code class="docutils literal notranslate"><span class="pre">eigh</span></code> take <span class="math notranslate nohighlight">\(O(n^3)\)</span> time.  Which is faster in practice on a symmetric matrix?  Do they produce the same answer on the same symmetric matrix?</p></li>
+<li><p>Write a function that solves a linear system with a symmetric matrix using the Eigenvalue decomposition.  Is this function faster or slower than using LU in <code class="docutils literal notranslate"><span class="pre">my_solve</span></code>?</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="svd">
+<h3>SVD<a class="headerlink" href="#svd" title="Permalink to this headline">¶</a></h3>
+<p>The singular value decomposition is an extremely useful practical and theoretical tool.  We can decompose a <span class="math notranslate nohighlight">\(m\times n\)</span> matrix <span class="math notranslate nohighlight">\(A\)</span> as <span class="math notranslate nohighlight">\(A = U \Sigma V^T\)</span>, where <span class="math notranslate nohighlight">\(U\)</span> is a <span class="math notranslate nohighlight">\(m \times m\)</span> matrix with orthonormal columns (called left singular vectors), <span class="math notranslate nohighlight">\(V\)</span> is a <span class="math notranslate nohighlight">\(n\times n\)</span> matrix with orthonormal columns (called right singular vectors), and <span class="math notranslate nohighlight">\(\Sigma\)</span> is a diagonal matrix with positive entries decreasing in magnitude (called singular values).</p>
+<p>The top singular value solves the variational problem <span class="math notranslate nohighlight">\(\sigma_0 = \max u^T A v\)</span> subject to <span class="math notranslate nohighlight">\(\|u\|_2 = 1, \|v\|_2=1\)</span>, and describes the direction in which <span class="math notranslate nohighlight">\(A\)</span> induces the largest change in maginitude in a vector. The next singular value is defined similarly on the subspaces orthogonal to <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(v\)</span>, and so on.</p>
+<p>One way to visualize the action of a matrix is seeing how it maps the unit sphere.  The image is an ellipsoid, and the right singular vectors give the directions of the axes, and the singular values give the lengths of these axes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+<span class="n">U</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">Vt</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">xx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)))</span>
+<span class="n">yy</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">xx</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">yy</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">yy</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">S</span><span class="o">*</span><span class="n">U</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">S</span><span class="o">*</span><span class="n">U</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/numpy_scipy_linalg_67_0.png" src="../_images/numpy_scipy_linalg_67_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="id1">
+<h3>Exercises<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
+<li><p>Computing the SVD takes <span class="math notranslate nohighlight">\(O(n^3)\)</span> time for a <span class="math notranslate nohighlight">\(n\times n\)</span> matrix, just like all the other matrix factorizations we’ve seen.  Make plots of the runtimes of <code class="docutils literal notranslate"><span class="pre">svd</span></code>, <code class="docutils literal notranslate"><span class="pre">eigh</span></code>, <code class="docutils literal notranslate"><span class="pre">eig</span></code>, <code class="docutils literal notranslate"><span class="pre">qr</span></code> and <code class="docutils literal notranslate"><span class="pre">lu</span></code> as we increase <span class="math notranslate nohighlight">\(n\)</span>.  Which is fastest in practice?</p></li>
+<li><p>Write a function that solves a linear system using the Singular Value Decomposition.</p></li>
+<li><p>What is the SVD of a Hermitian (symmetric matrix)?  Is <code class="docutils literal notranslate"><span class="pre">svd</span></code> or <code class="docutils literal notranslate"><span class="pre">eigh</span></code> faster?</p></li>
+</ol>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "pycourse"
+        },
+        kernelOptions: {
+            kernelName: "pycourse",
+            path: "./02_linear_algebra"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'pycourse'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="memory.html" title="previous page">Memory and Performance</a>
+    <a class='right-next' id="next-link" href="blas_lapack.html" title="next page">BLAS and LAPACK</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Brad Nelson<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../_static/js/index.js"></script>
+    
+  </body>
+</html>
