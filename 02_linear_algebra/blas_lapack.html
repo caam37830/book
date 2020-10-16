@@ -264,6 +264,11 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#view-your-configuration">
+   View Your Configuration
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#blas-routines">
    BLAS Routines
   </a>
@@ -278,6 +283,11 @@
      BLAS Levels
     </a>
     <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#flops">
+       FLOPS
+      </a>
+     </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#blas-level-1">
        BLAS Level 1
@@ -301,6 +311,23 @@
   <a class="reference internal nav-link" href="#lapack-routines">
    LAPACK Routines
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-obtain-a-orthonormal-basis-for-columns-of-a-matrix">
+     Example: Obtain a orthonormal basis for columns of a matrix
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise">
+   Exercise
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   Exercise
+  </a>
  </li>
 </ul>
 
@@ -321,58 +348,121 @@
 <p>These libraries are wrapped by scipy, which exposes an interface.</p>
 <div class="section" id="why-should-you-care">
 <h2>Why should you care?<a class="headerlink" href="#why-should-you-care" title="Permalink to this headline">¶</a></h2>
-<p>First, you probably shouldn’t be writing your own basic linear algebra routines.</p>
+<p>First, you probably shouldn’t be writing your own basic linear algebra routines if you can avoid it.</p>
 <ol class="simple">
 <li><p>It takes time to write them</p></li>
 <li><p>Even if you know what you’re doing, there’s a chance you have a bug</p></li>
 <li><p>Performance optimization is involved</p></li>
 </ol>
-<p>It is entirely possible to do linear algebra in Python without ever worrying about the libraries under the hood.  However, maybe you are prototyping an algorithm in Python, and then want to write optimized code in C/fortran.  In this case, it is good to be able to translate what you’re doing into BLAS/LAPACK routines.</p>
+<p>It is entirely possible to do linear algebra in Python without ever worrying about the libraries under the hood.  However, maybe you are prototyping an algorithm in Python, and then want to write compiled/optimized code in C/fortran.  In this case, it is good to be able to translate what you’re doing into BLAS/LAPACK routines.</p>
 </div>
-<div class="section" id="blas-routines">
-<h2>BLAS Routines<a class="headerlink" href="#blas-routines" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/linalg.blas.html">scipy BLAS interface</a></p>
-<p>BLAS implements <em>basic</em> linear algebra routines like dot product, matrix-vector product, and matrix-matrix product as well as triangular solves.</p>
+<div class="section" id="view-your-configuration">
+<h2>View Your Configuration<a class="headerlink" href="#view-your-configuration" title="Permalink to this headline">¶</a></h2>
+<p>You can view what BLAS and LAPACK libraries NumPy is using</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">pylab</span> <span class="n">inline</span>
-<span class="kn">from</span> <span class="nn">scipy.linalg</span> <span class="kn">import</span> <span class="n">blas</span>
+<span class="kn">import</span> <span class="nn">scipy</span> <span class="k">as</span> <span class="nn">sp</span>
+<span class="kn">import</span> <span class="nn">scipy.linalg</span> <span class="k">as</span> <span class="nn">la</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">__config__</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Populating the interactive namespace from numpy and matplotlib
+blas_mkl_info:
+    libraries = [&#39;mkl_rt&#39;, &#39;pthread&#39;]
+    library_dirs = [&#39;/home/brad/miniconda3/envs/pycourse/lib&#39;]
+    define_macros = [(&#39;SCIPY_MKL_H&#39;, None), (&#39;HAVE_CBLAS&#39;, None)]
+    include_dirs = [&#39;/home/brad/miniconda3/envs/pycourse/include&#39;]
+blas_opt_info:
+    libraries = [&#39;mkl_rt&#39;, &#39;pthread&#39;]
+    library_dirs = [&#39;/home/brad/miniconda3/envs/pycourse/lib&#39;]
+    define_macros = [(&#39;SCIPY_MKL_H&#39;, None), (&#39;HAVE_CBLAS&#39;, None)]
+    include_dirs = [&#39;/home/brad/miniconda3/envs/pycourse/include&#39;]
+lapack_mkl_info:
+    libraries = [&#39;mkl_rt&#39;, &#39;pthread&#39;]
+    library_dirs = [&#39;/home/brad/miniconda3/envs/pycourse/lib&#39;]
+    define_macros = [(&#39;SCIPY_MKL_H&#39;, None), (&#39;HAVE_CBLAS&#39;, None)]
+    include_dirs = [&#39;/home/brad/miniconda3/envs/pycourse/include&#39;]
+lapack_opt_info:
+    libraries = [&#39;mkl_rt&#39;, &#39;pthread&#39;]
+    library_dirs = [&#39;/home/brad/miniconda3/envs/pycourse/lib&#39;]
+    define_macros = [(&#39;SCIPY_MKL_H&#39;, None), (&#39;HAVE_CBLAS&#39;, None)]
+    include_dirs = [&#39;/home/brad/miniconda3/envs/pycourse/include&#39;]
 </pre></div>
 </div>
 </div>
 </div>
+<p>the above show the libraries <code class="docutils literal notranslate"><span class="pre">mkl_rt</span></code>, indicating that the system is using Intel’s math kernel library (MKL) - this is a library of mathematical functions (including BLAS and LAPACK) which is optimized for Intel CPUs, and is the <a class="reference external" href="https://docs.continuum.io/mkl-optimizations/">default for Anaconda Python</a>.</p>
+<p>You can do the same for scipy:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">1000</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sp</span><span class="o">.</span><span class="n">__config__</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>lapack_mkl_info:
+    libraries = [&#39;mkl_rt&#39;, &#39;pthread&#39;]
+    library_dirs = [&#39;/home/brad/miniconda3/envs/pycourse/lib&#39;]
+    define_macros = [(&#39;SCIPY_MKL_H&#39;, None), (&#39;HAVE_CBLAS&#39;, None)]
+    include_dirs = [&#39;/home/brad/miniconda3/envs/pycourse/include&#39;]
+lapack_opt_info:
+    libraries = [&#39;mkl_rt&#39;, &#39;pthread&#39;]
+    library_dirs = [&#39;/home/brad/miniconda3/envs/pycourse/lib&#39;]
+    define_macros = [(&#39;SCIPY_MKL_H&#39;, None), (&#39;HAVE_CBLAS&#39;, None)]
+    include_dirs = [&#39;/home/brad/miniconda3/envs/pycourse/include&#39;]
+blas_mkl_info:
+    libraries = [&#39;mkl_rt&#39;, &#39;pthread&#39;]
+    library_dirs = [&#39;/home/brad/miniconda3/envs/pycourse/lib&#39;]
+    define_macros = [(&#39;SCIPY_MKL_H&#39;, None), (&#39;HAVE_CBLAS&#39;, None)]
+    include_dirs = [&#39;/home/brad/miniconda3/envs/pycourse/include&#39;]
+blas_opt_info:
+    libraries = [&#39;mkl_rt&#39;, &#39;pthread&#39;]
+    library_dirs = [&#39;/home/brad/miniconda3/envs/pycourse/lib&#39;]
+    define_macros = [(&#39;SCIPY_MKL_H&#39;, None), (&#39;HAVE_CBLAS&#39;, None)]
+    include_dirs = [&#39;/home/brad/miniconda3/envs/pycourse/include&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="blas-routines">
+<h2>BLAS Routines<a class="headerlink" href="#blas-routines" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/linalg.blas.html">scipy BLAS interface</a></p>
+<p>BLAS implements <em>basic</em> linear algebra routines like dot product, matrix-vector product, and matrix-matrix product as well as triangular solves.</p>
+<p>It is written in Fortran, so will be easiest to use if you set the flag <code class="docutils literal notranslate"><span class="pre">order='F'</span></code> when constructing arrays</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.linalg</span> <span class="kn">import</span> <span class="n">blas</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="mi">4096</span>
 <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">),</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">)</span>
 <span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">),</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">)</span>
 
 
-<span class="n">C_np</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">B</span> <span class="c1"># numpy</span>
-<span class="n">C_blas</span> <span class="o">=</span> <span class="n">blas</span><span class="o">.</span><span class="n">dgemm</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span> <span class="c1"># BLAS</span>
+<span class="n">C_np</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">B</span> <span class="c1"># numpy  C = A * B</span>
+<span class="n">C_blas</span> <span class="o">=</span> <span class="n">blas</span><span class="o">.</span><span class="n">dgemm</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span> <span class="c1"># BLAS C = A * B</span>
 <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">C_np</span> <span class="o">-</span> <span class="n">C_blas</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.0
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>6.5543871077570084e-12
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">timeit</span> <span class="n">C_np</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">B</span> <span class="c1"># numpy</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">timeit</span> <span class="n">C_np</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">)</span> <span class="c1"># numpy</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>22 ms ± 2.82 ms per loop (mean ± std. dev. of 7 runs, 100 loops each)
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>1.58 s ± 137 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
 </pre></div>
 </div>
 </div>
@@ -384,7 +474,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>27.9 ms ± 2.95 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>1.58 s ± 152 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
 </pre></div>
 </div>
 </div>
@@ -414,7 +504,17 @@
 <li><p>Level 2 - matrix-vector operations</p></li>
 <li><p>Level 3 - matrix-matrix operations</p></li>
 </ol>
-<p>Level 3 operations are most efficient, since they can take the most advantage of memory performance optimizations.</p>
+<p>Level 3 operations are most efficient, since they can take the most advantage of memory performance optimizations e.g. minimizing cache misses.</p>
+<div class="section" id="flops">
+<h4>FLOPS<a class="headerlink" href="#flops" title="Permalink to this headline">¶</a></h4>
+<p>FLOPS are Floating-Point Operations Per Second, and are one way to measure the power of numerical code.  Floating point operations are counted as the number of <code class="docutils literal notranslate"><span class="pre">+,</span> <span class="pre">*,</span> <span class="pre">/,</span> <span class="pre">-</span></code> applied to floating point numbers.</p>
+<ul class="simple">
+<li><p>A human is capable of &lt;1 flop</p></li>
+<li><p>Your CPU is probably capable of several Giga-flops (<span class="math notranslate nohighlight">\(10^9\)</span>)</p></li>
+<li><p>A high end GPU will be measured in Tera-flops (<span class="math notranslate nohighlight">\(10^{12}\)</span>)</p></li>
+<li><p>Super computers are mostly O(100) Peta-flops (<span class="math notranslate nohighlight">\(10^{17}\)</span>).  Some are close to an Exa-flop (<span class="math notranslate nohighlight">\(10^{18}\)</span>)</p></li>
+</ul>
+</div>
 <div class="section" id="blas-level-1">
 <h4>BLAS Level 1<a class="headerlink" href="#blas-level-1" title="Permalink to this headline">¶</a></h4>
 <p>Some vector-vector operations (insert the appropriate <code class="docutils literal notranslate"><span class="pre">&lt;character&gt;</span></code>)</p>
@@ -423,6 +523,7 @@
 <li><p><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.blas.ddot.html"><code class="docutils literal notranslate"><span class="pre">dot</span></code></a> (dot product <span class="math notranslate nohighlight">\(x^H x\)</span>)</p></li>
 <li><p><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.blas.dnrm2.html"><code class="docutils literal notranslate"><span class="pre">nrm2</span></code></a> (<span class="math notranslate nohighlight">\(\|x\|_2\)</span>)</p></li>
 </ol>
+<p>See <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/linalg.blas.html#blas-level-1-functions">the SciPy BLAS reference</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">1000</span>
@@ -437,25 +538,276 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>-3.552713678800501e-15
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># measure FLOPs of fdot</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">10_000_000</span>
+<span class="n">dtype</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;measuring BLAS Level 1 flops using </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dtype</span><span class="p">))</span>
+<span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">xy</span> <span class="o">=</span> <span class="n">blas</span><span class="o">.</span><span class="n">sdot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;time elapsed = </span><span class="si">{}</span><span class="s2"> sec.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t1</span> <span class="o">-</span> <span class="n">t0</span><span class="p">))</span>
+<span class="n">flops</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">t1</span> <span class="o">-</span> <span class="n">t0</span><span class="p">)</span> <span class="c1"># 2N FLOP for dot - one multiplication and one addition per entry</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:e}</span><span class="s2"> FLOPS&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">flops</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>measuring BLAS Level 1 flops using &lt;class &#39;numpy.float32&#39;&gt;
+time elapsed = 0.009859800338745117 sec.
+2.028439e+09 FLOPS
+</pre></div>
+</div>
+</div>
+</div>
+<p>This is consistent with a CPU running at ~3 GHz</p>
+</div>
+<div class="section" id="blas-level-2">
+<h4>BLAS Level 2<a class="headerlink" href="#blas-level-2" title="Permalink to this headline">¶</a></h4>
+<p>Some matrix-vector operations (insert appropriate <code class="docutils literal notranslate"><span class="pre">&lt;character&gt;</span></code>)</p>
+<ol class="simple">
+<li><p><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.blas.dgemv.html#scipy.linalg.blas.dgemv"><code class="docutils literal notranslate"><span class="pre">gemv</span></code></a> <span class="math notranslate nohighlight">\(\alpha A x\)</span></p></li>
+<li><p><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.blas.dtrsv.html#scipy.linalg.blas.dtrsv"><code class="docutils literal notranslate"><span class="pre">trsv</span></code></a> <span class="math notranslate nohighlight">\(L^{-1} x\)</span> (triangular solve)</p></li>
+<li><p><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.blas.strmv.html#scipy.linalg.blas.strmv"><code class="docutils literal notranslate"><span class="pre">trmv</span></code></a> <span class="math notranslate nohighlight">\(L x\)</span> (triangular matrix-vector product)</p></li>
+</ol>
+<p>See <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/linalg.blas.html#blas-level-2-functions">the SciPy BLAS reference</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># measure FLOPs of gemv</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">4096</span>
+<span class="n">dtype</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;measuring BLAS Level 2 flops using </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dtype</span><span class="p">))</span>
+<span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">blas</span><span class="o">.</span><span class="n">sgemv</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;time elapsed = </span><span class="si">{}</span><span class="s2"> sec.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t1</span> <span class="o">-</span> <span class="n">t0</span><span class="p">))</span>
+<span class="n">flops</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">n</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">t1</span> <span class="o">-</span> <span class="n">t0</span><span class="p">)</span> <span class="c1"># 2 n**2 FLOP - one multiplication and one addition per entry of A</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:e}</span><span class="s2"> FLOPS&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">flops</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>measuring BLAS Level 2 flops using &lt;class &#39;numpy.float32&#39;&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>time elapsed = 0.20739507675170898 sec.
+1.617899e+08 FLOPS
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="section" id="blas-level-2">
-<h4>BLAS Level 2<a class="headerlink" href="#blas-level-2" title="Permalink to this headline">¶</a></h4>
-<p>Some matrix-vector operations (insert appropriate <code class="docutils literal notranslate"><span class="pre">&lt;character&gt;</span></code>)</p>
-</div>
 <div class="section" id="blas-level-3">
 <h4>BLAS Level 3<a class="headerlink" href="#blas-level-3" title="Permalink to this headline">¶</a></h4>
 <p>Some matrix-matrix operations (insert appropriate <code class="docutils literal notranslate"><span class="pre">&lt;character&gt;</span></code>)</p>
+<ol class="simple">
+<li><p><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.blas.dgemm.html#scipy.linalg.blas.dgemm"><code class="docutils literal notranslate"><span class="pre">gemm</span></code></a> <span class="math notranslate nohighlight">\(\alpha AB\)</span></p></li>
+<li><p><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.blas.dsyrk.html#scipy.linalg.blas.dsyrk"><code class="docutils literal notranslate"><span class="pre">syrk</span></code></a> <span class="math notranslate nohighlight">\(\alpha A A^T\)</span></p></li>
+<li><p><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.blas.dtrmm.html#scipy.linalg.blas.dtrmm"><code class="docutils literal notranslate"><span class="pre">trmm</span></code></a> <span class="math notranslate nohighlight">\(\alpha L_1 L_2\)</span> (triangular multiplication)</p></li>
+</ol>
+<p>See the <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/linalg.blas.html#blas-level-3-functions">SciPy BLAS reference</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># measure FLOPs of gemm</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">4096</span>
+<span class="n">dtype</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;measuring BLAS Level 3 flops using </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dtype</span><span class="p">))</span>
+<span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">C</span> <span class="o">=</span> <span class="n">blas</span><span class="o">.</span><span class="n">sgemm</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span>
+<span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;time elapsed = </span><span class="si">{}</span><span class="s2"> sec.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t1</span> <span class="o">-</span> <span class="n">t0</span><span class="p">))</span>
+<span class="n">flops</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">n</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">t1</span> <span class="o">-</span> <span class="n">t0</span><span class="p">)</span> <span class="c1"># 2 n**3 FLOP - n multiplications and additions per entry of C</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:e}</span><span class="s2"> FLOPS&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">flops</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>measuring BLAS Level 3 flops using &lt;class &#39;numpy.float32&#39;&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>time elapsed = 1.2122890949249268 sec.
+1.133714e+11 FLOPS
+</pre></div>
+</div>
+</div>
+</div>
+<p>From our experminets, we see that the BLAS level 3 operation gives us the most FLOPS.</p>
 </div>
 </div>
 </div>
 <div class="section" id="lapack-routines">
 <h2>LAPACK Routines<a class="headerlink" href="#lapack-routines" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/linalg.lapack.html">scipy LAPACK interface</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.linalg</span> <span class="kn">import</span> <span class="n">lapack</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>LAPACK is a library of linear algebra routines that go beyond basic operations.  These include routines for various factorizations and eigenvalue and singular value decompositions.</p>
+<p>Again, the names are a bit cryptic, and it is worth searching online (and reading documentation) to figure out how to call the right functions.</p>
+<div class="section" id="example-obtain-a-orthonormal-basis-for-columns-of-a-matrix">
+<h3>Example: Obtain a orthonormal basis for columns of a matrix<a class="headerlink" href="#example-obtain-a-orthonormal-basis-for-columns-of-a-matrix" title="Permalink to this headline">¶</a></h3>
+<p>In a variety of situations it is convenient to be able to obtain an orthonormal basis for columns of a matrix <code class="docutils literal notranslate"><span class="pre">A</span></code> (e.g. subspace iteration, randomized numerical linear algebra).  One way to do this is to use the QR decomposition:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">),</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">get_Q_qr</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="n">Q</span><span class="p">,</span> <span class="n">R</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">qr</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;economic&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">Q</span>
+
+<span class="n">Q</span> <span class="o">=</span> <span class="n">get_Q_qr</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">Q</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">Q</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">Q</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n</span><span class="p">)))</span> <span class="c1"># measure how close Q is to orthogonal</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>(1000, 100)
+3.7852550078399115e-15
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can get this using LAPACK routines as well:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_Q_lapack</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="n">qr</span><span class="p">,</span> <span class="n">tau</span><span class="p">,</span> <span class="n">work</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">lapack</span><span class="o">.</span><span class="n">dgeqrf</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="n">Q</span><span class="p">,</span> <span class="n">work</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">lapack</span><span class="o">.</span><span class="n">dorgqr</span><span class="p">(</span><span class="n">qr</span><span class="p">,</span> <span class="n">tau</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">Q</span>
+
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">),</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">)</span>
+<span class="n">Q</span> <span class="o">=</span> <span class="n">get_Q_lapack</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">Q</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">Q</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">Q</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n</span><span class="p">)))</span> <span class="c1"># measure how close Q is to orthogonal</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>(1000, 100)
+3.907254878065319e-15
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can also do many LAPACK (and BLAS) routines in-place, meaning you can overwrite the matrix.  This saves time used for memory allocation</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_Q_inplace</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="n">m</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">lwork</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">qr</span><span class="p">,</span> <span class="n">tau</span><span class="p">,</span> <span class="n">work</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">lapack</span><span class="o">.</span><span class="n">dgeqrf</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">lwork</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># overwrite A = True</span>
+    <span class="n">Q</span><span class="p">,</span> <span class="n">work</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">lapack</span><span class="o">.</span><span class="n">dorgqr</span><span class="p">(</span><span class="n">qr</span><span class="p">,</span> <span class="n">tau</span><span class="p">,</span> <span class="n">lwork</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># overwrite qr = True</span>
+    <span class="k">return</span> <span class="n">Q</span>
+
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">),</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">)</span>
+<span class="n">Q</span> <span class="o">=</span> <span class="n">get_Q_inplace</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">Q</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">Q</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">Q</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n</span><span class="p">)))</span> <span class="c1"># measure how close Q is to orthogonal</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">A</span> <span class="o">-</span> <span class="n">Q</span><span class="p">))</span> <span class="c1"># A now contains Q</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>(1000, 100)
+3.63077649417167e-15
+0.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="mi">4096</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">128</span>
+
+<span class="k">for</span> <span class="n">get_Q</span> <span class="ow">in</span> <span class="p">(</span><span class="n">get_Q_qr</span><span class="p">,</span> <span class="n">get_Q_lapack</span><span class="p">,</span> <span class="n">get_Q_inplace</span><span class="p">):</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;timing </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">get_Q</span><span class="p">))</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">),</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">)</span>
+    <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">Q</span> <span class="o">=</span> <span class="n">get_Q</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  time elapsed = </span><span class="si">{}</span><span class="s2"> sec.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t1</span> <span class="o">-</span> <span class="n">t0</span><span class="p">))</span>  
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>timing &lt;function get_Q_qr at 0x7fab560eff70&gt;
+  time elapsed = 0.01813364028930664 sec.
+timing &lt;function get_Q_lapack at 0x7fab560efb80&gt;
+  time elapsed = 0.01470494270324707 sec.
+timing &lt;function get_Q_inplace at 0x7fab560ef9d0&gt;
+  time elapsed = 0.014282941818237305 sec.
+</pre></div>
+</div>
+</div>
+</div>
+<p>As we see, the in-place version is fastest.</p>
+</div>
+</div>
+<div class="section" id="exercise">
+<h2>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h2>
+<p>One way to get the top <code class="docutils literal notranslate"><span class="pre">k</span></code>-dimensional eigenspace (eigenpace with k-largest eigenvalues) is using a subspace version of the power method.  Here is some pseudocode:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+<span class="c1"># get top k-dimensional eigenspace of symmetric matrix A</span>
+<span class="n">m</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span> <span class="c1"># m should equal n</span>
+<span class="n">Q</span> <span class="o">=</span> <span class="n">random</span> <span class="n">n</span> <span class="n">x</span> <span class="n">k</span> <span class="n">matrix</span>
+<span class="n">Q</span><span class="p">,</span> <span class="n">R</span> <span class="o">=</span> <span class="n">qr</span><span class="p">(</span><span class="n">Q</span><span class="p">)</span> <span class="c1"># orthogonalize</span>
+<span class="k">for</span> <span class="n">some</span> <span class="n">number</span> <span class="n">of</span> <span class="n">iterations</span><span class="p">:</span>
+    <span class="n">Q</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">Q</span>
+    <span class="n">Q</span><span class="p">,</span> <span class="n">R</span> <span class="o">=</span> <span class="n">qr</span><span class="p">(</span><span class="n">Q</span><span class="p">)</span> <span class="c1"># re-othogonalize</span>
+    
+<span class="k">return</span> <span class="n">Q</span>
+</pre></div>
+</div>
+<p>Implement a function that realizes this algorithm.  Use BLAS to implement matrix-matrix multiplication, and use LAPACK to do the orthogonalization of Q.</p>
+<p>Compare this to the span of the top-k eigenvectors of <code class="docutils literal notranslate"><span class="pre">A</span></code> obtained via <code class="docutils literal notranslate"><span class="pre">eigh</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Your Code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id1">
+<h2>Exercise<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>Implement a version of <code class="docutils literal notranslate"><span class="pre">solve</span></code> for a square matrix <code class="docutils literal notranslate"><span class="pre">A</span></code> which uses LAPACK for the LU decomposition, and BLAS for the triangular solves.  You may want to look at <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.lapack.dgetrf.html#scipy.linalg.lapack.dgetrf">dgetrf</a> (the <code class="docutils literal notranslate"><span class="pre">lu</span></code> return object has L in the lower triangular part, and U in the upper triangular part)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 </div>
 
