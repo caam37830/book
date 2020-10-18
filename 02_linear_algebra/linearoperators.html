@@ -39,7 +39,7 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Linear Algebra in PyTorch" href="pytorch.html" />
+    <link rel="next" title="Sparse Linear Algebra" href="sparse_linalg.html" />
     <link rel="prev" title="Sparse Matrices" href="sparse.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -110,6 +110,11 @@
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
      Linear Operators
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="sparse_linalg.html">
+     Sparse Linear Algebra
     </a>
    </li>
    <li class="toctree-l2">
@@ -264,13 +269,18 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#linear-operators-from-functions">
+   Linear Operators from Functions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#composition">
    Composition
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#hierarchical-matrices">
-   Hierarchical Matrices
+  <a class="reference internal nav-link" href="#exercises">
+   Exercises
   </a>
  </li>
 </ul>
@@ -306,9 +316,8 @@
 <p>The case of a sparse matrix is handled by <span class="xref myst">special matrix formats</span>, but there are also situations in which dense matrices can also be applied quickly.</p>
 <div class="section" id="low-rank-matrices">
 <h2>Low Rank Matrices<a class="headerlink" href="#low-rank-matrices" title="Permalink to this headline">¶</a></h2>
-<p>The easiest situation to describe is a low-rank matrix.</p>
-<p>TODO: elaborate</p>
-<p>There is a special <code class="docutils literal notranslate"><span class="pre">LinearOperator</span></code> class in <code class="docutils literal notranslate"><span class="pre">scipy.sparse.linalg</span></code> which allows us to construct arbitrary linear operators.  The <code class="docutils literal notranslate"><span class="pre">aslinearoperator</span></code> function lets us to treat dense and sparse arrays as <code class="docutils literal notranslate"><span class="pre">LinearOperators</span></code></p>
+<p>The easiest situation to describe is a low-rank matrix.  We saw an example of this when we first saw object-oriented programming in the <a class="reference external" href="https://caam37830.github.io/book/00_python/classes.html#class-inheritance"><code class="docutils literal notranslate"><span class="pre">LinearMap</span></code> class</a>. SciPy provides a very similar class which can be used to construct arbitrary linear operators, which is called <code class="docutils literal notranslate"><span class="pre">LinearOperator</span></code>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">LinearOperator</span></code> class can be found in <code class="docutils literal notranslate"><span class="pre">scipy.sparse.linalg</span></code>.  The <code class="docutils literal notranslate"><span class="pre">aslinearoperator</span></code> function lets us to treat dense and sparse arrays as <code class="docutils literal notranslate"><span class="pre">LinearOperators</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.sparse.linalg</span> <span class="kn">import</span> <span class="n">LinearOperator</span><span class="p">,</span> <span class="n">aslinearoperator</span>
@@ -323,7 +332,7 @@
 <span class="n">m</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="n">onesn</span> <span class="o">=</span> <span class="n">aslinearoperator</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">n</span><span class="p">,</span><span class="mi">1</span><span class="p">)))</span>
 <span class="n">onesm</span> <span class="o">=</span> <span class="n">aslinearoperator</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">m</span><span class="p">,</span><span class="mi">1</span><span class="p">)))</span>
-<span class="n">A</span> <span class="o">=</span> <span class="n">onesm</span> <span class="o">*</span> <span class="n">onesn</span><span class="o">.</span><span class="n">T</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">onesm</span> <span class="o">@</span> <span class="n">onesn</span><span class="o">.</span><span class="n">T</span>
 </pre></div>
 </div>
 </div>
@@ -336,67 +345,101 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([-2.81289982, -2.81289982, -2.81289982, -2.81289982, -2.81289982,
-       -2.81289982, -2.81289982, -2.81289982, -2.81289982, -2.81289982])
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([-0.9971956, -0.9971956, -0.9971956, -0.9971956, -0.9971956,
+       -0.9971956, -0.9971956, -0.9971956, -0.9971956, -0.9971956])
 </pre></div>
 </div>
 </div>
 </div>
-<p>TODO: timing comparison</p>
-<p>We can also specify linear operators through functions</p>
+<p>Let’s do a timing comparison between the <code class="docutils literal notranslate"><span class="pre">LinearOperator</span></code> and a dense matrix.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">2000</span>
+<span class="n">m</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">onesn</span> <span class="o">=</span> <span class="n">aslinearoperator</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">n</span><span class="p">,</span><span class="mi">1</span><span class="p">)))</span>
+<span class="n">onesm</span> <span class="o">=</span> <span class="n">aslinearoperator</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">m</span><span class="p">,</span><span class="mi">1</span><span class="p">)))</span>
+<span class="n">Alo</span> <span class="o">=</span> <span class="n">onesm</span> <span class="o">@</span> <span class="n">onesn</span><span class="o">.</span><span class="n">T</span>
+<span class="n">Ad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="p">))</span> <span class="c1"># dense array of all ones</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">repeat</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+
+<span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">Alo</span> <span class="o">@</span> <span class="n">x</span>
+<span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;time for linear operator: </span><span class="si">{}</span><span class="s2"> sec.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t1</span> <span class="o">-</span> <span class="n">t0</span><span class="p">))</span>
+<span class="n">tlo</span> <span class="o">=</span> <span class="n">t1</span> <span class="o">-</span> <span class="n">t0</span>
+
+<span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">Ad</span> <span class="o">@</span> <span class="n">x</span>
+<span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;time for dense: </span><span class="si">{}</span><span class="s2"> sec.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t1</span> <span class="o">-</span> <span class="n">t0</span><span class="p">))</span>
+<span class="n">td</span> <span class="o">=</span> <span class="n">t1</span> <span class="o">-</span> <span class="n">t0</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;LinearOperator speedup = </span><span class="si">{}</span><span class="s2"> x&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">td</span> <span class="o">/</span> <span class="n">tlo</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;function numpy.repeat(a, repeats, axis=None)&gt;
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>time for linear operator: 0.00023031234741210938 sec.
+time for dense: 0.01634693145751953 sec.
+LinearOperator speedup = 70.97722567287785 x
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="linear-operators-from-functions">
+<h2>Linear Operators from Functions<a class="headerlink" href="#linear-operators-from-functions" title="Permalink to this headline">¶</a></h2>
+<p>We can also specify linear operators through functions.</p>
+<p>Another way to characterize the action of a matrix containing all 1s is that it sums up all the entries in a vector of length <code class="docutils literal notranslate"><span class="pre">n</span></code>, and repeats the sum in every entry in a vector of length <code class="docutils literal notranslate"><span class="pre">m</span></code>.  For simplicity, we’ll assume that <code class="docutils literal notranslate"><span class="pre">m</span> <span class="pre">=</span> <span class="pre">n</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># a function that sums the entries in a vector and repeats the sum in every entry of a vector of the same shape.</span>
+<span class="c1"># works on columns of matrices as well</span>
+<span class="n">A</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">X</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">X</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">s</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">A</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([[1.49550975, 1.84475027],
-       [1.49550975, 1.84475027],
-       [1.49550975, 1.84475027],
-       [1.49550975, 1.84475027]])
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([[3.39776507],
+       [3.39776507],
+       [3.39776507],
+       [3.39776507],
+       [3.39776507]])
 </pre></div>
 </div>
 </div>
 </div>
+<p>The problem is that this function doesn’t play nicely with other linear operators.  In order to do that, we wrap the function in the <code class="docutils literal notranslate"><span class="pre">LinearOperator</span></code> class.  For a <code class="docutils literal notranslate"><span class="pre">LinearOperator</span></code> <code class="docutils literal notranslate"><span class="pre">A</span></code>, We define the functions</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">matvec</span></code> (computes <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">&#64;</span> <span class="pre">x</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rmatvec</span></code> (computes <code class="docutils literal notranslate"><span class="pre">A.T</span> <span class="pre">&#64;</span> <span class="pre">x</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">matmat</span></code> (computes <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">&#64;</span> <span class="pre">B</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rmatmat</span></code> (computes <code class="docutils literal notranslate"><span class="pre">A.T</span> <span class="pre">&#64;</span> <span class="pre">B</span></code>)
+as well as the shape of the operator.  Note that you don’t need to define all the functions (<code class="docutils literal notranslate"><span class="pre">matvec</span></code> is most important), but you may get errors in certain situations (e.g. taking transpose) if you don’t.</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>s.repeat?
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># works on for square matrices</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># works on square matrices</span>
 <span class="n">Afun</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">X</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">m</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1"># linear operator of size 10</span>
 
 <span class="n">A</span> <span class="o">=</span> <span class="n">LinearOperator</span><span class="p">(</span>
     <span class="n">shape</span>   <span class="o">=</span> <span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">m</span><span class="p">),</span>
@@ -412,13 +455,13 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">m</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([5.21003633, 5.21003633, 5.21003633, 5.21003633, 5.21003633,
-       5.21003633, 5.21003633, 5.21003633, 5.21003633, 5.21003633])
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([5.44860507, 5.44860507, 5.44860507, 5.44860507, 5.44860507,
+       5.44860507, 5.44860507, 5.44860507, 5.44860507, 5.44860507])
 </pre></div>
 </div>
 </div>
@@ -426,10 +469,74 @@
 </div>
 <div class="section" id="composition">
 <h2>Composition<a class="headerlink" href="#composition" title="Permalink to this headline">¶</a></h2>
-<p>Because of linearity, sums and products of Linear operators can also have nice properties</p>
+<p>Because of linearity, sums and products of Linear operators can also have nice properties.  This is encoded in the <code class="docutils literal notranslate"><span class="pre">LinearOperator</span></code> class:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">B1</span> <span class="o">=</span> <span class="n">A</span> <span class="o">+</span> <span class="n">A</span> <span class="c1"># acts as the matrix with 2 in every entry</span>
+<span class="n">B2</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">A</span> <span class="c1"># acts that the matrix with m in every entry</span>
+</pre></div>
 </div>
-<div class="section" id="hierarchical-matrices">
-<h2>Hierarchical Matrices<a class="headerlink" href="#hierarchical-matrices" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">B1</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([10.79423604, 10.79423604, 10.79423604, 10.79423604, 10.79423604,
+       10.79423604, 10.79423604, 10.79423604, 10.79423604, 10.79423604])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">B2</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([48.09478383, 48.09478383, 48.09478383, 48.09478383, 48.09478383,
+       48.09478383, 48.09478383, 48.09478383, 48.09478383, 48.09478383])
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="exercises">
+<h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
+<ol class="simple">
+<li><p>Define a <code class="docutils literal notranslate"><span class="pre">LinearOperator</span></code> that “centers” a vector: <code class="docutils literal notranslate"><span class="pre">A:</span> <span class="pre">x</span> <span class="pre">-&gt;</span> <span class="pre">x</span> <span class="pre">-</span> <span class="pre">mean(x)</span></code>. i.e. we subtract the mean of the vector from every entry of the vector.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ol class="simple">
+<li><p>Define a <code class="docutils literal notranslate"><span class="pre">LinearOperator</span></code> that returns the differences in a vector.  i.e. <code class="docutils literal notranslate"><span class="pre">A</span></code> is a <code class="docutils literal notranslate"><span class="pre">n-1</span> <span class="pre">x</span> <span class="pre">n</span></code> operator, where <code class="docutils literal notranslate"><span class="pre">(A</span> <span class="pre">&#64;</span> <span class="pre">x)[i]</span></code> is <code class="docutils literal notranslate"><span class="pre">x[i+1]</span> <span class="pre">-</span> <span class="pre">x[i]</span></code>.  You may want to look at <code class="docutils literal notranslate"><span class="pre">np.diff</span></code>.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ol class="simple">
+<li><p>In both the above exercises, you could define these linear operators using either functions or a combination of dense/sparse matrices.  If you completed an exercise above using a function, write a second version which uses dense/sparse matrices.  If you completed an exercise above using dense/sparse matrices, write a second version that uses functions.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 </div>
 
@@ -462,7 +569,7 @@
     <div class='prev-next-bottom'>
         
     <a class='left-prev' id="prev-link" href="sparse.html" title="previous page">Sparse Matrices</a>
-    <a class='right-next' id="next-link" href="pytorch.html" title="next page">Linear Algebra in PyTorch</a>
+    <a class='right-next' id="next-link" href="sparse_linalg.html" title="next page">Sparse Linear Algebra</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

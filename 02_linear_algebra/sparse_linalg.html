@@ -1,0 +1,963 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Sparse Linear Algebra &#8212; Scientific Computing with Python</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/mystnb.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Linear Algebra in PyTorch" href="pytorch.html" />
+    <link rel="prev" title="Linear Operators" href="linearoperators.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Scientific Computing with Python</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_python/python.html">
+   Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01_analysis/analysis.html">
+   Analysis of Algorithms
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="linear_algebra.html">
+   Linear Algebra
+  </a>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="memory.html">
+     Memory and Performance
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="numpy_scipy_linalg.html">
+     Dense Linear Algebra in NumPy and SciPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="blas_lapack.html">
+     BLAS and LAPACK
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="sparse.html">
+     Sparse Matrices
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="linearoperators.html">
+     Linear Operators
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Sparse Linear Algebra
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pytorch.html">
+     Linear Algebra in PyTorch
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03_optimization/optimization.html">
+   Optimization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04_functions/functions.html">
+   Functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05_graphs/graphs.html">
+   Graphs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06_probability_statistics/prob_stat.html">
+   Probability and Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../07_data/data.html">
+   Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../08_geometry/geometry.html">
+   Geometry
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../09_computing/computing.html">
+   Computing
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/02_linear_algebra/sparse_linalg.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/caam37830/book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/caam37830/book/issues/new?title=Issue%20on%20page%20%2F02_linear_algebra/sparse_linalg.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/caam37830/book/master?urlpath=tree/02_linear_algebra/sparse_linalg.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/caam37830/book/blob/master/02_linear_algebra/sparse_linalg.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sparse-direct-methods">
+   Sparse Direct Methods
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sparse-iterative-methods">
+   Sparse Iterative Methods
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sparse-direct-vs-iterative-methods">
+     Sparse Direct vs. Iterative Methods
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#preconditioning">
+     Preconditioning
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#eigenvalues-and-eigenvectors">
+   Eigenvalues and Eigenvectors
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#randomized-linear-algebra">
+   Randomized Linear Algebra
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercises">
+   Exercises
+  </a>
+ </li>
+</ul>
+
+        </nav>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="sparse-linear-algebra">
+<h1>Sparse Linear Algebra<a class="headerlink" href="#sparse-linear-algebra" title="Permalink to this headline">¶</a></h1>
+<p>So far, we have seen how sparse matrices and linear operators can be used to speed up basic matrix-vector and matrix-matrix operations, and decrease the memory footprint of the representation of a linear map.</p>
+<p>Just as there are special data types for sparse and structured matrices, there are specialized linear algebra routines which allow you to take advantage of sparsity and fast matrix-vector products.</p>
+<p>Routines for sparse linear algebra are found in <code class="docutils literal notranslate"><span class="pre">scipy.sparse.linalg</span></code>, which we’ll import as <code class="docutils literal notranslate"><span class="pre">sla</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">pylab</span> <span class="n">inline</span>
+<span class="kn">import</span> <span class="nn">scipy.sparse</span> <span class="k">as</span> <span class="nn">sparse</span>
+<span class="kn">import</span> <span class="nn">scipy.sparse.linalg</span> <span class="k">as</span> <span class="nn">sla</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Populating the interactive namespace from numpy and matplotlib
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="sparse-direct-methods">
+<h2>Sparse Direct Methods<a class="headerlink" href="#sparse-direct-methods" title="Permalink to this headline">¶</a></h2>
+<p>This typically refers to producing a factorization of a sparse matrix for use in solving linear systems.</p>
+<p>The thing to keep in mind is that many factorizations will generally be dense, even if the original matrix is sparse.  E.g. eigenvalue decompositions, QR decomposition, SVD, etc.  This means that if we compute a factorization, we are going to lose all the advantages we had from sparsity.</p>
+<p>What we really want is a factorization where if <code class="docutils literal notranslate"><span class="pre">A</span></code> is sparse, the terms in the factorization are also sparse.  The factorization where this is easiest to achieve is the LU decomposition.  In general, the <code class="docutils literal notranslate"><span class="pre">L</span></code> and <code class="docutils literal notranslate"><span class="pre">U</span></code> terms will be more dense than <code class="docutils literal notranslate"><span class="pre">A</span></code>, and sometimes much more dense.  However, we can seek a permuted version of the matrix <code class="docutils literal notranslate"><span class="pre">A</span></code> which will minimize the amount of “fill-in” which occurs.  This is often done using “nested disection” algorithm, which is outside the scope of this course.  If you ever need to do this explicitly, the <a class="reference external" href="http://glaros.dtc.umn.edu/gkhome/metis/metis/overview">METIS package</a> is commonly used.</p>
+<p>We’ll just use the function <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.linalg.splu.html#scipy.sparse.linalg.splu"><code class="docutils literal notranslate"><span class="pre">sla.splu</span></code></a> (SParse LU) at a high level, which produces a factorization object that can be used to solve linear systems.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span> <span class="o">+</span> <span class="n">sparse</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">spy</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/sparse_linalg_3_0.png" src="../_images/sparse_linalg_3_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">tocsc</span><span class="p">()</span> <span class="c1"># need to convert to CSC form first</span>
+<span class="n">LU</span> <span class="o">=</span> <span class="n">sla</span><span class="o">.</span><span class="n">splu</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="n">LU</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;SuperLU at 0x7f1f65912780&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>The resulting object stores the factors necessary to compute <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">=</span> <span class="pre">PLUQ</span></code> (<code class="docutils literal notranslate"><span class="pre">P</span></code> permutes rows, and <code class="docutils literal notranslate"><span class="pre">Q</span></code> permutes columns).  It is computed using the <a class="reference external" href="https://portal.nersc.gov/project/sparse/superlu/">SuperLU library</a>.  Typically, you will just use the <code class="docutils literal notranslate"><span class="pre">solve</span></code> method on this object.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">x</span>
+
+<span class="n">x2</span> <span class="o">=</span> <span class="n">LU</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x2</span> <span class="o">-</span> <span class="n">x</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>1.082518877890868e-15
+</pre></div>
+</div>
+</div>
+</div>
+<p>you can also use the <code class="docutils literal notranslate"><span class="pre">sla.spsolve</span></code> function, which wraps this factorization.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x2</span> <span class="o">=</span> <span class="n">sla</span><span class="o">.</span><span class="n">spsolve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x2</span> <span class="o">-</span> <span class="n">x</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>1.082518877890868e-15
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="sparse-iterative-methods">
+<h2>Sparse Iterative Methods<a class="headerlink" href="#sparse-iterative-methods" title="Permalink to this headline">¶</a></h2>
+<p>Sparse iterative methods are another class of methods you can use for solving linear systems built on <a class="reference external" href="https://en.wikipedia.org/wiki/Krylov_subspace">Krylov subspaces</a>.  They only require matrix-vector products, and are ideally used with sparse matrices and fast linear operators.  You can typically learn the theory behind these methods in a numerical linear algebra course - we’ll just talk about how to use them.</p>
+<p>All these methods are meant to solve linear systems: find <code class="docutils literal notranslate"><span class="pre">x</span></code> so that <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">&#64;</span> <span class="pre">x</span> <span class="pre">=</span> <span class="pre">b</span></code>, or least squares problems minimizing <code class="docutils literal notranslate"><span class="pre">norm(A</span> <span class="pre">&#64;</span> <span class="pre">x</span> <span class="pre">-</span> <span class="pre">b)</span></code></p>
+<p>You can find a list of options in the <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/sparse.linalg.html#solving-linear-problems">documentation for <code class="docutils literal notranslate"><span class="pre">scipy.sparse.linalg</span></code></a>.  Here are some common options:</p>
+<ul class="simple">
+<li><p>Conjugate Gradient: <code class="docutils literal notranslate"><span class="pre">sla.cg</span></code> for <code class="docutils literal notranslate"><span class="pre">A</span></code> SPD</p></li>
+<li><p>MINRES: <code class="docutils literal notranslate"><span class="pre">sla.minres</span></code> for <code class="docutils literal notranslate"><span class="pre">A</span></code> symmetric</p></li>
+<li><p>GMRES: <code class="docutils literal notranslate"><span class="pre">sla.gmres</span></code> for general square <code class="docutils literal notranslate"><span class="pre">A</span></code></p></li>
+<li><p>LSQR: <code class="docutils literal notranslate"><span class="pre">sla.lsqr</span></code> for solving least squares problems</p></li>
+</ul>
+<p>For example, we can use <code class="docutils literal notranslate"><span class="pre">gmres</span></code> with the same matrix we used for <code class="docutils literal notranslate"><span class="pre">splu</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x2</span><span class="p">,</span> <span class="n">exit</span> <span class="o">=</span> <span class="n">sla</span><span class="o">.</span><span class="n">gmres</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="c1"># exit code: 0 if successful</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x2</span> <span class="o">-</span> <span class="n">x</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>9.980622395720319e-12
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+<span class="n">x2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty_like</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">x2</span><span class="p">,</span> <span class="n">exit</span> <span class="o">=</span> <span class="n">sla</span><span class="o">.</span><span class="n">gmres</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;GMRES in </span><span class="si">{}</span><span class="s2"> sec.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t1</span> <span class="o">-</span> <span class="n">t0</span><span class="p">))</span>
+
+<span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">x2</span> <span class="o">=</span> <span class="n">sla</span><span class="o">.</span><span class="n">spsolve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;spsolve in </span><span class="si">{}</span><span class="s2"> sec.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t1</span> <span class="o">-</span> <span class="n">t0</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>GMRES in 0.0014429092407226562 sec.
+spsolve in 0.0006186962127685547 sec.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="sparse-direct-vs-iterative-methods">
+<h3>Sparse Direct vs. Iterative Methods<a class="headerlink" href="#sparse-direct-vs-iterative-methods" title="Permalink to this headline">¶</a></h3>
+<p>There are a couple of trade offs to consider when deciding whether to use sparse direct or iterative algorithms.</p>
+<ol class="simple">
+<li><p>Are you going to be solving many linear systems with the same matrix <code class="docutils literal notranslate"><span class="pre">A</span></code>?  If so, you can produce a single factorization object using <code class="docutils literal notranslate"><span class="pre">splu</span></code>, and use it to solve many right-hand sides.  Sparse direct probably makes more sense.</p></li>
+<li><p>Are you solving a single linear system?  If so, then a single call to an iterative method probably makes mores sense.</p></li>
+<li><p>Are you using a fast linear operator that could be expressed as a dense matrix (e.g. sparse plus low-rank)?  Alternatively, would the sparse LU decomposition turn dense because of fill-in?  If so, then iterative methods probably make more sense.</p></li>
+<li><p>Do you have a really good preconditioner (see below)?  Then iterative methods probably make more sense.</p></li>
+</ol>
+</div>
+<div class="section" id="preconditioning">
+<h3>Preconditioning<a class="headerlink" href="#preconditioning" title="Permalink to this headline">¶</a></h3>
+<p>The speed/effectiveness of iterative methods is often dependent on the existence of a good preconditioner. A preconditioner <code class="docutils literal notranslate"><span class="pre">M</span></code> for a matrix <code class="docutils literal notranslate"><span class="pre">A</span></code> is an “approximate inverse” i.e. <code class="docutils literal notranslate"><span class="pre">M</span> <span class="pre">&#64;</span> <span class="pre">A</span></code> is close to the identity.  Note if we had an exact inverse, we’ve solved our problem already.  What we want is to have a matrix <code class="docutils literal notranslate"><span class="pre">M</span></code> which is fast to apply (i.e. also sparse like <code class="docutils literal notranslate"><span class="pre">A</span></code>), which generally isn’t possible with an exact inverse.</p>
+<p>Finding a good preconditioner is a huge field of research, and can be very domain-dependent.  A general-purpose method to obtain a preconditioner is to use an Incomplete LU decomposition (this is an LU factorization that stops when the fill-in gets too large). You can obtain one using <code class="docutils literal notranslate"><span class="pre">sla.spilu</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ILUfact</span> <span class="o">=</span> <span class="n">sla</span><span class="o">.</span><span class="n">spilu</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can construct a preconditioner using a <code class="docutils literal notranslate"><span class="pre">LinearOperator</span></code> around the ILU object’s solve method</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">M</span> <span class="o">=</span> <span class="n">sla</span><span class="o">.</span><span class="n">LinearOperator</span><span class="p">(</span>
+    <span class="n">shape</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span>
+    <span class="n">matvec</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">b</span><span class="p">:</span> <span class="n">ILUfact</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x2</span><span class="p">,</span> <span class="n">exit</span> <span class="o">=</span> <span class="n">sla</span><span class="o">.</span><span class="n">gmres</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">M</span><span class="o">=</span><span class="n">M</span><span class="p">)</span> <span class="c1"># exit code: 0 if successful</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x2</span> <span class="o">-</span> <span class="n">x</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>1.6823046059089154e-15
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">x2</span><span class="p">,</span> <span class="n">exit</span> <span class="o">=</span> <span class="n">sla</span><span class="o">.</span><span class="n">gmres</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;GMRES in </span><span class="si">{}</span><span class="s2"> sec.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t1</span> <span class="o">-</span> <span class="n">t0</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x2</span> <span class="o">-</span> <span class="n">x</span><span class="p">))</span>
+
+<span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">x2</span><span class="p">,</span> <span class="n">exit</span> <span class="o">=</span> <span class="n">sla</span><span class="o">.</span><span class="n">gmres</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">M</span><span class="o">=</span><span class="n">M</span><span class="p">)</span>
+<span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;preconditioned GMRES in </span><span class="si">{}</span><span class="s2"> sec.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t1</span> <span class="o">-</span> <span class="n">t0</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x2</span> <span class="o">-</span> <span class="n">x</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>GMRES in 0.0013110637664794922 sec.
+9.980622395720319e-12
+preconditioned GMRES in 0.0009207725524902344 sec.
+1.6823046059089154e-15
+</pre></div>
+</div>
+</div>
+</div>
+<p>We get a higher-precision answer in about the same amount of time.</p>
+</div>
+</div>
+<div class="section" id="eigenvalues-and-eigenvectors">
+<h2>Eigenvalues and Eigenvectors<a class="headerlink" href="#eigenvalues-and-eigenvectors" title="Permalink to this headline">¶</a></h2>
+<p>Computing a full eigenvalue decomposition of a sparse matrix or fast linear operator doesn’t typically make sense (see the the discussion for sparse direct methods).  However, there are a lot of situations in which we want to compute the eigenvalue-eigenvector pairs for a handful of the largest (or smallest) eigenvalues.</p>
+<p><code class="docutils literal notranslate"><span class="pre">scipy.sparse.linalg</span></code> wraps <a class="reference external" href="https://www.caam.rice.edu/software/ARPACK/">ARPACK (ARnoldi PACKage)</a>, which uses Krylov subspace techniques (like the iterative methods) to compute eigenvalues/eigenvectors using matrix-vector multiplications.  The relevant methods are <code class="docutils literal notranslate"><span class="pre">sla.eigs</span></code> (for general square matrices) and <code class="docutils literal notranslate"><span class="pre">sla.eigsh</span></code> (for symmetric/Hermitian matrices).  There is also a <code class="docutils literal notranslate"><span class="pre">sla.svds</span></code> function for the SVD.</p>
+<p>Let’s look at an example for a linear operator which acts as the matrix of all ones.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># works on square matrices</span>
+<span class="n">Afun</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">X</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">m</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1"># linear operator of size 10</span>
+
+<span class="n">A</span> <span class="o">=</span> <span class="n">sla</span><span class="o">.</span><span class="n">LinearOperator</span><span class="p">(</span>
+    <span class="n">shape</span>   <span class="o">=</span> <span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">m</span><span class="p">),</span>
+    <span class="n">matvec</span>  <span class="o">=</span> <span class="n">Afun</span><span class="p">,</span>
+    <span class="n">rmatvec</span> <span class="o">=</span> <span class="n">Afun</span><span class="p">,</span>
+    <span class="n">matmat</span>  <span class="o">=</span> <span class="n">Afun</span><span class="p">,</span>
+    <span class="n">rmatmat</span> <span class="o">=</span> <span class="n">Afun</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float</span>   
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This operator is Hermitian, so we’ll use <code class="docutils literal notranslate"><span class="pre">eigsh</span></code>.  By default, <code class="docutils literal notranslate"><span class="pre">eigsh</span></code> will compute the largest magnitude eigenvalues.  You can change which eigenvalues you’re looking for using the <code class="docutils literal notranslate"><span class="pre">which</span></code> keyword argument, and the number of eigenvalues using the <code class="docutils literal notranslate"><span class="pre">k</span></code> argument.  See <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.linalg.eigsh.html#scipy.sparse.linalg.eigsh">the documentation</a> for details.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Lam</span><span class="p">,</span> <span class="n">V</span> <span class="o">=</span> <span class="n">sla</span><span class="o">.</span><span class="n">eigsh</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Lam</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([-5.86174617e-18, -3.50871500e-32,  2.38837756e-32,  2.87286167e-32,
+        1.78221859e-15,  1.00000000e+01])
+</pre></div>
+</div>
+</div>
+</div>
+<p>we see there is one eigenvalue with a numerically non-zero value (10).  Let’s take a look at the eigenvector</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">V</span><span class="p">[:,</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([-0.31622777, -0.31622777, -0.31622777, -0.31622777, -0.31622777,
+       -0.31622777, -0.31622777, -0.31622777, -0.31622777, -0.31622777])
+</pre></div>
+</div>
+</div>
+</div>
+<p>this is the vector with constant entries.  This agrees with our understanding of the operator <code class="docutils literal notranslate"><span class="pre">A</span></code>, which can be expressed as the symmetric rank-1 outer product of the vector with 1s in every entry.</p>
+</div>
+<div class="section" id="randomized-linear-algebra">
+<h2>Randomized Linear Algebra<a class="headerlink" href="#randomized-linear-algebra" title="Permalink to this headline">¶</a></h2>
+<p>In the past decade or two, randomized linear algebra has matured as a topic with lots of practical applications.  To read about the theory, see the 2009 paper by Halko, Martinsson, and Tropp: <a class="reference external" href="http://users.cms.caltech.edu/~jtropp/papers/HMT11-Finding-Structure-SIREV.pdf">Link</a>.</p>
+<p>SciPy does not (currently) have built-in functions for randomized linear algebra functionality (some languages like Julia do).  Fortunately, these algorithms are very easy to implement without worrying too much about the theory.</p>
+<p>For simplicity, we’ll assume that <code class="docutils literal notranslate"><span class="pre">A</span></code> is symmetric with distinct eigenvectors, so we can limit the discussion to eigenvectors.  A rank-<code class="docutils literal notranslate"><span class="pre">k</span></code> approximation of <code class="docutils literal notranslate"><span class="pre">A</span></code> is an approximation by a rank-<code class="docutils literal notranslate"><span class="pre">k</span></code> outer product.  We can analyitically obtain the optimal rank-<code class="docutils literal notranslate"><span class="pre">k</span></code> approximation by computing a full eigenvalue decomposition of <code class="docutils literal notranslate"><span class="pre">A</span></code> and set all the eigenvalues outside the largest <code class="docutils literal notranslate"><span class="pre">k</span></code> (in magnitude) to 0.  Again, we don’t want to actually compute the full eigenvalue decomposition, so we want an algorithm that does this in some provable way.</p>
+<p>The basic idea is to get an approximation of the range of an operator <code class="docutils literal notranslate"><span class="pre">A</span></code> by applying it to a bunch of random vectors. That is, we compute <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">&#64;</span> <span class="pre">X</span></code>, where <code class="docutils literal notranslate"><span class="pre">X</span></code> is a matrix with random entries (we think of every column as a random vector). One way to think about the action of <code class="docutils literal notranslate"><span class="pre">A</span></code> is that it “rotates” these random vectors preferentially in the direction of the top eigenvectors, so if we look at the most important subspace of the span of the image  <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">&#64;</span> <span class="pre">X</span></code> (as measured by the svd), we get a good approximation of the most important eigenspace.</p>
+<p>Randomized algorithms have probabilistic gurarantees.  The statement is roughly that if entries of <code class="docutils literal notranslate"><span class="pre">X</span></code> are iid sub-Gaussian random variables (you can replace “sub-Gaussian” with Gaussian), and if we use <code class="docutils literal notranslate"><span class="pre">k+p</span></code> random vectors (<code class="docutils literal notranslate"><span class="pre">p</span></code> is a small constant), we can get close to the top-<code class="docutils literal notranslate"><span class="pre">k</span></code> dimensional eigenspace <em>with high probability</em>.  In this case, <em>close</em> depends on something called the spectral gap, and <em>with high probability</em> means that in order to <strong>not</strong> be close to the desired subspace you would likely need to keep running computations with different random numbers for millions or billions of years before you would observe the algorithm fail.</p>
+<p>Let’s see how this works in practice:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy.linalg</span> <span class="k">as</span> <span class="nn">la</span>
+
+<span class="k">def</span> <span class="nf">random_span_k</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">power</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute subspace whose span is close to contaning the top-k eigenspace of k</span>
+<span class="sd">    </span>
+<span class="sd">    p = number of dimensions to pad</span>
+<span class="sd">    power : number of times to run a power iteration on the subspace</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">m</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span>
+        
+    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="o">+</span><span class="n">p</span><span class="p">)</span>
+    <span class="n">Y</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">X</span>
+    
+    <span class="n">U</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">Vt</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span> <span class="n">full_matrices</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">power</span><span class="p">):</span>
+        <span class="n">Y</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">U</span>
+        <span class="n">U</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">Vt</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span> <span class="n">full_matrices</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    
+    
+    <span class="k">return</span> <span class="n">U</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s test this on a diagonal matrix with entries 0 to <code class="docutils literal notranslate"><span class="pre">n-1</span></code> along the main diagonal.  In this case, the eigenvalues are integers, and the eigenvectors are the standard basis vectors.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">D</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">dia_matrix</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">))</span>
+<span class="n">D</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;100x100 sparse matrix of type &#39;&lt;class &#39;numpy.int64&#39;&gt;&#39;
+	with 100 stored elements (1 diagonals) in DIAgonal format&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">k</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">U</span> <span class="o">=</span> <span class="n">random_span_k</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lam</span><span class="p">,</span> <span class="n">V</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">D</span><span class="o">.</span><span class="n">todense</span><span class="p">())</span>
+<span class="n">V_true</span> <span class="o">=</span> <span class="n">V</span><span class="p">[:,</span><span class="o">-</span><span class="n">k</span><span class="p">:]</span>
+<span class="n">V_true</span><span class="p">[</span><span class="o">-</span><span class="n">k</span><span class="p">:,:]</span> <span class="c1"># should see identity</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([[1., 0., 0., 0., 0.],
+       [0., 1., 0., 0., 0.],
+       [0., 0., 1., 0., 0.],
+       [0., 0., 0., 1., 0.],
+       [0., 0., 0., 0., 1.]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s take a look at how well <code class="docutils literal notranslate"><span class="pre">U</span></code> captures each eigenvector.  The distance from this subspace from the <code class="docutils literal notranslate"><span class="pre">i</span></code>th eigenvector is <code class="docutils literal notranslate"><span class="pre">norm(V[:,i].T*U)</span></code>.  Because the eigenvectors are canonical basis vectors, this is just the norm of the <code class="docutils literal notranslate"><span class="pre">i</span></code>th row of <code class="docutils literal notranslate"><span class="pre">U</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:02d}</span><span class="s2"> : </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">U</span><span class="p">[</span><span class="n">i</span><span class="p">])))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>00 : 1.237382037120247e-16
+01 : 0.005306328143290195
+02 : 0.02071218782998797
+03 : 0.03351801946991655
+04 : 0.04749461049332646
+05 : 0.027185580622085537
+06 : 0.03494586458871957
+07 : 0.042596692987048566
+08 : 0.04655804097969185
+09 : 0.08659008047652275
+10 : 0.09080189994371916
+11 : 0.08136189131377132
+12 : 0.0812185060575538
+13 : 0.10812013270672462
+14 : 0.09477019586568917
+15 : 0.1022395778504232
+16 : 0.15373444904899974
+17 : 0.0988896236053659
+18 : 0.12463344665434137
+19 : 0.15038456067632006
+20 : 0.16074795642960868
+21 : 0.2144782410757659
+22 : 0.16570525204769276
+23 : 0.20170832798363228
+24 : 0.18789461812105498
+25 : 0.1664392781817683
+26 : 0.15980863466609352
+27 : 0.19919138155252772
+28 : 0.13415918372648447
+29 : 0.24621023894342436
+30 : 0.17169266577477638
+31 : 0.25155736334521794
+32 : 0.28778183592554535
+33 : 0.25747456896867355
+34 : 0.2354088235865599
+35 : 0.3367527188006961
+36 : 0.29984995008481613
+37 : 0.30854569624983336
+38 : 0.32146619625841294
+39 : 0.3719762638380914
+40 : 0.24065847682339883
+41 : 0.3314890738915212
+42 : 0.32078224173020387
+43 : 0.4116357381053965
+44 : 0.34144569039940315
+45 : 0.35622128169002476
+46 : 0.17601632164298983
+47 : 0.3776150440537252
+48 : 0.35130623294559293
+49 : 0.2701745019162668
+50 : 0.36918906436132704
+51 : 0.4342641381633717
+52 : 0.3923993794914586
+53 : 0.3226500013440476
+54 : 0.35884036905657185
+55 : 0.44336853898550116
+56 : 0.2908957089460221
+57 : 0.41825461759692656
+58 : 0.4840337386280811
+59 : 0.3844727216753451
+60 : 0.5716390573681811
+61 : 0.37509990260242076
+62 : 0.39815022684105994
+63 : 0.3199026633962481
+64 : 0.48582288090027687
+65 : 0.3917875361272461
+66 : 0.37325571822834014
+67 : 0.4028757176418608
+68 : 0.5454354412967963
+69 : 0.6478326183823412
+70 : 0.48291119856215914
+71 : 0.38818268590813215
+72 : 0.5088316540958551
+73 : 0.533848538532787
+74 : 0.48884032460135435
+75 : 0.54380552002918
+76 : 0.4058843566907783
+77 : 0.48690608333255947
+78 : 0.5313253734326123
+79 : 0.37348069850680077
+80 : 0.2348541581892851
+81 : 0.5722241504958083
+82 : 0.574862101024432
+83 : 0.6645493367682898
+84 : 0.5855648475562306
+85 : 0.5380995647035309
+86 : 0.4543259026017458
+87 : 0.5864097236797992
+88 : 0.6014597095596996
+89 : 0.5826769395179012
+90 : 0.6688606836947097
+91 : 0.5111818721546618
+92 : 0.6872656482250987
+93 : 0.69457130762469
+94 : 0.6401803161718954
+95 : 0.5435402646583062
+96 : 0.5381717452771467
+97 : 0.6328028668789293
+98 : 0.463072484823897
+99 : 0.5796501916534795
+</pre></div>
+</div>
+</div>
+</div>
+<p>As we see, <code class="docutils literal notranslate"><span class="pre">U</span></code> is closer to the larger eigenvectors, rather than the smaller eigenvectors.</p>
+<p>We can improve this estimate by running a couple of power iterations on the subspace (the <code class="docutils literal notranslate"><span class="pre">power</span></code> keyword defined above):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">U</span> <span class="o">=</span> <span class="n">random_span_k</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">power</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:02d}</span><span class="s2"> : </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">U</span><span class="p">[</span><span class="n">i</span><span class="p">])))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>00 : 7.531577218171524e-17
+01 : 3.2963014179273134e-12
+02 : 1.7595117554359488e-10
+03 : 2.4463933793687446e-09
+04 : 1.1201780996731948e-08
+05 : 5.055481666974069e-08
+06 : 1.728331654766367e-07
+07 : 2.4003600791820404e-07
+08 : 6.785696817885456e-07
+09 : 1.4370704841092993e-06
+10 : 2.255507602346134e-06
+11 : 4.987205277147029e-06
+12 : 3.66219345074426e-06
+13 : 1.305760767555867e-05
+14 : 1.7072390292706084e-05
+15 : 3.3970474092695774e-05
+16 : 6.534726448178479e-05
+17 : 6.69647761662297e-05
+18 : 0.00012680409435805815
+19 : 0.00015360388582267846
+20 : 0.00012474053058431469
+21 : 0.0003120230772339129
+22 : 0.0004744665511108273
+23 : 0.0005526080821544901
+24 : 0.0004980068736973886
+25 : 0.0010558506070983238
+26 : 0.0010891295743757445
+27 : 0.0007714273874200128
+28 : 0.0019953264229211386
+29 : 0.00252481217113602
+30 : 0.002536682365165136
+31 : 0.002198471551313277
+32 : 0.0028647531802487454
+33 : 0.003185550824843333
+34 : 0.005116655113360987
+35 : 0.00819047357051326
+36 : 0.004710749012354605
+37 : 0.010410187560286818
+38 : 0.007905125876050476
+39 : 0.011990282649351777
+40 : 0.009310671904914657
+41 : 0.009537296783862417
+42 : 0.017865790196228075
+43 : 0.02011981025573132
+44 : 0.05322860096248243
+45 : 0.023540885207261386
+46 : 0.019517205836170004
+47 : 0.02593594105060595
+48 : 0.03557470548046251
+49 : 0.04596575314474709
+50 : 0.027084524299691954
+51 : 0.041667418839322096
+52 : 0.06664958357862692
+53 : 0.13509994399557743
+54 : 0.08249010681412945
+55 : 0.07980369177101777
+56 : 0.07739561005183819
+57 : 0.09083057128336115
+58 : 0.1011876956043873
+59 : 0.1720635005984986
+60 : 0.18031687687764825
+61 : 0.12332169886904214
+62 : 0.15358678883319787
+63 : 0.15011720990357433
+64 : 0.15912843959701428
+65 : 0.20897133194744782
+66 : 0.2662012846957818
+67 : 0.27157487361244925
+68 : 0.23954716599769293
+69 : 0.2752653420536821
+70 : 0.3645655099898164
+71 : 0.33999135745582354
+72 : 0.40670246933747684
+73 : 0.3527476795201634
+74 : 0.33819196674298385
+75 : 0.5434154912628226
+76 : 0.592096122226103
+77 : 0.43159848619881525
+78 : 0.5103745233876039
+79 : 0.5780786817103588
+80 : 0.5625066049987497
+81 : 0.5337091183421595
+82 : 0.7130752013682905
+83 : 0.49012962426429446
+84 : 0.7369950464252678
+85 : 0.7052127811173083
+86 : 0.7292485803572147
+87 : 0.7851752482372999
+88 : 0.7155535819601788
+89 : 0.8898105433741392
+90 : 0.8359802592336973
+91 : 0.8856773476146013
+92 : 0.8949008813005586
+93 : 0.8929799872764429
+94 : 0.9224904221777795
+95 : 0.8678006929366298
+96 : 0.819719742786577
+97 : 0.798421849103337
+98 : 0.8106290984967518
+99 : 0.9399810309430618
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="exercises">
+<h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
+<p>Download a couple of test matrices from the UFlorida Sparse Matrix collection <a class="reference external" href="https://sparse.tamu.edu/">Link</a>
+For, example, use <code class="docutils literal notranslate"><span class="pre">mnist_test_norm_10NN</span></code> <a class="reference external" href="https://sparse.tamu.edu/ML_Graph/mnist_test_norm_10NN">Link</a> which would probably be too large to store on your computer as a dense matrix.</p>
+<p>For each square matrix:</p>
+<ol class="simple">
+<li><p>Solve a random linear system using <code class="docutils literal notranslate"><span class="pre">splu</span></code></p></li>
+<li><p>Solve a random linear system using either <code class="docutils literal notranslate"><span class="pre">minres</span></code> or <code class="docutils literal notranslate"><span class="pre">gmres</span></code> (which one should you use?)</p></li>
+<li><p>Compute the largest magnitude eigenvector using <code class="docutils literal notranslate"><span class="pre">eigs</span></code> or <code class="docutils literal notranslate"><span class="pre">eigh</span></code> (which one should you use?)</p></li>
+</ol>
+<p>Find a non-square matrix and</p>
+<ol class="simple">
+<li><p>Solve a random least squares problem using <code class="docutils literal notranslate"><span class="pre">lsqr</span></code></p></li>
+<li><p>Compute the largest singular vectors using <code class="docutils literal notranslate"><span class="pre">svds</span></code></p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "pycourse"
+        },
+        kernelOptions: {
+            kernelName: "pycourse",
+            path: "./02_linear_algebra"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'pycourse'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="linearoperators.html" title="previous page">Linear Operators</a>
+    <a class='right-next' id="next-link" href="pytorch.html" title="next page">Linear Algebra in PyTorch</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Brad Nelson<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../_static/js/index.js"></script>
+    
+  </body>
+</html>
