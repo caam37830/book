@@ -289,8 +289,8 @@
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#exercises">
-     Exercises
+    <a class="reference internal nav-link" href="#exercise">
+     Exercise
     </a>
    </li>
   </ul>
@@ -302,32 +302,39 @@
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id1">
-     Exercises
+     Exercise
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#zip-and-reverse">
-   zip and reverse
+  <a class="reference internal nav-link" href="#iteration-tools">
+   Iteration tools
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Exercise
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#the-itertools-package">
    The Itertools Package
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     Exercise
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#iterators-for-scientific-computing">
    Iterators for Scientific Computing
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id2">
-     Exercises
-    </a>
-   </li>
-  </ul>
  </li>
 </ul>
 
@@ -528,6 +535,21 @@ An object is an <strong>iterator</strong> if it implements the <code class="docu
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>0
+1
+2
+</pre></div>
+</div>
+</div>
+</div>
 <p>You can also create classes that are both iterators and iterables</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -621,8 +643,9 @@ An object is an <strong>iterator</strong> if it implements the <code class="docu
 </div>
 </div>
 <p>Note that we never raise a <code class="docutils literal notranslate"><span class="pre">StopIteration</span></code> exception - the iterator will just keep going if we let it.</p>
-<div class="section" id="exercises">
-<h3>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="exercise">
+<h3>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h3>
+<p>Define <code class="docutils literal notranslate"><span class="pre">FibonacciIterator</span></code> so it will iterate over all Fibonacci numbers until they are greater than a parameter <code class="docutils literal notranslate"><span class="pre">n</span></code>.</p>
 </div>
 </div>
 <div class="section" id="generators">
@@ -740,11 +763,21 @@ An object is an <strong>iterator</strong> if it implements the <code class="docu
 </div>
 </div>
 <div class="section" id="id1">
-<h3>Exercises<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<h3>Exercise<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Define <code class="docutils literal notranslate"><span class="pre">FibonacciGenerator</span></code> so it will iterate over all Fibonacci numbers until they are greater than a parameter <code class="docutils literal notranslate"><span class="pre">n</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Your code here</span>
+</pre></div>
 </div>
 </div>
-<div class="section" id="zip-and-reverse">
-<h2>zip and reverse<a class="headerlink" href="#zip-and-reverse" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+</div>
+<div class="section" id="iteration-tools">
+<h2>Iteration tools<a class="headerlink" href="#iteration-tools" title="Permalink to this headline">¶</a></h2>
+<p>Some useful tools for iterators that come in handy are:</p>
+<p><code class="docutils literal notranslate"><span class="pre">zip</span></code> - iterates over multiple iterators simulataneously</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">]):</span>
@@ -760,6 +793,7 @@ An object is an <strong>iterator</strong> if it implements the <code class="docu
 </div>
 </div>
 </div>
+<p><code class="docutils literal notranslate"><span class="pre">reversed</span></code> - iterates in reverse order</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)):</span>
@@ -775,20 +809,120 @@ An object is an <strong>iterator</strong> if it implements the <code class="docu
 </div>
 </div>
 </div>
+<p><code class="docutils literal notranslate"><span class="pre">enumerate</span></code> - returns the iteration step count as well as the iterator value</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="s1">&#39;abc&#39;</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>0 a
+1 b
+2 c
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id2">
+<h3>Exercise<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>Implement your own versions of <code class="docutils literal notranslate"><span class="pre">zip</span></code> and <code class="docutils literal notranslate"><span class="pre">enumerate</span></code> using generators</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div class="section" id="the-itertools-package">
 <h2>The Itertools Package<a class="headerlink" href="#the-itertools-package" title="Permalink to this headline">¶</a></h2>
-<p>A useful package for dealing with iterators is the <a class="reference external" href="https://docs.python.org/3.8/library/itertools.html">itertools package</a></p>
+<p>A useful package for dealing with iterators is the <a class="reference external" href="https://docs.python.org/3.8/library/itertools.html">itertools package</a>.  Here are a few examples - click on the link to see what else the package provides.</p>
+<p><code class="docutils literal notranslate"><span class="pre">product</span></code> gives the equivalent of a nested for-loop</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">product</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">product</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>0 0
+0 1
+0 2
+1 0
+1 1
+1 2
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">repeat</span></code> just repeats a value</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">repeat</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">repeat</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>10
+10
+10
+10
+10
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">permutations</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">permutations</span>
+
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">permutations</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>(0, 1, 2)
+(0, 2, 1)
+(1, 0, 2)
+(1, 2, 0)
+(2, 0, 1)
+(2, 1, 0)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id3">
+<h3>Exercise<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>Implement your own version of <code class="docutils literal notranslate"><span class="pre">product</span></code> and <code class="docutils literal notranslate"><span class="pre">repeat</span></code> using generators.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div class="section" id="iterators-for-scientific-computing">
 <h2>Iterators for Scientific Computing<a class="headerlink" href="#iterators-for-scientific-computing" title="Permalink to this headline">¶</a></h2>
-<p>One way to use iterators for scientific computing</p>
-<p>Iterator for power method</p>
+<p>One way you might use an iterator in scientific computing is when implementing an iterative algorithm.</p>
+<p>Here is an example of the power method, which finds the largest eigenvalue-eigenvector pair of a matrix.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-<span class="k">def</span> <span class="nf">PowerMethodIterator</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">PowerMethodGenerator</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
     
     <span class="k">def</span> <span class="nf">RayleighQuotient</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">A</span> <span class="o">@</span> <span class="n">x</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
@@ -818,7 +952,7 @@ An object is an <strong>iterator</strong> if it implements the <code class="docu
 <span class="n">A</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">A</span><span class="o">.</span><span class="n">T</span>
 <span class="n">x0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
 
-<span class="n">solver</span> <span class="o">=</span> <span class="n">PowerMethodIterator</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">x0</span><span class="p">)</span>
+<span class="n">solver</span> <span class="o">=</span> <span class="n">PowerMethodGenerator</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">x0</span><span class="p">)</span>
 <span class="n">tol</span> <span class="o">=</span> <span class="mf">1e-4</span>
 
 <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
@@ -830,115 +964,58 @@ An object is an <strong>iterator</strong> if it implements the <code class="docu
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>86.07888260077169 inf
-213.7333899365568 127.6545073357851
-250.0839848429369 36.35059490638011
-275.98430436059704 25.900319517660137
-296.28476315526245 20.300458794665417
-310.841846035663 14.557082880400571
-320.25358073342323 9.41173469776021
-325.9839601064399 5.73037937301666
-329.44295692239615 3.4589968159562545
-331.60798524682804 2.165028324431887
-333.0630966274817 1.4551113806536478
-334.13542817068077 1.072331543199084
-335.004719819599 0.8692916489182494
-335.7706759706574 0.7659561510583899
-336.49040089983106 0.7197249291736512
-337.198343350241 0.7079424504099165
-337.91675815351493 0.7184148032739586
-338.6611738858255 0.7444157323105856
-339.44324344701994 0.7820695611944188
-340.27220493338507 0.8289614863651309
-341.15558074595515 0.8833758125700797
-342.09943760003927 0.9438568540841175
-343.10837840571304 1.0089408056737739
-344.18536528365155 1.0769868779385092
-345.33144315343026 1.1460778697787077
-346.5454250146476 1.2139818612173485
-347.82360123220286 1.2781762175552558
-349.1595375783663 1.3359363461634643
-350.544024150089 1.3844865717226753
-351.9652250931293 1.4212009430402759
-353.4090555449317 1.4438304518023983
-354.8597792093927 1.4507236644610089
-356.3007831396286 1.4410039302359223
-357.71545383762657 1.4146706979979626
-359.08805894245455 1.3726051048279828
-360.4045369481706 1.3164780057160215
-361.65311400601144 1.248577057840862
-362.8246972443561 1.171583238344681
-363.9130301743804 1.0883329300243076
-364.91462915310507 1.001598978724644
-365.8285442013561 0.9139150482510559
-366.65599989536526 0.8274556940091315
-367.39997316962996 0.7439732742647038
-368.06475758840264 0.6647844187726832
-368.655551717894 0.5907941294913712
-369.178096081916 0.5225443640219964
-369.63837124735767 0.4602751654416579
-370.04236017427655 0.40398892691888477
-370.3958714532794 0.3535112790028734
-370.7044161986354 0.30854474535595955
-370.9731296212319 0.26871342259653375
-371.2067280470173 0.23359842578537382
-371.40949281087035 0.20276476385305386
-371.58527360123094 0.1757807903605908
-371.7375051470552 0.15223154582423604
-371.8692324301114 0.13172728305625014
-371.98314076457143 0.1139083344600067
-372.0815880654498 0.09844730087837661
-372.1666374193361 0.08504935388629065
-372.2400886883236 0.07345126898752596
-</pre></div>
-</div>
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>372.30350834461126 0.06341965628763546
-372.3582570755685 0.054748730957214775
-372.40551494277565 0.04725786720717906
-372.4463040463526 0.04078910357696941
-372.48150875673724 0.03520471038461892
-372.5118936452016 0.030384888464368487
-372.53811928370305 0.026225638501443882
-372.5607561031791 0.02263681947601981
-372.580296503869 0.019540400689948
-372.59716540657917 0.01686890271014363
-372.6117294235407 0.01456401696151488
-372.62430481408967 0.012575390548988707
-372.6351643755465 0.010859561456811662
-372.6445434044859 0.009379028939406453
-372.65264484881567 0.00810144432978177
-372.6596437571335 0.006998908317825681
-372.6656911189749 0.006047361841410748
-372.67091717787656 0.005226058901655506
-372.67543428870147 0.004517110824906467
-372.67933938134826 0.0039050926467893987
-372.68271608474436 0.003376703396099856
-372.6856365577987 0.002920473054359718
-372.68816306767735 0.002526509878634897
-372.6903493502679 0.002186282590571409
-372.6922417829276 0.001892432659701626
-372.693880395465 0.0016386125373628602
-372.69529974173116 0.0014193462661751255
-372.69652965110305 0.001229909371886606
-372.697595876466 0.0010662253629334373
-372.6985206530091 0.000924776543115513
-372.69932318015583 0.0008025271467317907
-372.70002003724704 0.0006968570912135874
-372.70062554211927 0.0006055048722259926
-372.70115206045506 0.0005265183357892056
-372.70161027269114 0.0004582122360829999
-372.70200940432727 0.0003991316361293684
-372.7023574246765 0.0003480203492358669
-372.7026612183918 0.0003037937153180792
-372.70292673351673 0.00026551512490868845
-372.7031591092767 0.00023237575999246474
-372.70336278639746 0.00020367712073721123
-372.70354160234336 0.00017881594590107852
-372.7036988735425 0.0001572711991570941
-372.7038374663838 0.00013859284126738203
-372.7039598585199 0.0001223921361201974
-372.70406819180465 0.00010833328474291193
-372.7041643180081 9.612620345933465e-05
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>102.11496211115598 inf
+260.77744370462204 158.66248159346605
+308.29407259818845 47.516628893566406
+334.3889272490835 26.09485465089506
+353.64669152028966 19.257764271206156
+368.1549355430534 14.508244022763733
+378.47296622117636 10.318030678122966
+385.393109655144 6.92014343396761
+389.8581441304219 4.465034475277946
+392.68774011275553 2.8295959823336148
+394.47717792160614 1.7894378088506073
+395.61861875999966 1.141440838393521
+396.3578583769661 0.7392396169664153
+396.84565538464796 0.48779700768187695
+397.1740546276875 0.3283992430395415
+397.3995921964083 0.2255375687208243
+397.55743597385595 0.15784377744762423
+397.6698305915328 0.11239461767684134
+397.7511154548692 0.08128486333640694
+397.8107188303087 0.059603375439508
+397.85496247723336 0.04424364692465588
+397.88816486386395 0.03320238663059172
+397.91332705878597 0.02516219492201799
+397.93256713162805 0.019240072842080735
+397.9474006231552 0.014833491527156184
+397.95892513895126 0.011524515796054402
+397.96794410488354 0.009018965932284573
+397.97505117704077 0.0071070721572255025
+397.98068872472015 0.005637547679384625
+397.98518892029256 0.004500195572404664
+397.9888029654727 0.0036140451801429663
+397.99172210292926 0.002919137456558474
+397.9940928633006 0.002370760371320557
+397.99602821932615 0.0019353560255694902
+397.9976158043694 0.0015875850432394145
+397.99892400683024 0.0013082024608479514
+398.0000065159075 0.0010825090772641488
+398.00090573074 0.0008992148324864502
+398.00165533042633 0.0007495996863440268
+398.00228222125526 0.0006268908289257524
+398.00280801945064 0.0005257981953832314
+398.0032501858892 0.00044216643857453164
+398.0036228988922 0.0003727130030029002
+398.0039377290221 0.0003148301298665501
+398.0042041635504 0.0002664345283278635
+398.00443001627997 0.0002258527295566637
+398.0046217495248 0.00019173324483290344
+398.0047847284759 0.000162978951095738
+398.0049234232591 0.00013869478317474204
+398.00504157032674 0.00011814706766699601
+398.00514230206903 0.00010073174229319193
+398.0052282514547 8.594938566375276e-05
 </pre></div>
 </div>
 </div>
@@ -957,148 +1034,41 @@ An object is an <strong>iterator</strong> if it implements the <code class="docu
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>372.7042498382968 8.552028867825356e-05
-372.7043261373311 7.629903433326035e-05
-372.7043944127148 6.827538368270325e-05
-372.70445570043114 6.128771633484575e-05
-372.70451089681416 5.519638301620944e-05
-372.70456077752704 4.988071287925777e-05
-372.70460601395575 4.523642871845368e-05
-372.7046471873708 4.11734150702614e-05
-372.7046848011623 3.761379144862076e-05
-372.7047192914073 3.449024501378517e-05
-372.7047510360023 3.1744594991778285e-05
-372.70478036255145 2.9326549167763005e-05
-372.7048075551816 2.7192630170702614e-05
-372.70483286043213 2.5305250517249078e-05
-372.70485649234166 2.363190952792138e-05
-372.70487863684536 2.2144503702747897e-05
-372.70489945557364 2.081872827375264e-05
-372.7049190891338 1.963356015721729e-05
-372.70493765994723 1.8570813438145706e-05
-372.7049552747008 1.7614753573980124e-05
-372.70497202646453 1.6751763723732438e-05
-372.70498799652285 1.597005831399656e-05
-372.7050032559559 1.5259433041592274e-05
-372.70501786700834 1.461105244970895e-05
-372.70503188427045 1.401726211724963e-05
-372.70504535570007 1.3471429610945052e-05
-372.70505832350585 1.2967805787411635e-05
-372.7050708249106 1.2501404739850841e-05
-372.70508289281196 1.2067901366208389e-05
-372.7050945563524 1.1663540419704077e-05
-372.7051058414139 1.1285061532362306e-05
-372.7051167710437 1.092962980919765e-05
-372.7051273658245 1.0594780803785397e-05
-372.7051376441931 1.0278368563376716e-05
-372.70514762271716 9.978524076359463e-06
-372.70515731633446 9.693617300854385e-06
-372.70516673855934 9.422224877653207e-06
-372.70517590166247 9.163103129594674e-06
-372.70518481682564 8.915163164147089e-06
-372.7051934942763 8.677450637151196e-06
-372.7052019434038 8.449127506082732e-06
-372.70521017286086 8.22945708023326e-06
-372.70521819065016 8.017789298264688e-06
-372.7052260042012 7.813551064828061e-06
-372.70523362043554 7.616234313445602e-06
-372.70524104582415 
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>398.0053016369504
 </pre></div>
 </div>
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>7.4253886168662575e-06
-372.7052482864376 7.240613456360734e-06
-372.7052553479884 7.061550775233627e-06
-372.7052622358693 6.887880942940683e-06
-372.70526895518583 6.719316502312722e-06
-372.70527551078476 6.555598929480766e-06
-372.7052819072793 6.3964945411498775e-06
-372.7052881490706 6.241791311367706e-06
-372.7052942403667 6.091296086196962e-06
-372.7053001851997 5.944832992099691e-06
-372.7053059874401 5.802240423236071e-06
-372.7053116508095 5.663369393005269e-06
-372.7053171788922 5.528082681394153e-06
-372.70532257514503 5.396252845457639e-06
-372.7053278429066 5.267761594041076e-06
-372.7053329854046 5.142497968790849e-06
-372.705338005763 5.020358400997793e-06
-372.70534290700846 4.901245461041981e-06
-372.7053476920753 4.7850668352111825e-06
-372.7053523638115 4.671736235195567e-06
-372.705356924982 4.5611704990733415e-06
-372.70536137827366 4.4532916376738285e-06
-372.70536572629845 4.3480247882143885e-06
-372.70536997159684 4.245298384830676e-06
-372.70537411664105 4.145044215420057e-06
-372.70537816383734 4.047196284773236e-06
-372.7053821155294 3.951692065129464e-06
-372.705385974 3.8584706203437236e-06
-372.7053897414732 3.7674731743209122e-06
-372.7053934201168 3.6786436226066144e-06
-372.7053970120441 3.591927281831886e-06
-372.7054005193153 3.5072711739303486e-06
-372.7054039439395 3.4246241966684465e-06
-372.70540728787626 3.343936782584933e-06
-372.7054105530372 3.2651609558342898e-06
-372.705413741287 3.1882497637525375e-06
-372.7054168544451 3.1131581295085198e-06
-372.7054198942867 3.0398416015486873e-06
-372.7054228625443 2.9682576041523134e-06
-372.7054257609085 2.898364186876279e-06
-372.7054285910295 2.8301209908931924e-06
-372.70543135451754 2.763488055279595e-06
-372.70543405294495 2.6984274086316873e-06
-372.7054366878459 2.634900965858833e-06
-372.7054392607186 2.572872688233474e-06
-372.7054417730251 2.512306480184634e-06
-372.70544422619287 2.4531677809136454e-06
-372.7054466216156 2.3954227117428672e-06
-372.70544896065394 2.339038360332779e-06
-372.705451244636 2.283982041717536e-06
-372.7054534748588 2.2302228330772778e-06
-372.70545565258857 2.177729754748725e-06
-372.70545777906125 2.126472679719882e-06
-372.7054598554843 2.07642307259448e-06
-372.7054618830359 2.027551602168387e-06
-372.7054638628669 1.97983098360055e-06
-372.70546579610095 1.9332340457367536e-06
-372.7054676838349 1.8877339584832953e-06
-372.7054695271399 1.8433049717714312e-06
-372.7054713270619 1.7999220176534436e-06
-372.7054730846222 1.7575603123987094e-06
-372.7054748008178 1.7161955838673748e-06
-372.7054764766225 1.6758046967879636e-06
-372.70547811298707 1.6363645727324183e-06
-372.7054797108398 1.5978527585502889e-06
-372.705481271087 1.5602471989950573e-06
-372.705482794614 1.5235269756885828e-06
-372.70548428228494 1.4876709428790491e-06
-372.70548573494386 1.4526589211527607e-06
-372.7054871534147 1.4184708447828598e-06
-372.70548853850215 1.3850874438503524e-06
-372.7054898909919 1.3524897326533392e-06
-372.70549121165095 1.3206590665504336e-06
-372.70549250122883 1.2895778809252079e-06
-372.70549376045676 1.2592279290402075e-06
-372.7054949900492 1.2295924420868687e-06
-372.70549619070334 1.2006541396658577e-06
-372.7054973631006 1.17239727615015e-06
-372.7054985079057 1.1448050827311818e-06
-372.7054996257683 1.1178626095897926e-06
-372.70550071732214 1.0915538268818636e-06
-372.7055017831868 1.0658646374395175e-06
-372.70550282396647 1.0407796935396618e-06
-372.7055038402517 1.0162852390749322e-06
-372.705504832619 9.923672905642889e-07
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span> 7.338549568203234e-05
+398.0053643317758 6.269482543075355e-05
+398.0054179206489 5.358887307238547e-05
+398.0054637464923 4.582584341505935e-05
+398.0055029490335 3.920254118838784e-05
+398.00553649683184 3.354779835262889e-05
+398.0055652139454 2.871711353691353e-05
+398.0055898022089 2.4588263499936147e-05
+398.0056108598989 2.1057690048564837e-05
+398.00562889741644 1.8037517520497204e-05
+398.00564435049415 1.5453077708116325e-05
+398.0056575913431 1.324084894349653e-05
+398.0056689380803 1.1346737210260471e-05
+398.00567866271484 9.724634537633392e-06
+398.0056869979224 8.335207553500368e-06
+398.005694142803 7.144880612486304e-06
+398.0057002677771 6.124974106569425e-06
+398.0057055187543 5.25097721038037e-06
+398.00571002068807 4.501933744904818e-06
+398.00571388060587 3.859917796944501e-06
+398.00571719019695 3.309591079414531e-06
+398.0057200280224 2.8378254341987486e-06
+398.0057224614027 2.433380302591104e-06
+398.0057245480334 2.0866307295364095e-06
+398.00572633736573 1.7893323160933505e-06
+398.00572787178794 1.5344222106250527e-06
+398.00572918763703 1.3158490901332698e-06
+398.0057303160644 1.1284273568890058e-06
+398.0057312837778 9.677133903096546e-07
 </pre></div>
 </div>
 </div>
-</div>
-<p>Implement a class which contains the state of an optimization problem.  Make this class an iterator.</p>
-<p>Use this for introspection of the solver.</p>
-<div class="section" id="id2">
-<h3>Exercises<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
-<p>Implement the game of life using an Iterator or Generator</p>
 </div>
 </div>
 </div>
