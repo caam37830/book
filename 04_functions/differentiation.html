@@ -341,9 +341,9 @@ f(x) = \exp(-(x^2 - x - 1)^2)
 <p>In principle, we could calculate the derivative of <span class="math notranslate nohighlight">\(f\)</span> with respect to <span class="math notranslate nohighlight">\(x\)</span> using rules learned in calculus, however, we’ll just use <code class="docutils literal notranslate"><span class="pre">sympy</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sympy</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
-<span class="n">f</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sym</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">f</span>
 </pre></div>
 </div>
@@ -355,7 +355,7 @@ f(x) = \exp(-(x^2 - x - 1)^2)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -365,7 +365,7 @@ f(x) = \exp(-(x^2 - x - 1)^2)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f1</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f1</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
 <span class="n">f1</span>
 </pre></div>
 </div>
@@ -379,7 +379,7 @@ f(x) = \exp(-(x^2 - x - 1)^2)
 <p>It is just as easy to take a second derivative.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f2</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">f1</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f2</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">f1</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
 <span class="n">f2</span>
 </pre></div>
 </div>
@@ -393,7 +393,7 @@ f(x) = \exp(-(x^2 - x - 1)^2)
 <p>We can see if there’s a good way to simplify the expression using sympy:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sympy</span><span class="o">.</span><span class="n">factor</span><span class="p">(</span><span class="n">sympy</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">f2</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sym</span><span class="o">.</span><span class="n">factor</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">f2</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -405,13 +405,13 @@ f(x) = \exp(-(x^2 - x - 1)^2)
 <p>Now, let’s plot</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sympy</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">f1</span><span class="p">,</span> <span class="n">f2</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">line_color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sym</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">f1</span><span class="p">,</span> <span class="n">f2</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">line_color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/differentiation_9_0.png" src="../_images/differentiation_9_0.png" />
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;sympy.plotting.plot.Plot at 0x7ff5334c92b0&gt;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;sympy.plotting.plot.Plot at 0x7f1263b7cd90&gt;
 </pre></div>
 </div>
 </div>
@@ -422,7 +422,7 @@ f(x) = \exp(-(x^2 - x - 1)^2)
 <p>Numerical differentiation approximates the derivative instead of obtaining an exact expression.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="s1">&#39;numpy&#39;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="s1">&#39;numpy&#39;</span><span class="p">)</span> <span class="c1"># get lambda function for numerical evaluation</span>
 </pre></div>
 </div>
 </div>
@@ -705,7 +705,7 @@ central_difference : 0.7357588760470435
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x7ff532aa8640&gt;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x7f1263165280&gt;
 </pre></div>
 </div>
 <img alt="../_images/differentiation_32_1.png" src="../_images/differentiation_32_1.png" />
@@ -832,19 +832,19 @@ central_difference : 0.7357588760470435
 </div>
 <p>Recall that numpy arrays are row-major by default.  This means that if we want to compute derivatives along the x axis, we can simply create a block matrix with a derivative operator for in each block for a contiguous row.</p>
 <p><code class="docutils literal notranslate"><span class="pre">numpy.sparse.kron</span></code> is a very useful function to create such a sparse matrix</p>
+<p><code class="docutils literal notranslate"><span class="pre">kron(A,B)</span></code> computes the <a class="reference external" href="https://en.wikipedia.org/wiki/Kronecker_product">Kronecker product</a> <span class="math notranslate nohighlight">\(A \otimes B\)</span>.  If <span class="math notranslate nohighlight">\(A\)</span> is a <span class="math notranslate nohighlight">\(m\times n\)</span> matrix and <span class="math notranslate nohighlight">\(B\)</span> is a <span class="math notranslate nohighlight">\(p\times q\)</span> matrix, then <span class="math notranslate nohighlight">\(A \otimes B\)</span> is a <span class="math notranslate nohighlight">\((mp) \times (nq)\)</span> matrix which we can define in terms of a <span class="math notranslate nohighlight">\(m\times n\)</span> grid of <span class="math notranslate nohighlight">\(p\times q\)</span> blocks.  The <span class="math notranslate nohighlight">\(i,j\)</span> block has the form <span class="math notranslate nohighlight">\(A[i,j] B\)</span> (the matrix <span class="math notranslate nohighlight">\(B\)</span> scaled by <span class="math notranslate nohighlight">\(A[i,j]\)</span>).</p>
+<p>If we want to create the numerical operator <span class="math notranslate nohighlight">\(\partial_x\)</span> (i.e. differentiation in the row-major direction), we can use the following construction:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">D</span> <span class="o">=</span> <span class="n">diff_matrix</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
 <span class="n">Dx</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">sparse</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="n">D</span><span class="p">)</span><span class="o">.</span><span class="n">tocsr</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">spy</span><span class="p">(</span><span class="n">Dx</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x7ff532b34c70&gt;
-</pre></div>
-</div>
-<img alt="../_images/differentiation_48_1.png" src="../_images/differentiation_48_1.png" />
+<img alt="../_images/differentiation_48_0.png" src="../_images/differentiation_48_0.png" />
 </div>
 </div>
 <p>The derivative of our function <code class="docutils literal notranslate"><span class="pre">g</span></code> with respect to the <code class="docutils literal notranslate"><span class="pre">x</span></code> variable is <code class="docutils literal notranslate"><span class="pre">cos(x)</span></code>:</p>
@@ -860,7 +860,7 @@ central_difference : 0.7357588760470435
 <img alt="../_images/differentiation_50_0.png" src="../_images/differentiation_50_0.png" />
 </div>
 </div>
-<p>If we want to create a y derivative, we can reverse the arguments of <code class="docutils literal notranslate"><span class="pre">kron</span></code></p>
+<p>If we want to create a numerical y derivative <span class="math notranslate nohighlight">\(\partial_y\)</span>, we can reverse the arguments of <code class="docutils literal notranslate"><span class="pre">kron</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Dy</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">sparse</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span><span class="o">.</span><span class="n">tocsr</span><span class="p">()</span>
@@ -869,7 +869,7 @@ central_difference : 0.7357588760470435
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x7ff5333bdeb0&gt;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x7f12632c0b50&gt;
 </pre></div>
 </div>
 <img alt="../_images/differentiation_52_1.png" src="../_images/differentiation_52_1.png" />

@@ -285,6 +285,21 @@
    </li>
   </ul>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#symbolic-to-numerical-functions">
+   Symbolic to Numerical Functions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#plotting-functions">
+   Plotting Functions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercises">
+   Exercises
+  </a>
+ </li>
 </ul>
 
         </nav>
@@ -306,6 +321,7 @@
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sym</span>
 <span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </pre></div>
 </div>
 </div>
@@ -314,12 +330,14 @@
 <p>Let’s compare how <code class="docutils literal notranslate"><span class="pre">sympy</span></code> evaluates <code class="docutils literal notranslate"><span class="pre">sqrt</span></code> vs. <code class="docutils literal notranslate"><span class="pre">math</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">8</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">8</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>2.8284271247461903
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>2.8284271247461903
+2.8284271247461903
 </pre></div>
 </div>
 </div>
@@ -455,7 +473,7 @@
 \[\displaystyle 6.72\]</div>
 </div>
 </div>
-<p>SymPy uses arbitrary precision arithmetic.  The default precition is 10 decimal digits (roughly double precision), but you can increase the precision in <code class="docutils literal notranslate"><span class="pre">evalf</span></code></p>
+<p>SymPy uses arbitrary precision arithmetic.  The default precition is 10 decimal digits (between single and double precision), but you can increase the precision in <code class="docutils literal notranslate"><span class="pre">evalf</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sym</span><span class="o">.</span><span class="n">pi</span><span class="o">.</span><span class="n">evalf</span><span class="p">()</span>
@@ -484,7 +502,7 @@
 <p>Sympy supports just about everything you might have learned in courses on algebra and calculus (and more)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sym</span>
 </pre></div>
 </div>
 </div>
@@ -493,15 +511,15 @@
 <h3>Differentiation<a class="headerlink" href="#differentiation" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">expr</span> <span class="o">=</span> <span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">expr</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">diff</span><span class="p">(</span><span class="n">expr</span><span class="p">),</span> <span class="n">x</span><span class="p">)</span> <span class="c1"># symbolic differentiation w.r.t x</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span> <span class="c1"># symbolic differentiation w.r.t x</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>sin(x)
-cos(x) x
+cos(x)
 </pre></div>
 </div>
 </div>
@@ -509,7 +527,7 @@ cos(x) x
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">expr</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="n">y</span>
-<span class="n">diff</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="c1"># differentiate w.r.t. x</span>
+<span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="c1"># differentiate w.r.t. x</span>
 </pre></div>
 </div>
 </div>
@@ -523,9 +541,9 @@ cos(x) x
 <h3>Integration<a class="headerlink" href="#integration" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">expr</span> <span class="o">=</span> <span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">expr</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">integrate</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span> <span class="c1"># indefinite integral w.r.t x</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span> <span class="c1"># indefinite integral w.r.t x</span>
 </pre></div>
 </div>
 </div>
@@ -539,8 +557,9 @@ cos(x) x
 <p>the sympy variable <code class="docutils literal notranslate"><span class="pre">oo</span></code> (two <code class="docutils literal notranslate"><span class="pre">o</span></code> symbols) is used to represent <span class="math notranslate nohighlight">\(\infty\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">expr</span> <span class="o">=</span> <span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
-<span class="n">integrate</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">-</span><span class="n">oo</span><span class="p">,</span> <span class="n">oo</span><span class="p">))</span> <span class="c1"># integration with limits</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">oo</span>
+<span class="n">expr</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">sym</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">-</span><span class="n">oo</span><span class="p">,</span> <span class="n">oo</span><span class="p">))</span> <span class="c1"># integration with limits</span>
 </pre></div>
 </div>
 </div>
@@ -551,7 +570,7 @@ cos(x) x
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">integrate</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sym</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -569,7 +588,7 @@ cos(x) x
 \end{equation}</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">limit</span><span class="p">(</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="c1"># limit as x \to 0</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sym</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="c1"># limit as x \to 0</span>
 </pre></div>
 </div>
 </div>
@@ -581,9 +600,10 @@ cos(x) x
 </div>
 <div class="section" id="roots">
 <h3>Roots<a class="headerlink" href="#roots" title="Permalink to this headline">¶</a></h3>
+<p>You can compute roots of functions using <code class="docutils literal notranslate"><span class="pre">solve</span></code> (i.e. we solve the system <code class="docutils literal notranslate"><span class="pre">f(x)</span> <span class="pre">=</span> <span class="pre">0</span></code> for <code class="docutils literal notranslate"><span class="pre">x</span></code>)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">solve</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">3</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sym</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">3</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -594,6 +614,66 @@ cos(x) x
 </div>
 </div>
 </div>
+</div>
+<div class="section" id="symbolic-to-numerical-functions">
+<h2>Symbolic to Numerical Functions<a class="headerlink" href="#symbolic-to-numerical-functions" title="Permalink to this headline">¶</a></h2>
+<p>You can turn sympy functions into lambda functions that are compatible with numpy using <code class="docutils literal notranslate"><span class="pre">lambdify</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="s1">&#39;numpy&#39;</span><span class="p">)</span>
+<span class="n">g</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([0.        , 0.11088263, 0.22039774, 0.3271947 , 0.42995636,
+       0.52741539, 0.6183698 , 0.70169788, 0.77637192, 0.84147098])
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="plotting-functions">
+<h2>Plotting Functions<a class="headerlink" href="#plotting-functions" title="Permalink to this headline">¶</a></h2>
+<p>You can plot a symbolic function using the sympy <code class="docutils literal notranslate"><span class="pre">plot</span></code> function</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">sym</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/sympy_42_0.png" src="../_images/sympy_42_0.png" />
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;sympy.plotting.plot.Plot at 0x7f3097d4a5e0&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>you can change the domain using a tuple with the variable and lower and upper bounds</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sym</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/sympy_44_0.png" src="../_images/sympy_44_0.png" />
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;sympy.plotting.plot.Plot at 0x7f3096981ac0&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>There are a variety of keyword arguments you can use for formatting as well. See <code class="docutils literal notranslate"><span class="pre">help(sym.plot)</span></code> for more information.</p>
+</div>
+<div class="section" id="exercises">
+<h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
+<p>Use sympy to compute solutions to answer the following questions</p>
+<ol class="simple">
+<li><p>What is <span class="math notranslate nohighlight">\(\int_{1}^{\infty} x^{-2}\, dx\)</span>?</p></li>
+<li><p>Find a value of <code class="docutils literal notranslate"><span class="pre">x</span></code> where <code class="docutils literal notranslate"><span class="pre">sin(x)</span> <span class="pre">=</span> <span class="pre">cos(x)</span></code></p></li>
+</ol>
 </div>
 </div>
 
