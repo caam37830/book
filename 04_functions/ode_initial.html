@@ -1,0 +1,921 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Initial Value Problems &#8212; Scientific Computing with Python</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/mystnb.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Integration / Quadrature" href="integration.html" />
+    <link rel="prev" title="Differentiation" href="differentiation.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Scientific Computing with Python</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_python/python.html">
+   Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01_analysis/analysis.html">
+   Analysis of Algorithms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02_linear_algebra/linear_algebra.html">
+   Linear Algebra
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03_optimization/optimization.html">
+   Optimization
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="functions.html">
+   Functions
+  </a>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="sympy.html">
+     Symbolic Computing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="roots.html">
+     Root Finding
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="differentiation.html">
+     Differentiation
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Initial Value Problems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="integration.html">
+     Integration / Quadrature
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="interpolation.html">
+     Interpolation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05_graphs/graphs.html">
+   Graphs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06_probability_statistics/prob_stat.html">
+   Probability and Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../07_data/data.html">
+   Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../08_geometry/geometry.html">
+   Geometry
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../09_computing/computing.html">
+   Computing
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/04_functions/ode_initial.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/caam37830/book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/caam37830/book/issues/new?title=Issue%20on%20page%20%2F04_functions/ode_initial.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/caam37830/book/master?urlpath=tree/04_functions/ode_initial.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/caam37830/book/blob/master/04_functions/ode_initial.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#your-zebra-sanctuary">
+   Your Zebra Sanctuary
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-growing-problem">
+     A Growing Problem
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-natural-solution">
+     A Natural Solution
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercises">
+     Exercises
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#symbolic-solutions-of-odes">
+   Symbolic Solutions of ODEs
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-logistic-equation">
+     The Logistic Equation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Exercises
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#euler-method">
+   Euler Method
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise">
+     Exercise
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#events">
+   Events
+  </a>
+ </li>
+</ul>
+
+        </nav>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="initial-value-problems">
+<h1>Initial Value Problems<a class="headerlink" href="#initial-value-problems" title="Permalink to this headline">¶</a></h1>
+<p>An initial value problem is an ordinary differential equation of the form <span class="math notranslate nohighlight">\(y'(t) = f(y, t)\)</span> with <span class="math notranslate nohighlight">\(y(0) = c\)</span>, where <span class="math notranslate nohighlight">\(y\)</span> can be a single or muliti-valued.</p>
+<p>The idea is that you specifty the starting point of a system and the rules that govern the system, and let the simulation go from there.</p>
+<div class="section" id="your-zebra-sanctuary">
+<h2>Your Zebra Sanctuary<a class="headerlink" href="#your-zebra-sanctuary" title="Permalink to this headline">¶</a></h2>
+<p>Let’s say you are really enthusiastic about zebras.</p>
+<p><a href="https://commons.wikimedia.org/wiki/File:Grevy%27s_Zebra_Stallion.jpg#/media/File:Grevy's_Zebra_Stallion.jpg"><img src="https://upload.wikimedia.org/wikipedia/commons/7/74/Grevy%27s_Zebra_Stallion.jpg" alt="Grevy's Zebra Stallion.jpg" style="height:300px;"></a>
+<br>
+<center>By <a rel="nofollow" class="external text" href="https://www.flickr.com/photos/rainbirder/">Rainbirder</a> - <a rel="nofollow" class="external text" href="https://www.flickr.com/photos/rainbirder/5299622573/">Grevy's Zebra Stallion</a>, <a href="https://creativecommons.org/licenses/by-sa/2.0" title="Creative Commons Attribution-Share Alike 2.0">CC BY-SA 2.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=13267554">Link</a></center></p>
+<p>You decide to start a zebra sanctuary in your backyard.  Soon you have a bunch of zebras having a great time eating your grass and shrubbery.</p>
+<div class="section" id="a-growing-problem">
+<h3>A Growing Problem<a class="headerlink" href="#a-growing-problem" title="Permalink to this headline">¶</a></h3>
+<p>Your zebras keep having babies.  This is manageable for now, and the baby zebras are cute.  However, you’re a bit worried about the number of zerbas you’re going to need to feed, and you want to figure out what will happen if you let things go unchecked.  Naturally, you decide to write a program to simulate your zebra problem.</p>
+<p>Let’s say you have <span class="math notranslate nohighlight">\(z_0\)</span> zebras this month. The number of zebra babies that will appear next month is proportional to the current population, so
+\begin{equation}
+z_1 = z_0 + \Delta(z_0)
+\end{equation}
+where <span class="math notranslate nohighlight">\(\Delta(z_0) = \alpha z_0\)</span>.  You estimate <span class="math notranslate nohighlight">\(\alpha\)</span> is about <span class="math notranslate nohighlight">\(0.02\)</span>.</p>
+<p>We can write this as a differential equation
+\begin{equation}
+z’(t) = \alpha z(t)
+\end{equation}</p>
+<p>Now it is time to fire up your Python interpreter.  We’ll use <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code> in <code class="docutils literal notranslate"><span class="pre">scipy.integrate</span></code> - this is a high-level wrapper with lots of options for solving initial value problems.  The important arguments to provide are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">f(t,</span> <span class="pre">y)</span></code> - a Python function that returns the right-hand side of the ODE - this can be a multivalued function</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">t_span</span></code> - a tuple <code class="docutils literal notranslate"><span class="pre">(t0,</span> <span class="pre">t1)</span></code> which gives the start and end times of the simulation</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">y0</span></code> - the state of the system at <code class="docutils literal notranslate"><span class="pre">t0</span></code></p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code> will do a lot of work for you - deciding on a backend algorithm, chooing time steps, etc.  You might find it useful to specify <code class="docutils literal notranslate"><span class="pre">t_eval</span></code>, which gives an array of points to evaluate the function on.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_ivp</span>
+
+<span class="n">z0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">50</span><span class="p">])</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.02</span>
+
+<span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">,</span> <span class="n">z</span> <span class="p">:</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">z</span>
+<span class="n">t_span</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">t_eval</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+
+<span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">t_span</span><span class="p">,</span> <span class="n">z0</span><span class="p">,</span> <span class="n">t_eval</span><span class="o">=</span><span class="n">t_eval</span><span class="p">)</span>
+    
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;The Zebra Problem&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;zebras&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;months&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ode_initial_3_0.png" src="../_images/ode_initial_3_0.png" />
+</div>
+</div>
+<p>Things do not look good.  There is no way you can afford to feed even 100 zerbas while paying tuition at the University of Chicago.  Hard choices will need to be made.</p>
+</div>
+<div class="section" id="a-natural-solution">
+<h3>A Natural Solution<a class="headerlink" href="#a-natural-solution" title="Permalink to this headline">¶</a></h3>
+<p>When posting a “Zebras for sale” ad on craigslist, you see an add for a family of lions that need a home.  You feel bad for the lions, and realize you can use them to solve your zebra problem.  However, before commiting, you want to make sure the lions won’t eat all the zebras (you just want to keep the population controlled, not exterminated).  You read a bit about how lions and zebras might interact and decide to use a <a class="reference external" href="https://en.wikipedia.org/wiki/Lotka%E2%80%93Volterra_equations">Predator-Prey model</a>.</p>
+<ol class="simple">
+<li><p>Zebras will continue to have babies at rate <span class="math notranslate nohighlight">\(\alpha\)</span>.</p></li>
+<li><p>A lion will catch and eat every <span class="math notranslate nohighlight">\(100\)</span>th zebra it sees.  The number of zebras a lion sees depends on the zebra population, we’ll denote the rate at which a lion encounters a single zebra in a month as <span class="math notranslate nohighlight">\(\beta\)</span>.</p></li>
+<li><p>For every 5 zebras the lions eat, a lion baby is born.</p></li>
+<li><p>Lions die of old age at a rate of <span class="math notranslate nohighlight">\(\gamma\)</span></p></li>
+</ol>
+<p>We’ll use <span class="math notranslate nohighlight">\(x\)</span> to denote the number of lions, and <span class="math notranslate nohighlight">\(z\)</span> for the number of zebras.  Now, the amount the zebra population changes every month is <span class="math notranslate nohighlight">\(\Delta_z(z,x) = \alpha z - \frac{\beta}{100} x z\)</span>.  The amount the lion population changes every month is <span class="math notranslate nohighlight">\(\Delta_x(x,z) = \frac{\beta}{500} x z - \gamma x\)</span>.</p>
+<p>In order to solve this problem, we can use a vector <span class="math notranslate nohighlight">\(y = [x, z]^T\)</span>, and the following ODE system:
+\begin{equation}
+y_0’(t) = \frac{\beta}{500} y_0 y_1 - \gamma y_0\
+y_1’(t) = \alpha y_1 - \frac{\beta}{100} y_0 y_1
+\end{equation}</p>
+<p>You estimate <span class="math notranslate nohighlight">\(\gamma\)</span> to be <span class="math notranslate nohighlight">\(0.02\)</span>, and <span class="math notranslate nohighlight">\(\beta\)</span> to be <span class="math notranslate nohighlight">\(1.0\)</span>.</p>
+<p>You plan to start with 5 lions and 50 zebras.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">z0</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">x0</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.02</span>
+<span class="n">beta</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">gamma</span> <span class="o">=</span> <span class="mf">0.02</span>
+
+<span class="n">y0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x0</span><span class="p">,</span> <span class="n">z0</span><span class="p">])</span>
+<span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">,</span> <span class="n">y</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="o">-</span><span class="n">gamma</span><span class="o">*</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">beta</span><span class="o">/</span><span class="mi">500</span> <span class="o">*</span> <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+    <span class="n">alpha</span><span class="o">*</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">beta</span><span class="o">/</span><span class="mi">100</span> <span class="o">*</span> <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="p">]</span> <span class="p">)</span>
+
+<span class="n">t_eval</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+
+<span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">t_span</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">t_eval</span><span class="o">=</span><span class="n">t_eval</span><span class="p">)</span>
+
+    
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;zebras&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;lions&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Lions v.s. Zebras&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;population&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;months&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ode_initial_5_0.png" src="../_images/ode_initial_5_0.png" />
+</div>
+</div>
+<p>Oh no!  Soon the zebras will be eaten, and you’ll be left with a pack of hungry lions.  You wonder what would happen if you do some landscaping to make it easier for the zebras to hide.  Then you might have <span class="math notranslate nohighlight">\(\beta = 0.3\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">z0</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">x0</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.02</span>
+<span class="n">beta</span> <span class="o">=</span> <span class="mf">0.3</span>
+<span class="n">gamma</span> <span class="o">=</span> <span class="mf">0.02</span>
+
+<span class="n">y0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x0</span><span class="p">,</span> <span class="n">z0</span><span class="p">])</span>
+<span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">,</span> <span class="n">y</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="o">-</span><span class="n">gamma</span><span class="o">*</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">beta</span><span class="o">/</span><span class="mi">500</span> <span class="o">*</span> <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+    <span class="n">alpha</span><span class="o">*</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">beta</span><span class="o">/</span><span class="mi">100</span> <span class="o">*</span> <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="p">]</span> <span class="p">)</span>
+
+<span class="n">t_eval</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+
+<span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">t_span</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">t_eval</span><span class="o">=</span><span class="n">t_eval</span><span class="p">)</span>
+
+    
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;zebras&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;lions&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Lions v.s. Zebras&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;population&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;months&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ode_initial_7_0.png" src="../_images/ode_initial_7_0.png" />
+</div>
+</div>
+<p>That looks a bit better - what if we run the simulation for longer?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">z0</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">x0</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.02</span>
+<span class="n">beta</span> <span class="o">=</span> <span class="mf">0.3</span>
+<span class="n">gamma</span> <span class="o">=</span> <span class="mf">0.02</span>
+
+
+<span class="n">y0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x0</span><span class="p">,</span> <span class="n">z0</span><span class="p">])</span>
+<span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">,</span> <span class="n">y</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="o">-</span><span class="n">gamma</span><span class="o">*</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">beta</span><span class="o">/</span><span class="mi">500</span> <span class="o">*</span> <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+    <span class="n">alpha</span><span class="o">*</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">beta</span><span class="o">/</span><span class="mi">100</span> <span class="o">*</span> <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="p">]</span> <span class="p">)</span>
+
+<span class="n">t_eval</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">2000</span><span class="p">)</span>
+<span class="n">t_span</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+
+<span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">t_span</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">t_eval</span><span class="o">=</span><span class="n">t_eval</span><span class="p">)</span>
+
+    
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;zebras&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;lions&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Lions v.s. Zebras&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;population&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;months&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ode_initial_9_0.png" src="../_images/ode_initial_9_0.png" />
+</div>
+</div>
+<p>This seems like a good solution - you install some hiding places for zebras, and give the lions a home.  You start charging interested visitors for tours, and open a gift shop.  Soon you are able to cover the expenses for the zerba hay.  You quit your day job and become a safari guide in your own backyard.</p>
+</div>
+<div class="section" id="exercises">
+<h3>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
+<li><p>Come up with agent-based models for the zebra growth model and lion-zebra predator-prey model.  How do these compare to the ODE models in terms of speed?</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="symbolic-solutions-of-odes">
+<h2>Symbolic Solutions of ODEs<a class="headerlink" href="#symbolic-solutions-of-odes" title="Permalink to this headline">¶</a></h2>
+<p>You can use SymPy for symbolic solutions of ODEs.  For instance, in our zebra growth problem, we had an ODE of the form
+\begin{equation}
+y’(t) = a y(t)
+\end{equation}
+We can use SymPy to classify the ODEs and find a symbolic solution (if one exists)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sym</span>
+<span class="kn">from</span> <span class="nn">sympy.solvers</span> <span class="kn">import</span> <span class="n">ode</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">,</span> <span class="n">t</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;a t&#39;</span><span class="p">)</span> <span class="c1"># symbol</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Function</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span> <span class="c1"># symbolic function</span>
+<span class="n">eqn</span> <span class="o">=</span> <span class="n">y</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">-</span> <span class="n">a</span> <span class="o">*</span> <span class="n">y</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="c1"># eqn = 0</span>
+<span class="n">eqn</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle - a y{\left(t \right)} + \frac{d}{d t} y{\left(t \right)}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ode</span><span class="o">.</span><span class="n">classify_ode</span><span class="p">(</span><span class="n">eqn</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(&#39;separable&#39;,
+ &#39;1st_exact&#39;,
+ &#39;1st_linear&#39;,
+ &#39;Bernoulli&#39;,
+ &#39;almost_linear&#39;,
+ &#39;1st_power_series&#39;,
+ &#39;lie_group&#39;,
+ &#39;nth_linear_constant_coeff_homogeneous&#39;,
+ &#39;separable_Integral&#39;,
+ &#39;1st_exact_Integral&#39;,
+ &#39;1st_linear_Integral&#39;,
+ &#39;Bernoulli_Integral&#39;,
+ &#39;almost_linear_Integral&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>You might recognize some of the above from an ODE class. We see that this ODE is fairly simple, and a variety of methods might be used to solve the equation symbolicly.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ode</span><span class="o">.</span><span class="n">dsolve</span><span class="p">(</span><span class="n">eqn</span><span class="p">,</span> <span class="n">hint</span><span class="o">=</span><span class="s1">&#39;separable&#39;</span><span class="p">)</span> <span class="c1"># we solve the differential equation using the hinted method</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle y{\left(t \right)} = C_{1} e^{a t}\]</div>
+</div>
+</div>
+<p>If you have taken a class on ODEs, hopefully this looks correct.  If you don’t remember your ODEs, or haven’t seen them before, try verifying that the solution satisfies <code class="docutils literal notranslate"><span class="pre">y'(t)</span> <span class="pre">=</span> <span class="pre">a</span> <span class="pre">*</span> <span class="pre">y(t)</span></code></p>
+<div class="section" id="the-logistic-equation">
+<h3>The Logistic Equation<a class="headerlink" href="#the-logistic-equation" title="Permalink to this headline">¶</a></h3>
+<p>Another ODE is the Logistic equation
+\begin{equation}
+y’(t) = y(t) (1 - y(t))
+\end{equation}</p>
+<p>This models growth of a population with resource limits.</p>
+<p>First, let’s use SymPy to find a symbolic solution</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span> <span class="c1"># symbol</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Function</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span> <span class="c1"># symbolic function</span>
+<span class="n">eqn</span> <span class="o">=</span> <span class="n">y</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">-</span> <span class="n">y</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">y</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+<span class="n">eqn</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle - \left(1 - y{\left(t \right)}\right) y{\left(t \right)} + \frac{d}{d t} y{\left(t \right)}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ode</span><span class="o">.</span><span class="n">classify_ode</span><span class="p">(</span><span class="n">eqn</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(&#39;separable&#39;,
+ &#39;1st_exact&#39;,
+ &#39;Bernoulli&#39;,
+ &#39;1st_power_series&#39;,
+ &#39;lie_group&#39;,
+ &#39;separable_Integral&#39;,
+ &#39;1st_exact_Integral&#39;,
+ &#39;Bernoulli_Integral&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="n">ode</span><span class="o">.</span><span class="n">dsolve</span><span class="p">(</span><span class="n">eqn</span><span class="p">,</span> <span class="n">hint</span><span class="o">=</span><span class="s1">&#39;separable&#39;</span><span class="p">)</span>
+<span class="n">f</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle y{\left(t \right)} = \frac{1}{C_{1} e^{- t} + 1}\]</div>
+</div>
+</div>
+<p>Let’s just set the constant <span class="math notranslate nohighlight">\(C_1\)</span> to be 1</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">exp</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">t</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">sym</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">exp</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ode_initial_25_0.png" src="../_images/ode_initial_25_0.png" />
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;sympy.plotting.plot.Plot at 0x7fb4d557e730&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s look at solving the ODE with <span class="math notranslate nohighlight">\(y(0) = 0.1\)</span> .  We can pass this into SymPy’s <code class="docutils literal notranslate"><span class="pre">ode.dsolve</span></code> using the <code class="docutils literal notranslate"><span class="pre">ics</span></code> keyword:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="n">ode</span><span class="o">.</span><span class="n">dsolve</span><span class="p">(</span><span class="n">eqn</span><span class="p">,</span> <span class="n">hint</span><span class="o">=</span><span class="s1">&#39;separable&#39;</span><span class="p">,</span> <span class="n">ics</span><span class="o">=</span><span class="p">{</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">):</span> <span class="mf">0.1</span><span class="p">})</span>
+<span class="n">f</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle y{\left(t \right)} = \frac{1}{1 + 9.0 e^{- t}}\]</div>
+</div>
+</div>
+<p>now, because we actually solved the IVP, there are no constants to fill in, and we can plot the right hand side of the equation:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sym</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">rhs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ode_initial_29_0.png" src="../_images/ode_initial_29_0.png" />
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;sympy.plotting.plot.Plot at 0x7fb4d53db940&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, let’s solve the IVP numerically using <code class="docutils literal notranslate"><span class="pre">scipy</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">y0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.1</span><span class="p">])</span>
+
+<span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">,</span> <span class="n">y</span> <span class="p">:</span> <span class="n">y</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">t_span</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">t_eval</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+
+<span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">t_span</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">t_eval</span><span class="o">=</span><span class="n">t_eval</span><span class="p">)</span>
+    
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Logistic Function&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;t&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ode_initial_31_0.png" src="../_images/ode_initial_31_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="id1">
+<h3>Exercises<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
+<li><p>Get an exact expression for the zebra growth IVP using SymPy.  What is the worst-case error over the 100-month simulation we conducted?</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="euler-method">
+<h2>Euler Method<a class="headerlink" href="#euler-method" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Euler_method">(forward) Euler Method</a> is a numerical method for solving Initial Value Problems.  The basic idea is to choose a step size <code class="docutils literal notranslate"><span class="pre">h</span></code>, and iteratively compute <code class="docutils literal notranslate"><span class="pre">y(t0),</span> <span class="pre">y(t0+h),</span> <span class="pre">y(t0+2h),</span> <span class="pre">...</span></code> using <code class="docutils literal notranslate"><span class="pre">y(t0</span> <span class="pre">+</span> <span class="pre">(k+1)h)</span> <span class="pre">=</span> <span class="pre">y(t0</span> <span class="pre">+</span> <span class="pre">kh)</span> <span class="pre">+</span> <span class="pre">h</span> <span class="pre">f(t,</span> <span class="pre">y(t0</span> <span class="pre">+</span> <span class="pre">hk))</span></code></p>
+<p>Here’s an example implementation</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">forward_euler</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">t0</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">h</span><span class="o">=</span><span class="mf">1e-2</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    compute n forward euler steps</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="n">y0</span><span class="p">]</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="p">[</span><span class="n">t0</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">fk</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">h</span><span class="o">*</span><span class="n">fk</span><span class="p">)</span>
+        <span class="n">t</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">h</span><span class="p">)</span>
+        
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">y</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s use this function to compute the solution to the Logistic equation:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">,</span> <span class="n">y</span> <span class="p">:</span> <span class="n">y</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="n">y</span><span class="p">,</span> <span class="n">t</span> <span class="o">=</span> <span class="n">forward_euler</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">h</span><span class="o">=</span><span class="mf">1e-1</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Logistic Function&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;t&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ode_initial_38_0.png" src="../_images/ode_initial_38_0.png" />
+</div>
+</div>
+<div class="section" id="exercise">
+<h3>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
+<li><p>write a version of <code class="docutils literal notranslate"><span class="pre">forward_euler</span></code> that will take in arguments in the same manner as <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code> (<code class="docutils literal notranslate"><span class="pre">f</span></code>, <code class="docutils literal notranslate"><span class="pre">tspan</span></code>,  <code class="docutils literal notranslate"><span class="pre">y0</span></code>, and <code class="docutils literal notranslate"><span class="pre">t_eval</span></code>).  You can define <code class="docutils literal notranslate"><span class="pre">h</span></code> for every step in <code class="docutils literal notranslate"><span class="pre">t_eval</span></code>.  Return a solution class which has fields <code class="docutils literal notranslate"><span class="pre">y</span></code> and <code class="docutils literal notranslate"><span class="pre">t</span></code>, just like <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code>.  Compare the output of your function to the output of <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code> on the logistic equation IVP above.  How accurate is either compared to a ground truth logistic function?</p></li>
+<li><p>Try using some of the different methods in the <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.solve_ivp.html"><code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code> documentation</a>.  How does your accuracy change in both the Logistic equation and growth equation?</p></li>
+</ol>
+</div>
+</div>
+<div class="section" id="events">
+<h2>Events<a class="headerlink" href="#events" title="Permalink to this headline">¶</a></h2>
+<p>You can ask <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code> to find the location of events. An event is defined as a function <code class="docutils literal notranslate"><span class="pre">event(t,</span> <span class="pre">y)</span></code>, and <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code> will find values of <code class="docutils literal notranslate"><span class="pre">t</span></code> where <code class="docutils literal notranslate"><span class="pre">event(t,y)</span> <span class="pre">=</span> <span class="pre">0</span></code>.  For instance, in the zebra growth problem, we might want to find the value of <code class="docutils literal notranslate"><span class="pre">t</span></code> where the number of zebras reaches 100.  We can pass in an event or list of events using the <code class="docutils literal notranslate"><span class="pre">events</span></code> keyword.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_ivp</span>
+
+<span class="n">z0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">50</span><span class="p">])</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.02</span>
+
+<span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">,</span> <span class="n">z</span> <span class="p">:</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">z</span>
+<span class="n">t_span</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">t_eval</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">zebra100</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span> 
+    <span class="k">return</span> <span class="n">y</span> <span class="o">-</span> <span class="mi">100</span>
+
+<span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">t_span</span><span class="p">,</span> <span class="n">z0</span><span class="p">,</span> <span class="n">t_eval</span><span class="o">=</span><span class="n">t_eval</span><span class="p">,</span> <span class="n">events</span><span class="o">=</span><span class="n">zebra100</span><span class="p">)</span>
+    
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;The Zebra Problem&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;zebras&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;months&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ode_initial_42_0.png" src="../_images/ode_initial_42_0.png" />
+</div>
+</div>
+<p>we can access the time at which events occur using the <code class="docutils literal notranslate"><span class="pre">t_events</span></code> field of the solution</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sol</span><span class="o">.</span><span class="n">t_events</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[array([34.65385735])]
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you want to end the simulation when an event occurs, you can set a flag <code class="docutils literal notranslate"><span class="pre">terminal=True</span></code>.  You can also specify a direction flag to only trigger an event when the root of the function goes from negative to positive (<code class="docutils literal notranslate"><span class="pre">direction=1</span></code>), or positive to negative (<code class="docutils literal notranslate"><span class="pre">direction=-1</span></code>)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_ivp</span>
+
+<span class="n">z0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">50</span><span class="p">])</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.02</span>
+
+<span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">,</span> <span class="n">z</span> <span class="p">:</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">z</span>
+<span class="n">t_span</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">t_eval</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">zebra100</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span> 
+    <span class="k">return</span> <span class="n">y</span> <span class="o">-</span> <span class="mi">100</span>
+
+<span class="n">zebra100</span><span class="o">.</span><span class="n">terminal</span><span class="o">=</span><span class="kc">True</span> <span class="c1"># we can set this a flag on the function object</span>
+<span class="n">zebra100</span><span class="o">.</span><span class="n">direction</span><span class="o">=</span><span class="mi">1</span>
+
+<span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">t_span</span><span class="p">,</span> <span class="n">z0</span><span class="p">,</span> <span class="n">t_eval</span><span class="o">=</span><span class="n">t_eval</span><span class="p">,</span> <span class="n">events</span><span class="o">=</span><span class="n">zebra100</span><span class="p">)</span>
+    
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;The Zebra Problem&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;zebras&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;months&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ode_initial_46_0.png" src="../_images/ode_initial_46_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sol</span><span class="o">.</span><span class="n">t_events</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[array([34.65385735])]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "pycourse"
+        },
+        kernelOptions: {
+            kernelName: "pycourse",
+            path: "./04_functions"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'pycourse'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="differentiation.html" title="previous page">Differentiation</a>
+    <a class='right-next' id="next-link" href="integration.html" title="next page">Integration / Quadrature</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Brad Nelson<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../_static/js/index.js"></script>
+    
+  </body>
+</html>
