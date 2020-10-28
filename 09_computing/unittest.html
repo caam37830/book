@@ -274,6 +274,13 @@
   <a class="reference internal nav-link" href="#unittest-package">
    unittest package
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#running-from-command-line">
+     Running from command line
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#test-driven-development">
@@ -286,6 +293,16 @@
     </a>
    </li>
   </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#further-examples">
+   Further Examples
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#continuous-integration">
+   Continuous Integration
+  </a>
  </li>
 </ul>
 
@@ -348,15 +365,27 @@
 <div class="stderr docutils container">
 <pre class="stderr literal-block">
 ----------------------------------------------------------------------
-Ran 3 tests in 0.001s
+Ran 3 tests in 0.004s
 
 OK
 </pre>
 </div>
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;unittest.main.TestProgram at 0x7ffa0c284640&gt;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;unittest.main.TestProgram at 0x7f2a6051f8b0&gt;
 </pre></div>
 </div>
 </div>
+</div>
+<div class="section" id="running-from-command-line">
+<h3>Running from command line<a class="headerlink" href="#running-from-command-line" title="Permalink to this headline">¶</a></h3>
+<p>The more common way to run unit tests is to have them in a test folder or file <code class="docutils literal notranslate"><span class="pre">test.py</span></code>.  You can then run tests using</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python -m unittest test.py
+</pre></div>
+</div>
+<p>Or use <code class="docutils literal notranslate"><span class="pre">pytest</span></code> via</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest test.py
+</pre></div>
+</div>
+<p><a class="reference external" href="https://docs.pytest.org/en/stable/">pytest</a> is another Python testing framework - it is compatible with <code class="docutils literal notranslate"><span class="pre">unittest</span></code>, and has additional funcitonality which we aren’t going to cover.</p>
 </div>
 </div>
 <div class="section" id="test-driven-development">
@@ -390,7 +419,7 @@ OK
         <span class="n">A</span> <span class="o">=</span> <span class="n">A</span> <span class="o">+</span> <span class="n">A</span><span class="o">.</span><span class="n">T</span> <span class="c1"># make symmetric</span>
         <span class="n">lam</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">powermethod</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
         <span class="n">v2</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">v</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertAlmostEqual</span><span class="p">(</span><span class="n">v2</span><span class="p">,</span> <span class="n">lam</span> <span class="o">*</span> <span class="n">v</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertAlmostEqual</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">v2</span> <span class="o">-</span> <span class="n">lam</span> <span class="o">*</span> <span class="n">v</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
     
     <span class="k">def</span> <span class="nf">test_norm1</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">n</span> <span class="o">=</span> <span class="mi">5</span>
@@ -421,6 +450,22 @@ OK
 </div>
 </div>
 </div>
+</div>
+<div class="section" id="further-examples">
+<h2>Further Examples<a class="headerlink" href="#further-examples" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Check out <code class="docutils literal notranslate"><span class="pre">test.py</span></code> in each homework assignment, which is used for autograding.</p></li>
+<li><p>You can find another example in the repository <a class="reference external" href="https://github.com/caam37830/python-packages"><code class="docutils literal notranslate"><span class="pre">python-packages</span></code></a></p></li>
+</ul>
+</div>
+<div class="section" id="continuous-integration">
+<h2>Continuous Integration<a class="headerlink" href="#continuous-integration" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Continuous_integration">Continuous Integration</a>, or CI, is the practice of automatically building code and running tests <em>continuously</em>.  Continuously in this case generally means any time changes are made, which might be multiple times a day.</p>
+<p>The advantage of CI is that when you make changes to your code, you quickly find out if there are problems that need to be solved if your tests fail.  You can run these tests before merging branches in your git repository, making sure that checks pass.</p>
+<p><a class="reference external" href="https://docs.github.com/en/free-pro-team&#64;latest/actions/learn-github-actions/introduction-to-github-actions">GitHub actions</a> is one way of implementing CI.  This is what we are using in this class - you can find an example in the <a class="reference external" href="https://github.com/caam37830/python-packages/blob/main/.github/workflows/push.yml"><code class="docutils literal notranslate"><span class="pre">python-packages</span></code> repository</a>.</p>
+<p>Another popular option which you may see in open source software is <a class="reference external" href="https://travis-ci.org/">Travis-CI</a>.</p>
+<p>Both these platforms are configured using a <code class="docutils literal notranslate"><span class="pre">*.yml</span></code> file.  See the <a class="reference external" href="https://github.com/caam37830/python-packages/blob/main/.github/workflows/push.yml"><code class="docutils literal notranslate"><span class="pre">python-packages</span></code> repository</a> for an example.</p>
+<p>You can do more than just run unit tests using CI, such as running integration tests, verifying that data analyses don’t change, etc.</p>
 </div>
 </div>
 
