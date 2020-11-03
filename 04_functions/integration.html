@@ -304,6 +304,13 @@
   <a class="reference internal nav-link" href="#monte-carlo-integration">
    Monte Carlo Integration
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example">
+     Example
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -319,7 +326,7 @@
 <h1>Integration &amp; Quadrature<a class="headerlink" href="#integration-quadrature" title="Permalink to this headline">¶</a></h1>
 <p>First, let’s recall a few definitions.  An indefinite integral is an integral without bounds, and is defined up to a constant
 \begin{equation}
-\int x, dx = \frac{x}{2} + C
+\int x, dx = \frac{x^2}{2} + C
 \end{equation}
 A definite integral has bounds, which are sometimes symbolic
 \begin{equation}
@@ -662,19 +669,19 @@ If we have <span class="math notranslate nohighlight">\(a = x_0 \le x_1 \le ... 
 <li><p><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.tplquad.html#scipy.integrate.tplquad"><code class="docutils literal notranslate"><span class="pre">tplquad</span></code></a> for 3 variables</p></li>
 <li><p><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.nquad.html#scipy.integrate.nquad"><code class="docutils literal notranslate"><span class="pre">nquad</span></code></a> for <code class="docutils literal notranslate"><span class="pre">n</span></code> variables</p></li>
 </ul>
-<p><code class="docutils literal notranslate"><span class="pre">quad</span></code> integrates over a hyper cube defined by ranges in the second argument. <code class="docutils literal notranslate"><span class="pre">dblquad</span></code> and <code class="docutils literal notranslate"><span class="pre">tplquad</span></code> can allow you to integrate over more complicated domains.</p>
+<p><code class="docutils literal notranslate"><span class="pre">nquad</span></code> integrates over a hyper cube defined by ranges in the second argument. <code class="docutils literal notranslate"><span class="pre">dblquad</span></code> and <code class="docutils literal notranslate"><span class="pre">tplquad</span></code> can allow you to integrate over more complicated domains.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">nquad</span>
 
-<span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span> <span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">y</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span> <span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">y</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">z</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
 
 <span class="n">nquad</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="p">((</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(13.328354351699288, 1.4389662830175916e-08)
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(5.56795898358481, 1.4605401208842099e-08)
 </pre></div>
 </div>
 </div>
@@ -682,6 +689,113 @@ If we have <span class="math notranslate nohighlight">\(a = x_0 \le x_1 \le ... 
 </div>
 <div class="section" id="monte-carlo-integration">
 <h2>Monte Carlo Integration<a class="headerlink" href="#monte-carlo-integration" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Monte_Carlo_integration">Monte Carlo integration</a> is a method which computes integrals by taking a sum over random samples.</p>
+<p>\begin{equation}
+\int_{a}^b f(x) = \mathbb{E}_{U(a,b)} [f]
+\end{equation}</p>
+<p>Where <span class="math notranslate nohighlight">\(U(a,b)\)</span> is the uniform distribution over the interval <span class="math notranslate nohighlight">\([a,b]\)</span>. We can estimate this expected value by drawing samples from the distribution, and computing</p>
+<p>\begin{equation}
+\mathbb{E}<em>{U(a,b)} [f] \approx \frac{1}{N} \sum</em>{i=1}^N f(x_i), x_i \sim U(a,b)
+\end{equation}</p>
+<p>Or, more generally, we might define an integral over a probability measure <span class="math notranslate nohighlight">\(\mu\)</span></p>
+<p>\begin{equation}
+\int f(x), d\mu(x) = \mathbb{E}<em>{\mu} [f] = \frac{1}{N} \sum</em>{i=1}^N f(x_i), x_i \sim \mu(x)
+\end{equation}</p>
+<p>The expected error can be derived from the law of large numbers, and is typically <span class="math notranslate nohighlight">\(\frac{1}{\sqrt{N}}\)</span>.  In high dimensions, this is typically the most effictive way to integrate functions, as quadrature requires a number of samples that is exponential in terms of the dimension.</p>
+<div class="section" id="example">
+<h3>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
+<p>The classic example of Monte Carlo integration is computing <span class="math notranslate nohighlight">\(\pi\)</span> using random samples.  Recall the area of the unit circle is <span class="math notranslate nohighlight">\(\pi\)</span>, and the area of the square <span class="math notranslate nohighlight">\([-1,1]^2\)</span> is <span class="math notranslate nohighlight">\(4\)</span>.  We sample points uniformly from this square, and compute how many fall in the unit circle - the expected ratio of points inside the circle to the total number of points is <span class="math notranslate nohighlight">\(\pi/4\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_pi_mc</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">r</span> <span class="o">&lt;</span> <span class="mf">1.</span><span class="p">)</span> <span class="o">/</span> <span class="n">n</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">time</span> <span class="n">compute_pi_mc</span><span class="p">(</span><span class="mi">10_000_000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 383 ms, sys: 32.8 ms, total: 416 ms
+Wall time: 416 ms
+</pre></div>
+</div>
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>3.1408504
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can use numba to parallelize this</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numba</span> <span class="kn">import</span> <span class="n">njit</span>
+
+<span class="nd">@njit</span>
+<span class="k">def</span> <span class="nf">compute_pi_mc_numba</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="n">ct</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">ct</span> <span class="o">+=</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">&lt;</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">ct</span> <span class="o">/</span> <span class="n">n</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">time</span> <span class="n">compute_pi_mc_numba</span><span class="p">(</span><span class="mi">10_000_000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 671 ms, sys: 92.1 ms, total: 763 ms
+Wall time: 764 ms
+</pre></div>
+</div>
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>3.1419132
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numba</span> <span class="kn">import</span> <span class="n">njit</span><span class="p">,</span> <span class="n">prange</span>
+
+<span class="nd">@njit</span><span class="p">(</span><span class="n">parallel</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">compute_pi_mc_numba_parallel</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="n">ct</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">prange</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">ct</span> <span class="o">+=</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">&lt;</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">ct</span> <span class="o">/</span> <span class="n">n</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">time</span> <span class="n">compute_pi_mc_numba_parallel</span><span class="p">(</span><span class="mi">10_000_000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.18 s, sys: 136 ms, total: 1.32 s
+Wall time: 871 ms
+</pre></div>
+</div>
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>3.1414128
+</pre></div>
+</div>
+</div>
+</div>
+<p>if we look at the wall time, we see this runs faster than any of the other options</p>
+</div>
 </div>
 </div>
 
