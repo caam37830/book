@@ -416,7 +416,7 @@ f(x) = \exp(-(x^2 - x - 1)^2)
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/differentiation_9_0.png" src="../_images/differentiation_9_0.png" />
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;sympy.plotting.plot.Plot at 0x7fa69c790c70&gt;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;sympy.plotting.plot.Plot at 0x7f741e090430&gt;
 </pre></div>
 </div>
 </div>
@@ -710,7 +710,7 @@ central_difference : 0.7357588760470435
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x7fa69bd6bd00&gt;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x7f741d6e4f70&gt;
 </pre></div>
 </div>
 <img alt="../_images/differentiation_32_1.png" src="../_images/differentiation_32_1.png" />
@@ -808,6 +808,37 @@ central_difference : 0.7357588760470435
 </div>
 </div>
 </div>
+<p>In general, you may wish to define a second-order difference stencil that more naturally maps a discrete function on <code class="docutils literal notranslate"><span class="pre">n</span></code> points to a discrete function on <code class="docutils literal notranslate"><span class="pre">n</span></code> points.  In this situation, we can interpret the second derivative as a diffusion operator.  In this situation, you would use <span class="math notranslate nohighlight">\(\partial^T \partial\)</span> where <span class="math notranslate nohighlight">\(\partial\)</span> is a first-order difference.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">D1</span> <span class="o">=</span> <span class="n">forward_diff_matrix</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">gx</span><span class="p">))</span>
+<span class="n">D2</span> <span class="o">=</span> <span class="n">D1</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">D1</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">D2</span><span class="p">[:</span><span class="mi">4</span><span class="p">,:</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">todense</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">D2</span><span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">:,</span><span class="o">-</span><span class="mi">4</span><span class="p">:]</span><span class="o">.</span><span class="n">todense</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[[ 1 -1  0  0]
+ [-1  2 -1  0]
+ [ 0 -1  2 -1]
+ [ 0  0 -1  2]]
+[[ 2 -1  0  0]
+ [-1  2 -1  0]
+ [ 0 -1  2 -1]
+ [ 0  0 -1  1]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>does the above result rely on the choice of <code class="docutils literal notranslate"><span class="pre">forward_diff_matrix</span></code> vs <code class="docutils literal notranslate"><span class="pre">backward_diff_matrix</span></code>?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="higher-dimensional-grids">
@@ -824,7 +855,7 @@ central_difference : 0.7357588760470435
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/differentiation_45_0.png" src="../_images/differentiation_45_0.png" />
+<img alt="../_images/differentiation_49_0.png" src="../_images/differentiation_49_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -849,7 +880,7 @@ central_difference : 0.7357588760470435
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/differentiation_48_0.png" src="../_images/differentiation_48_0.png" />
+<img alt="../_images/differentiation_52_0.png" src="../_images/differentiation_52_0.png" />
 </div>
 </div>
 <p>The derivative of our function <code class="docutils literal notranslate"><span class="pre">g</span></code> with respect to the <code class="docutils literal notranslate"><span class="pre">x</span></code> variable is <code class="docutils literal notranslate"><span class="pre">cos(x)</span></code>:</p>
@@ -862,7 +893,7 @@ central_difference : 0.7357588760470435
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/differentiation_50_0.png" src="../_images/differentiation_50_0.png" />
+<img alt="../_images/differentiation_54_0.png" src="../_images/differentiation_54_0.png" />
 </div>
 </div>
 <p>If we want to create a numerical y derivative <span class="math notranslate nohighlight">\(\partial_y\)</span>, we can reverse the arguments of <code class="docutils literal notranslate"><span class="pre">kron</span></code>.</p>
@@ -874,10 +905,10 @@ central_difference : 0.7357588760470435
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x7fa69c6b2e50&gt;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x7f741dfced90&gt;
 </pre></div>
 </div>
-<img alt="../_images/differentiation_52_1.png" src="../_images/differentiation_52_1.png" />
+<img alt="../_images/differentiation_56_1.png" src="../_images/differentiation_56_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -889,7 +920,7 @@ central_difference : 0.7357588760470435
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/differentiation_53_0.png" src="../_images/differentiation_53_0.png" />
+<img alt="../_images/differentiation_57_0.png" src="../_images/differentiation_57_0.png" />
 </div>
 </div>
 <div class="section" id="exercise-the-laplacian">
