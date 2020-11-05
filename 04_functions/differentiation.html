@@ -416,7 +416,7 @@ f(x) = \exp(-(x^2 - x - 1)^2)
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/differentiation_9_0.png" src="../_images/differentiation_9_0.png" />
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;sympy.plotting.plot.Plot at 0x7f741e090430&gt;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;sympy.plotting.plot.Plot at 0x7fad2259b190&gt;
 </pre></div>
 </div>
 </div>
@@ -710,7 +710,7 @@ central_difference : 0.7357588760470435
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x7f741d6e4f70&gt;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x7fad21b899a0&gt;
 </pre></div>
 </div>
 <img alt="../_images/differentiation_32_1.png" src="../_images/differentiation_32_1.png" />
@@ -808,25 +808,25 @@ central_difference : 0.7357588760470435
 </div>
 </div>
 </div>
-<p>In general, you may wish to define a second-order difference stencil that more naturally maps a discrete function on <code class="docutils literal notranslate"><span class="pre">n</span></code> points to a discrete function on <code class="docutils literal notranslate"><span class="pre">n</span></code> points.  In this situation, we can interpret the second derivative as a diffusion operator.  In this situation, you would use <span class="math notranslate nohighlight">\(\partial^T \partial\)</span> where <span class="math notranslate nohighlight">\(\partial\)</span> is a first-order difference.</p>
+<p>In general, you may wish to define a second-order difference stencil that more naturally maps a discrete function on <code class="docutils literal notranslate"><span class="pre">n</span></code> points to a discrete function on <code class="docutils literal notranslate"><span class="pre">n</span></code> points.  In this situation, we can interpret the second derivative as a diffusion operator.  In this situation, you would use <span class="math notranslate nohighlight">\(-\partial^T \partial\)</span> where <span class="math notranslate nohighlight">\(\partial\)</span> is a first-order difference.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">D1</span> <span class="o">=</span> <span class="n">forward_diff_matrix</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">gx</span><span class="p">))</span>
-<span class="n">D2</span> <span class="o">=</span> <span class="n">D1</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">D1</span>
+<span class="n">D2</span> <span class="o">=</span> <span class="o">-</span><span class="n">D1</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">D1</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">D2</span><span class="p">[:</span><span class="mi">4</span><span class="p">,:</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">todense</span><span class="p">())</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">D2</span><span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">:,</span><span class="o">-</span><span class="mi">4</span><span class="p">:]</span><span class="o">.</span><span class="n">todense</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[[ 1 -1  0  0]
- [-1  2 -1  0]
- [ 0 -1  2 -1]
- [ 0  0 -1  2]]
-[[ 2 -1  0  0]
- [-1  2 -1  0]
- [ 0 -1  2 -1]
- [ 0  0 -1  1]]
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[[-1  1  0  0]
+ [ 1 -2  1  0]
+ [ 0  1 -2  1]
+ [ 0  0  1 -2]]
+[[-2  1  0  0]
+ [ 1 -2  1  0]
+ [ 0  1 -2  1]
+ [ 0  0  1 -1]]
 </pre></div>
 </div>
 </div>
@@ -905,7 +905,7 @@ central_difference : 0.7357588760470435
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x7f741dfced90&gt;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x7fad224bb670&gt;
 </pre></div>
 </div>
 <img alt="../_images/differentiation_56_1.png" src="../_images/differentiation_56_1.png" />

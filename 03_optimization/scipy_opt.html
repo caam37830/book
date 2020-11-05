@@ -1,0 +1,1279 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Optimization in SciPy &#8212; Scientific Computing with Python</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/mystnb.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Scientific Computing with Python</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_python/python.html">
+   Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01_analysis/analysis.html">
+   Analysis of Algorithms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02_linear_algebra/linear_algebra.html">
+   Linear Algebra
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="optimization.html">
+   Optimization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04_functions/functions.html">
+   Functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05_graphs/graphs.html">
+   Graphs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06_probability_statistics/prob_stat.html">
+   Probability and Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../07_data/data.html">
+   Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../08_geometry/geometry.html">
+   Geometry
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../09_computing/computing.html">
+   Computing
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/03_optimization/scipy_opt.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/caam37830/book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/caam37830/book/issues/new?title=Issue%20on%20page%20%2F03_optimization/scipy_opt.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/caam37830/book/master?urlpath=tree/03_optimization/scipy_opt.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/caam37830/book/blob/master/03_optimization/scipy_opt.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#functions-of-one-variable">
+   Functions of One Variable
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#functions-of-multiple-variables">
+   Functions of Multiple variables
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-solving-a-linear-system">
+     Example: Solving a Linear System
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercises">
+     Exercises
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#constraints">
+   Constraints
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#linear-constraints">
+     Linear Constraints
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#nonlinear-constraints">
+     Nonlinear constraints
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-eigenvalues-and-eigenvectors">
+     Example: Eigenvalues and Eigenvectors
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optimization-options">
+   Optimization Options
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#jacobian">
+     Jacobian
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hessian">
+     Hessian
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#solvers">
+     Solvers
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#global-optimization">
+   Global Optimization
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#finding-roots">
+   Finding Roots
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise">
+     Exercise
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="optimization-in-scipy">
+<h1>Optimization in SciPy<a class="headerlink" href="#optimization-in-scipy" title="Permalink to this headline">¶</a></h1>
+<p>Optimization seeks to find the best (optimal) value of some function subject to constraints</p>
+<p>\begin{equation}
+\mathop{\mathsf{minimize}}_x f(x)\
+\text{subject to } c(x) \le b
+\end{equation}</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy.linalg</span> <span class="k">as</span> <span class="nn">la</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">scipy.optimize</span> <span class="k">as</span> <span class="nn">opt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="functions-of-one-variable">
+<h2>Functions of One Variable<a class="headerlink" href="#functions-of-one-variable" title="Permalink to this headline">¶</a></h2>
+<p>An easy example is to minimze a quadratic</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">500</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/scipy_opt_3_0.png" src="../_images/scipy_opt_3_0.png" />
+</div>
+</div>
+<p>There is a clear minimum at <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">0</span></code>.  You can search for minima using <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize_scalar.html#scipy.optimize.minimize_scalar"><code class="docutils literal notranslate"><span class="pre">opt.minimize_scalar</span></code></a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sol</span> <span class="o">=</span> <span class="n">opt</span><span class="o">.</span><span class="n">minimize_scalar</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="n">sol</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>     fun: 0.0
+    nfev: 8
+     nit: 4
+ success: True
+       x: 0.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>The return type gives you the function value <code class="docutils literal notranslate"><span class="pre">sol.fun</span></code>, as well as the value of <code class="docutils literal notranslate"><span class="pre">x</span></code> which achieve the minimum <code class="docutils literal notranslate"><span class="pre">sol.x</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">500</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">([</span><span class="n">sol</span><span class="o">.</span><span class="n">x</span><span class="p">],</span> <span class="p">[</span><span class="n">sol</span><span class="o">.</span><span class="n">fun</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;solution&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/scipy_opt_7_0.png" src="../_images/scipy_opt_7_0.png" />
+</div>
+</div>
+<p>If you want to add constraints such as <span class="math notranslate nohighlight">\(x \ge 1\)</span>, you can use <code class="docutils literal notranslate"><span class="pre">bounds</span></code>, along with specifying the <code class="docutils literal notranslate"><span class="pre">bounded</span></code> method:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sol</span> <span class="o">=</span> <span class="n">opt</span><span class="o">.</span><span class="n">minimize_scalar</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">),</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;bounded&#39;</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">500</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">([</span><span class="n">sol</span><span class="o">.</span><span class="n">x</span><span class="p">],</span> <span class="p">[</span><span class="n">sol</span><span class="o">.</span><span class="n">fun</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;solution&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/scipy_opt_9_0.png" src="../_images/scipy_opt_9_0.png" />
+</div>
+</div>
+<p>For more complicated functions, there may be multiple solutions</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">500</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/scipy_opt_11_0.png" src="../_images/scipy_opt_11_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sol</span> <span class="o">=</span> <span class="n">opt</span><span class="o">.</span><span class="n">minimize_scalar</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">([</span><span class="n">sol</span><span class="o">.</span><span class="n">x</span><span class="p">],</span> <span class="p">[</span><span class="n">sol</span><span class="o">.</span><span class="n">fun</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;solution&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/scipy_opt_12_0.png" src="../_images/scipy_opt_12_0.png" />
+</div>
+</div>
+<p>Note that you will only find one minimum, and this minimum will generally only be a local minimum, not a global minimum.</p>
+</div>
+<div class="section" id="functions-of-multiple-variables">
+<h2>Functions of Multiple variables<a class="headerlink" href="#functions-of-multiple-variables" title="Permalink to this headline">¶</a></h2>
+<p>You might also wish to minimize functions of multiple variables.  In this case, you use <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize"><code class="docutils literal notranslate"><span class="pre">opt.minimize</span></code></a></p>
+<p>A multivariate quadratic generally has the form <code class="docutils literal notranslate"><span class="pre">x^T</span> <span class="pre">A</span> <span class="pre">x</span> <span class="pre">+</span> <span class="pre">b^T</span> <span class="pre">x</span> <span class="pre">+</span> <span class="pre">c</span></code>, where <code class="docutils literal notranslate"><span class="pre">x</span></code> is <code class="docutils literal notranslate"><span class="pre">n</span></code>-dimensional vector, <code class="docutils literal notranslate"><span class="pre">A</span></code> is a <code class="docutils literal notranslate"><span class="pre">n</span></code> x <code class="docutils literal notranslate"><span class="pre">n</span></code> matrix, <code class="docutils literal notranslate"><span class="pre">b</span></code> is a <code class="docutils literal notranslate"><span class="pre">n</span></code>-dimensional vector, and <code class="docutils literal notranslate"><span class="pre">c</span></code> is a scalar.  When <code class="docutils literal notranslate"><span class="pre">A</span></code> is positive definite (PD), there is a unique minimum.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">A</span>
+
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+<span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">b</span><span class="p">,</span> <span class="n">A</span> <span class="o">@</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">b</span><span class="p">))</span> <span class="c1"># (x - b)^T A (x - b)</span>
+
+<span class="n">sol</span> <span class="o">=</span> <span class="n">opt</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+<span class="n">sol</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>      fun: 1.611629177132287e-15
+ hess_inv: array([[0.06362134, 0.06417033],
+       [0.06417033, 0.22237063]])
+      jac: array([-9.30678821e-10,  8.71035378e-10])
+  message: &#39;Optimization terminated successfully.&#39;
+     nfev: 15
+      nit: 3
+     njev: 5
+   status: 0
+  success: True
+        x: array([0.57811132, 0.79729691])
+</pre></div>
+</div>
+</div>
+</div>
+<p>The solution for the above problem is <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">b</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">b</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[0.57811132 0.79729691]
+[0.57811133 0.79729693]
+2.496930290938488e-08
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can increase the dimension of the problem to be much greater:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">A</span>
+
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+<span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">b</span><span class="p">,</span> <span class="n">A</span> <span class="o">@</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">b</span><span class="p">))</span> <span class="c1"># (x - b)^T A (x - b)</span>
+
+<span class="n">sol</span> <span class="o">=</span> <span class="n">opt</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">b</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>6.834698834159777e-05
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="example-solving-a-linear-system">
+<h3>Example: Solving a Linear System<a class="headerlink" href="#example-solving-a-linear-system" title="Permalink to this headline">¶</a></h3>
+<p>Recall that solving a linear system means finding <span class="math notranslate nohighlight">\(x\)</span> so that <span class="math notranslate nohighlight">\(A x = b\)</span>. We can turn this into an optimization problem by seeking to minimize the residual <span class="math notranslate nohighlight">\(\|b - Ax\|_2\)</span>:
+\begin{equation}
+\mathop{\mathsf{minimize}}_x |b - Ax|_2\
+\end{equation}</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+<span class="n">x0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="c1"># ground truth x</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">x0</span>
+
+<span class="n">sol</span> <span class="o">=</span> <span class="n">opt</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">b</span> <span class="o">-</span> <span class="n">A</span> <span class="o">@</span> <span class="n">x</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+<span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">x0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>6.766494363440067e-07
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="exercises">
+<h3>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
+<li><p>Modify the above example to minimize <span class="math notranslate nohighlight">\(\|b-Ax\|_1\)</span> instead of <span class="math notranslate nohighlight">\(\| b - Ax\|_2\)</span> (look at documentation for <code class="docutils literal notranslate"><span class="pre">la.norm</span></code>).  Is there any difference in the output of <code class="docutils literal notranslate"><span class="pre">opt.minimize</span></code>?</p></li>
+<li><p>How fast is <code class="docutils literal notranslate"><span class="pre">la.solve</span></code> compared to the above example?</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="constraints">
+<h2>Constraints<a class="headerlink" href="#constraints" title="Permalink to this headline">¶</a></h2>
+<p>Passing in a function to be optimized is fairly straightforward.  Constraints are slightly less trivial.  These are specified using classes <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.LinearConstraint.html#scipy.optimize.LinearConstraint"><code class="docutils literal notranslate"><span class="pre">LinearConstraint</span></code></a> and <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.NonlinearConstraint.html#scipy.optimize.NonlinearConstraint"><code class="docutils literal notranslate"><span class="pre">NonlinearConstraint</span></code></a></p>
+<ul class="simple">
+<li><p>Linear constraints take the form <code class="docutils literal notranslate"><span class="pre">lb</span> <span class="pre">&lt;=</span> <span class="pre">A</span> <span class="pre">&#64;</span> <span class="pre">x</span> <span class="pre">&lt;=</span> <span class="pre">ub</span></code></p></li>
+<li><p>Nonlinear constraints take the form <code class="docutils literal notranslate"><span class="pre">lb</span> <span class="pre">&lt;=</span> <span class="pre">fun(x)</span> <span class="pre">&lt;=</span> <span class="pre">ub</span></code></p></li>
+</ul>
+<p>For the special case of a linear constraint with the form <code class="docutils literal notranslate"><span class="pre">lb</span> <span class="pre">&lt;=</span> <span class="pre">x</span> <span class="pre">&lt;=</span> <span class="pre">ub</span></code>, you can use <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.Bounds.html#scipy.optimize.Bounds"><code class="docutils literal notranslate"><span class="pre">Bounds</span></code></a></p>
+<div class="section" id="linear-constraints">
+<h3>Linear Constraints<a class="headerlink" href="#linear-constraints" title="Permalink to this headline">¶</a></h3>
+<p>Let’s look at how you might implement the linear constraints on a 2-vector x
+\begin{equation}
+\begin{cases}
+-1 \le x_0 \le 1\
+c \le A * x \le d
+\end{cases}
+\end{equation}
+where <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">=</span> <span class="pre">np.array([[1,1],[0,</span> <span class="pre">1]]</span></code>, <code class="docutils literal notranslate"><span class="pre">c</span> <span class="pre">=</span> <span class="pre">-2</span> <span class="pre">*</span> <span class="pre">np.ones(2)</span></code>, and <code class="docutils literal notranslate"><span class="pre">d</span> <span class="pre">=</span> <span class="pre">2</span> <span class="pre">*</span> <span class="pre">np.ones(2)</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">Bounds</span><span class="p">,</span> <span class="n">LinearConstraint</span>
+
+<span class="c1"># constraint 1</span>
+<span class="n">C1</span> <span class="o">=</span> <span class="n">Bounds</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">]))</span>
+
+<span class="c1"># constraint 2</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">c</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">d</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">C2</span> <span class="o">=</span> <span class="n">LinearConstraint</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>here’s a visualization of the constrained region:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">xx</span><span class="p">,</span> <span class="n">yy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">n</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">n</span><span class="p">))</span>
+
+<span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">xx</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">],</span> <span class="n">yy</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]])</span>
+        <span class="c1"># constraint 1 </span>
+        <span class="n">c1</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="o">&lt;=</span> <span class="n">xx</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">1</span>
+        <span class="c1"># constraint 2</span>
+        <span class="n">c2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">((</span><span class="n">c</span> <span class="o">&lt;=</span> <span class="n">A</span><span class="nd">@x</span><span class="p">,</span> <span class="n">A</span><span class="nd">@x</span> <span class="o">&lt;=</span> <span class="n">d</span><span class="p">))</span>
+        <span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">c1</span> <span class="ow">and</span> <span class="n">c2</span>
+        
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/scipy_opt_27_0.png" src="../_images/scipy_opt_27_0.png" />
+</div>
+</div>
+<p>Now, let’s say we want to minimize a function <code class="docutils literal notranslate"><span class="pre">f(x)</span></code> subject to <code class="docutils literal notranslate"><span class="pre">x</span></code> obeying the constraints given above.  We can simply pass in the constraints</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">sol</span> <span class="o">=</span> <span class="n">opt</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">bounds</span><span class="o">=</span><span class="n">C1</span><span class="p">,</span> <span class="n">constraints</span><span class="o">=</span><span class="p">(</span><span class="n">C2</span><span class="p">,))</span>
+<span class="n">sol</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>     fun: -2.000000000361208
+     jac: array([ 2., -1.])
+ message: &#39;Optimization terminated successfully&#39;
+    nfev: 18
+     nit: 6
+    njev: 6
+  status: 0
+ success: True
+       x: array([-1.,  2.])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s visualize the function in the constrained region:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">F</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]:</span>
+            <span class="n">F</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span><span class="p">([</span><span class="n">xx</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">],</span> <span class="n">yy</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">F</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+            
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/scipy_opt_31_0.png" src="../_images/scipy_opt_31_0.png" />
+</div>
+</div>
+<p>We see that <code class="docutils literal notranslate"><span class="pre">[-1,2]</span></code> does appear to be a minimum</p>
+</div>
+<div class="section" id="nonlinear-constraints">
+<h3>Nonlinear constraints<a class="headerlink" href="#nonlinear-constraints" title="Permalink to this headline">¶</a></h3>
+<p>Nonlinear constraints can be used to define more complicated domains.  For instance, let’s look at the constraint
+\begin{equation}
+1 \le | x |_2 \le 2
+\end{equation}</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">NonlinearConstraint</span>
+
+<span class="n">C3</span> <span class="o">=</span> <span class="n">NonlinearConstraint</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>we can visualize this constraint again, and we see that it defines an annulus</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">xx</span><span class="p">,</span> <span class="n">yy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">n</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">n</span><span class="p">))</span>
+
+<span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">xx</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">],</span> <span class="n">yy</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]])</span>
+        <span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">&lt;=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">2</span>
+        
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/scipy_opt_36_0.png" src="../_images/scipy_opt_36_0.png" />
+</div>
+</div>
+<p>Let’s try minimizing the same function as before: <span class="math notranslate nohighlight">\(f(x) = x[0] * x[1]\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">F</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]:</span>
+            <span class="n">F</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span><span class="p">([</span><span class="n">xx</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">],</span> <span class="n">yy</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">F</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+            
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/scipy_opt_38_0.png" src="../_images/scipy_opt_38_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sol</span> <span class="o">=</span> <span class="n">opt</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">constraints</span><span class="o">=</span><span class="p">(</span><span class="n">C3</span><span class="p">,))</span>
+<span class="n">sol</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>     fun: -2.0000000000056213
+     jac: array([ 1.41421357, -1.41421357])
+ message: &#39;Optimization terminated successfully&#39;
+    nfev: 39
+     nit: 14
+    njev: 13
+  status: 0
+ success: True
+       x: array([-1.41421355,  1.41421357])
+</pre></div>
+</div>
+</div>
+</div>
+<p>we see that the solution is close to a true minimizer <span class="math notranslate nohighlight">\(x = [-\sqrt{2}, \sqrt{2}]\)</span></p>
+</div>
+<div class="section" id="example-eigenvalues-and-eigenvectors">
+<h3>Example: Eigenvalues and Eigenvectors<a class="headerlink" href="#example-eigenvalues-and-eigenvectors" title="Permalink to this headline">¶</a></h3>
+<p>One example of an optimzation problem is to find the largest eigenvalue/eigenvector pair of a matrix <span class="math notranslate nohighlight">\(A\)</span>.  If <span class="math notranslate nohighlight">\(A\)</span> is symmetric, and <span class="math notranslate nohighlight">\((\lambda, x)\)</span> is the largest eigenvalue pair, then <span class="math notranslate nohighlight">\(x\)</span> satisfies
+\begin{equation}
+\mathop{\mathsf{minimize}}_x -x^T A x\
+\text{subject to } |x|_2 = 1
+\end{equation}</p>
+<p>And we have <span class="math notranslate nohighlight">\(x^T A x = \lambda\)</span>.  Let’s try encoding this as an optimization problem.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">A</span> <span class="o">+</span> <span class="n">A</span><span class="o">.</span><span class="n">T</span> <span class="c1"># make symmetric</span>
+
+<span class="n">NormConst</span> <span class="o">=</span> <span class="n">NonlinearConstraint</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># norm constraint</span>
+<span class="n">sol</span> <span class="o">=</span> <span class="n">opt</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">A</span> <span class="o">@</span> <span class="n">x</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">constraints</span><span class="o">=</span><span class="p">(</span><span class="n">NormConst</span><span class="p">,</span> <span class="p">))</span>
+<span class="n">sol</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>     fun: -3.6033013077763396
+     jac: array([-1.97485864,  3.03136632,  5.58451846, -2.06871939,  1.83832112])
+ message: &#39;Optimization terminated successfully&#39;
+    nfev: 321
+     nit: 50
+    njev: 50
+  status: 0
+ success: True
+       x: array([ 0.27403579, -0.42065282, -0.77491505,  0.28704302, -0.25508546])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s take a look at a solution obtained using <code class="docutils literal notranslate"><span class="pre">eigh</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy.linalg</span> <span class="k">as</span> <span class="nn">la</span>
+<span class="n">lam</span><span class="p">,</span> <span class="n">V</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="n">lam</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">V</span><span class="p">[:,</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># largest eigenpair</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(3.603301194020724,
+ array([-0.27403833,  0.42064425,  0.77491554, -0.28704978,  0.2550877 ]))
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;error in eigenvalue: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lam</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">sol</span><span class="o">.</span><span class="n">fun</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;error in eigenvector: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">V</span><span class="p">[:,</span><span class="o">-</span><span class="mi">1</span><span class="p">])))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>error in eigenvalue: -1.1375561559390235e-07
+error in eigenvector: 2.000000015874465
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="optimization-options">
+<h2>Optimization Options<a class="headerlink" href="#optimization-options" title="Permalink to this headline">¶</a></h2>
+<p>So far, we haven’t worried too much about the internals of <code class="docutils literal notranslate"><span class="pre">opt.minimize</span></code>.  However, for large problems, you’re often going to want to choose an appropriate solver, and provide Jacobian and Hessian information if you are able to.</p>
+<p>A list of available solvers is available <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/optimize.html#local-multivariate-optimization">in the <code class="docutils literal notranslate"><span class="pre">minimize</span></code> documentation</a>.</p>
+<div class="section" id="jacobian">
+<h3>Jacobian<a class="headerlink" href="#jacobian" title="Permalink to this headline">¶</a></h3>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Jacobian_matrix_and_determinant">Jacobian</a> of a multi-valued function <span class="math notranslate nohighlight">\(f: \mathbb{R}^n \to \mathbb{R}^m\)</span> is the <span class="math notranslate nohighlight">\(m\times n\)</span> matrix <span class="math notranslate nohighlight">\(J_f\)</span>, where
+\begin{equation}
+J_f[i,j] = \frac{\partial{f}_i}{\partial{x_j}}
+\end{equation}</p>
+<p>If <span class="math notranslate nohighlight">\(f\)</span> is scalar-valued (i.e. <span class="math notranslate nohighlight">\(m = 1\)</span>), then the Jacobian is the transpose of the gradient <span class="math notranslate nohighlight">\(J_f = (\nabla f)^T\)</span></p>
+<p>In our examples so far, we only provided the function.  If you are able to provide the Jacobian as well, then you can typically solve problems with fewer function evaluations because you have better information about how to decrease the function value.  If you don’t provide the Jacobian, many solvers will try to approximate the Jacobian using finite difference approximations, but these are typically less accurate (and slower) than if you can give an explicit formula.</p>
+<p>Note that you can also provide a Jacobian to <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.NonlinearConstraint.html#scipy.optimize.NonlinearConstraint"><code class="docutils literal notranslate"><span class="pre">NonlinearConstraint</span></code></a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># function definition</span>
+<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="c1"># Jacobian of function</span>
+<span class="k">def</span> <span class="nf">Jf</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])])</span>
+
+<span class="n">x0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="o">%</span><span class="n">time</span> <span class="n">sol1</span> <span class="o">=</span> <span class="n">opt</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x0</span><span class="p">)</span>
+<span class="n">sol1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 3.05 ms, sys: 962 µs, total: 4.02 ms
+Wall time: 3.5 ms
+</pre></div>
+</div>
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>      fun: -1.9999999999998537
+ hess_inv: array([[ 1.01663102, -0.0058781 ],
+       [-0.0058781 ,  1.00206651]])
+      jac: array([-5.06639481e-07,  1.93715096e-07])
+  message: &#39;Optimization terminated successfully.&#39;
+     nfev: 39
+      nit: 8
+     njev: 13
+   status: 0
+  success: True
+        x: array([ 3.14159214, -1.57079615])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">time</span> <span class="n">sol2</span> <span class="o">=</span> <span class="n">opt</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">jac</span><span class="o">=</span><span class="n">Jf</span><span class="p">)</span>
+<span class="n">sol2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 839 µs, sys: 2.01 ms, total: 2.84 ms
+Wall time: 2.06 ms
+</pre></div>
+</div>
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>      fun: -1.9999999999998581
+ hess_inv: array([[ 1.01663794, -0.00586647],
+       [-0.00586647,  1.00206855]])
+      jac: array([-5.02426016e-07,  1.77157416e-07])
+  message: &#39;Optimization terminated successfully.&#39;
+     nfev: 13
+      nit: 8
+     njev: 13
+   status: 0
+  success: True
+        x: array([ 3.14159215, -1.57079615])
+</pre></div>
+</div>
+</div>
+</div>
+<p>We see that when we provoide the Jacobian, the number of function evaluations <code class="docutils literal notranslate"><span class="pre">nfev</span></code> decreases.</p>
+</div>
+<div class="section" id="hessian">
+<h3>Hessian<a class="headerlink" href="#hessian" title="Permalink to this headline">¶</a></h3>
+<p>The Hessian of a multivariate function <span class="math notranslate nohighlight">\(f: \mathbb{R}^n \to \mathbb{R}\)</span> is a <span class="math notranslate nohighlight">\(n\times n\)</span> matrix <span class="math notranslate nohighlight">\(H_f\)</span> of second derivatives:
+\begin{equation}
+H[i,j] = \frac{\partial^2 f}{\partial x_i \partial x_j}
+\end{equation}</p>
+<p>The Hessian provides information about the <em>curvature</em> of the function <span class="math notranslate nohighlight">\(f\)</span>, which can be used to accelerate convergence of the optimization algorithm.  If you don’t provide the Hessian, many solvers will numerically approximate it, which will typically not work as well as an explicit Hessian.</p>
+<p>Again, you can also provide a Hessian to <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.NonlinearConstraint.html#scipy.optimize.NonlinearConstraint"><code class="docutils literal notranslate"><span class="pre">NonlinearConstraint</span></code></a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Hf</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])]])</span>
+
+<span class="o">%</span><span class="n">time</span> <span class="n">sol3</span> <span class="o">=</span> <span class="n">opt</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">jac</span><span class="o">=</span><span class="n">Jf</span><span class="p">,</span> <span class="n">hess</span><span class="o">=</span><span class="n">Hf</span><span class="p">)</span>
+<span class="n">sol3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 2.91 ms, sys: 45 µs, total: 2.96 ms
+Wall time: 2.26 ms
+</pre></div>
+</div>
+<div class="stderr docutils container">
+<pre class="stderr literal-block">/home/brad/miniconda3/envs/pycourse/lib/python3.8/site-packages/scipy/optimize/_minimize.py:522: RuntimeWarning: Method BFGS does not use Hessian information (hess).
+  warn('Method %s does not use Hessian information (hess).' % method,
+</pre>
+</div>
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>      fun: -1.9999999999998581
+ hess_inv: array([[ 1.01663794, -0.00586647],
+       [-0.00586647,  1.00206855]])
+      jac: array([-5.02426016e-07,  1.77157416e-07])
+  message: &#39;Optimization terminated successfully.&#39;
+     nfev: 13
+      nit: 8
+     njev: 13
+   status: 0
+  success: True
+        x: array([ 3.14159215, -1.57079615])
+</pre></div>
+</div>
+</div>
+</div>
+<p>We see that the defualt method <code class="docutils literal notranslate"><span class="pre">BFGS</span></code> does not use the Hessian.  Let’s choose one that does, like <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/optimize.minimize-newtoncg.html"><code class="docutils literal notranslate"><span class="pre">Newton-CG</span></code></a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Hf</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])]])</span>
+
+<span class="o">%</span><span class="n">time</span> <span class="n">sol3</span> <span class="o">=</span> <span class="n">opt</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">jac</span><span class="o">=</span><span class="n">Jf</span><span class="p">,</span> <span class="n">hess</span><span class="o">=</span><span class="n">Hf</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;Newton-CG&#39;</span><span class="p">)</span>
+<span class="n">sol3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 2.33 ms, sys: 65 µs, total: 2.39 ms
+Wall time: 1.66 ms
+</pre></div>
+</div>
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>     fun: -2.0
+     jac: array([-8.17951147e-07,  6.30027564e-07])
+ message: &#39;Optimization terminated successfully.&#39;
+    nfev: 7
+    nhev: 6
+     nit: 6
+    njev: 7
+  status: 0
+ success: True
+       x: array([ 3.14159265, -1.57079633])
+</pre></div>
+</div>
+</div>
+</div>
+<p>As we see above, we only compute the function, Jacobian and Hessian for 5 iterations.  The wall time is about 5x as fast as when we didn’t provide any of this additional information as well.  This will matter more for larger problems.</p>
+</div>
+<div class="section" id="solvers">
+<h3>Solvers<a class="headerlink" href="#solvers" title="Permalink to this headline">¶</a></h3>
+<p>Here’s a guide to a couple of different solvers.  See the <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize">notes section of <code class="docutils literal notranslate"><span class="pre">minimize</span></code></a> for additional details.</p>
+<ul class="simple">
+<li><p>Unconstrained minimization: <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/optimize.minimize-bfgs.html"><code class="docutils literal notranslate"><span class="pre">BFGS</span></code></a> - uses Jacobian evaluations to get a low-rank approximation to the Hessian.</p></li>
+<li><p>Bound constrained minimization: <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/optimize.minimize-lbfgsb.html"><code class="docutils literal notranslate"><span class="pre">L-BFGS-B</span></code></a> - Variation of BFGS which uses limited memory (the <code class="docutils literal notranslate"><span class="pre">L</span></code>).  Use with very large problems.  Only uses Jacobian (not Hessian).</p></li>
+<li><p>Unconstrained minimization with Jacobian/Hessian: <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/optimize.minimize-newtoncg.html"><code class="docutils literal notranslate"><span class="pre">Newton-CG</span></code></a> - uses Jacobian and Hessian to exactly solve quadratic approximations to the objective.</p></li>
+<li><p>General constrained minimization: <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/optimize.minimize-trustconstr.html#optimize-minimize-trustconstr"><code class="docutils literal notranslate"><span class="pre">trust-const</span></code></a> - a trust region method for constrained optimization problems.  Can use the Hessian of both the objective and constraints.</p></li>
+</ul>
+<p>You can find a lot of information and examples about these different options in the <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/tutorial/optimize.html"><code class="docutils literal notranslate"><span class="pre">scipy.optimize</span></code> tutorial</a></p>
+</div>
+</div>
+<div class="section" id="global-optimization">
+<h2>Global Optimization<a class="headerlink" href="#global-optimization" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">opt.minimize</span></code> is good for finding local minima of functions.  This often works well when you have a single minimum, or if you don’t care too much about finding the global minimum.</p>
+<p>What if your function has many local minima, but you want to find the global minimum?  You can use one of the <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/optimize.html#global-optimization">global optimization functions</a>.</p>
+<p>Note that finding a global minumum is generally a much more difficult problem than finding a local minimum, and these functions are not guranteed to find the true global minimum, and may not be very fast.</p>
+<p>Here’s an example of a function which has a global minimum, but many local minima:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># global minimum at (pi, -pi/2)</span>
+<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="n">a</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">a</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>we can use the <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.basinhopping.html#scipy.optimize.basinhopping"><code class="docutils literal notranslate"><span class="pre">basinhopping</span></code></a> solver to look for this minimum</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sol</span> <span class="o">=</span> <span class="n">opt</span><span class="o">.</span><span class="n">basinhopping</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="mi">10</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">sol</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>                        fun: 1.2144798903821437
+ lowest_optimization_result:       fun: 1.2144798903821437
+ hess_inv: array([[2.55268559e+00, 1.84418555e-03],
+       [1.84418555e-03, 8.33790968e-01]])
+      jac: array([1.49011612e-08, 1.49011612e-08])
+  message: &#39;Optimization terminated successfully.&#39;
+     nfev: 21
+      nit: 6
+     njev: 7
+   status: 0
+  success: True
+        x: array([ 8.0478878 , -1.57079633])
+                    message: [&#39;requested number of basinhopping iterations completed successfully&#39;]
+      minimization_failures: 0
+                       nfev: 2133
+                        nit: 100
+                       njev: 711
+                          x: array([ 8.0478878 , -1.57079633])
+</pre></div>
+</div>
+</div>
+</div>
+<p>as we see, we find a local minimum, but not the global minimum.  We can increase the number of basin-hopping iterations, and increase the “temperature” <code class="docutils literal notranslate"><span class="pre">T</span></code>, which governs the hop size to be the approximate distance between local minima.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">time</span> <span class="n">sol</span> <span class="o">=</span> <span class="n">opt</span><span class="o">.</span><span class="n">basinhopping</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="mi">10</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">T</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">niter</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">sol</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.38 s, sys: 1.96 ms, total: 1.39 s
+Wall time: 1.39 s
+</pre></div>
+</div>
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>                        fun: -2.0
+ lowest_optimization_result:       fun: -2.0
+ hess_inv: array([[ 0.83462124, -0.00156434],
+       [-0.00156434,  0.83506872]])
+      jac: array([2.98023224e-08, 0.00000000e+00])
+  message: &#39;Optimization terminated successfully.&#39;
+     nfev: 18
+      nit: 5
+     njev: 6
+   status: 0
+  success: True
+        x: array([ 3.14159266, -1.57079634])
+                    message: [&#39;requested number of basinhopping iterations completed successfully&#39;]
+      minimization_failures: 0
+                       nfev: 17292
+                        nit: 1000
+                       njev: 5764
+                          x: array([ 3.14159266, -1.57079634])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, we get the true minimization value.</p>
+<p>Here’s the same problem using <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.dual_annealing.html#scipy.optimize.dual_annealing"><code class="docutils literal notranslate"><span class="pre">opt.dual_annealing</span></code></a>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">time</span> <span class="n">sol</span> <span class="o">=</span> <span class="n">opt</span><span class="o">.</span><span class="n">dual_annealing</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="p">[[</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span><span class="mi">100</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span><span class="mi">100</span><span class="p">]])</span>
+<span class="n">sol</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 228 ms, sys: 0 ns, total: 228 ms
+Wall time: 226 ms
+</pre></div>
+</div>
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>     fun: -1.9999999999999998
+ message: [&#39;Maximum number of iteration reached&#39;]
+    nfev: 4031
+    nhev: 0
+     nit: 1000
+    njev: 10
+  status: 0
+ success: True
+       x: array([ 3.14159265, -1.57079635])
+</pre></div>
+</div>
+</div>
+</div>
+<p>This runs much faster, and doesn’t need as much tweaking of the arguments.  However, we had to specify bounds in which we would look for the solution.</p>
+</div>
+<div class="section" id="finding-roots">
+<h2>Finding Roots<a class="headerlink" href="#finding-roots" title="Permalink to this headline">¶</a></h2>
+<p>A root of a function <span class="math notranslate nohighlight">\(f: \mathbb{R}^m \to \mathbb{R}^n\)</span> is a point <span class="math notranslate nohighlight">\(x\)</span> so that <span class="math notranslate nohighlight">\(f(x) = 0\)</span>.  The go-to function for this is <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.root.html#scipy.optimize.root"><code class="docutils literal notranslate"><span class="pre">opt.root</span></code></a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">sol</span> <span class="o">=</span> <span class="n">opt</span><span class="o">.</span><span class="n">root</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">sol</span><span class="o">.</span><span class="n">fun</span><span class="p">)</span> <span class="c1"># root and value</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[-1.02986653] [0.]
+</pre></div>
+</div>
+</div>
+</div>
+<p>for scalar functions, you can also use <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.root_scalar.html#scipy.optimize.root_scalar"><code class="docutils literal notranslate"><span class="pre">root_scalar</span></code></a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sol</span> <span class="o">=</span> <span class="n">opt</span><span class="o">.</span><span class="n">root_scalar</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x0</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">x1</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">sol</span><span class="o">.</span><span class="n">root</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>-1.0298665293222544
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can also find roots of multi-valued functions.  E.g. if we want to solve the nonlinear system
+\begin{equation}
+x_0 \cos(x_1) = 4\
+x_0 x_1 - x_1 = 5
+\end{equation}</p>
+<p>we can seek to find a root
+\begin{equation}
+x_0 \cos(x_1) - 4 = 0\
+x_0 x_1 - x_1 - 5 = 0
+\end{equation}</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">-</span> <span class="mi">4</span><span class="p">,</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">5</span><span class="p">]</span>
+
+<span class="o">%</span><span class="n">time</span> <span class="n">sol</span> <span class="o">=</span> <span class="n">opt</span><span class="o">.</span><span class="n">root</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">sol</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 209 µs, sys: 7 µs, total: 216 µs
+Wall time: 180 µs
+</pre></div>
+</div>
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>    fjac: array([[-0.56248005, -0.82681085],
+       [ 0.82681085, -0.56248005]])
+     fun: array([3.73212572e-12, 1.61710645e-11])
+ message: &#39;The solution converged.&#39;
+    nfev: 17
+     qtf: array([6.25677420e-08, 2.40104774e-08])
+       r: array([-1.0907073 , -1.7621827 , -7.37420598])
+  status: 1
+ success: True
+       x: array([6.50409711, 0.90841421])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">sol</span><span class="o">.</span><span class="n">fun</span><span class="p">)</span> <span class="c1"># root and value</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[6.50409711 0.90841421] [3.73212572e-12 1.61710645e-11]
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can also specify the Jacobian for faster convergence (in this case, the Jacobian is <span class="math notranslate nohighlight">\(2 \times 2\)</span>)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># returns the function and Jacobian as tuple</span>
+<span class="k">def</span> <span class="nf">f2</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">-</span> <span class="mi">4</span><span class="p">,</span>
+          <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">5</span><span class="p">]</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="o">-</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])],</span>
+                   <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]])</span>
+    <span class="k">return</span> <span class="n">f</span><span class="p">,</span> <span class="n">df</span>
+    
+<span class="o">%</span><span class="n">time</span> <span class="n">sol</span> <span class="o">=</span> <span class="n">opt</span><span class="o">.</span><span class="n">root</span><span class="p">(</span><span class="n">f2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">jac</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;lm&#39;</span><span class="p">)</span>
+<span class="n">sol</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.32 ms, sys: 11 µs, total: 1.33 ms
+Wall time: 924 µs
+</pre></div>
+</div>
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>   cov_x: array([[ 0.87470958, -0.02852752],
+       [-0.02852752,  0.01859874]])
+    fjac: array([[ 7.52318843, -0.73161761],
+       [ 0.24535902, -1.06922242]])
+     fun: array([0., 0.])
+    ipvt: array([2, 1], dtype=int32)
+ message: &#39;The relative error between two consecutive iterates is at most 0.000000&#39;
+    nfev: 8
+    njev: 7
+     qtf: array([9.53776817e-13, 1.20713548e-13])
+  status: 2
+ success: True
+       x: array([6.50409711, 0.90841421])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">sol</span><span class="o">.</span><span class="n">fun</span><span class="p">)</span> <span class="c1"># root and value</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[6.50409711 0.90841421] [0. 0.]
+</pre></div>
+</div>
+</div>
+</div>
+<p>We see that the computed root in this case satisfies the equations more precisely.</p>
+<div class="section" id="exercise">
+<h3>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h3>
+<p>Compute a root of the above example using <code class="docutils literal notranslate"><span class="pre">opt.minimize</span></code> instead of <code class="docutils literal notranslate"><span class="pre">opt.root</span></code>.  One way to do this is to minimize <span class="math notranslate nohighlight">\(\|f(x)\|\)</span>.  Do the results differ if you use a 1-norm vs a 2-norm?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "pycourse"
+        },
+        kernelOptions: {
+            kernelName: "pycourse",
+            path: "./03_optimization"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'pycourse'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Brad Nelson<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../_static/js/index.js"></script>
+    
+  </body>
+</html>
