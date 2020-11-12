@@ -244,6 +244,11 @@
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-sets">
+   Data Sets
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#regression">
    Regression
   </a>
@@ -301,21 +306,42 @@
 <li><p>Clustering: predict a category from data points, given only data points</p></li>
 <li><p>Dimensionality reduction: make data points lower-dimensional so that we can visualize the data</p></li>
 </ol>
-<p>Here is a <a class="reference external" href="https://scikit-learn.org/stable/tutorial/machine_learning_map/index.html">handy flowchart</a> of when to use each technique.</p>
+<p>Here is a <a class="reference external" href="https://scikit-learn.org/stable/tutorial/machine_learning_map/index.html">flowchart from the scikit learn documentation</a> of when to use each technique.</p>
 <p><img alt="" src="https://scikit-learn.org/stable/_static/ml_map.png" /></p>
+<p>You may need to install scikit learn</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>pycourse<span class="o">)</span> conda install scikit-learn
+</pre></div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">sklearn</span>
+<span class="kn">import</span> <span class="nn">sklearn</span> <span class="c1"># scikit-learn</span>
 </pre></div>
 </div>
 </div>
 </div>
+<div class="section" id="data-sets">
+<h2>Data Sets<a class="headerlink" href="#data-sets" title="Permalink to this headline">¶</a></h2>
+<p>A good place to look for example data sets to use in machine learning tasks is the <a class="reference external" href="https://archive.ics.uci.edu/ml/index.php">UCI Machine Learning Repository</a></p>
+<p>This repository (currently) contains 559 data sets, including information on where they came from and how to use them.</p>
+<p>On this page we’ll use the <a class="reference external" href="https://archive.ics.uci.edu/ml/datasets/Iris">Iris</a> and <a class="reference external" href="https://archive.ics.uci.edu/ml/datasets/Abalone">Abalone</a> data sets.</p>
+<p>The Iris data set consists of measurements of three species of Iris (a flower).  The Abalone data set consists of meaurements of abalone, a type of edible marine snail.</p>
+<p>You can download the data by going to the data folder for each data set (<a class="reference external" href="https://archive.ics.uci.edu/ml/machine-learning-databases/iris/">here is the one for Iris</a>).  You will see a file with the extension <code class="docutils literal notranslate"><span class="pre">*.data</span></code> which is a csv file containing the data.  This file does not have a header - you need to look at the attribute information on the data set home page to get the attribute names.</p>
+<p>Scikit learn also has a few built-in data sets for easy loading:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Some of these can also be found in the UCI repository.</p>
+</div>
 <div class="section" id="regression">
 <h2>Regression<a class="headerlink" href="#regression" title="Permalink to this headline">¶</a></h2>
-<p>Abalone are a type of edible marine snail, and they have internal rings that correspond to their age (like trees). In the following, we will use a dataset of <a class="reference external" href="https://archive.ics.uci.edu/ml/datasets/abalone">abalone measurements</a>. It has the following fields:</p>
+<p>Abalone are a type of edible marine snail, and they have internal rings that correspond to their age (like trees). In the following, we will the dataset of <a class="reference external" href="https://archive.ics.uci.edu/ml/datasets/abalone">abalone measurements</a>. It has the following fields:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Sex / nominal / -- / M, F, and I (infant) 
 Length / continuous / mm / Longest shell measurement 
 Diameter	/ continuous / mm / perpendicular to length 
@@ -641,7 +667,7 @@ Rings / integer / -- / +1.5 gives the age in years
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/sklearn_5_0.png" src="../_images/sklearn_5_0.png" />
+<img alt="../_images/sklearn_9_0.png" src="../_images/sklearn_9_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -652,7 +678,7 @@ Rings / integer / -- / +1.5 gives the age in years
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/sklearn_6_0.png" src="../_images/sklearn_6_0.png" />
+<img alt="../_images/sklearn_10_0.png" src="../_images/sklearn_10_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -722,10 +748,10 @@ score: 0.29202100292591804
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fa40c97ce20&gt;]
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fbc45b24c10&gt;]
 </pre></div>
 </div>
-<img alt="../_images/sklearn_11_1.png" src="../_images/sklearn_11_1.png" />
+<img alt="../_images/sklearn_15_1.png" src="../_images/sklearn_15_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -757,14 +783,26 @@ score: 0.29202100292591804
 <span class="n">root_weight</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">weight</span><span class="p">)</span>
 <span class="n">features</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">weight</span><span class="p">,</span><span class="n">root_weight</span><span class="p">))</span>
 
-<span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">&#39;weight&#39;</span><span class="p">,</span> <span class="s1">&#39;rings&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">&#39;weight&#39;</span><span class="p">,</span> <span class="s1">&#39;rings&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">weight</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">features</span><span class="p">),</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/sklearn_14_0.png" src="../_images/sklearn_14_0.png" />
+<img alt="../_images/sklearn_18_0.png" src="../_images/sklearn_18_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">coef_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([-3.57798188, 12.36414363])
+</pre></div>
+</div>
 </div>
 </div>
 <div class="cell docutils container">
@@ -774,7 +812,7 @@ score: 0.29202100292591804
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/sklearn_15_0.png" src="../_images/sklearn_15_0.png" />
+<img alt="../_images/sklearn_20_0.png" src="../_images/sklearn_20_0.png" />
 </div>
 </div>
 </div>
@@ -876,7 +914,7 @@ latter are NOT linearly separable from each other.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/sklearn_19_0.png" src="../_images/sklearn_19_0.png" />
+<img alt="../_images/sklearn_24_0.png" src="../_images/sklearn_24_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1044,7 +1082,7 @@ weighted avg       0.72      0.67      0.66        30
 </div>
 </div>
 </div>
-<p>Using the full data</p>
+<p>Using the full data - before we just used the first 2 features.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">data</span>
@@ -1071,7 +1109,6 @@ weighted avg       0.97      0.97      0.97        30
 </div>
 </div>
 </div>
-<p>Thr problem is that we’re testing our model on the same data we used to train it.  We can’t trust the results here</p>
 </div>
 <div class="section" id="exercise">
 <h3>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h3>
@@ -1114,7 +1151,7 @@ weighted avg       0.97      0.97      0.97        30
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/sklearn_37_0.png" src="../_images/sklearn_37_0.png" />
+<img alt="../_images/sklearn_41_0.png" src="../_images/sklearn_41_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1180,7 +1217,7 @@ weighted avg       0.97      0.97      0.97        30
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/sklearn_41_0.png" src="../_images/sklearn_41_0.png" />
+<img alt="../_images/sklearn_45_0.png" src="../_images/sklearn_45_0.png" />
 </div>
 </div>
 <div class="section" id="id1">
@@ -1188,7 +1225,7 @@ weighted avg       0.97      0.97      0.97        30
 <p>Load the breast cancer dataset.</p>
 <ul class="simple">
 <li><p>Try to cluster it into two clusters and check if the clusters match with the target class from the dataset, which specifies if its malignant or not. Here we are testing if we can we idenitify if its malignant or benign without even looking at the target class i.e. using unsupervised learning.</p></li>
-<li><p>Next, train a supervised classifier, a <code class="docutils literal notranslate"><span class="pre">DecisionTreeClassifier</span></code>, and see how much improvement we get?</p></li>
+<li><p>Next, train a supervised classifier, a <code class="docutils literal notranslate"><span class="pre">DecisionTreeClassifier</span></code>, and see how much improvement we get</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1359,7 +1396,7 @@ cd math-prog/cpo-dataset/machine-learn/WDBC/
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/sklearn_46_0.png" src="../_images/sklearn_46_0.png" />
+<img alt="../_images/sklearn_50_0.png" src="../_images/sklearn_50_0.png" />
 </div>
 </div>
 <p>there are 4 features in the Iris data set.  Depending on which set of features we use for visualization, we see the clusters separate more clearly.</p>
@@ -1390,7 +1427,7 @@ cd math-prog/cpo-dataset/machine-learn/WDBC/
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/sklearn_49_0.png" src="../_images/sklearn_49_0.png" />
+<img alt="../_images/sklearn_53_0.png" src="../_images/sklearn_53_0.png" />
 </div>
 </div>
 <p>Lets take a look at the breast cancer dataset with dimensionality reduction</p>
@@ -1414,10 +1451,10 @@ cd math-prog/cpo-dataset/machine-learn/WDBC/
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fa40a9e6a90&gt;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fbc37d1d7f0&gt;
 </pre></div>
 </div>
-<img alt="../_images/sklearn_52_1.png" src="../_images/sklearn_52_1.png" />
+<img alt="../_images/sklearn_56_1.png" src="../_images/sklearn_56_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1454,10 +1491,10 @@ weighted avg       0.94      0.94      0.94       114
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fa40a284c40&gt;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fbc441db130&gt;
 </pre></div>
 </div>
-<img alt="../_images/sklearn_54_1.png" src="../_images/sklearn_54_1.png" />
+<img alt="../_images/sklearn_58_1.png" src="../_images/sklearn_58_1.png" />
 </div>
 </div>
 </div>
