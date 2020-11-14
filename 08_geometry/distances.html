@@ -239,9 +239,52 @@
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#similarity-dissimilarity-and-metric">
+   Similarity, Dissimilarity, and Metric
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise">
+     Exercise
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#computing-distances">
+     Computing Distances
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Exercise
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#pairwise-distances">
    Pairwise Distances
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Exercise
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pdist">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       pdist
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     Exercise
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -259,18 +302,15 @@
 <p>We can use <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/spatial.distance.html"><code class="docutils literal notranslate"><span class="pre">scipy.spatial.distance</span></code></a> to compute a variety of distances.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">pylab</span> <span class="n">inline</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy.linalg</span> <span class="k">as</span> <span class="nn">la</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">scipy.spatial.distance</span> <span class="k">as</span> <span class="nn">distance</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Populating the interactive namespace from numpy and matplotlib
-</pre></div>
 </div>
-</div>
-</div>
-<p>A data set is a collection observations, each of which may have several features.  We’ll consider the situation where the data set is a matrix <code class="docutils literal notranslate"><span class="pre">X</span></code>, where each row <code class="docutils literal notranslate"><span class="pre">X[i]</span></code> is an observation.  We’ll use <code class="docutils literal notranslate"><span class="pre">n</span></code> to denote the number of observations and <code class="docutils literal notranslate"><span class="pre">p</span></code> to denote the number of features, so <code class="docutils literal notranslate"><span class="pre">X</span></code> is a <span class="math notranslate nohighlight">\(n \times p\)</span> matrix.</p>
+<p>A data set is a collection of observations, each of which may have several features.  We’ll consider the situation where the data set is a matrix <code class="docutils literal notranslate"><span class="pre">X</span></code>, where each row <code class="docutils literal notranslate"><span class="pre">X[i]</span></code> is an observation.  We’ll use <code class="docutils literal notranslate"><span class="pre">n</span></code> to denote the number of observations and <code class="docutils literal notranslate"><span class="pre">p</span></code> to denote the number of features, so <code class="docutils literal notranslate"><span class="pre">X</span></code> is a <span class="math notranslate nohighlight">\(n \times p\)</span> matrix.</p>
 <p>For example, we might sample from a circle (with some gaussian noise)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -293,10 +333,522 @@
 <img alt="../_images/distances_3_0.png" src="../_images/distances_3_0.png" />
 </div>
 </div>
-<p>TODO: define a few distances</p>
+<p>We might also call a data set a “point cloud”, or a collection of points in some space.</p>
+<div class="section" id="similarity-dissimilarity-and-metric">
+<h2>Similarity, Dissimilarity, and Metric<a class="headerlink" href="#similarity-dissimilarity-and-metric" title="Permalink to this headline">¶</a></h2>
+<p>A <strong>similarity</strong> between two points <span class="math notranslate nohighlight">\(x, y\in X\)</span> is a function <span class="math notranslate nohighlight">\(s: X \times X \to \mathbb{R}\)</span>, where <span class="math notranslate nohighlight">\(s\)</span> is larger if <span class="math notranslate nohighlight">\(x,y\)</span> are more similar.</p>
+<p><strong>Cosine similarity</strong> is an an example of similarity for points in a real vector space.  We can define it as
+\begin{equation}
+c(x,y) = \frac{x^T y}{|x|_2 |y|_2}
+\end{equation}</p>
+<p>Note <span class="math notranslate nohighlight">\(c(x,x) = 1\)</span>, and if <span class="math notranslate nohighlight">\(x,y\)</span> are orthogonal, then <span class="math notranslate nohighlight">\(c(x,y) = 0\)</span>.</p>
+<p>A <strong>dissimilarity</strong> between two points <span class="math notranslate nohighlight">\(x,y \in X\)</span> is a function <span class="math notranslate nohighlight">\(d: X \times X \to \mathbb{R}_+\)</span>, where <span class="math notranslate nohighlight">\(d\)</span> is smaller if <span class="math notranslate nohighlight">\(x,y\)</span> are more similar.  Sometimes, disimilarity functions will be called <strong>distances</strong>.</p>
+<p><strong>Cosine distance</strong> is an example of a dissimilarity for points in a real vector space.  It is defined as
+\begin{equation}
+d(x,y) = 1 - c(x,y)
+\end{equation}
+Note <span class="math notranslate nohighlight">\(d(x,x) = 0\)</span>, and <span class="math notranslate nohighlight">\(d(x,y) = 1\)</span> if <span class="math notranslate nohighlight">\(x,y\)</span> are orthogonal.</p>
+<p>A <strong>metric</strong> is a disimilarity <span class="math notranslate nohighlight">\(d\)</span> that satisfies the metric axioms</p>
+<ol class="simple">
+<li><p><span class="math notranslate nohighlight">\(d(x,y) = 0\)</span> iff <span class="math notranslate nohighlight">\(x=y\)</span> (identity)</p></li>
+<li><p><span class="math notranslate nohighlight">\(d(x,y) = d(y,x)\)</span> (symmetry)</p></li>
+<li><p><span class="math notranslate nohighlight">\(d(x,y) \le d(x,z) + d(z,y)\)</span> (triangle inequality)</p></li>
+</ol>
+<p>You are probably most familiar with the Euclidean metric
+\begin{equation}
+d(x,y) = |x - y|_2
+\end{equation}</p>
+<div class="section" id="exercise">
+<h3>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h3>
+<p>Write functions for the cosine similarity, cosine distance, and euclidean distance between two numpy arrays treated as vectors.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="computing-distances">
+<h3>Computing Distances<a class="headerlink" href="#computing-distances" title="Permalink to this headline">¶</a></h3>
+<p>SciPy provides a variety of functionality for computing distances in <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/spatial.distance.html"><code class="docutils literal notranslate"><span class="pre">scipy.spatial.distance</span></code></a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]</span>
+
+<span class="n">distance</span><span class="o">.</span><span class="n">euclidean</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="c1"># sqrt(2)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>1.4142135623730951
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">distance</span><span class="o">.</span><span class="n">cosine</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>1.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>the <span class="math notranslate nohighlight">\(L_1\)</span> / Manhattan / City block distance
+\begin{equation}
+d(x,y) = |x - y|_1 = \sum_i |x_i - y_i|
+\end{equation}</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">distance</span><span class="o">.</span><span class="n">cityblock</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>2.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <span class="math notranslate nohighlight">\(L_\infty\)</span> / Chebyshev distance
+\begin{equation}
+d(x,y) = |x - y|_\infty = \max_i |x_i - y_i|
+\end{equation}</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">distance</span><span class="o">.</span><span class="n">chebyshev</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>1.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>More generally, the Minkowski distance
+\begin{equation}
+d(x,y) = |x - y|_p = \big( \sum_i (x_i - y_i)^p \big)^{1/p}
+\end{equation}</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">distance</span><span class="o">.</span><span class="n">minkowski</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>1.2599210498948732
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">cbrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># cube root of 2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>1.2599210498948734
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.distance.mahalanobis.html#scipy.spatial.distance.mahalanobis">Mahalanobis distance</a>.  Note that this is defined in terms of an inverse covariance matrix.  In fact, you can use it to compute distances based on the <span class="math notranslate nohighlight">\(A\)</span>-norm where <span class="math notranslate nohighlight">\(A\)</span> is any symmetric positive definite (SPD) matrix.</p>
+<p>\begin{equation}
+d(x,y) = | x- y |_A = \sqrt{(x - y)^T A (x - y)}
+\end{equation}</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">A</span>
+<span class="n">distance</span><span class="o">.</span><span class="n">mahalanobis</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>1.8660754360194616
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can also weight many distances with a vector <span class="math notranslate nohighlight">\(w\)</span>.  The entry <span class="math notranslate nohighlight">\(w_i\)</span> will weight the comparison between the <span class="math notranslate nohighlight">\(i\)</span>th entries of <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>.  E.g. weighted euclidean distance
+\begin{equation}
+d(x, y; w) = \sqrt{\sum_i w_i(x_i - y_i)^2}
+\end{equation}</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">w</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="p">(</span><span class="n">distance</span><span class="o">.</span><span class="n">euclidean</span><span class="p">,</span> <span class="n">distance</span><span class="o">.</span><span class="n">cityblock</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">w</span> <span class="p">:</span> <span class="n">distance</span><span class="o">.</span><span class="n">minkowski</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">w</span><span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">w</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>1.7320508075688774
+3.0
+1.4422495703074083
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id1">
+<h3>Exercise<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Compute a weighted euclidean distance using the Mahalanobis distance.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
 <div class="section" id="pairwise-distances">
 <h2>Pairwise Distances<a class="headerlink" href="#pairwise-distances" title="Permalink to this headline">¶</a></h2>
-<p>TODO: scipy.spatial.pdist</p>
+<p>In general, we often want to compute distances between many points all at once. This typically boils down to computing a matrix <span class="math notranslate nohighlight">\(D\)</span>, where <span class="math notranslate nohighlight">\(D_{i,j} = d(x_i, x_j)\)</span>.</p>
+<p>Here’s a simple function that would do just that</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">pairwise</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">dist</span><span class="o">=</span><span class="n">distance</span><span class="o">.</span><span class="n">euclidean</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    compute pairwise distances in n x p numpy array X</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">n</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="n">D</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">dist</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+            
+    <span class="k">return</span> <span class="n">D</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">sample_circle</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">pairwise</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([[0.        , 1.04471857, 1.16810688, 1.20614768, 1.49806996],
+       [1.04471857, 0.        , 0.34464052, 1.65951116, 1.78864008],
+       [1.16810688, 0.34464052, 0.        , 1.96239812, 2.11430647],
+       [1.20614768, 1.65951116, 1.96239812, 0.        , 0.33752501],
+       [1.49806996, 1.78864008, 2.11430647, 0.33752501, 0.        ]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pairwise</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">dist</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="p">:</span> <span class="n">distance</span><span class="o">.</span><span class="n">minkowski</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([[0.        , 1.29655731, 1.33966936, 1.20128525, 1.47235871],
+       [1.29655731, 0.        , 0.3444149 , 1.61116731, 1.7265207 ],
+       [1.33966936, 0.3444149 , 0.        , 1.89147116, 2.04991407],
+       [1.20128525, 1.61116731, 1.89147116, 0.        , 0.33452093],
+       [1.47235871, 1.7265207 , 2.04991407, 0.33452093, 0.        ]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>There are a couple of inneficiencies above:</p>
+<ol class="simple">
+<li><p>D is symmetric (we do redundant computation)</p></li>
+<li><p>For some metrics, it can be more efficient to compute many distances at once</p></li>
+</ol>
+<p>As an example of point 2, pairwise euclidean distances are
+\begin{equation}
+d(x_i, x_j) = \sqrt{(x_i - x_j)^T (x_i -x_j)}\
+= \sqrt{x_i^T x_i - 2 x_i^T x_j + x_j^T x_j}
+\end{equation}</p>
+<p>Let <span class="math notranslate nohighlight">\(x^2\)</span> denote the vector of length <span class="math notranslate nohighlight">\(n\)</span> where <span class="math notranslate nohighlight">\(x_i^2 = x_i^T x_i\)</span>, and let <span class="math notranslate nohighlight">\(1\)</span> denote the vector of ones (of length <span class="math notranslate nohighlight">\(n\)</span>).  Then
+\begin{equation}
+D = \sqrt{1 x^{2T} + x^2 1^T - 2 X X^T}
+\end{equation}</p>
+<p>Thus, we can take advantage of BLAS level 3 operations to compute the distance matrix</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">pairwise_euclidean</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute pairwise euclidean distances in X</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">XXT</span> <span class="o">=</span> <span class="n">X</span> <span class="o">@</span> <span class="n">X</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">x2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">XXT</span><span class="p">)</span>
+    <span class="n">one</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="n">one</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">one</span><span class="p">,</span> <span class="n">x2</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">XXT</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">D</span><span class="p">)</span>
+
+<span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">pairwise_euclidean</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">-</span> <span class="n">pairwise</span><span class="p">(</span><span class="n">X</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>6.707437923744493e-16
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can also use <a class="reference external" href="http://www.netlib.org/lapack/explore-html/d7/d15/group__double__blas__level2_gae96880c53b8eaee70bbef273b905715f.html#gae96880c53b8eaee70bbef273b905715f">BLAS syr2</a> for the rank-2 update:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">la</span><span class="o">.</span><span class="n">blas</span><span class="o">.</span><span class="n">dsyr2</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>a = dsyr2(alpha,x,y,[lower,incx,offx,incy,offy,n,a,overwrite_a])
+
+Wrapper for ``dsyr2``.
+
+Parameters
+----------
+alpha : input float
+x : input rank-1 array(&#39;d&#39;) with bounds (*)
+y : input rank-1 array(&#39;d&#39;) with bounds (*)
+
+Other Parameters
+----------------
+lower : input int, optional
+    Default: 0
+incx : input int, optional
+    Default: 1
+offx : input int, optional
+    Default: 0
+incy : input int, optional
+    Default: 1
+offy : input int, optional
+    Default: 0
+n : input int, optional
+    Default: ((len(x)-1-offx)/abs(incx)+1 &lt;=(len(y)-1-offy)/abs(incy)+1 ?(len(x)-1-offx)/abs(incx)+1 :(len(y)-1-offy)/abs(incy)+1)
+a : input rank-2 array(&#39;d&#39;) with bounds (n,n)
+overwrite_a : input int, optional
+    Default: 0
+
+Returns
+-------
+a : rank-2 array(&#39;d&#39;) with bounds (n,n)
+
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">pairwise_euclidean_blas</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute pairwise euclidean distances in X </span>
+<span class="sd">    use syrk2 for rank-2 update</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">XXT</span> <span class="o">=</span> <span class="n">X</span> <span class="o">@</span> <span class="n">X</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">x2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">XXT</span><span class="p">)</span>
+    <span class="n">one</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">D</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">blas</span><span class="o">.</span><span class="n">dsyr2</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">one</span><span class="p">,</span> <span class="n">a</span><span class="o">=-</span><span class="mi">2</span><span class="o">*</span><span class="n">XXT</span><span class="p">)</span> <span class="c1"># this only updates upper triangular part</span>
+    <span class="n">D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">triu</span><span class="p">(</span><span class="n">D</span><span class="p">)</span> <span class="c1"># extract upper triangular part</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">D</span> <span class="o">+</span> <span class="n">D</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+
+<span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">pairwise_euclidean_blas</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">-</span> <span class="n">pairwise</span><span class="p">(</span><span class="n">X</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>6.753223014464259e-16
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+
+<span class="c1"># generate data set</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">d</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="p">(</span><span class="n">pairwise</span><span class="p">,</span> <span class="n">pairwise_euclidean</span><span class="p">,</span> <span class="n">pairwise_euclidean_blas</span><span class="p">):</span>
+    <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">D</span> <span class="o">=</span> <span class="n">d</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> : </span><span class="si">{}</span><span class="s2"> sec.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">t1</span> <span class="o">-</span> <span class="n">t0</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>pairwise : 0.09712600708007812 sec.
+pairwise_euclidean : 0.0004398822784423828 sec.
+pairwise_euclidean_blas : 0.0003170967102050781 sec.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id2">
+<h3>Exercise<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>Write a version of <code class="docutils literal notranslate"><span class="pre">pairwise_euclidean</span></code> which uses Numba.  How does this compare to the BLAS implementation?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="pdist">
+<h3><code class="docutils literal notranslate"><span class="pre">pdist</span></code><a class="headerlink" href="#pdist" title="Permalink to this headline">¶</a></h3>
+<p>You don’t need to implement these faster methods yourself. <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.distance.pdist.html#scipy.spatial.distance.pdist"><code class="docutils literal notranslate"><span class="pre">scipy.spatial.distance.pdist</span></code></a> has built-in optimizations for a variety of pairwise distance computations.  You can use <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.distance.cdist.html#scipy.spatial.distance.cdist"><code class="docutils literal notranslate"><span class="pre">scipy.spatial.distance.cdist</span></code></a> if you are computing pairwise distances between two data sets <span class="math notranslate nohighlight">\(X, Y\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.spatial.distance</span> <span class="kn">import</span> <span class="n">pdist</span><span class="p">,</span> <span class="n">cdist</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">D</span> <span class="o">=</span> <span class="n">pdist</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The output of <code class="docutils literal notranslate"><span class="pre">pdist</span></code> is not a matrix, but a condensed form which stores the lower-triangular entries in a vector.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">D</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(4950,)
+</pre></div>
+</div>
+</div>
+</div>
+<p>to get a square matrix, you can use <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.distance.squareform.html#scipy.spatial.distance.squareform"><code class="docutils literal notranslate"><span class="pre">squareform</span></code></a>.  You can also use <code class="docutils literal notranslate"><span class="pre">squareform</span></code> to go back to the condensed form.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.spatial.distance</span> <span class="kn">import</span> <span class="n">squareform</span>
+
+<span class="n">D</span> <span class="o">=</span> <span class="n">squareform</span><span class="p">(</span><span class="n">D</span><span class="p">)</span>
+<span class="n">D</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(100, 100)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">squareform</span><span class="p">(</span><span class="n">D</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(4950,)
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">pdist</span></code> takes in a keyword argument <code class="docutils literal notranslate"><span class="pre">metric</span></code>, which determines the distance computed</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pdist</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;cityblock&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([3.06934219, 2.22404128, 3.14897253, ..., 4.08425996, 3.11969829,
+       5.25954185])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s compare to our implementations</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+
+<span class="c1"># generate data set</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">d</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="p">(</span><span class="n">pairwise</span><span class="p">,</span> <span class="n">pairwise_euclidean</span><span class="p">,</span> <span class="n">pairwise_euclidean_blas</span><span class="p">,</span> <span class="n">pdist</span><span class="p">):</span>
+    <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">D</span> <span class="o">=</span> <span class="n">d</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> : </span><span class="si">{}</span><span class="s2"> sec.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">t1</span> <span class="o">-</span> <span class="n">t0</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>pairwise : 0.09506559371948242 sec.
+pairwise_euclidean : 0.0003495216369628906 sec.
+pairwise_euclidean_blas : 0.00024199485778808594 sec.
+pdist : 0.00016021728515625 sec.
+</pre></div>
+</div>
+</div>
+</div>
+<p>If we form the squareform:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+
+<span class="c1"># generate data set</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">d</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">sq_pdist</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">squareform</span><span class="p">(</span><span class="n">pdist</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="p">(</span><span class="n">pairwise</span><span class="p">,</span> <span class="n">pairwise_euclidean</span><span class="p">,</span> <span class="n">pairwise_euclidean_blas</span><span class="p">,</span> <span class="n">sq_pdist</span><span class="p">):</span>
+    <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">D</span> <span class="o">=</span> <span class="n">d</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> : </span><span class="si">{}</span><span class="s2"> sec.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">t1</span> <span class="o">-</span> <span class="n">t0</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>pairwise : 0.10007596015930176 sec.
+pairwise_euclidean : 0.0003867149353027344 sec.
+pairwise_euclidean_blas : 0.00025582313537597656 sec.
+sq_pdist : 0.0001933574676513672 sec.
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id3">
+<h3>Exercise<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>Use <code class="docutils literal notranslate"><span class="pre">pdist</span></code> to compute ’braycurtis’, ‘canberra’, ‘chebyshev’, ‘cityblock’, ‘correlation’, ‘cosine’, and ‘euclidean’, distances on a random <code class="docutils literal notranslate"><span class="pre">X</span></code>.  Are there noticeable differences in the time it takes to compute each distance?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 
