@@ -284,12 +284,32 @@
      Shortest Paths
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise">
+     Exercise
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#spanning-trees">
+     Spanning Trees
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Exercise
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bipartite-graphs">
+     Bipartite Graphs
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#other-graph-algorithms">
+     Other Graph Algorithms
+    </a>
+   </li>
   </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id1">
-   Shortest Paths
-  </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#reading-graphs">
@@ -308,20 +328,28 @@
                 
   <div class="section" id="networkx">
 <h1>NetworkX<a class="headerlink" href="#networkx" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://networkx.org/">NetworkX</a> is a Python package for dealing with complex networks.  It provides Graph classes, graph algorithms, and visualization tools.</p>
+<p>You may need to</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>pycourse<span class="o">)</span> conda install networkx
+</pre></div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">pylab</span> <span class="n">inline</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">__version__</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Populating the interactive namespace from numpy and matplotlib
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;2.5&#39;
 </pre></div>
 </div>
 </div>
 </div>
-<p>This section will cover the <a class="reference external" href="https://networkx.github.io/">NetworkX package</a>.  You can find additional information in the <a class="reference external" href="https://networkx.github.io/documentation/stable/">NetworkX documentation</a>, which includes <a class="reference external" href="https://networkx.github.io/documentation/stable/tutorial.html">a tutorial</a>.</p>
+<p>We’ll cover some basics in NetworkX.  You can find additional information in the <a class="reference external" href="https://networkx.github.io/documentation/stable/">NetworkX documentation</a>, which includes <a class="reference external" href="https://networkx.github.io/documentation/stable/tutorial.html">a tutorial</a>.</p>
+<p>First, let’s create a simple graph:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
@@ -341,12 +369,106 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/networkx_3_0.png" src="../_images/networkx_3_0.png" />
+<img alt="../_images/networkx_4_0.png" src="../_images/networkx_4_0.png" />
+</div>
+</div>
+<p>Graph nodes can be any hashable object, which covers many things you might use</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
+
+<span class="c1"># add nodes</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;dog&quot;</span><span class="p">)</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;cat&quot;</span><span class="p">)</span>
+
+<span class="c1"># add edge</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s2">&quot;cat&quot;</span><span class="p">,</span><span class="s2">&quot;dog&quot;</span><span class="p">)</span>
+
+<span class="c1"># draws the graph to pyplot axes</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">with_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/networkx_6_0.png" src="../_images/networkx_6_0.png" />
+</div>
+</div>
+<p>You can also associate arbitrary data with each node and edge by passing in keyword arguments</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
+
+<span class="c1"># add nodes</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;dog&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Rover&quot;</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mf">10.0</span><span class="p">)</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;cat&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Felix&quot;</span><span class="p">)</span>
+
+<span class="c1"># add edge</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s2">&quot;cat&quot;</span><span class="p">,</span><span class="s2">&quot;dog&quot;</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span>
+
+<span class="c1"># draws the graph to pyplot axes</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">with_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/networkx_8_0.png" src="../_images/networkx_8_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">G</span><span class="o">.</span><span class="n">get_edge_data</span><span class="p">(</span><span class="s2">&quot;cat&quot;</span><span class="p">,</span> <span class="s2">&quot;dog&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;time&#39;: 2.0}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nx</span><span class="o">.</span><span class="n">get_edge_attributes</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="s2">&quot;time&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>{(&#39;dog&#39;, &#39;cat&#39;): 2.0}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">names</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">get_node_attributes</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">)</span>
+<span class="n">names</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;dog&#39;: &#39;Rover&#39;, &#39;cat&#39;: &#39;Felix&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">weights</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">get_node_attributes</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="s2">&quot;weight&quot;</span><span class="p">)</span>
+<span class="n">weights</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;dog&#39;: 10.0}
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="generating-graphs">
 <h2>Generating Graphs<a class="headerlink" href="#generating-graphs" title="Permalink to this headline">¶</a></h2>
-<p>NetworkX provides <a class="reference external" href="https://networkx.github.io/documentation/stable/reference/generators.html">Graph generators</a> to</p>
+<p>NetworkX provides <a class="reference external" href="https://networkx.github.io/documentation/stable/reference/generators.html">Graph generators</a> to generate a variety of random graphs.</p>
 <div class="section" id="random-graphs">
 <h3>Random Graphs<a class="headerlink" href="#random-graphs" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="erdos-renyi-graphs">
@@ -364,16 +486,17 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/networkx_5_0.png" src="../_images/networkx_5_0.png" />
+<img alt="../_images/networkx_14_0.png" src="../_images/networkx_14_0.png" />
 </div>
 </div>
 </div>
 <div class="section" id="stochastic-block-models">
 <h4>Stochastic Block Models<a class="headerlink" href="#stochastic-block-models" title="Permalink to this headline">¶</a></h4>
+<p>A Graph generated from a stochastic block model (SBM) has <span class="math notranslate nohighlight">\(k\)</span> clusters, and a <span class="math notranslate nohighlight">\(k\times k\)</span> (symmetric) matrix <span class="math notranslate nohighlight">\(P\)</span> of probabilities, where <span class="math notranslate nohighlight">\(P_{i,j}\)</span> is the probability that a pair of nodes <span class="math notranslate nohighlight">\((a,b)\)</span> will be joined by an edge if <span class="math notranslate nohighlight">\(a\)</span> is in cluster <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(b\)</span> is in cluster <span class="math notranslate nohighlight">\(j\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ns</span> <span class="o">=</span> <span class="p">[</span><span class="mi">25</span><span class="p">,</span> <span class="mi">25</span><span class="p">]</span>
-<span class="n">ps</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">]]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ns</span> <span class="o">=</span> <span class="p">[</span><span class="mi">25</span><span class="p">,</span> <span class="mi">25</span><span class="p">]</span> <span class="c1"># size of clusters</span>
+<span class="n">ps</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">]]</span> <span class="c1"># probability of edge</span>
 <span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">stochastic_block_model</span><span class="p">(</span><span class="n">ns</span><span class="p">,</span> <span class="n">ps</span><span class="p">)</span>
 <span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">with_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -381,7 +504,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/networkx_7_0.png" src="../_images/networkx_7_0.png" />
+<img alt="../_images/networkx_16_0.png" src="../_images/networkx_16_0.png" />
 </div>
 </div>
 </div>
@@ -393,6 +516,8 @@
 <p>Unless there is some “ground truth” way to lay out nodes (meaning each node has an associated coordinate), we must choose some way to place nodes in our visualization.  There are a variety of methods for this.</p>
 <div class="section" id="layouts">
 <h3>Layouts<a class="headerlink" href="#layouts" title="Permalink to this headline">¶</a></h3>
+<p>There are several layout methods you might use, which are good for certain applications.</p>
+<p><strong>Spectral Embeddings</strong> are good for partitioning the graph into clusters.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nx</span><span class="o">.</span><span class="n">draw_spectral</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
@@ -401,9 +526,10 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/networkx_9_0.png" src="../_images/networkx_9_0.png" />
+<img alt="../_images/networkx_18_0.png" src="../_images/networkx_18_0.png" />
 </div>
 </div>
+<p><strong>Spring layouts</strong> tend to do a good job of separating nodes, which can be nice for visualization</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nx</span><span class="o">.</span><span class="n">draw_spring</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
@@ -412,9 +538,10 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/networkx_10_0.png" src="../_images/networkx_10_0.png" />
+<img alt="../_images/networkx_20_0.png" src="../_images/networkx_20_0.png" />
 </div>
 </div>
+<p>the <a class="reference external" href="https://www-sciencedirect-com.proxy.uchicago.edu/science/article/pii/0020019089901026?via%3Dihub">Kamada-Kawai algorithm</a> also gives visually pleasing results.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nx</span><span class="o">.</span><span class="n">draw_kamada_kawai</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
@@ -423,15 +550,22 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/networkx_11_0.png" src="../_images/networkx_11_0.png" />
+<img alt="../_images/networkx_22_0.png" src="../_images/networkx_22_0.png" />
 </div>
 </div>
 </div>
 </div>
 <div class="section" id="algorithms">
 <h2>Algorithms<a class="headerlink" href="#algorithms" title="Permalink to this headline">¶</a></h2>
+<p>NetworkX implements a variety of graph algorithms.</p>
 <div class="section" id="shortest-paths">
 <h3>Shortest Paths<a class="headerlink" href="#shortest-paths" title="Permalink to this headline">¶</a></h3>
+<p>A path between nodes <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(x\)</span> is a sequence of edges where the target of an edge is the source of the next edge.
+\begin{equation}
+(x, v_0), (v_0, v_1), \dots, (v_k, y)
+\end{equation}
+The length of the path is the number of edges in the sequence.  A shortest path is a path with the shortest length over all possible paths.</p>
+<p>We’ll illustrate on a 2D grid:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">grid_2d_graph</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
@@ -441,28 +575,25 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/networkx_13_0.png" src="../_images/networkx_13_0.png" />
+<img alt="../_images/networkx_24_0.png" src="../_images/networkx_24_0.png" />
 </div>
 </div>
+<p>The nodes of this 2D grid are indexed by coordinates <span class="math notranslate nohighlight">\((i,j)\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">shortest_path</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="mi">9</span><span class="p">))</span>
 <span class="n">elist</span> <span class="o">=</span> <span class="p">[[</span><span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)]</span>
 <span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span>
-<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">elist</span><span class="p">,</span> <span class="n">edge_color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">elist</span><span class="p">,</span> <span class="n">edge_color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">3.0</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/networkx_14_0.png" src="../_images/networkx_14_0.png" />
+<img alt="../_images/networkx_26_0.png" src="../_images/networkx_26_0.png" />
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="id1">
-<h2>Shortest Paths<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
-<p>You can compute shortest path lengths in a graph using</p>
+<p>The length of the shortest path between any two nodes in a graph <span class="math notranslate nohighlight">\(G\)</span> defines a metric on the vertex set (this is analagous to the geodesic metric on a manifold).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dists</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">shortest_path_length</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
@@ -482,110 +613,274 @@
  {(0, 0): 0,
   (1, 0): 1,
   (0, 1): 1,
-  (2, 0): 2,
-  (1, 1): 2,
   (0, 2): 2,
-  (3, 0): 3,
-  (2, 1): 3,
+  (1, 1): 2,
+  (2, 0): 2,
   (1, 2): 3,
+  (2, 1): 3,
   (0, 3): 3,
+  (3, 0): 3,
   (4, 0): 4,
+  (0, 4): 4,
   (3, 1): 4,
   (2, 2): 4,
   (1, 3): 4,
-  (0, 4): 4,
-  (5, 0): 5,
-  (4, 1): 5,
-  (3, 2): 5,
-  (2, 3): 5,
   (1, 4): 5,
+  (2, 3): 5,
+  (5, 0): 5,
   (0, 5): 5,
+  (3, 2): 5,
+  (4, 1): 5,
+  (2, 4): 6,
   (6, 0): 6,
+  (1, 5): 6,
   (5, 1): 6,
   (4, 2): 6,
-  (3, 3): 6,
-  (2, 4): 6,
-  (1, 5): 6,
   (0, 6): 6,
-  (7, 0): 7,
-  (6, 1): 7,
-  (5, 2): 7,
-  (4, 3): 7,
-  (3, 4): 7,
-  (2, 5): 7,
-  (1, 6): 7,
+  (3, 3): 6,
   (0, 7): 7,
-  (8, 0): 8,
-  (7, 1): 8,
-  (6, 2): 8,
-  (5, 3): 8,
+  (3, 4): 7,
+  (4, 3): 7,
+  (6, 1): 7,
+  (7, 0): 7,
+  (1, 6): 7,
+  (2, 5): 7,
+  (5, 2): 7,
   (4, 4): 8,
-  (3, 5): 8,
-  (2, 6): 8,
+  (6, 2): 8,
+  (7, 1): 8,
+  (8, 0): 8,
   (1, 7): 8,
+  (2, 6): 8,
+  (5, 3): 8,
   (0, 8): 8,
+  (3, 5): 8,
   (9, 0): 9,
-  (8, 1): 9,
-  (7, 2): 9,
-  (6, 3): 9,
-  (5, 4): 9,
-  (4, 5): 9,
-  (3, 6): 9,
   (2, 7): 9,
+  (8, 1): 9,
+  (5, 4): 9,
   (1, 8): 9,
   (0, 9): 9,
-  (9, 1): 10,
-  (8, 2): 10,
-  (7, 3): 10,
-  (6, 4): 10,
+  (4, 5): 9,
+  (7, 2): 9,
+  (3, 6): 9,
+  (6, 3): 9,
   (5, 5): 10,
-  (4, 6): 10,
   (3, 7): 10,
-  (2, 8): 10,
+  (4, 6): 10,
+  (6, 4): 10,
+  (7, 3): 10,
+  (8, 2): 10,
+  (9, 1): 10,
   (1, 9): 10,
-  (9, 2): 11,
-  (8, 3): 11,
+  (2, 8): 10,
   (7, 4): 11,
+  (3, 8): 11,
   (6, 5): 11,
+  (9, 2): 11,
+  (2, 9): 11,
+  (8, 3): 11,
   (5, 6): 11,
   (4, 7): 11,
-  (3, 8): 11,
-  (2, 9): 11,
-  (9, 3): 12,
   (8, 4): 12,
-  (7, 5): 12,
-  (6, 6): 12,
+  (9, 3): 12,
   (5, 7): 12,
-  (4, 8): 12,
   (3, 9): 12,
-  (9, 4): 13,
-  (8, 5): 13,
-  (7, 6): 13,
-  (6, 7): 13,
+  (4, 8): 12,
+  (6, 6): 12,
+  (7, 5): 12,
   (5, 8): 13,
   (4, 9): 13,
-  (9, 5): 14,
-  (8, 6): 14,
+  (6, 7): 13,
+  (7, 6): 13,
+  (8, 5): 13,
+  (9, 4): 13,
   (7, 7): 14,
   (6, 8): 14,
+  (9, 5): 14,
+  (8, 6): 14,
   (5, 9): 14,
-  (9, 6): 15,
   (8, 7): 15,
-  (7, 8): 15,
+  (9, 6): 15,
   (6, 9): 15,
-  (9, 7): 16,
+  (7, 8): 15,
   (8, 8): 16,
   (7, 9): 16,
-  (9, 8): 17,
+  (9, 7): 16,
   (8, 9): 17,
+  (9, 8): 17,
   (9, 9): 18})
 </pre></div>
 </div>
 </div>
 </div>
 </div>
+<div class="section" id="exercise">
+<h3>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h3>
+<p>Write a function which returns a distance matrix for the shortest path length.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="spanning-trees">
+<h3>Spanning Trees<a class="headerlink" href="#spanning-trees" title="Permalink to this headline">¶</a></h3>
+<p>A tree is a connected graph with no cycles.  If the graph has <span class="math notranslate nohighlight">\(n\)</span> nodes, it must have <span class="math notranslate nohighlight">\(m = n-1\)</span> edges to be a tree.</p>
+<p>A spanning tree of a graph <span class="math notranslate nohighlight">\(G\)</span> is a sub-graph with the same set of nodes, and a subset of edges that forms a tree.  A minimum spanning tree (MST) is a spanning tree with minimum weight (you can weight edges using a <code class="docutils literal notranslate"><span class="pre">'weight'</span></code> attribute).</p>
+<p>You can compute a spanning tree of a graph using <code class="docutils literal notranslate"><span class="pre">nx.tree.minimum_spanning_tree</span></code>, or <code class="docutils literal notranslate"><span class="pre">nx.tree.minimum_spanning_edges</span></code>.  Other tree algorithms are provided <a class="reference external" href="https://networkx.org/documentation/stable/reference/algorithms/tree.html">as well</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">T</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">minimum_spanning_tree</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">edge_color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">3.0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/networkx_34_0.png" src="../_images/networkx_34_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># set random weights</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">edges</span><span class="p">():</span>
+    <span class="n">G</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">][</span><span class="s1">&#39;weight&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span>
+    
+    
+<span class="n">T</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">minimum_spanning_tree</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+
+<span class="c1"># nx.draw(G, pos, )</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">edge_color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">3.0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/networkx_35_0.png" src="../_images/networkx_35_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="id1">
+<h3>Exercise<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Create a function that generates a maze on a 2-dimensional <span class="math notranslate nohighlight">\(m \times n\)</span> grid using <code class="docutils literal notranslate"><span class="pre">nx.grid_2d_graph</span></code> and a randomly weighted MST.  Place the start and end points at <span class="math notranslate nohighlight">\((0,0)\)</span> and <span class="math notranslate nohighlight">\((m-1, n-1)\)</span> respectively.</p>
+<p>Create a function that solves a maze by computing the shortest path between the start and end points.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="bipartite-graphs">
+<h3>Bipartite Graphs<a class="headerlink" href="#bipartite-graphs" title="Permalink to this headline">¶</a></h3>
+<p>A <a class="reference external" href="https://en.wikipedia.org/wiki/Bipartite_graph">bipartite graph</a> is a graph where nodes are separated into two sets <span class="math notranslate nohighlight">\(U, V\)</span>, and where edges are of the form <span class="math notranslate nohighlight">\((u,v)\)</span> with <span class="math notranslate nohighlight">\(u\in U\)</span>, and <span class="math notranslate nohighlight">\(v\in V\)</span> (there are no edges between two points in <span class="math notranslate nohighlight">\(U\)</span> or two points in <span class="math notranslate nohighlight">\(V\)</span>).</p>
+<p>Bipartite graphs are often used to encode matching problems.  For example, dating websites might match romantic partners, and ride apps such as Uber and Lyft might match riders with drivers.</p>
+<p>NetworkX functionality for biparite graphs is in <a class="reference external" href="https://networkx.org/documentation/stable/reference/algorithms/bipartite.html"><code class="docutils literal notranslate"><span class="pre">nx.algorithms.bipartite</span></code></a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">networkx.algorithms</span> <span class="kn">import</span> <span class="n">bipartite</span>
+
+<span class="n">B</span> <span class="o">=</span> <span class="n">bipartite</span><span class="o">.</span><span class="n">random_graph</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/networkx_39_0.png" src="../_images/networkx_39_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">B</span><span class="o">.</span><span class="n">nodes</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>NodeDataView({0: {&#39;bipartite&#39;: 0}, 1: {&#39;bipartite&#39;: 0}, 2: {&#39;bipartite&#39;: 0}, 3: {&#39;bipartite&#39;: 0}, 4: {&#39;bipartite&#39;: 0}, 5: {&#39;bipartite&#39;: 1}, 6: {&#39;bipartite&#39;: 1}, 7: {&#39;bipartite&#39;: 1}, 8: {&#39;bipartite&#39;: 1}, 9: {&#39;bipartite&#39;: 1}, 10: {&#39;bipartite&#39;: 1}, 11: {&#39;bipartite&#39;: 1}})
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s explicitly define positions to visualize the bipartite graph</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pos</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">cts</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">B</span><span class="o">.</span><span class="n">nodes</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="n">group</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;bipartite&#39;</span><span class="p">]</span>
+    <span class="n">pos</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">group</span><span class="p">,</span> <span class="n">cts</span><span class="p">[</span><span class="n">group</span><span class="p">]])</span>
+    <span class="n">cts</span><span class="p">[</span><span class="n">group</span><span class="p">]</span> <span class="o">=</span> <span class="n">cts</span><span class="p">[</span><span class="n">group</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+    
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/networkx_42_0.png" src="../_images/networkx_42_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># set random weights</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="ow">in</span> <span class="n">B</span><span class="o">.</span><span class="n">edges</span><span class="p">():</span>
+    <span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">][</span><span class="s1">&#39;weight&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span>
+    
+<span class="n">weights</span> <span class="o">=</span> <span class="p">[</span><span class="n">B</span><span class="p">[</span><span class="n">u</span><span class="p">][</span><span class="n">v</span><span class="p">][</span><span class="s1">&#39;weight&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">u</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">B</span><span class="o">.</span><span class="n">edges</span><span class="p">()]</span>
+    
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">weights</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/networkx_43_0.png" src="../_images/networkx_43_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># compute maximum matching</span>
+<span class="n">match</span> <span class="o">=</span> <span class="n">bipartite</span><span class="o">.</span><span class="n">maximum_matching</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+<span class="n">match</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>{0: 6, 1: 7, 2: 9, 3: 5, 4: 11, 5: 3, 6: 0, 7: 1, 9: 2, 11: 4}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">elist</span> <span class="o">=</span> <span class="p">[[</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">match</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
+
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">weights</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">elist</span><span class="p">,</span> <span class="n">edge_color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/networkx_45_0.png" src="../_images/networkx_45_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="other-graph-algorithms">
+<h3>Other Graph Algorithms<a class="headerlink" href="#other-graph-algorithms" title="Permalink to this headline">¶</a></h3>
+<p>There are many interesting applications of graphs and many graph algorithms that you might consider using.  See the <a class="reference external" href="https://networkx.org/documentation/stable/reference/algorithms/index.html">NetworkX algorithms documentation</a> to see what some of the possibilities are.</p>
+</div>
+</div>
 <div class="section" id="reading-graphs">
 <h2>Reading Graphs<a class="headerlink" href="#reading-graphs" title="Permalink to this headline">¶</a></h2>
+<p>In scientific computing, you’ll typically get a graph from some sort of data.  Often these graphs are referred to as “complex networks”.  One good source of data is the <a class="reference external" href="http://snap.stanford.edu/data/index.html">Stanford Large Network Dataset Collection</a></p>
+<p>Graphs can be stored in a variety of formats.  You can find documentation for NetworkX’s read/write capabilities <a class="reference external" href="https://networkx.org/documentation/stable/reference/readwrite/index.html">here</a>.</p>
 </div>
 </div>
 

@@ -282,11 +282,6 @@
    </li>
   </ul>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#spectral-embeddings">
-   Spectral Embeddings
-  </a>
- </li>
 </ul>
 
         </nav>
@@ -330,18 +325,6 @@
 <li><p>…</p></li>
 </ol>
 <p>We’ll typically treat the vertex set as <span class="math notranslate nohighlight">\([0, 1, ..., N-1]\)</span> where <span class="math notranslate nohighlight">\(N\)</span> is the number of vertices in the graph</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">pylab</span> <span class="n">inline</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Populating the interactive namespace from numpy and matplotlib
-</pre></div>
-</div>
-</div>
-</div>
 <div class="section" id="edge-lists">
 <h3>Edge Lists<a class="headerlink" href="#edge-lists" title="Permalink to this headline">¶</a></h3>
 <p>An edge list is exactly what you might think - a list of edges.</p>
@@ -366,7 +349,8 @@
 <p>For our example above, we would have</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">adjlist</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">],</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">adjlist</span> <span class="o">=</span> <span class="p">[</span>
+           <span class="p">[</span><span class="mi">1</span><span class="p">],</span>
            <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span>
            <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span>
            <span class="p">[</span><span class="mi">2</span><span class="p">]</span>
@@ -394,7 +378,8 @@ $\)</span>
 Continuing our example, we would have</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
 <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">elist</span><span class="p">:</span>
     <span class="n">A</span><span class="p">[</span><span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="n">A</span><span class="p">[</span><span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">1</span>
@@ -497,20 +482,27 @@ Continuing our example, we would have</p>
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">G</span><span class="o">.</span><span class="n">node_data</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">G</span><span class="o">.</span><span class="n">edge_data</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;weight&#39;: 0.5}
+</pre></div>
+</div>
+</div>
+</div>
 <div class="section" id="exercise">
 <h3>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h3>
 <ol class="simple">
 <li><p>Implement the <code class="docutils literal notranslate"><span class="pre">adjacency_list</span></code> method</p></li>
 <li><p>Implement the <code class="docutils literal notranslate"><span class="pre">adjacency_matrix</span></code> method</p></li>
 </ol>
-</div>
-</div>
-<div class="section" id="spectral-embeddings">
-<h2>Spectral Embeddings<a class="headerlink" href="#spectral-embeddings" title="Permalink to this headline">¶</a></h2>
-<p>One thing we would like to be able to do is visualize a Graph</p>
-<p>Variational form</p>
-<p>Laplacian</p>
 <div class="toctree-wrapper compound">
+</div>
 </div>
 </div>
 </div>

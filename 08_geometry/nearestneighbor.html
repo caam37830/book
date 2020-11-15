@@ -254,6 +254,13 @@
   <a class="reference internal nav-link" href="#kd-trees">
    KD-trees
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#performance-comparision">
+     Performance Comparision
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#ball-trees">
@@ -453,6 +460,61 @@
 <img alt="../_images/nearestneighbor_16_0.png" src="../_images/nearestneighbor_16_0.png" />
 </div>
 </div>
+<div class="section" id="performance-comparision">
+<h3>Performance Comparision<a class="headerlink" href="#performance-comparision" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+
+<span class="n">k</span><span class="o">=</span><span class="mi">50</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="mi">100000</span>
+<span class="n">d</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">d</span><span class="p">)</span>
+
+<span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">inds</span> <span class="o">=</span> <span class="n">knn</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;brute force: </span><span class="si">{}</span><span class="s2"> sec&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t1</span> <span class="o">-</span> <span class="n">t0</span><span class="p">))</span>
+
+<span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">tree</span> <span class="o">=</span> <span class="n">KDTree</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
+<span class="n">ds</span><span class="p">,</span> <span class="n">inds</span> <span class="o">=</span>  <span class="n">tree</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span> <span class="c1"># finds 50-th nearest neighbors</span>
+<span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;KDTree: </span><span class="si">{}</span><span class="s2"> sec&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t1</span> <span class="o">-</span> <span class="n">t0</span><span class="p">))</span>
+
+<span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">ds</span><span class="p">,</span> <span class="n">inds</span> <span class="o">=</span>  <span class="n">tree</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span> <span class="c1"># finds 50-th nearest neighbors</span>
+<span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  extra query: </span><span class="si">{}</span><span class="s2"> sec&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t1</span> <span class="o">-</span> <span class="n">t0</span><span class="p">))</span>
+
+<span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">tree</span> <span class="o">=</span> <span class="n">cKDTree</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
+<span class="n">ds</span><span class="p">,</span> <span class="n">inds</span> <span class="o">=</span>  <span class="n">tree</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span> <span class="c1"># finds 50-th nearest neighbors</span>
+<span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;cKDTree: </span><span class="si">{}</span><span class="s2"> sec&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t1</span> <span class="o">-</span> <span class="n">t0</span><span class="p">))</span>
+
+<span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">ds</span><span class="p">,</span> <span class="n">inds</span> <span class="o">=</span>  <span class="n">tree</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span> <span class="c1"># finds 50-th nearest neighbors</span>
+<span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  extra query: </span><span class="si">{}</span><span class="s2"> sec&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t1</span> <span class="o">-</span> <span class="n">t0</span><span class="p">))</span>
+
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>brute force: 0.002646923065185547 sec
+</pre></div>
+</div>
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>KDTree: 0.3709096908569336 sec
+  extra query: 0.0009145736694335938 sec
+cKDTree: 0.04629015922546387 sec
+  extra query: 0.000377655029296875 sec
+</pre></div>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div class="section" id="ball-trees">
 <h2>Ball trees<a class="headerlink" href="#ball-trees" title="Permalink to this headline">¶</a></h2>
@@ -485,7 +547,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/nearestneighbor_22_0.png" src="../_images/nearestneighbor_22_0.png" />
+<img alt="../_images/nearestneighbor_24_0.png" src="../_images/nearestneighbor_24_0.png" />
 </div>
 </div>
 <p>for r-nearest neighbors, you use <code class="docutils literal notranslate"><span class="pre">query_radius</span></code> instead of <code class="docutils literal notranslate"><span class="pre">query_ball_point</span></code>.</p>
@@ -501,7 +563,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/nearestneighbor_24_0.png" src="../_images/nearestneighbor_24_0.png" />
+<img alt="../_images/nearestneighbor_26_0.png" src="../_images/nearestneighbor_26_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -518,7 +580,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/nearestneighbor_25_0.png" src="../_images/nearestneighbor_25_0.png" />
+<img alt="../_images/nearestneighbor_27_0.png" src="../_images/nearestneighbor_27_0.png" />
 </div>
 </div>
 </div>
