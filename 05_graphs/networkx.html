@@ -852,7 +852,7 @@ The length of the path is the number of edges in the sequence.  A shortest path 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>{0: 6, 1: 7, 2: 9, 3: 5, 4: 11, 5: 3, 6: 0, 7: 1, 9: 2, 11: 4}
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>{0: 5, 1: 7, 2: 8, 3: 6, 4: 11, 5: 0, 6: 3, 7: 1, 8: 2, 11: 4}
 </pre></div>
 </div>
 </div>
@@ -881,6 +881,34 @@ The length of the path is the number of edges in the sequence.  A shortest path 
 <h2>Reading Graphs<a class="headerlink" href="#reading-graphs" title="Permalink to this headline">¶</a></h2>
 <p>In scientific computing, you’ll typically get a graph from some sort of data.  Often these graphs are referred to as “complex networks”.  One good source of data is the <a class="reference external" href="http://snap.stanford.edu/data/index.html">Stanford Large Network Dataset Collection</a></p>
 <p>Graphs can be stored in a variety of formats.  You can find documentation for NetworkX’s read/write capabilities <a class="reference external" href="https://networkx.org/documentation/stable/reference/readwrite/index.html">here</a>.</p>
+<p>There are also some built-in example graphs in NetworkX. One example graph is the <a class="reference external" href="https://networkx.org/documentation/stable/auto_examples/graph/plot_karate_club.html">Zachary Karate Club Graph</a>, which encodes friendships between individuals in a Karate club.  There are some other example <a class="reference external" href="https://networkx.org/documentation/stable/reference/generators.html#module-networkx.generators.social">social network graphs</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">karate_club_graph</span><span class="p">()</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_kamada_kawai</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/networkx_48_0.png" src="../_images/networkx_48_0.png" />
+</div>
+</div>
+<p>Here’s an example of reading and writing a graph as an edgelist:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">B</span> <span class="o">=</span> <span class="n">bipartite</span><span class="o">.</span><span class="n">random_graph</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">write_edgelist</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="s2">&quot;bipartite.graph&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">B2</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">read_edgelist</span><span class="p">(</span><span class="s2">&quot;bipartite.graph&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 </div>
 
