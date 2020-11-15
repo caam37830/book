@@ -14,34 +14,44 @@
   - file: 00_python/modules
   - file: 00_python/decorators
   - file: 00_python/iterators
+  - file: 00_python/pyplot
   - file: 00_python/misc
 
 - file: 01_analysis/analysis
   sections:
   - file: 01_analysis/asymptotic_notation
   - file: 01_analysis/recursion
+  - file: 01_analysis/convergence
 
 - file: 02_linear_algebra/linear_algebra
   sections:
   - file: 02_linear_algebra/memory
+  - file: 02_linear_algebra/numpy_scipy_linalg
   - file: 02_linear_algebra/blas_lapack
   - file: 02_linear_algebra/sparse
   - file: 02_linear_algebra/linearoperators
+  - file: 02_linear_algebra/sparse_linalg
   - file: 02_linear_algebra/pytorch
 
 - file: 03_optimization/optimization
+  sections:
+  - file: 03_optimization/scipy_opt
 
 - file: 04_functions/functions
   sections:
   - file: 04_functions/sympy
   - file: 04_functions/roots
   - file: 04_functions/differentiation
-  - file: 04_functions/integration
+  - file: 04_functions/ode_initial
   - file: 04_functions/interpolation
+  - file: 04_functions/integration
+  - file: 04_functions/bvp
+
 
 - file: 05_graphs/graphs
   sections:
   - file: 05_graphs/networkx
+  - file: 05_graphs/spectral
 
 - file: 06_probability_statistics/prob_stat
   sections:
@@ -49,6 +59,8 @@
 
 - file: 07_data/data
   sections:
+  - file: 07_data/pandas
+  - file: 07_data/sklearn
   - file: 07_data/dimension_reduction
 
 - file: 08_geometry/geometry
@@ -61,8 +73,10 @@
   - file: 09_computing/basic_bash
   - file: 09_computing/git
   - file: 09_computing/unittest
+  - file: 09_computing/packages
   - file: 09_computing/performance/performance
     sections:
     - file: 09_computing/performance/ipython
     - file: 09_computing/performance/numpy_ufuncs
   - file: 09_computing/environments
+  - file: 09_computing/agent_based_models
