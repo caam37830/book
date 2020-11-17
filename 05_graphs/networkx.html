@@ -328,7 +328,7 @@
                 
   <div class="section" id="networkx">
 <h1>NetworkX<a class="headerlink" href="#networkx" title="Permalink to this headline">¶</a></h1>
-<p><a class="reference external" href="https://networkx.org/">NetworkX</a> is a Python package for dealing with complex networks.  It provides Graph classes, graph algorithms, and visualization tools.</p>
+<p><a class="reference external" href="https://networkx.org/">NetworkX</a> is a Python package for dealing with complex networks (graphs).  It provides Graph classes, graph algorithms, and visualization tools.</p>
 <p>You may need to</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>pycourse<span class="o">)</span> conda install networkx
 </pre></div>
@@ -401,7 +401,7 @@
 
 <span class="c1"># add nodes</span>
 <span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;dog&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Rover&quot;</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mf">10.0</span><span class="p">)</span>
-<span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;cat&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Felix&quot;</span><span class="p">)</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;cat&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Felix&quot;</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 
 <span class="c1"># add edge</span>
 <span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s2">&quot;cat&quot;</span><span class="p">,</span><span class="s2">&quot;dog&quot;</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span>
@@ -553,6 +553,16 @@
 <img alt="../_images/networkx_22_0.png" src="../_images/networkx_22_0.png" />
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nx</span><span class="o">.</span><span class="n">draw_circular</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/networkx_23_0.png" src="../_images/networkx_23_0.png" />
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="algorithms">
@@ -560,7 +570,7 @@
 <p>NetworkX implements a variety of graph algorithms.</p>
 <div class="section" id="shortest-paths">
 <h3>Shortest Paths<a class="headerlink" href="#shortest-paths" title="Permalink to this headline">¶</a></h3>
-<p>A path between nodes <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(x\)</span> is a sequence of edges where the target of an edge is the source of the next edge.
+<p>A path between nodes <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> is a sequence of edges where the target of an edge is the source of the next edge.
 \begin{equation}
 (x, v_0), (v_0, v_1), \dots, (v_k, y)
 \end{equation}
@@ -575,7 +585,7 @@ The length of the path is the number of edges in the sequence.  A shortest path 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/networkx_24_0.png" src="../_images/networkx_24_0.png" />
+<img alt="../_images/networkx_25_0.png" src="../_images/networkx_25_0.png" />
 </div>
 </div>
 <p>The nodes of this 2D grid are indexed by coordinates <span class="math notranslate nohighlight">\((i,j)\)</span>.</p>
@@ -590,7 +600,7 @@ The length of the path is the number of edges in the sequence.  A shortest path 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/networkx_26_0.png" src="../_images/networkx_26_0.png" />
+<img alt="../_images/networkx_27_0.png" src="../_images/networkx_27_0.png" />
 </div>
 </div>
 <p>The length of the shortest path between any two nodes in a graph <span class="math notranslate nohighlight">\(G\)</span> defines a metric on the vertex set (this is analagous to the geodesic metric on a manifold).</p>
@@ -742,7 +752,7 @@ The length of the path is the number of edges in the sequence.  A shortest path 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/networkx_34_0.png" src="../_images/networkx_34_0.png" />
+<img alt="../_images/networkx_35_0.png" src="../_images/networkx_35_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -761,7 +771,7 @@ The length of the path is the number of edges in the sequence.  A shortest path 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/networkx_35_0.png" src="../_images/networkx_35_0.png" />
+<img alt="../_images/networkx_36_0.png" src="../_images/networkx_36_0.png" />
 </div>
 </div>
 </div>
@@ -793,7 +803,7 @@ The length of the path is the number of edges in the sequence.  A shortest path 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/networkx_39_0.png" src="../_images/networkx_39_0.png" />
+<img alt="../_images/networkx_40_0.png" src="../_images/networkx_40_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -824,7 +834,7 @@ The length of the path is the number of edges in the sequence.  A shortest path 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/networkx_42_0.png" src="../_images/networkx_42_0.png" />
+<img alt="../_images/networkx_43_0.png" src="../_images/networkx_43_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -840,7 +850,7 @@ The length of the path is the number of edges in the sequence.  A shortest path 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/networkx_43_0.png" src="../_images/networkx_43_0.png" />
+<img alt="../_images/networkx_44_0.png" src="../_images/networkx_44_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -852,7 +862,7 @@ The length of the path is the number of edges in the sequence.  A shortest path 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>{0: 5, 1: 7, 2: 8, 3: 6, 4: 11, 5: 0, 6: 3, 7: 1, 8: 2, 11: 4}
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>{0: 5, 1: 6, 2: 8, 3: 10, 4: 9, 5: 0, 6: 1, 8: 2, 9: 4, 10: 3}
 </pre></div>
 </div>
 </div>
@@ -868,7 +878,7 @@ The length of the path is the number of edges in the sequence.  A shortest path 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/networkx_45_0.png" src="../_images/networkx_45_0.png" />
+<img alt="../_images/networkx_46_0.png" src="../_images/networkx_46_0.png" />
 </div>
 </div>
 </div>
@@ -890,7 +900,7 @@ The length of the path is the number of edges in the sequence.  A shortest path 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/networkx_48_0.png" src="../_images/networkx_48_0.png" />
+<img alt="../_images/networkx_49_0.png" src="../_images/networkx_49_0.png" />
 </div>
 </div>
 <p>Here’s an example of reading and writing a graph as an edgelist:</p>
