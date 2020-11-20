@@ -297,7 +297,7 @@ d = A 1
 \end{equation}
 where <span class="math notranslate nohighlight">\(1\)</span> is the vector containing all 1s of length <span class="math notranslate nohighlight">\(n\)</span>.  You could also just sum the row entries of <span class="math notranslate nohighlight">\(A\)</span>.  We will also use <span class="math notranslate nohighlight">\(D = diag(d)\)</span> - a diagonal matrix with <span class="math notranslate nohighlight">\(D_{i,i} = d_i\)</span>.</p>
 <p>The <strong>incidence matrix</strong> <span class="math notranslate nohighlight">\(B\)</span> is a <span class="math notranslate nohighlight">\(n \times m\)</span> matrix which encodes how edges and vertices are related.  Let <span class="math notranslate nohighlight">\(e_k = (i,j)\)</span> be an edge.  Then the <span class="math notranslate nohighlight">\(k\)</span>-th column of <span class="math notranslate nohighlight">\(B\)</span> is all zeros except <span class="math notranslate nohighlight">\(B_{i,k} = -1\)</span>, and <span class="math notranslate nohighlight">\(B_{j,k} = +1\)</span> (for undirected graphs, it doesn’t matter which of <span class="math notranslate nohighlight">\(B_{i,k}\)</span> and <span class="math notranslate nohighlight">\(B_{j,k}\)</span> is <span class="math notranslate nohighlight">\(+1\)</span> and which is <span class="math notranslate nohighlight">\(-1\)</span> as long as they have opposite signs).
-Note that <span class="math notranslate nohighlight">\(B^T\)</span> acts as a sort of difference operator on functions of vertices, meaning <span class="math notranslate nohighlight">\(B^T f\)</span> is a vector of length <span class="math notranslate nohighlight">\(n\)</span> which encodes the difference in fuction value over each edge.</p>
+Note that <span class="math notranslate nohighlight">\(B^T\)</span> acts as a sort of difference operator on functions of vertices, meaning <span class="math notranslate nohighlight">\(B^T f\)</span> is a vector of length <span class="math notranslate nohighlight">\(m\)</span> which encodes the difference in fuction value over each edge.</p>
 <p>You can check that <span class="math notranslate nohighlight">\(B^T 1_C = 0\)</span>, where <span class="math notranslate nohighlight">\(1_C\)</span> is a connected component indicator (<span class="math notranslate nohighlight">\(1_C[i] = 1\)</span> if <span class="math notranslate nohighlight">\(i \in C\)</span>, and <span class="math notranslate nohighlight">\(1_C[i] = 0\)</span> otherwise).  <span class="math notranslate nohighlight">\(C\subseteq V\)</span> is a connected component of the graph if all vertices in <span class="math notranslate nohighlight">\(C\)</span> have a path between them, and there are no vertices in <span class="math notranslate nohighlight">\(V\)</span> that are connected to <span class="math notranslate nohighlight">\(C\)</span> which are not in <span class="math notranslate nohighlight">\(C\)</span>.  This implies <span class="math notranslate nohighlight">\(B^T 1 = 0\)</span>.</p>
 <p>The <strong>graph laplacian</strong> <span class="math notranslate nohighlight">\(L\)</span> is an <span class="math notranslate nohighlight">\(n \times n\)</span> matrix <span class="math notranslate nohighlight">\(L = D- A = B B^T\)</span>.  If the graph lies on a regular grid, then <span class="math notranslate nohighlight">\(L = -\Delta\)</span> up to scaling by a finite difference width <span class="math notranslate nohighlight">\(h^2\)</span>, but the graph laplacian is defined for all graphs.</p>
 <p>Note that the nullspace of <span class="math notranslate nohighlight">\(L\)</span> is the same as the nullspace of <span class="math notranslate nohighlight">\(B^T\)</span> (the span of indicators on connected components).</p>
@@ -317,8 +317,12 @@ Note that <span class="math notranslate nohighlight">\(B^T\)</span> acts as a so
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">gnp_random_graph</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/spectral_2_0.png" src="../_images/spectral_2_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -329,7 +333,7 @@ Note that <span class="math notranslate nohighlight">\(B^T\)</span> acts as a so
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;100x100 sparse matrix of type &#39;&lt;class &#39;numpy.int64&#39;&gt;&#39;
-	with 1082 stored elements in Compressed Sparse Row format&gt;
+	with 950 stored elements in Compressed Sparse Row format&gt;
 </pre></div>
 </div>
 </div>
@@ -341,8 +345,8 @@ Note that <span class="math notranslate nohighlight">\(B^T\)</span> acts as a so
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;100x541 sparse matrix of type &#39;&lt;class &#39;numpy.float64&#39;&gt;&#39;
-	with 1082 stored elements in Compressed Sparse Column format&gt;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;100x475 sparse matrix of type &#39;&lt;class &#39;numpy.float64&#39;&gt;&#39;
+	with 950 stored elements in Compressed Sparse Column format&gt;
 </pre></div>
 </div>
 </div>
@@ -355,7 +359,7 @@ Note that <span class="math notranslate nohighlight">\(B^T\)</span> acts as a so
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;100x100 sparse matrix of type &#39;&lt;class &#39;numpy.int64&#39;&gt;&#39;
-	with 1182 stored elements in Compressed Sparse Row format&gt;
+	with 1050 stored elements in Compressed Sparse Row format&gt;
 </pre></div>
 </div>
 </div>
@@ -390,6 +394,18 @@ We then calculate the stationary vector <span class="math notranslate nohighligh
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/spectral_10_0.png" src="../_images/spectral_10_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>NodeDataView({&#39;Napoleon&#39;: {}, &#39;Myriel&#39;: {}, &#39;MlleBaptistine&#39;: {}, &#39;MmeMagloire&#39;: {}, &#39;CountessDeLo&#39;: {}, &#39;Geborand&#39;: {}, &#39;Champtercier&#39;: {}, &#39;Cravatte&#39;: {}, &#39;Count&#39;: {}, &#39;OldMan&#39;: {}, &#39;Valjean&#39;: {}, &#39;Labarre&#39;: {}, &#39;Marguerite&#39;: {}, &#39;MmeDeR&#39;: {}, &#39;Isabeau&#39;: {}, &#39;Gervais&#39;: {}, &#39;Listolier&#39;: {}, &#39;Tholomyes&#39;: {}, &#39;Fameuil&#39;: {}, &#39;Blacheville&#39;: {}, &#39;Favourite&#39;: {}, &#39;Dahlia&#39;: {}, &#39;Zephine&#39;: {}, &#39;Fantine&#39;: {}, &#39;MmeThenardier&#39;: {}, &#39;Thenardier&#39;: {}, &#39;Cosette&#39;: {}, &#39;Javert&#39;: {}, &#39;Fauchelevent&#39;: {}, &#39;Bamatabois&#39;: {}, &#39;Perpetue&#39;: {}, &#39;Simplice&#39;: {}, &#39;Scaufflaire&#39;: {}, &#39;Woman1&#39;: {}, &#39;Judge&#39;: {}, &#39;Champmathieu&#39;: {}, &#39;Brevet&#39;: {}, &#39;Chenildieu&#39;: {}, &#39;Cochepaille&#39;: {}, &#39;Pontmercy&#39;: {}, &#39;Boulatruelle&#39;: {}, &#39;Eponine&#39;: {}, &#39;Anzelma&#39;: {}, &#39;Woman2&#39;: {}, &#39;MotherInnocent&#39;: {}, &#39;Gribier&#39;: {}, &#39;MmeBurgon&#39;: {}, &#39;Jondrette&#39;: {}, &#39;Gavroche&#39;: {}, &#39;Gillenormand&#39;: {}, &#39;Magnon&#39;: {}, &#39;MlleGillenormand&#39;: {}, &#39;MmePontmercy&#39;: {}, &#39;MlleVaubois&#39;: {}, &#39;LtGillenormand&#39;: {}, &#39;Marius&#39;: {}, &#39;BaronessT&#39;: {}, &#39;Mabeuf&#39;: {}, &#39;Enjolras&#39;: {}, &#39;Combeferre&#39;: {}, &#39;Prouvaire&#39;: {}, &#39;Feuilly&#39;: {}, &#39;Courfeyrac&#39;: {}, &#39;Bahorel&#39;: {}, &#39;Bossuet&#39;: {}, &#39;Joly&#39;: {}, &#39;Grantaire&#39;: {}, &#39;MotherPlutarch&#39;: {}, &#39;Gueulemer&#39;: {}, &#39;Babet&#39;: {}, &#39;Claquesous&#39;: {}, &#39;Montparnasse&#39;: {}, &#39;Toussaint&#39;: {}, &#39;Child1&#39;: {}, &#39;Child2&#39;: {}, &#39;Brujon&#39;: {}, &#39;MmeHucheloup&#39;: {}})
+</pre></div>
+</div>
 </div>
 </div>
 <div class="cell docutils container">
@@ -461,28 +477,28 @@ We then calculate the stationary vector <span class="math notranslate nohighligh
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">V</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span> <span class="c1"># PageRank Vector</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">V</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]))</span> <span class="c1"># PageRank Vector</span>
 <span class="n">x</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([-0.0133386 , -0.20399851, -0.0949893 , -0.10668613, -0.0133386 ,
-       -0.0133386 , -0.0133386 , -0.0133386 , -0.01926114, -0.0133386 ,
-       -0.57767244, -0.0107066 , -0.01679025, -0.0107066 , -0.0107066 ,
-       -0.0107066 , -0.07701289, -0.08277018, -0.07701289, -0.07992839,
-       -0.08300515, -0.08007966, -0.07716337, -0.15885074, -0.11720935,
-       -0.20909641, -0.22214954, -0.1583424 , -0.06719718, -0.04831427,
-       -0.01895798, -0.0377782 , -0.0107066 , -0.01702923, -0.06181196,
-       -0.06181196, -0.05030959, -0.05030959, -0.05030959, -0.02101082,
-       -0.01050109, -0.06584516, -0.02292668, -0.02325998, -0.02366606,
-       -0.0160557 , -0.02666986, -0.01541702, -0.1673304 , -0.104165  ,
-       -0.01375137, -0.09145499, -0.01729798, -0.01099474, -0.02347196,
-       -0.31496208, -0.0133744 , -0.05356893, -0.23233548, -0.16932592,
-       -0.05145195, -0.09653403, -0.21000629, -0.10143451, -0.16574335,
-       -0.1099175 , -0.04528474, -0.01645582, -0.08526568, -0.09150015,
-       -0.06900207, -0.04435378, -0.01961912, -0.02781421, -0.02781421,
-       -0.0472697 , -0.02410199])
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([0.0133386 , 0.20399851, 0.0949893 , 0.10668613, 0.0133386 ,
+       0.0133386 , 0.0133386 , 0.0133386 , 0.01926114, 0.0133386 ,
+       0.57767244, 0.0107066 , 0.01679025, 0.0107066 , 0.0107066 ,
+       0.0107066 , 0.07701289, 0.08277018, 0.07701289, 0.07992839,
+       0.08300515, 0.08007966, 0.07716337, 0.15885074, 0.11720935,
+       0.20909641, 0.22214954, 0.1583424 , 0.06719718, 0.04831427,
+       0.01895798, 0.0377782 , 0.0107066 , 0.01702923, 0.06181196,
+       0.06181196, 0.05030959, 0.05030959, 0.05030959, 0.02101082,
+       0.01050109, 0.06584516, 0.02292668, 0.02325998, 0.02366606,
+       0.0160557 , 0.02666986, 0.01541702, 0.1673304 , 0.104165  ,
+       0.01375137, 0.09145499, 0.01729798, 0.01099474, 0.02347196,
+       0.31496208, 0.0133744 , 0.05356893, 0.23233548, 0.16932592,
+       0.05145195, 0.09653403, 0.21000629, 0.10143451, 0.16574335,
+       0.1099175 , 0.04528474, 0.01645582, 0.08526568, 0.09150015,
+       0.06900207, 0.04435378, 0.01961912, 0.02781421, 0.02781421,
+       0.0472697 , 0.02410199])
 </pre></div>
 </div>
 </div>
@@ -496,7 +512,7 @@ We then calculate the stationary vector <span class="math notranslate nohighligh
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;Boulatruelle&#39;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;Valjean&#39;
 </pre></div>
 </div>
 </div>
@@ -509,7 +525,7 @@ We then calculate the stationary vector <span class="math notranslate nohighligh
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([&#39;Boulatruelle&#39;, &#39;Labarre&#39;, &#39;Gervais&#39;, &#39;Isabeau&#39;], dtype=&#39;&lt;U16&#39;)
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([&#39;Valjean&#39;, &#39;Marius&#39;, &#39;Enjolras&#39;, &#39;Cosette&#39;], dtype=&#39;&lt;U16&#39;)
 </pre></div>
 </div>
 </div>
@@ -550,7 +566,7 @@ We then calculate the stationary vector <span class="math notranslate nohighligh
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/spectral_21_0.png" src="../_images/spectral_21_0.png" />
+<img alt="../_images/spectral_22_0.png" src="../_images/spectral_22_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -560,7 +576,7 @@ We then calculate the stationary vector <span class="math notranslate nohighligh
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/spectral_22_0.png" src="../_images/spectral_22_0.png" />
+<img alt="../_images/spectral_23_0.png" src="../_images/spectral_23_0.png" />
 </div>
 </div>
 </div>
@@ -574,8 +590,8 @@ E(A, B) = {(i,j) \in E \mid i\in A, j\in B}
 \begin{equation}
 C(S) = \frac{|E(S, \bar{S})|}{\min {|S|, |\bar{S}|}}
 \end{equation}</p>
-<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Cheeger_constant_(graph_theory)#Cheeger_Inequalities">Cheeger inequality</a> bounds the second-smallest eigenvalue of <span class="math notranslate nohighlight">\(G\)</span> in terms of the optimal value of <span class="math notranslate nohighlight">\(C(S)\)</span>.  In fact, the way to construct a partition of the graph which is close to the optimal clustering minimizing <span class="math notranslate nohighlight">\(C(S)\)</span> is to look at the eigenvector <span class="math notranslate nohighlight">\(x\)</span> associated with the second smallest eigenvalue, and let <span class="math notranslate nohighlight">\(S = \{i \in V \mid x_i &lt; 0\}\)</span>.</p>
-<p>As an example, let’s look at a graph generated by a stochastic block model with two structures.  The “ground-truth” clusters are the ground-truth communities in the model.</p>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Cheeger_constant_(graph_theory)#Cheeger_Inequalities">Cheeger inequality</a> bounds the second-smallest eigenvalue of <span class="math notranslate nohighlight">\(L\)</span> in terms of the optimal value of <span class="math notranslate nohighlight">\(C(S)\)</span>.  In fact, the way to construct a partition of the graph which is close to the optimal clustering minimizing <span class="math notranslate nohighlight">\(C(S)\)</span> is to look at the eigenvector <span class="math notranslate nohighlight">\(x\)</span> associated with the second smallest eigenvalue, and let <span class="math notranslate nohighlight">\(S = \{i \in V \mid x_i &lt; 0\}\)</span>.</p>
+<p>As an example, let’s look at a graph generated by a stochastic block model with two clusters.  The “ground-truth” clusters are the ground-truth communities in the model.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ns</span> <span class="o">=</span> <span class="p">[</span><span class="mi">25</span><span class="p">,</span> <span class="mi">25</span><span class="p">]</span> <span class="c1"># size of clusters</span>
@@ -591,7 +607,7 @@ C(S) = \frac{|E(S, \bar{S})|}{\min {|S|, |\bar{S}|}}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/spectral_24_0.png" src="../_images/spectral_24_0.png" />
+<img alt="../_images/spectral_25_0.png" src="../_images/spectral_25_0.png" />
 </div>
 </div>
 <p>Now, let’s use spectral clustering to partition into two clusters</p>
@@ -608,7 +624,7 @@ C(S) = \frac{|E(S, \bar{S})|}{\min {|S|, |\bar{S}|}}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/spectral_26_0.png" src="../_images/spectral_26_0.png" />
+<img alt="../_images/spectral_27_0.png" src="../_images/spectral_27_0.png" />
 </div>
 </div>
 <p>We’ll use the <a class="reference external" href="https://scikit-learn.org/stable/modules/clustering.html#adjusted-rand-index">adjusted rand index</a> to measure the quality of the clustering we obtained.  A value of 1 means that we found the true clusters.</p>
@@ -621,7 +637,7 @@ C(S) = \frac{|E(S, \bar{S})|}{\min {|S|, |\bar{S}|}}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>1.0
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.8432209038794828
 </pre></div>
 </div>
 </div>
@@ -642,7 +658,7 @@ C(S) = \frac{|E(S, \bar{S})|}{\min {|S|, |\bar{S}|}}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/spectral_30_0.png" src="../_images/spectral_30_0.png" />
+<img alt="../_images/spectral_31_0.png" src="../_images/spectral_31_0.png" />
 </div>
 </div>
 <p>we’ll use K-means clustering in scikit learn to assign clusters.</p>
@@ -661,7 +677,7 @@ C(S) = \frac{|E(S, \bar{S})|}{\min {|S|, |\bar{S}|}}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/spectral_32_0.png" src="../_images/spectral_32_0.png" />
+<img alt="../_images/spectral_33_0.png" src="../_images/spectral_33_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -671,7 +687,7 @@ C(S) = \frac{|E(S, \bar{S})|}{\min {|S|, |\bar{S}|}}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.97305763367046
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>1.0
 </pre></div>
 </div>
 </div>
