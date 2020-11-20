@@ -237,7 +237,48 @@
             <i class="fas fa-list"></i> Contents
         </div>
         <nav id="bd-toc-nav">
-            
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise">
+   Exercise
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#random-walks-on-graphs">
+   Random Walks on Graphs
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#page-rank">
+     Page Rank
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-graph-laplacian">
+   The Graph Laplacian
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#spectral-embeddings">
+     Spectral Embeddings
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#spectral-clustering">
+     Spectral Clustering
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Exercise
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
         </nav>
     </div>
 </div>
@@ -248,14 +289,401 @@
                 
   <div class="section" id="spectral-graph-theory">
 <h1>Spectral Graph Theory<a class="headerlink" href="#spectral-graph-theory" title="Permalink to this headline">¶</a></h1>
-<ul class="simple">
-<li><p>Adjacency Matrix / Markov Transitions</p></li>
-<li><p>Page Rank</p></li>
-<li><p>Incidence Matrix</p></li>
-<li><p>Laplacian / Diffusion / Properties</p></li>
-<li><p>Spectral Embeddings / Variational form</p></li>
-<li><p>Spectral clustering</p></li>
-</ul>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Spectral_graph_theory">Spectral Graph Theory</a> studies graphs using associated matrices such as the adjacency matrix and graph Laplacian.  Let <span class="math notranslate nohighlight">\(G(V, E)\)</span> be a graph.  We’ll let <span class="math notranslate nohighlight">\(n = |V|\)</span> denote the number of vertices/nodes, and <span class="math notranslate nohighlight">\(m = |E|\)</span> denote the number of edges.  We’ll assume that vertices are indexed by <span class="math notranslate nohighlight">\(0,\dots,n-1\)</span>, and edges are indexed by <span class="math notranslate nohighlight">\(0,\dots,m-1\)</span>.</p>
+<p>The <strong>adjacency matrix</strong> <span class="math notranslate nohighlight">\(A\)</span> is a <span class="math notranslate nohighlight">\(n\times n\)</span> matrix with <span class="math notranslate nohighlight">\(A_{i,j} = 1\)</span> if <span class="math notranslate nohighlight">\((i,j) \in E\)</span> is an edge, and <span class="math notranslate nohighlight">\(A_{i,j} = 0\)</span> if <span class="math notranslate nohighlight">\((i,j) \notin E\)</span>.  If <span class="math notranslate nohighlight">\(G\)</span> is an undirected graph, then <span class="math notranslate nohighlight">\(A\)</span> is symmetric.  If <span class="math notranslate nohighlight">\(G\)</span> is directed, then <span class="math notranslate nohighlight">\(A\)</span> need not be symmetric.</p>
+<p>The <strong>degree</strong> of a node <span class="math notranslate nohighlight">\(i\)</span>, <span class="math notranslate nohighlight">\(deg(i)\)</span> is the number of neighbors of <span class="math notranslate nohighlight">\(i\)</span>, meaning the number of edges which <span class="math notranslate nohighlight">\(i\)</span> participates in.  You can calculate the vector of degrees (a vector <span class="math notranslate nohighlight">\(d\)</span> of length <span class="math notranslate nohighlight">\(n\)</span>, where <span class="math notranslate nohighlight">\(d_i = deg(i)\)</span>), using matrix-vector mulpilication:
+\begin{equation}
+d = A 1
+\end{equation}
+where <span class="math notranslate nohighlight">\(1\)</span> is the vector containing all 1s of length <span class="math notranslate nohighlight">\(n\)</span>.  You could also just sum the row entries of <span class="math notranslate nohighlight">\(A\)</span>.  We will also use <span class="math notranslate nohighlight">\(D = diag(d)\)</span> - a diagonal matrix with <span class="math notranslate nohighlight">\(D_{i,i} = d_i\)</span>.</p>
+<p>The <strong>incidence matrix</strong> <span class="math notranslate nohighlight">\(B\)</span> is a <span class="math notranslate nohighlight">\(n \times m\)</span> matrix which encodes how edges and vertices are related.  Let <span class="math notranslate nohighlight">\(e_k = (i,j)\)</span> be an edge.  Then the <span class="math notranslate nohighlight">\(k\)</span>-th column of <span class="math notranslate nohighlight">\(B\)</span> is all zeros except <span class="math notranslate nohighlight">\(B_{i,k} = -1\)</span>, and <span class="math notranslate nohighlight">\(B_{j,k} = +1\)</span> (for undirected graphs, it doesn’t matter which of <span class="math notranslate nohighlight">\(B_{i,k}\)</span> and <span class="math notranslate nohighlight">\(B_{j,k}\)</span> is <span class="math notranslate nohighlight">\(+1\)</span> and which is <span class="math notranslate nohighlight">\(-1\)</span> as long as they have opposite signs).
+Note that <span class="math notranslate nohighlight">\(B^T\)</span> acts as a sort of difference operator on functions of vertices, meaning <span class="math notranslate nohighlight">\(B^T f\)</span> is a vector of length <span class="math notranslate nohighlight">\(n\)</span> which encodes the difference in fuction value over each edge.</p>
+<p>You can check that <span class="math notranslate nohighlight">\(B^T 1_C = 0\)</span>, where <span class="math notranslate nohighlight">\(1_C\)</span> is a connected component indicator (<span class="math notranslate nohighlight">\(1_C[i] = 1\)</span> if <span class="math notranslate nohighlight">\(i \in C\)</span>, and <span class="math notranslate nohighlight">\(1_C[i] = 0\)</span> otherwise).  <span class="math notranslate nohighlight">\(C\subseteq V\)</span> is a connected component of the graph if all vertices in <span class="math notranslate nohighlight">\(C\)</span> have a path between them, and there are no vertices in <span class="math notranslate nohighlight">\(V\)</span> that are connected to <span class="math notranslate nohighlight">\(C\)</span> which are not in <span class="math notranslate nohighlight">\(C\)</span>.  This implies <span class="math notranslate nohighlight">\(B^T 1 = 0\)</span>.</p>
+<p>The <strong>graph laplacian</strong> <span class="math notranslate nohighlight">\(L\)</span> is an <span class="math notranslate nohighlight">\(n \times n\)</span> matrix <span class="math notranslate nohighlight">\(L = D- A = B B^T\)</span>.  If the graph lies on a regular grid, then <span class="math notranslate nohighlight">\(L = -\Delta\)</span> up to scaling by a finite difference width <span class="math notranslate nohighlight">\(h^2\)</span>, but the graph laplacian is defined for all graphs.</p>
+<p>Note that the nullspace of <span class="math notranslate nohighlight">\(L\)</span> is the same as the nullspace of <span class="math notranslate nohighlight">\(B^T\)</span> (the span of indicators on connected components).</p>
+<p>In most cases, it makes sense to store all these matrices in sparse format.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">scipy.linalg</span> <span class="k">as</span> <span class="nn">la</span>
+<span class="kn">import</span> <span class="nn">scipy.sparse</span> <span class="k">as</span> <span class="nn">sparse</span>
+<span class="kn">import</span> <span class="nn">scipy.sparse.linalg</span> <span class="k">as</span> <span class="nn">sla</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">gnp_random_graph</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nx</span><span class="o">.</span><span class="n">adj_matrix</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;100x100 sparse matrix of type &#39;&lt;class &#39;numpy.int64&#39;&gt;&#39;
+	with 1082 stored elements in Compressed Sparse Row format&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nx</span><span class="o">.</span><span class="n">incidence_matrix</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;100x541 sparse matrix of type &#39;&lt;class &#39;numpy.float64&#39;&gt;&#39;
+	with 1082 stored elements in Compressed Sparse Column format&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nx</span><span class="o">.</span><span class="n">laplacian_matrix</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;100x100 sparse matrix of type &#39;&lt;class &#39;numpy.int64&#39;&gt;&#39;
+	with 1182 stored elements in Compressed Sparse Row format&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="exercise">
+<h2>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h2>
+<p>For an undirected graph <span class="math notranslate nohighlight">\(G(V, E)\)</span>, let <span class="math notranslate nohighlight">\(n = |V|\)</span> and <span class="math notranslate nohighlight">\(m = |E|\)</span>.  Give an expression for the number of non-zeros in each of <span class="math notranslate nohighlight">\(A\)</span>, <span class="math notranslate nohighlight">\(B\)</span>, and <span class="math notranslate nohighlight">\(L\)</span> in terms of <span class="math notranslate nohighlight">\(n\)</span> and <span class="math notranslate nohighlight">\(m\)</span>.</p>
+<hr class="docutils" />
+<p><span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> both have <span class="math notranslate nohighlight">\(2m\)</span> non-zeros.  <span class="math notranslate nohighlight">\(L\)</span> has <span class="math notranslate nohighlight">\(n + 2m\)</span> non-zeros.</p>
+</div>
+<div class="section" id="random-walks-on-graphs">
+<h2>Random Walks on Graphs<a class="headerlink" href="#random-walks-on-graphs" title="Permalink to this headline">¶</a></h2>
+<p>In a random walk on a graph, we consider an agent who starts at a vertex <span class="math notranslate nohighlight">\(i\)</span>, and then will chose a random neighbor of <span class="math notranslate nohighlight">\(i\)</span> and “walk” along the connecting edge.  Typically, we will consider taking a walk where a neighbor is chosen uniformly at random (i.e. with probability <span class="math notranslate nohighlight">\(1/d_i\)</span>).  We’ll assume that every vertex of the graph has at least one neighbor so <span class="math notranslate nohighlight">\(D^{-1}\)</span> makes sense.</p>
+<p>This defines a <a class="reference external" href="https://en.wikipedia.org/wiki/Markov_chain">Markov Chain</a> with transition matrix <span class="math notranslate nohighlight">\(P = A D^{-1}\)</span> (columns are scaled to 1).  Note that even if <span class="math notranslate nohighlight">\(A\)</span> is symmetric (for undirected graphs) that <span class="math notranslate nohighlight">\(P\)</span> need not be symmetric because of the scaling by <span class="math notranslate nohighlight">\(D^{-1}\)</span>.</p>
+<p>The stationary distribution <span class="math notranslate nohighlight">\(x\)</span> of the random walk is the top eigenvector of <span class="math notranslate nohighlight">\(P\)</span>, is guaranteed to have eigenvalue <span class="math notranslate nohighlight">\(1\)</span>, and is guaranteed to have non-negative entries.  If we scale <span class="math notranslate nohighlight">\(x\)</span> so <span class="math notranslate nohighlight">\(\|x\|_1 = 1\)</span>, The entry <span class="math notranslate nohighlight">\(x_i\)</span> can be interpreted as the probability that a random walker which has walked for a very large number of steps is at vertex <span class="math notranslate nohighlight">\(i\)</span>.</p>
+<div class="section" id="page-rank">
+<h3>Page Rank<a class="headerlink" href="#page-rank" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/PageRank">PageRank</a> is an early algorithm that was used to rank websites for search engines.  The internet can be viewed as a directed graph of websites where there is a directed edge <span class="math notranslate nohighlight">\((i, j)\)</span> if webpage <span class="math notranslate nohighlight">\(j\)</span> links to webpage <span class="math notranslate nohighlight">\(i\)</span>.  In this case, we compute the degree vector <span class="math notranslate nohighlight">\(d\)</span> using the <em>out</em>-degree (counting the number of links out of a webpage).  Then the transition matrix <span class="math notranslate nohighlight">\(P = A D^{-1}\)</span> on the directed adjacency matrix defines a random walk on webpages where a user randomly clicks links to get from webpage to webpage.  The idea is that more authoritative websites will have more links to them, so a random web surfer will be more likely to end up with them.</p>
+<p>One of the issues with this model is that it is easy for a random walker to get “stuck” at a webpage with no out-going links.  The idea of PageRank is to add a probability <span class="math notranslate nohighlight">\(\alpha\)</span> that a web surfer will randomly go to another webpage which is not linked to by their current page.  In this case, we can write the transition matrix
+\begin{equation}
+P = (1-\alpha) A D^{-1} + \frac{\alpha}{n} 11^T
+\end{equation}
+We then calculate the stationary vector <span class="math notranslate nohighlight">\(x\)</span> of this matrix.  Websites with a larger entry in <span class="math notranslate nohighlight">\(x_i\)</span> are deemed more authoritative.</p>
+<p>Note that because <span class="math notranslate nohighlight">\(A\)</span> is sparse, you’ll typically want to encode <span class="math notranslate nohighlight">\(\frac{1}{n}11^T\)</span> as a linear operator (this takes the average of a vector, and broadcasts it to the appropriate shape).  For internet-sized graphs this is a necessity.</p>
+<p>Let’s look at the <a class="reference external" href="https://networkx.org/documentation/stable/reference/generated/networkx.generators.social.les_miserables_graph.html#networkx.generators.social.les_miserables_graph">Les Miserables graph</a>, which encodes interactions between characters in the novel <a class="reference external" href="https://en.wikipedia.org/wiki/Les_Mis%C3%A9rables">Les Miserables</a> by Victor Hugo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">les_miserables_graph</span><span class="p">()</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_kamada_kawai</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/spectral_10_0.png" src="../_images/spectral_10_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">adjacency_matrix</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+<span class="n">A</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;77x77 sparse matrix of type &#39;&lt;class &#39;numpy.int64&#39;&gt;&#39;
+	with 508 stored elements in Compressed Sparse Row format&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># compute degrees</span>
+<span class="n">Dinv</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">dia_matrix</span><span class="p">((</span><span class="mi">1</span> <span class="o">/</span> <span class="n">d</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+<span class="n">Dinv</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;77x77 sparse matrix of type &#39;&lt;class &#39;numpy.float64&#39;&gt;&#39;
+	with 77 stored elements (1 diagonals) in DIAgonal format&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># works on square matrices or vectors</span>
+<span class="n">Onefun</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">X</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">m</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># linear operator of shape of Adjacency matrix</span>
+
+<span class="n">OneOneT</span> <span class="o">=</span> <span class="n">sla</span><span class="o">.</span><span class="n">LinearOperator</span><span class="p">(</span>
+    <span class="n">shape</span>   <span class="o">=</span> <span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">m</span><span class="p">),</span>
+    <span class="n">matvec</span>  <span class="o">=</span> <span class="n">Onefun</span><span class="p">,</span>
+    <span class="n">rmatvec</span> <span class="o">=</span> <span class="n">Onefun</span><span class="p">,</span>
+    <span class="n">matmat</span>  <span class="o">=</span> <span class="n">Onefun</span><span class="p">,</span>
+    <span class="n">rmatmat</span> <span class="o">=</span> <span class="n">Onefun</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float</span>   
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s now construct the PageRank matrix and compute the top eigenpairs</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.1</span>
+
+<span class="n">P</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">)</span> <span class="o">*</span> <span class="n">sla</span><span class="o">.</span><span class="n">aslinearoperator</span><span class="p">(</span><span class="n">A</span> <span class="o">@</span> <span class="n">Dinv</span><span class="p">)</span> <span class="o">+</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">OneOneT</span>
+
+<span class="n">lam</span><span class="p">,</span> <span class="n">V</span> <span class="o">=</span> <span class="n">sla</span><span class="o">.</span><span class="n">eigs</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;LM&#39;</span><span class="p">)</span>
+<span class="n">lam</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([1.        +0.j, 0.83936036+0.j])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">V</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span> <span class="c1"># PageRank Vector</span>
+<span class="n">x</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([-0.0133386 , -0.20399851, -0.0949893 , -0.10668613, -0.0133386 ,
+       -0.0133386 , -0.0133386 , -0.0133386 , -0.01926114, -0.0133386 ,
+       -0.57767244, -0.0107066 , -0.01679025, -0.0107066 , -0.0107066 ,
+       -0.0107066 , -0.07701289, -0.08277018, -0.07701289, -0.07992839,
+       -0.08300515, -0.08007966, -0.07716337, -0.15885074, -0.11720935,
+       -0.20909641, -0.22214954, -0.1583424 , -0.06719718, -0.04831427,
+       -0.01895798, -0.0377782 , -0.0107066 , -0.01702923, -0.06181196,
+       -0.06181196, -0.05030959, -0.05030959, -0.05030959, -0.02101082,
+       -0.01050109, -0.06584516, -0.02292668, -0.02325998, -0.02366606,
+       -0.0160557 , -0.02666986, -0.01541702, -0.1673304 , -0.104165  ,
+       -0.01375137, -0.09145499, -0.01729798, -0.01099474, -0.02347196,
+       -0.31496208, -0.0133744 , -0.05356893, -0.23233548, -0.16932592,
+       -0.05145195, -0.09653403, -0.21000629, -0.10143451, -0.16574335,
+       -0.1099175 , -0.04528474, -0.01645582, -0.08526568, -0.09150015,
+       -0.06900207, -0.04435378, -0.01961912, -0.02781421, -0.02781421,
+       -0.0472697 , -0.02410199])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">i</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">names</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="kc">True</span><span class="p">)])</span>
+<span class="n">names</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;Boulatruelle&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">perm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">x</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># reverse sort</span>
+<span class="n">names</span><span class="p">[</span><span class="n">perm</span><span class="p">[:</span><span class="mi">4</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([&#39;Boulatruelle&#39;, &#39;Labarre&#39;, &#39;Gervais&#39;, &#39;Isabeau&#39;], dtype=&#39;&lt;U16&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="the-graph-laplacian">
+<h2>The Graph Laplacian<a class="headerlink" href="#the-graph-laplacian" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="spectral-embeddings">
+<h3>Spectral Embeddings<a class="headerlink" href="#spectral-embeddings" title="Permalink to this headline">¶</a></h3>
+<p>Spectral embeddings are one way of obtaining locations of vertices of a graph for visualization.  One way is to pretend that all edges are Hooke’s law springs, and to minimize the potential energy of a configuration of vertex locations subject to the constraint that we can’t have all points in the same location.</p>
+<p>In one dimension:
+\begin{equation}
+\mathop{\mathsf{minimize}}<em>x \sum</em>{(i,j) \in E} (x_i - x_j)^2\
+\text{subject to } x^T 1 = 0, |x|_2 = 1
+\end{equation}</p>
+<p>Note that the objective function is a quadratic form on the embedding vector <span class="math notranslate nohighlight">\(x\)</span>:
+\begin{equation}
+\sum_{(i,j)\in E} (x_i - x_j)^2 = x^T B B^T x = x^T L x
+\end{equation}</p>
+<p>Because the vector <span class="math notranslate nohighlight">\(1\)</span> is in the nullspace of <span class="math notranslate nohighlight">\(L\)</span>, this is equivalent to finding the eigenvector with <em>second-smallest</em> eigenvalue.</p>
+<p>For a higher-dimensional embedding, we can use the eigenvectors for the next-largest eigenvalues.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">grid_2d_graph</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">L</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">laplacian_matrix</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+<span class="n">L</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">csr_matrix</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lam</span><span class="p">,</span> <span class="n">V</span> <span class="o">=</span> <span class="n">sla</span><span class="o">.</span><span class="n">eigsh</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;SM&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">V</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">V</span><span class="p">[:,</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/spectral_21_0.png" src="../_images/spectral_21_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nx</span><span class="o">.</span><span class="n">draw_spectral</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/spectral_22_0.png" src="../_images/spectral_22_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="spectral-clustering">
+<h3>Spectral Clustering<a class="headerlink" href="#spectral-clustering" title="Permalink to this headline">¶</a></h3>
+<p>Spectral clustering refers to using a spectral embedding to cluster nodes in a graph.  Let <span class="math notranslate nohighlight">\(A, B \subset V\)</span> with <span class="math notranslate nohighlight">\(A \cap B = \emptyset\)</span>.  We will denote
+\begin{equation}
+E(A, B) = {(i,j) \in E \mid i\in A, j\in B}
+\end{equation}</p>
+<p>One way to try to find clusters is to attempt to find a set of nodes <span class="math notranslate nohighlight">\(S \subset V\)</span> with <span class="math notranslate nohighlight">\(\bar{S} = V \setminus S\)</span>, so that we minimize the cut objective
+\begin{equation}
+C(S) = \frac{|E(S, \bar{S})|}{\min {|S|, |\bar{S}|}}
+\end{equation}</p>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Cheeger_constant_(graph_theory)#Cheeger_Inequalities">Cheeger inequality</a> bounds the second-smallest eigenvalue of <span class="math notranslate nohighlight">\(G\)</span> in terms of the optimal value of <span class="math notranslate nohighlight">\(C(S)\)</span>.  In fact, the way to construct a partition of the graph which is close to the optimal clustering minimizing <span class="math notranslate nohighlight">\(C(S)\)</span> is to look at the eigenvector <span class="math notranslate nohighlight">\(x\)</span> associated with the second smallest eigenvalue, and let <span class="math notranslate nohighlight">\(S = \{i \in V \mid x_i &lt; 0\}\)</span>.</p>
+<p>As an example, let’s look at a graph generated by a stochastic block model with two structures.  The “ground-truth” clusters are the ground-truth communities in the model.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ns</span> <span class="o">=</span> <span class="p">[</span><span class="mi">25</span><span class="p">,</span> <span class="mi">25</span><span class="p">]</span> <span class="c1"># size of clusters</span>
+<span class="n">ps</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">]]</span> <span class="c1"># probability of edge</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">stochastic_block_model</span><span class="p">(</span><span class="n">ns</span><span class="p">,</span> <span class="n">ps</span><span class="p">)</span>
+<span class="n">true_clusters</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">nx</span><span class="o">.</span><span class="n">get_node_attributes</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="s1">&#39;block&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
+
+
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_kamada_kawai</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">with_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="n">true_clusters</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;SBM with ground-truth clusters&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/spectral_24_0.png" src="../_images/spectral_24_0.png" />
+</div>
+</div>
+<p>Now, let’s use spectral clustering to partition into two clusters</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lam</span><span class="p">,</span> <span class="n">V</span> <span class="o">=</span> <span class="n">sla</span><span class="o">.</span><span class="n">eigsh</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">laplacian_matrix</span><span class="p">(</span><span class="n">G</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">),</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;SM&#39;</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">V</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">cs</span> <span class="o">=</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="c1"># get clusters</span>
+
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_kamada_kawai</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">with_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="n">cs</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;SBM with spectral clusters&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/spectral_26_0.png" src="../_images/spectral_26_0.png" />
+</div>
+</div>
+<p>We’ll use the <a class="reference external" href="https://scikit-learn.org/stable/modules/clustering.html#adjusted-rand-index">adjusted rand index</a> to measure the quality of the clustering we obtained.  A value of 1 means that we found the true clusters.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">metrics</span>
+
+<span class="n">metrics</span><span class="o">.</span><span class="n">adjusted_rand_score</span><span class="p">(</span><span class="n">true_clusters</span><span class="p">,</span> <span class="n">cs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>1.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>In general, you should use a dimension <span class="math notranslate nohighlight">\(d\)</span> embedding when looking for <span class="math notranslate nohighlight">\(d+1\)</span> clusters (so we used a dimension 1 embedding for 2 clusters).  Let’s look at 4 clusters in a SBM</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nclusters</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">ns</span> <span class="o">=</span> <span class="p">[</span><span class="mi">25</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nclusters</span><span class="p">)]</span> <span class="c1"># size of clusters</span>
+<span class="n">ps</span> <span class="o">=</span> <span class="mf">0.02</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">nclusters</span><span class="p">,</span> <span class="n">nclusters</span><span class="p">))</span> <span class="o">+</span> <span class="mf">0.25</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">nclusters</span><span class="p">)</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">stochastic_block_model</span><span class="p">(</span><span class="n">ns</span><span class="p">,</span> <span class="n">ps</span><span class="p">)</span>
+<span class="n">true_clusters</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">nx</span><span class="o">.</span><span class="n">get_node_attributes</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="s1">&#39;block&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
+
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_circular</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">with_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="n">true_clusters</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;SBM with ground-truth clusters&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/spectral_30_0.png" src="../_images/spectral_30_0.png" />
+</div>
+</div>
+<p>we’ll use K-means clustering in scikit learn to assign clusters.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
+
+<span class="n">lam</span><span class="p">,</span> <span class="n">V</span> <span class="o">=</span> <span class="n">sla</span><span class="o">.</span><span class="n">eigsh</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">laplacian_matrix</span><span class="p">(</span><span class="n">G</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">),</span> <span class="n">k</span><span class="o">=</span><span class="n">nclusters</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;SM&#39;</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">V</span><span class="p">[:,</span><span class="mi">1</span><span class="p">:]</span>
+<span class="n">cs</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="n">nclusters</span><span class="p">)</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="c1"># get clusters</span>
+
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_circular</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">with_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="n">cs</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;SBM with spectral clusters&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/spectral_32_0.png" src="../_images/spectral_32_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">metrics</span><span class="o">.</span><span class="n">adjusted_rand_score</span><span class="p">(</span><span class="n">true_clusters</span><span class="p">,</span> <span class="n">cs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.97305763367046
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id1">
+<h3>Exercise<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>We’ll consider the stochastic block model with <span class="math notranslate nohighlight">\(k=5\)</span> clusters and <span class="math notranslate nohighlight">\(n=25\)</span> nodes per cluster.</p>
+<p>Let <span class="math notranslate nohighlight">\(p\)</span> be denote the probability of an edge between nodes in the same cluster, and <span class="math notranslate nohighlight">\(q\)</span> denote the probability of an edge between nodes in different clusters.</p>
+<p>Plot a phase diagram of the adjusted rand index (ARI) score as <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(q\)</span> both vary in the range <span class="math notranslate nohighlight">\([0,1]\)</span></p>
+</div>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
