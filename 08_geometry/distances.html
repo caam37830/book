@@ -472,7 +472,7 @@ d(x,y) = | x- y |_A = \sqrt{(x - y)^T A (x - y)}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>4.779245490763241
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.7474554180033918
 </pre></div>
 </div>
 </div>
@@ -539,11 +539,11 @@ d(x, y; w) = \sqrt{\sum_i w_i(x_i - y_i)^2}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([[0.        , 0.679535  , 2.07201214, 0.22405185, 0.18051169],
-       [0.679535  , 0.        , 1.8104198 , 0.55907284, 0.8377968 ],
-       [2.07201214, 1.8104198 , 0.        , 2.14984222, 2.07805372],
-       [0.22405185, 0.55907284, 2.14984222, 0.        , 0.40023715],
-       [0.18051169, 0.8377968 , 2.07805372, 0.40023715, 0.        ]])
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([[0.        , 0.93275213, 1.22606489, 1.98066155, 2.0908577 ],
+       [0.93275213, 0.        , 0.32768946, 2.05636152, 1.68931575],
+       [1.22606489, 0.32768946, 0.        , 2.00923082, 1.48754849],
+       [1.98066155, 2.05636152, 2.00923082, 0.        , 1.02372021],
+       [2.0908577 , 1.68931575, 1.48754849, 1.02372021, 0.        ]])
 </pre></div>
 </div>
 </div>
@@ -555,11 +555,11 @@ d(x, y; w) = \sqrt{\sum_i w_i(x_i - y_i)^2}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([[0.        , 0.69849696, 2.53286404, 0.22380795, 0.17690071],
-       [0.69849696, 0.        , 1.99232635, 0.64494527, 0.83136192],
-       [2.53286404, 1.99232635, 0.        , 2.56047248, 2.58289705],
-       [0.22380795, 0.64494527, 2.56047248, 0.        , 0.39901145],
-       [0.17690071, 0.83136192, 2.58289705, 0.39901145, 0.        ]])
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([[0.        , 1.1490797 , 1.5395841 , 1.91538732, 2.20468509],
+       [1.1490797 , 0.        , 0.39474287, 2.04876528, 1.62870975],
+       [1.5395841 , 0.39474287, 0.        , 1.96777861, 1.45473573],
+       [1.91538732, 2.04876528, 1.96777861, 0.        , 1.15271152],
+       [2.20468509, 1.62870975, 1.45473573, 1.15271152, 0.        ]])
 </pre></div>
 </div>
 </div>
@@ -596,7 +596,7 @@ D = \sqrt{1 x^{2T} + x^2 1^T - 2 X X^T}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>1.2060109012779447e-15
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>1.1775693440128313e-15
 </pre></div>
 </div>
 </div>
@@ -664,7 +664,7 @@ a : rank-2 array(&#39;d&#39;) with bounds (n,n)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>7.570711667007543e-16
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>1.0053497077208614e-15
 </pre></div>
 </div>
 </div>
@@ -688,9 +688,9 @@ a : rank-2 array(&#39;d&#39;) with bounds (n,n)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>pairwise : 0.08696866035461426 sec.
-pairwise_euclidean : 0.00045490264892578125 sec.
-pairwise_euclidean_blas : 0.0003247261047363281 sec.
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>pairwise : 0.09385418891906738 sec.
+pairwise_euclidean : 0.0006220340728759766 sec.
+pairwise_euclidean_blas : 0.0002715587615966797 sec.
 </pre></div>
 </div>
 </div>
@@ -772,8 +772,8 @@ pairwise_euclidean_blas : 0.0003247261047363281 sec.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([4.02925893, 2.32533342, 5.28292758, ..., 1.74005645, 1.60020073,
-       2.04289328])
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([1.73090309, 2.4199291 , 0.55906286, ..., 3.20751897, 4.59706215,
+       2.22666805])
 </pre></div>
 </div>
 </div>
@@ -798,10 +798,10 @@ pairwise_euclidean_blas : 0.0003247261047363281 sec.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>pairwise : 0.09502410888671875 sec.
-pairwise_euclidean : 0.00022554397583007812 sec.
-pairwise_euclidean_blas : 0.00023102760314941406 sec.
-pdist : 7.081031799316406e-05 sec.
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>pairwise : 0.09555768966674805 sec.
+pairwise_euclidean : 0.0004253387451171875 sec.
+pairwise_euclidean_blas : 0.0002334117889404297 sec.
+pdist : 0.0001361370086669922 sec.
 </pre></div>
 </div>
 </div>
@@ -829,10 +829,10 @@ pdist : 7.081031799316406e-05 sec.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>pairwise : 0.0941307544708252 sec.
-pairwise_euclidean : 0.0002903938293457031 sec.
-pairwise_euclidean_blas : 0.00025653839111328125 sec.
-sq_pdist : 0.00016570091247558594 sec.
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>pairwise : 0.12584543228149414 sec.
+pairwise_euclidean : 0.0004062652587890625 sec.
+pairwise_euclidean_blas : 0.0002617835998535156 sec.
+sq_pdist : 0.0001609325408935547 sec.
 </pre></div>
 </div>
 </div>

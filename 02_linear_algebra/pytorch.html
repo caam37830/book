@@ -39,7 +39,7 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Optimization" href="../03_optimization/optimization.html" />
+    <link rel="next" title="Convolutions" href="convolutions.html" />
     <link rel="prev" title="Sparse Linear Algebra" href="sparse_linalg.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -120,6 +120,11 @@
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
      Linear Algebra in PyTorch
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="convolutions.html">
+     Convolutions
     </a>
    </li>
   </ul>
@@ -284,6 +289,13 @@
   <a class="reference internal nav-link" href="#sparse-linear-algebra">
    Sparse Linear Algebra
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise">
+     Exercise
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -306,20 +318,22 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">pylab</span> <span class="n">inline</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">torch</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">__version__</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Populating the interactive namespace from numpy and matplotlib
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;1.7.0&#39;
 </pre></div>
 </div>
 </div>
 </div>
 <div class="section" id="pytorch-tensors">
 <h2>PyTorch Tensors<a class="headerlink" href="#pytorch-tensors" title="Permalink to this headline">¶</a></h2>
-<p>PyTorch tensors are just multi-dimensional arrays.  You can go back and forth between these and numpy.</p>
+<p>PyTorch <code class="docutils literal notranslate"><span class="pre">Tensor</span></code>s are just multi-dimensional arrays.  You can go back and forth between these and numpy <code class="docutils literal notranslate"><span class="pre">ndarray</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
@@ -328,8 +342,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([[0.30763521, 0.21343901],
-       [0.67672598, 0.08675407]])
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([[0.84440842, 0.72019445],
+       [0.33170897, 0.62073223]])
 </pre></div>
 </div>
 </div>
@@ -342,13 +356,25 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>tensor([[0.3076, 0.2134],
-        [0.6767, 0.0868]])
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>tensor([[0.8444, 0.7202],
+        [0.3317, 0.6207]])
 </pre></div>
 </div>
 </div>
 </div>
-<p>To put a tensor on gpu, use <code class="docutils literal notranslate"><span class="pre">cuda()</span></code></p>
+<p>To put a tensor on gpu, use <code class="docutils literal notranslate"><span class="pre">cuda()</span></code>.  Note that you must have an NVIDIA GPU in your computer to be able to do this successfully.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Bcuda</span> <span class="o">=</span> <span class="n">B</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
@@ -359,10 +385,10 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>tensor([[0.3076, 0.2134],
-        [0.6767, 0.0868]], device=&#39;cuda:0&#39;)
-tensor([[0.3076, 0.2134],
-        [0.6767, 0.0868]])
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>tensor([[0.8444, 0.7202],
+        [0.3317, 0.6207]], device=&#39;cuda:0&#39;)
+tensor([[0.8444, 0.7202],
+        [0.3317, 0.6207]])
 </pre></div>
 </div>
 </div>
@@ -374,12 +400,13 @@ tensor([[0.3076, 0.2134],
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>tensor([[0.3076, 0.2134],
-        [0.6767, 0.0868]], device=&#39;cuda:0&#39;)
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>tensor([[0.8444, 0.7202],
+        [0.3317, 0.6207]], device=&#39;cuda:0&#39;)
 </pre></div>
 </div>
 </div>
 </div>
+<p>To move a tensor back to CPU, you can use <code class="docutils literal notranslate"><span class="pre">device='cpu'</span></code></p>
 </div>
 <div class="section" id="linear-algebra-functions">
 <h2>Linear Algebra Functions<a class="headerlink" href="#linear-algebra-functions" title="Permalink to this headline">¶</a></h2>
@@ -413,9 +440,12 @@ tensor([[0.3076, 0.2134],
 <span class="n">Anp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
 <span class="n">xnp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
 <span class="n">ynp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;numpy&quot;</span><span class="p">)</span>
+<span class="o">%</span><span class="n">time</span> <span class="n">z</span> <span class="o">=</span> <span class="n">ynp</span> <span class="o">+</span> <span class="n">Anp</span> <span class="o">@</span> <span class="n">xnp</span>
 
-<span class="k">for</span> <span class="n">device</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;cpu&#39;</span><span class="p">,</span> <span class="s1">&#39;cuda&#39;</span><span class="p">]:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;device = </span><span class="si">{</span><span class="n">device</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">device</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;cpu&#39;</span><span class="p">,</span> <span class="s1">&#39;cuda&#39;</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">device = </span><span class="si">{</span><span class="n">device</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="n">A</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span><span class="n">Anp</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span><span class="n">xnp</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span><span class="n">ynp</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
@@ -428,12 +458,17 @@ tensor([[0.3076, 0.2134],
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>device = cpu
-CPU times: user 1.17 ms, sys: 0 ns, total: 1.17 ms
-Wall time: 333 µs
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>numpy
+CPU times: user 2.26 ms, sys: 339 µs, total: 2.6 ms
+Wall time: 921 µs
+
+device = cpu
+CPU times: user 465 µs, sys: 0 ns, total: 465 µs
+Wall time: 156 µs
+
 device = cuda
-CPU times: user 140 µs, sys: 49 µs, total: 189 µs
-Wall time: 52.7 µs
+CPU times: user 216 µs, sys: 0 ns, total: 216 µs
+Wall time: 55.6 µs
 </pre></div>
 </div>
 </div>
@@ -444,8 +479,12 @@ Wall time: 52.7 µs
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Anp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
 <span class="n">xnp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
 
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;numpy&quot;</span><span class="p">)</span>
+<span class="o">%</span><span class="n">time</span> <span class="n">z</span> <span class="o">=</span> <span class="n">Anp</span> <span class="o">@</span> <span class="n">xnp</span>
+
+
 <span class="k">for</span> <span class="n">device</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;cpu&#39;</span><span class="p">,</span> <span class="s1">&#39;cuda&#39;</span><span class="p">]:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;device = </span><span class="si">{</span><span class="n">device</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">device = </span><span class="si">{</span><span class="n">device</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="n">A</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span><span class="n">Anp</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span><span class="n">xnp</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">mv</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
@@ -455,12 +494,17 @@ Wall time: 52.7 µs
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>device = cpu
-CPU times: user 1.07 ms, sys: 0 ns, total: 1.07 ms
-Wall time: 315 µs
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>numpy
+CPU times: user 1.92 ms, sys: 454 µs, total: 2.37 ms
+Wall time: 490 µs
+
+device = cpu
+CPU times: user 329 µs, sys: 0 ns, total: 329 µs
+Wall time: 287 µs
+
 device = cuda
-CPU times: user 90 µs, sys: 29 µs, total: 119 µs
-Wall time: 31.2 µs
+CPU times: user 103 µs, sys: 24 µs, total: 127 µs
+Wall time: 36.7 µs
 </pre></div>
 </div>
 </div>
@@ -474,8 +518,11 @@ Wall time: 31.2 µs
 <span class="n">Anp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
 <span class="n">Bnp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
 
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;numpy&quot;</span><span class="p">)</span>
+<span class="o">%</span><span class="n">time</span> <span class="n">C</span> <span class="o">=</span> <span class="n">Anp</span> <span class="o">@</span> <span class="n">Bnp</span>
+
 <span class="k">for</span> <span class="n">device</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;cpu&#39;</span><span class="p">,</span> <span class="s1">&#39;cuda&#39;</span><span class="p">]:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;device = </span><span class="si">{</span><span class="n">device</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">device = </span><span class="si">{</span><span class="n">device</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="n">A</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span><span class="n">Anp</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
     <span class="n">B</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span><span class="n">Bnp</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
     <span class="n">C</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">mm</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span> <span class="c1"># run once to warm up</span>
@@ -485,12 +532,17 @@ Wall time: 31.2 µs
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>device = cpu
-CPU times: user 44.6 ms, sys: 0 ns, total: 44.6 ms
-Wall time: 11.2 ms
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>numpy
+CPU times: user 55.4 ms, sys: 7.91 ms, total: 63.3 ms
+Wall time: 16.6 ms
+
+device = cpu
+CPU times: user 25.5 ms, sys: 0 ns, total: 25.5 ms
+Wall time: 6.4 ms
+
 device = cuda
-CPU times: user 127 µs, sys: 0 ns, total: 127 µs
-Wall time: 30.8 µs
+CPU times: user 106 µs, sys: 23 µs, total: 129 µs
+Wall time: 35.8 µs
 </pre></div>
 </div>
 </div>
@@ -499,14 +551,24 @@ Wall time: 30.8 µs
 <h3>Batch operations<a class="headerlink" href="#batch-operations" title="Permalink to this headline">¶</a></h3>
 <p>Where PyTorch (and GPUs in general) really shine are in <strong>batch</strong> operations.  We get extra efficiency if we do a bunch of multiplications with matrices of the same size.</p>
 <p>For matrix-matrix multiplcation, the function is <a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.bmm.html#torch.bmm"><code class="docutils literal notranslate"><span class="pre">torch.bmm</span></code></a></p>
-<p>Because tensors are row-major, we want the batch index to be the first index.</p>
+<p>Because tensors are row-major, we want the batch index to be the first index.  In the below code, the batch multiplication is equivalent to</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+    <span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">@</span> <span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</pre></div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">512</span> <span class="c1"># matrix size</span>
 <span class="n">k</span> <span class="o">=</span> <span class="mi">32</span> <span class="c1"># batch size</span>
 
+<span class="n">Anp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+<span class="n">Bnp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+<span class="c1"># see numpy matmul documentation for how this performs batch multiplication</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;numpy&quot;</span><span class="p">)</span>
+<span class="o">%</span><span class="n">time</span> <span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">Anp</span><span class="p">,</span> <span class="n">Bnp</span><span class="p">)</span>
+
 <span class="k">for</span> <span class="n">device</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;cpu&#39;</span><span class="p">,</span> <span class="s1">&#39;cuda&#39;</span><span class="p">]:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;device = </span><span class="si">{</span><span class="n">device</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">device = </span><span class="si">{</span><span class="n">device</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="n">A</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
     <span class="n">B</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
     <span class="n">C</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">bmm</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span> <span class="c1"># run once to warm up</span>
@@ -516,14 +578,19 @@ Wall time: 30.8 µs
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>device = cpu
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>numpy
+CPU times: user 263 ms, sys: 56.9 ms, total: 320 ms
+Wall time: 80.4 ms
+
+device = cpu
 </pre></div>
 </div>
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 122 ms, sys: 6.13 ms, total: 128 ms
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 123 ms, sys: 4 ms, total: 127 ms
 Wall time: 32.1 ms
+
 device = cuda
-CPU times: user 734 µs, sys: 149 µs, total: 883 µs
-Wall time: 228 µs
+CPU times: user 287 µs, sys: 0 ns, total: 287 µs
+Wall time: 293 µs
 </pre></div>
 </div>
 </div>
@@ -548,6 +615,11 @@ Wall time: 228 µs
 </pre></div>
 </div>
 </div>
+</div>
+<p>indices are stored in a <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">x</span> <span class="pre">nnz</span></code> tensor of <code class="docutils literal notranslate"><span class="pre">Long</span></code> (a datatype that stores integers).  Values are stored as floats.</p>
+<div class="section" id="exercise">
+<h3>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h3>
+<p>Write a function that returns a sparse identity matrix of size <code class="docutils literal notranslate"><span class="pre">n</span></code> in PyTorch.</p>
 </div>
 </div>
 </div>
@@ -581,7 +653,7 @@ Wall time: 228 µs
     <div class='prev-next-bottom'>
         
     <a class='left-prev' id="prev-link" href="sparse_linalg.html" title="previous page">Sparse Linear Algebra</a>
-    <a class='right-next' id="next-link" href="../03_optimization/optimization.html" title="next page">Optimization</a>
+    <a class='right-next' id="next-link" href="convolutions.html" title="next page">Convolutions</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
