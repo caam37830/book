@@ -398,13 +398,13 @@ g(-2) &amp; g(-1) &amp; g(0) &amp; \dots\
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>standard solve
-CPU times: user 2.58 ms, sys: 1.23 ms, total: 3.81 ms
-Wall time: 15.5 ms
+CPU times: user 2.35 ms, sys: 1.16 ms, total: 3.5 ms
+Wall time: 15.1 ms
 
 toeplitz solve
-CPU times: user 228 µs, sys: 0 ns, total: 228 µs
-Wall time: 192 µs
-4.1266196049851847e-13
+CPU times: user 210 µs, sys: 0 ns, total: 210 µs
+Wall time: 174 µs
+3.221039320855626e-11
 </pre></div>
 </div>
 </div>
@@ -429,13 +429,13 @@ Wall time: 192 µs
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>standard solve
-CPU times: user 0 ns, sys: 508 µs, total: 508 µs
-Wall time: 374 µs
+CPU times: user 1.1 ms, sys: 0 ns, total: 1.1 ms
+Wall time: 701 µs
 
 circulant solve
-CPU times: user 510 µs, sys: 0 ns, total: 510 µs
-Wall time: 449 µs
-4.351588156933724e-15
+CPU times: user 502 µs, sys: 21 µs, total: 523 µs
+Wall time: 459 µs
+4.285975507515543e-14
 </pre></div>
 </div>
 </div>
@@ -491,7 +491,7 @@ Wall time: 449 µs
 <img alt="../_images/convolutions_11_0.png" src="../_images/convolutions_11_0.png" />
 </div>
 </div>
-<p>real-valued sinals should have anti-symmetric complex components</p>
+<p>real-valued signals should have anti-symmetric complex components and symmetric real components.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f2</span> <span class="o">=</span> <span class="n">ifft</span><span class="p">(</span><span class="n">fhat</span><span class="p">)</span>
@@ -541,13 +541,13 @@ h = f \ast g \Leftrightarrow \hat{h} = \hat{f} \hat{g}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 23 µs, sys: 2 µs, total: 25 µs
-Wall time: 26.9 µs
-CPU times: user 217 µs, sys: 0 ns, total: 217 µs
-Wall time: 168 µs
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 24 µs, sys: 2 µs, total: 26 µs
+Wall time: 29.1 µs
+CPU times: user 311 µs, sys: 23 µs, total: 334 µs
+Wall time: 288 µs
 </pre></div>
 </div>
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>3.7082911230502984e-14
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>4.187349847192035e-14
 </pre></div>
 </div>
 </div>
@@ -585,13 +585,13 @@ Wall time: 168 µs
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 165 µs, sys: 14 µs, total: 179 µs
-Wall time: 143 µs
-CPU times: user 607 µs, sys: 0 ns, total: 607 µs
-Wall time: 421 µs
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 164 µs, sys: 12 µs, total: 176 µs
+Wall time: 140 µs
+CPU times: user 207 µs, sys: 16 µs, total: 223 µs
+Wall time: 124 µs
 </pre></div>
 </div>
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>1.2040212093455548e-15
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>1.3122581815239265e-15
 </pre></div>
 </div>
 </div>
@@ -664,8 +664,8 @@ Wall time: 421 µs
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 242 ms, sys: 6.85 ms, total: 249 ms
-Wall time: 249 ms
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 248 ms, sys: 3.92 ms, total: 252 ms
+Wall time: 252 ms
 </pre></div>
 </div>
 <img alt="../_images/convolutions_25_1.png" src="../_images/convolutions_25_1.png" />
@@ -696,8 +696,8 @@ Wall time: 249 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 24.5 ms, sys: 6.2 ms, total: 30.7 ms
-Wall time: 7.54 ms
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 25.9 ms, sys: 4.91 ms, total: 30.8 ms
+Wall time: 7.61 ms
 </pre></div>
 </div>
 </div>
@@ -816,7 +816,7 @@ Wall time: 7.54 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fc9a1028fa0&gt;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f09a5d2e970&gt;
 </pre></div>
 </div>
 <img alt="../_images/convolutions_40_1.png" src="../_images/convolutions_40_1.png" />
@@ -833,7 +833,7 @@ Wall time: 7.54 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fc9a129c5b0&gt;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f09a5ff4580&gt;
 </pre></div>
 </div>
 <img alt="../_images/convolutions_42_1.png" src="../_images/convolutions_42_1.png" />
@@ -850,7 +850,7 @@ Wall time: 7.54 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fc9ad7dd880&gt;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f09b25a5730&gt;
 </pre></div>
 </div>
 <img alt="../_images/convolutions_44_1.png" src="../_images/convolutions_44_1.png" />
