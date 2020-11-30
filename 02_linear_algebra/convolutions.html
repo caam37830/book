@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Convolutions and FFT &#8212; Scientific Computing with Python</title>
+    <title>Convolutions and Fourier Transforms &#8212; Scientific Computing with Python</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="../_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
@@ -124,7 +124,7 @@
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Convolutions and FFT
+     Convolutions and Fourier Transforms
     </a>
    </li>
   </ul>
@@ -279,8 +279,13 @@
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#exercise">
-     Exercise
+    <a class="reference internal nav-link" href="#exercise-1">
+     Exercise 1
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise-2">
+     Exercise 2
     </a>
    </li>
   </ul>
@@ -312,8 +317,8 @@
         
               <div>
                 
-  <div class="section" id="convolutions-and-fft">
-<h1>Convolutions and FFT<a class="headerlink" href="#convolutions-and-fft" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="convolutions-and-fourier-transforms">
+<h1>Convolutions and Fourier Transforms<a class="headerlink" href="#convolutions-and-fourier-transforms" title="Permalink to this headline">¶</a></h1>
 <p>A <a class="reference external" href="https://en.wikipedia.org/wiki/Convolution">convolution</a> is a linear operator of the form
 \begin{equation}
 (f \ast g)(t) = \int f(\tau) g(t - \tau ) d\tau
@@ -398,13 +403,13 @@ g(-2) &amp; g(-1) &amp; g(0) &amp; \dots\
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>standard solve
-CPU times: user 2.35 ms, sys: 1.16 ms, total: 3.5 ms
-Wall time: 15.1 ms
+CPU times: user 1.28 ms, sys: 2.89 ms, total: 4.17 ms
+Wall time: 16.5 ms
 
 toeplitz solve
-CPU times: user 210 µs, sys: 0 ns, total: 210 µs
-Wall time: 174 µs
-3.221039320855626e-11
+CPU times: user 211 µs, sys: 0 ns, total: 211 µs
+Wall time: 176 µs
+8.343143426429537e-13
 </pre></div>
 </div>
 </div>
@@ -429,13 +434,13 @@ Wall time: 174 µs
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>standard solve
-CPU times: user 1.1 ms, sys: 0 ns, total: 1.1 ms
-Wall time: 701 µs
+CPU times: user 952 µs, sys: 0 ns, total: 952 µs
+Wall time: 454 µs
 
 circulant solve
-CPU times: user 502 µs, sys: 21 µs, total: 523 µs
-Wall time: 459 µs
-4.285975507515543e-14
+CPU times: user 823 µs, sys: 44 µs, total: 867 µs
+Wall time: 683 µs
+4.796605733654228e-15
 </pre></div>
 </div>
 </div>
@@ -541,13 +546,13 @@ h = f \ast g \Leftrightarrow \hat{h} = \hat{f} \hat{g}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 24 µs, sys: 2 µs, total: 26 µs
-Wall time: 29.1 µs
-CPU times: user 311 µs, sys: 23 µs, total: 334 µs
-Wall time: 288 µs
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 32 µs, sys: 3 µs, total: 35 µs
+Wall time: 36.7 µs
+CPU times: user 248 µs, sys: 0 ns, total: 248 µs
+Wall time: 158 µs
 </pre></div>
 </div>
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>4.187349847192035e-14
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>3.64598643642269e-14
 </pre></div>
 </div>
 </div>
@@ -585,20 +590,33 @@ Wall time: 288 µs
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 164 µs, sys: 12 µs, total: 176 µs
-Wall time: 140 µs
-CPU times: user 207 µs, sys: 16 µs, total: 223 µs
-Wall time: 124 µs
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 200 µs, sys: 16 µs, total: 216 µs
+Wall time: 161 µs
+CPU times: user 405 µs, sys: 0 ns, total: 405 µs
+Wall time: 325 µs
 </pre></div>
 </div>
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>1.3122581815239265e-15
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>2.4362558246509995e-15
 </pre></div>
 </div>
 </div>
 </div>
-<div class="section" id="exercise">
-<h3>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="exercise-1">
+<h3>Exercise 1<a class="headerlink" href="#exercise-1" title="Permalink to this headline">¶</a></h3>
 <p>Create a plot that demonstrates the asymptotic scaling of the FFT is <span class="math notranslate nohighlight">\(O(N \log N)\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="exercise-2">
+<h3>Exercise 2<a class="headerlink" href="#exercise-2" title="Permalink to this headline">¶</a></h3>
+<p>Let <span class="math notranslate nohighlight">\(C\)</span> be a circulant matrix.</p>
+<p>Given that the inverse of a circulant matrix can also be applied using a Fourier transform, is <span class="math notranslate nohighlight">\(C^{-1}\)</span> also a circulant matrix?</p>
+<p>Write a function to compute the inverse of <span class="math notranslate nohighlight">\(C\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Your code here</span>
@@ -631,7 +649,7 @@ Wall time: 124 µs
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/convolutions_23_0.png" src="../_images/convolutions_23_0.png" />
+<img alt="../_images/convolutions_25_0.png" src="../_images/convolutions_25_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -664,11 +682,11 @@ Wall time: 124 µs
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 248 ms, sys: 3.92 ms, total: 252 ms
-Wall time: 252 ms
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 264 ms, sys: 6.92 ms, total: 271 ms
+Wall time: 271 ms
 </pre></div>
 </div>
-<img alt="../_images/convolutions_25_1.png" src="../_images/convolutions_25_1.png" />
+<img alt="../_images/convolutions_27_1.png" src="../_images/convolutions_27_1.png" />
 </div>
 </div>
 <p>If you’re using this sort of convolution in PyTorch, you can use <a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.nn.Conv2d.html"><code class="docutils literal notranslate"><span class="pre">torch.nn.Conv2d</span></code></a> or <code class="docutils literal notranslate"><span class="pre">torch.conv2d</span></code></p>
@@ -696,8 +714,8 @@ Wall time: 252 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 25.9 ms, sys: 4.91 ms, total: 30.8 ms
-Wall time: 7.61 ms
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 27.9 ms, sys: 3.84 ms, total: 31.8 ms
+Wall time: 7.8 ms
 </pre></div>
 </div>
 </div>
@@ -713,7 +731,7 @@ Wall time: 7.61 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/convolutions_30_0.png" src="../_images/convolutions_30_0.png" />
+<img alt="../_images/convolutions_32_0.png" src="../_images/convolutions_32_0.png" />
 </div>
 </div>
 </div>
@@ -741,14 +759,7 @@ Wall time: 7.61 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/convolutions_32_0.png" src="../_images/convolutions_32_0.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>?np.linspace
-</pre></div>
-</div>
+<img alt="../_images/convolutions_34_0.png" src="../_images/convolutions_34_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -768,10 +779,10 @@ Wall time: 7.61 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/convolutions_34_0.png" src="../_images/convolutions_34_0.png" />
+<img alt="../_images/convolutions_35_0.png" src="../_images/convolutions_35_0.png" />
 </div>
 </div>
-<p>The DCT is also a simple method of image compression - you can simply remove the high frequency componenents of an image and retain most of the large structure while losing some detail.</p>
+<p>The DCT can also be used for a simple method of image compression - you can simply remove the high frequency componenents of an image and retain most of the large structure while losing some detail.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">ndimage</span>
@@ -790,7 +801,7 @@ Wall time: 7.61 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/convolutions_37_0.png" src="../_images/convolutions_37_0.png" />
+<img alt="../_images/convolutions_38_0.png" src="../_images/convolutions_38_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -802,7 +813,7 @@ Wall time: 7.61 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/convolutions_38_0.png" src="../_images/convolutions_38_0.png" />
+<img alt="../_images/convolutions_39_0.png" src="../_images/convolutions_39_0.png" />
 </div>
 </div>
 <p>Now, we’ll cut out the highest-frequency DCT coefficients.</p>
@@ -812,14 +823,12 @@ Wall time: 7.61 ms
 <span class="n">ihat2</span> <span class="o">=</span> <span class="n">ihat</span><span class="p">[:</span><span class="n">m</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span> <span class="p">:</span><span class="n">n</span><span class="o">//</span><span class="mi">2</span><span class="p">]</span>
 <span class="n">img2</span> <span class="o">=</span> <span class="n">idctn</span><span class="p">(</span><span class="n">ihat2</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img2</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">gray</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f09a5d2e970&gt;
-</pre></div>
-</div>
-<img alt="../_images/convolutions_40_1.png" src="../_images/convolutions_40_1.png" />
+<img alt="../_images/convolutions_41_0.png" src="../_images/convolutions_41_0.png" />
 </div>
 </div>
 <p>alternatively, we can make the image the original size by just setting the high-frequency DCT coefficients to 0.</p>
@@ -829,14 +838,12 @@ Wall time: 7.61 ms
 <span class="n">ihat2</span><span class="p">[:</span><span class="n">m</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span> <span class="p">:</span><span class="n">n</span><span class="o">//</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">ihat</span><span class="p">[:</span><span class="n">m</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span> <span class="p">:</span><span class="n">n</span><span class="o">//</span><span class="mi">2</span><span class="p">]</span>
 <span class="n">img2</span> <span class="o">=</span> <span class="n">idctn</span><span class="p">(</span><span class="n">ihat2</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img2</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">gray</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f09a5ff4580&gt;
-</pre></div>
-</div>
-<img alt="../_images/convolutions_42_1.png" src="../_images/convolutions_42_1.png" />
+<img alt="../_images/convolutions_43_0.png" src="../_images/convolutions_43_0.png" />
 </div>
 </div>
 <p>Now, let’s really compress the image…</p>
@@ -846,14 +853,12 @@ Wall time: 7.61 ms
 <span class="n">ihat2</span><span class="p">[:</span><span class="n">m</span><span class="o">//</span><span class="mi">10</span><span class="p">,</span> <span class="p">:</span><span class="n">n</span><span class="o">//</span><span class="mi">10</span><span class="p">]</span> <span class="o">=</span> <span class="n">ihat</span><span class="p">[:</span><span class="n">m</span><span class="o">//</span><span class="mi">10</span><span class="p">,</span> <span class="p">:</span><span class="n">n</span><span class="o">//</span><span class="mi">10</span><span class="p">]</span>
 <span class="n">img2</span> <span class="o">=</span> <span class="n">idctn</span><span class="p">(</span><span class="n">ihat2</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img2</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">gray</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f09b25a5730&gt;
-</pre></div>
-</div>
-<img alt="../_images/convolutions_44_1.png" src="../_images/convolutions_44_1.png" />
+<img alt="../_images/convolutions_45_0.png" src="../_images/convolutions_45_0.png" />
 </div>
 </div>
 </div>
