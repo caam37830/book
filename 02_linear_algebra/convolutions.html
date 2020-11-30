@@ -398,13 +398,13 @@ g(-2) &amp; g(-1) &amp; g(0) &amp; \dots\
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>standard solve
-CPU times: user 2.85 ms, sys: 1.19 ms, total: 4.04 ms
-Wall time: 15 ms
+CPU times: user 2.58 ms, sys: 1.23 ms, total: 3.81 ms
+Wall time: 15.5 ms
 
 toeplitz solve
-CPU times: user 179 µs, sys: 0 ns, total: 179 µs
-Wall time: 177 µs
-8.395034393468584e-11
+CPU times: user 228 µs, sys: 0 ns, total: 228 µs
+Wall time: 192 µs
+4.1266196049851847e-13
 </pre></div>
 </div>
 </div>
@@ -429,13 +429,13 @@ Wall time: 177 µs
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>standard solve
-CPU times: user 648 µs, sys: 0 ns, total: 648 µs
-Wall time: 501 µs
+CPU times: user 0 ns, sys: 508 µs, total: 508 µs
+Wall time: 374 µs
 
 circulant solve
-CPU times: user 535 µs, sys: 0 ns, total: 535 µs
-Wall time: 451 µs
-6.715307333893939e-15
+CPU times: user 510 µs, sys: 0 ns, total: 510 µs
+Wall time: 449 µs
+4.351588156933724e-15
 </pre></div>
 </div>
 </div>
@@ -450,9 +450,9 @@ Wall time: 451 µs
 \begin{equation}
 \hat{f}(\omega) = \int_{-\infty}^\infty f(x) e^{-2\pi i x \omega} dx
 \end{equation}</p>
-<p>A discrete Fourier transform (DFT) operates on a signal represented as a finite dimensional vector.  On a signal of length <span class="math notranslate nohighlight">\(N\)</span>, we have
-\begin{equation}
-\hat{f}<em>k = \sum</em>{n=0}^{N-1} f_n e^{2\pi i kn / N}
+<p>A discrete Fourier transform (DFT) operates on a signal represented as a finite dimensional vector.  On a signal of length <span class="math notranslate nohighlight">\(N\)</span>, we have</p>
+<p>\begin{equation}
+\hat{f}<em>k = \sum</em>{n=0}^{N-1} f_n e^{2\pi i k n / N}
 \end{equation}</p>
 <p>In practice, discrete Fourier transforms are often computed using the Fast Fourier Transform (FFT) algorithm, which runs in <span class="math notranslate nohighlight">\(O(N\log N)\)</span> time for a signal of length <span class="math notranslate nohighlight">\(N\)</span>.  Scipy provides funcitons for FFT as well as the inverse iFFT.</p>
 <div class="cell docutils container">
@@ -541,13 +541,13 @@ h = f \ast g \Leftrightarrow \hat{h} = \hat{f} \hat{g}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 27 µs, sys: 2 µs, total: 29 µs
-Wall time: 31.5 µs
-CPU times: user 410 µs, sys: 28 µs, total: 438 µs
-Wall time: 343 µs
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 23 µs, sys: 2 µs, total: 25 µs
+Wall time: 26.9 µs
+CPU times: user 217 µs, sys: 0 ns, total: 217 µs
+Wall time: 168 µs
 </pre></div>
 </div>
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>3.5731824772909105e-14
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>3.7082911230502984e-14
 </pre></div>
 </div>
 </div>
@@ -585,13 +585,13 @@ Wall time: 343 µs
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 143 µs, sys: 10 µs, total: 153 µs
-Wall time: 159 µs
-CPU times: user 378 µs, sys: 0 ns, total: 378 µs
-Wall time: 653 µs
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 165 µs, sys: 14 µs, total: 179 µs
+Wall time: 143 µs
+CPU times: user 607 µs, sys: 0 ns, total: 607 µs
+Wall time: 421 µs
 </pre></div>
 </div>
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>2.081292436634704e-15
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>1.2040212093455548e-15
 </pre></div>
 </div>
 </div>
@@ -664,8 +664,8 @@ Wall time: 653 µs
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 294 ms, sys: 8.64 ms, total: 302 ms
-Wall time: 306 ms
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 242 ms, sys: 6.85 ms, total: 249 ms
+Wall time: 249 ms
 </pre></div>
 </div>
 <img alt="../_images/convolutions_25_1.png" src="../_images/convolutions_25_1.png" />
@@ -696,8 +696,8 @@ Wall time: 306 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 23.2 ms, sys: 5.01 ms, total: 28.2 ms
-Wall time: 6.94 ms
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 24.5 ms, sys: 6.2 ms, total: 30.7 ms
+Wall time: 7.54 ms
 </pre></div>
 </div>
 </div>
@@ -816,7 +816,7 @@ Wall time: 6.94 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f30a13678e0&gt;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fc9a1028fa0&gt;
 </pre></div>
 </div>
 <img alt="../_images/convolutions_40_1.png" src="../_images/convolutions_40_1.png" />
@@ -833,7 +833,7 @@ Wall time: 6.94 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f30a13db5e0&gt;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fc9a129c5b0&gt;
 </pre></div>
 </div>
 <img alt="../_images/convolutions_42_1.png" src="../_images/convolutions_42_1.png" />
@@ -850,7 +850,7 @@ Wall time: 6.94 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f30a16c0310&gt;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fc9ad7dd880&gt;
 </pre></div>
 </div>
 <img alt="../_images/convolutions_44_1.png" src="../_images/convolutions_44_1.png" />
