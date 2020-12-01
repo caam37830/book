@@ -124,7 +124,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="convolutions.html">
-     Convolutions
+     Convolutions and Fourier Transforms
     </a>
    </li>
   </ul>
@@ -460,7 +460,7 @@ blas_opt_info:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>6.4989602290214526e-12
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>6.546370377409835e-12
 </pre></div>
 </div>
 </div>
@@ -472,7 +472,7 @@ blas_opt_info:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>1.09 s ± 11.9 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>1.67 s ± 4.79 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
 </pre></div>
 </div>
 </div>
@@ -484,7 +484,7 @@ blas_opt_info:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>1.12 s ± 13.2 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>1.25 s ± 8.39 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
 </pre></div>
 </div>
 </div>
@@ -579,8 +579,8 @@ blas_opt_info:
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>measuring BLAS Level 1 flops using &lt;class &#39;numpy.float32&#39;&gt;
-time elapsed = 0.0058193206787109375 sec.
-3.436827e+09 FLOPS
+time elapsed = 0.006422281265258789 sec.
+3.114158e+09 FLOPS
 </pre></div>
 </div>
 </div>
@@ -615,10 +615,8 @@ time elapsed = 0.0058193206787109375 sec.
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>measuring BLAS Level 2 flops using &lt;class &#39;numpy.float32&#39;&gt;
-</pre></div>
-</div>
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>time elapsed = 0.22702598571777344 sec.
-1.478000e+08 FLOPS
+time elapsed = 0.16158390045166016 sec.
+2.076595e+08 FLOPS
 </pre></div>
 </div>
 </div>
@@ -654,8 +652,8 @@ time elapsed = 0.0058193206787109375 sec.
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>measuring BLAS Level 3 flops using &lt;class &#39;numpy.float32&#39;&gt;
 </pre></div>
 </div>
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>time elapsed = 1.0499625205993652 sec.
-1.308989e+11 FLOPS
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>time elapsed = 1.0818777084350586 sec.
+1.270374e+11 FLOPS
 </pre></div>
 </div>
 </div>
@@ -698,7 +696,7 @@ time elapsed = 0.0058193206787109375 sec.
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>(1000, 100)
-4.0424068069893044e-15
+3.705400846551109e-15
 </pre></div>
 </div>
 </div>
@@ -721,7 +719,7 @@ time elapsed = 0.0058193206787109375 sec.
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>(1000, 100)
-4.007875794168853e-15
+3.809046194060196e-15
 </pre></div>
 </div>
 </div>
@@ -747,7 +745,7 @@ time elapsed = 0.0058193206787109375 sec.
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>(1000, 100)
-4.1361167689369165e-15
+3.8556164904908915e-15
 0.0
 </pre></div>
 </div>
@@ -770,12 +768,12 @@ time elapsed = 0.0058193206787109375 sec.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>timing &lt;function get_Q_qr at 0x7fa63c080af0&gt;
-  time elapsed = 0.01300358772277832 sec.
-timing &lt;function get_Q_lapack at 0x7fa612f63820&gt;
-  time elapsed = 0.010403633117675781 sec.
-timing &lt;function get_Q_inplace at 0x7fa612f63dc0&gt;
-  time elapsed = 0.009850502014160156 sec.
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>timing &lt;function get_Q_qr at 0x7febec0bda60&gt;
+  time elapsed = 0.013737678527832031 sec.
+timing &lt;function get_Q_lapack at 0x7febc3795820&gt;
+  time elapsed = 0.012026786804199219 sec.
+timing &lt;function get_Q_inplace at 0x7febc3795dc0&gt;
+  time elapsed = 0.011132240295410156 sec.
 </pre></div>
 </div>
 </div>
