@@ -32,6 +32,7 @@
   - file: 02_linear_algebra/linearoperators
   - file: 02_linear_algebra/sparse_linalg
   - file: 02_linear_algebra/pytorch
+  - file: 02_linear_algebra/convolutions
 
 - file: 03_optimization/optimization
   sections:
@@ -56,12 +57,14 @@
 - file: 06_probability_statistics/prob_stat
   sections:
   - file: 06_probability_statistics/generating_random
+  - file: 06_probability_statistics/scipy_stats
 
 - file: 07_data/data
   sections:
   - file: 07_data/pandas
   - file: 07_data/sklearn
   - file: 07_data/dimension_reduction
+  - file: 07_data/pytorch
 
 - file: 08_geometry/geometry
   sections:

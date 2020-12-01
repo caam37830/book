@@ -1,3 +1,4 @@
+MNIST
 *.graph
 _build
 .ipynb_checkpoints
