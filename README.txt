@@ -21,3 +21,5 @@ From the root of this repository:
 ```bash
 ghp-import -n -p -f _build/html
 ```
+
+See LICENSE for license info.
