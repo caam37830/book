@@ -112,6 +112,11 @@
      Spectral Graph Theory
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="#attention-the-first-formula-is-not-shown-in-the-current-notebook">
+     Attention: the first formula is not shown in the current notebook!
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1">
@@ -265,16 +270,6 @@
      Spectral Embeddings
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#spectral-clustering">
-     Spectral Clustering
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
-     Exercise
-    </a>
-   </li>
   </ul>
  </li>
 </ul>
@@ -333,7 +328,7 @@ Note that <span class="math notranslate nohighlight">\(B^T\)</span> acts as a so
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;100x100 sparse matrix of type &#39;&lt;class &#39;numpy.int64&#39;&gt;&#39;
-	with 1020 stored elements in Compressed Sparse Row format&gt;
+	with 1026 stored elements in Compressed Sparse Row format&gt;
 </pre></div>
 </div>
 </div>
@@ -345,8 +340,8 @@ Note that <span class="math notranslate nohighlight">\(B^T\)</span> acts as a so
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;100x510 sparse matrix of type &#39;&lt;class &#39;numpy.float64&#39;&gt;&#39;
-	with 1020 stored elements in Compressed Sparse Column format&gt;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;100x513 sparse matrix of type &#39;&lt;class &#39;numpy.float64&#39;&gt;&#39;
+	with 1026 stored elements in Compressed Sparse Column format&gt;
 </pre></div>
 </div>
 </div>
@@ -359,7 +354,7 @@ Note that <span class="math notranslate nohighlight">\(B^T\)</span> acts as a so
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;100x100 sparse matrix of type &#39;&lt;class &#39;numpy.int64&#39;&gt;&#39;
-	with 1120 stored elements in Compressed Sparse Row format&gt;
+	with 1126 stored elements in Compressed Sparse Row format&gt;
 </pre></div>
 </div>
 </div>
@@ -548,6 +543,11 @@ We then calculate the stationary vector <span class="math notranslate nohighligh
 \end{equation}</p>
 <p>Because the vector <span class="math notranslate nohighlight">\(1\)</span> is in the nullspace of <span class="math notranslate nohighlight">\(L\)</span>, this is equivalent to finding the eigenvector with <em>second-smallest</em> eigenvalue.</p>
 <p>For a higher-dimensional embedding, we can use the eigenvectors for the next-largest eigenvalues.</p>
+</div>
+</div>
+</div>
+<div class="section" id="attention-the-first-formula-is-not-shown-in-the-current-notebook">
+<h1>Attention: the first formula is not shown in the current notebook!<a class="headerlink" href="#attention-the-first-formula-is-not-shown-in-the-current-notebook" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">grid_2d_graph</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
@@ -566,7 +566,7 @@ We then calculate the stationary vector <span class="math notranslate nohighligh
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/spectral_22_0.png" src="../_images/spectral_22_0.png" />
+<img alt="../_images/spectral_23_0.png" src="../_images/spectral_23_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -576,12 +576,11 @@ We then calculate the stationary vector <span class="math notranslate nohighligh
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/spectral_23_0.png" src="../_images/spectral_23_0.png" />
-</div>
+<img alt="../_images/spectral_24_0.png" src="../_images/spectral_24_0.png" />
 </div>
 </div>
 <div class="section" id="spectral-clustering">
-<h3>Spectral Clustering<a class="headerlink" href="#spectral-clustering" title="Permalink to this headline">¶</a></h3>
+<h2>Spectral Clustering<a class="headerlink" href="#spectral-clustering" title="Permalink to this headline">¶</a></h2>
 <p>Spectral clustering refers to using a spectral embedding to cluster nodes in a graph.  Let <span class="math notranslate nohighlight">\(A, B \subset V\)</span> with <span class="math notranslate nohighlight">\(A \cap B = \emptyset\)</span>.  We will denote
 \begin{equation}
 E(A, B) = {(i,j) \in E \mid i\in A, j\in B}
@@ -607,7 +606,7 @@ C(S) = \frac{|E(S, \bar{S})|}{\min {|S|, |\bar{S}|}}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/spectral_25_0.png" src="../_images/spectral_25_0.png" />
+<img alt="../_images/spectral_26_0.png" src="../_images/spectral_26_0.png" />
 </div>
 </div>
 <p>Now, let’s use spectral clustering to partition into two clusters</p>
@@ -624,7 +623,7 @@ C(S) = \frac{|E(S, \bar{S})|}{\min {|S|, |\bar{S}|}}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/spectral_27_0.png" src="../_images/spectral_27_0.png" />
+<img alt="../_images/spectral_28_0.png" src="../_images/spectral_28_0.png" />
 </div>
 </div>
 <p>We’ll use the <a class="reference external" href="https://scikit-learn.org/stable/modules/clustering.html#adjusted-rand-index">adjusted rand index</a> to measure the quality of the clustering we obtained.  A value of 1 means that we found the true clusters.</p>
@@ -637,7 +636,7 @@ C(S) = \frac{|E(S, \bar{S})|}{\min {|S|, |\bar{S}|}}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.9199693343555215
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>1.0
 </pre></div>
 </div>
 </div>
@@ -658,7 +657,7 @@ C(S) = \frac{|E(S, \bar{S})|}{\min {|S|, |\bar{S}|}}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/spectral_31_0.png" src="../_images/spectral_31_0.png" />
+<img alt="../_images/spectral_32_0.png" src="../_images/spectral_32_0.png" />
 </div>
 </div>
 <p>we’ll use K-means clustering in scikit learn to assign clusters.</p>
@@ -677,7 +676,7 @@ C(S) = \frac{|E(S, \bar{S})|}{\min {|S|, |\bar{S}|}}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/spectral_33_0.png" src="../_images/spectral_33_0.png" />
+<img alt="../_images/spectral_34_0.png" src="../_images/spectral_34_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -687,18 +686,17 @@ C(S) = \frac{|E(S, \bar{S})|}{\min {|S|, |\bar{S}|}}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>1.0
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.3223184348081331
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="section" id="id1">
-<h3>Exercise<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<h2>Exercise<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>We’ll consider the stochastic block model with <span class="math notranslate nohighlight">\(k=5\)</span> clusters and <span class="math notranslate nohighlight">\(n=25\)</span> nodes per cluster.</p>
 <p>Let <span class="math notranslate nohighlight">\(p\)</span> be denote the probability of an edge between nodes in the same cluster, and <span class="math notranslate nohighlight">\(q\)</span> denote the probability of an edge between nodes in different clusters.</p>
 <p>Plot a phase diagram of the adjusted rand index (ARI) score as <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(q\)</span> both vary in the range <span class="math notranslate nohighlight">\([0,1]\)</span></p>
-</div>
 </div>
 </div>
 

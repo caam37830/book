@@ -123,6 +123,11 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="#solution">
+     Solution:
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="nearestneighbor.html">
      Nearest Neighbors
     </a>
@@ -248,42 +253,6 @@
      Exercise
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#computing-distances">
-     Computing Distances
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
-     Exercise
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#pairwise-distances">
-   Pairwise Distances
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id2">
-     Exercise
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#pdist">
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       pdist
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id3">
-     Exercise
-    </a>
-   </li>
   </ul>
  </li>
 </ul>
@@ -369,8 +338,34 @@ d(x,y) = |x - y|_2
 </div>
 </div>
 </div>
+</div>
+</div>
+<div class="section" id="solution">
+<h1>Solution:<a class="headerlink" href="#solution" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># The function for the cosine similarity:</span>
+<span class="k">def</span> <span class="nf">cosimi</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
+    <span class="n">num</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">y</span>
+    <span class="n">denum</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">num</span><span class="o">/</span><span class="n">denum</span>
+
+<span class="c1"># The functions for the cosine distance:</span>
+<span class="k">def</span> <span class="nf">cosdis</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
+    <span class="n">num</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">y</span>
+    <span class="n">denum</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">cosimi</span> <span class="o">=</span> <span class="n">num</span><span class="o">/</span><span class="n">denum</span>
+    <span class="k">return</span> <span class="mi">1</span><span class="o">-</span><span class="n">cosimi</span>
+
+<span class="c1"># The function for the euclidean distance:</span>
+<span class="k">def</span> <span class="nf">euclidis</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 <div class="section" id="computing-distances">
-<h3>Computing Distances<a class="headerlink" href="#computing-distances" title="Permalink to this headline">¶</a></h3>
+<h2>Computing Distances<a class="headerlink" href="#computing-distances" title="Permalink to this headline">¶</a></h2>
 <p>SciPy provides a variety of functionality for computing distances in <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/spatial.distance.html"><code class="docutils literal notranslate"><span class="pre">scipy.spatial.distance</span></code></a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -472,7 +467,7 @@ d(x,y) = | x- y |_A = \sqrt{(x - y)^T A (x - y)}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>2.4186642249676593
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>2.912180131406716
 </pre></div>
 </div>
 </div>
@@ -499,13 +494,12 @@ d(x, y; w) = \sqrt{\sum_i w_i(x_i - y_i)^2}
 </div>
 </div>
 <div class="section" id="id1">
-<h3>Exercise<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<h2>Exercise<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>Compute a weighted euclidean distance using the Mahalanobis distance.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Your code here</span>
 </pre></div>
-</div>
 </div>
 </div>
 </div>
@@ -539,11 +533,11 @@ d(x, y; w) = \sqrt{\sum_i w_i(x_i - y_i)^2}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([[0.        , 0.06785059, 0.62744185, 2.12501819, 0.88245764],
-       [0.06785059, 0.        , 0.60113871, 2.15446572, 0.86854844],
-       [0.62744185, 0.60113871, 0.        , 1.79351272, 0.2967328 ],
-       [2.12501819, 2.15446572, 1.79351272, 0.        , 1.54124938],
-       [0.88245764, 0.86854844, 0.2967328 , 1.54124938, 0.        ]])
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([[0.        , 1.82446529, 1.83643668, 0.21819499, 1.80441859],
+       [1.82446529, 0.        , 1.43425691, 1.70918164, 0.31939273],
+       [1.83643668, 1.43425691, 0.        , 1.89124947, 1.71533458],
+       [0.21819499, 1.70918164, 1.89124947, 0.        , 1.65753185],
+       [1.80441859, 0.31939273, 1.71533458, 1.65753185, 0.        ]])
 </pre></div>
 </div>
 </div>
@@ -555,11 +549,11 @@ d(x, y; w) = \sqrt{\sum_i w_i(x_i - y_i)^2}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([[0.        , 0.06538267, 0.79052604, 2.10654198, 1.09067014],
-       [0.06538267, 0.        , 0.75371765, 2.12129294, 1.05624398],
-       [0.79052604, 0.75371765, 0.        , 1.72992153, 0.31850923],
-       [2.10654198, 2.12129294, 1.72992153, 0.        , 1.49741615],
-       [1.09067014, 1.05624398, 0.31850923, 1.49741615, 0.        ]])
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([[0.        , 1.78729086, 1.77747771, 0.25963634, 1.73977185],
+       [1.78729086, 0.        , 1.78889172, 1.69485179, 0.37526917],
+       [1.77747771, 1.78889172, 0.        , 1.86563038, 2.15865869],
+       [0.25963634, 1.69485179, 1.86563038, 0.        , 1.6087173 ],
+       [1.73977185, 0.37526917, 2.15865869, 1.6087173 , 0.        ]])
 </pre></div>
 </div>
 </div>
@@ -596,7 +590,7 @@ D = \sqrt{1 x^{2T} + x^2 1^T - 2 X X^T}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>4.2134115680019515e-15
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>5.978733960281817e-16
 </pre></div>
 </div>
 </div>
@@ -664,7 +658,7 @@ a : rank-2 array(&#39;d&#39;) with bounds (n,n)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>1.9294617338782667e-15
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>5.453105385130469e-16
 </pre></div>
 </div>
 </div>
@@ -688,9 +682,9 @@ a : rank-2 array(&#39;d&#39;) with bounds (n,n)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>pairwise : 0.10397148132324219 sec.
-pairwise_euclidean : 0.0007138252258300781 sec.
-pairwise_euclidean_blas : 0.0002963542938232422 sec.
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>pairwise : 0.10254263877868652 sec.
+pairwise_euclidean : 0.0006082057952880859 sec.
+pairwise_euclidean_blas : 0.00028133392333984375 sec.
 </pre></div>
 </div>
 </div>
@@ -772,8 +766,8 @@ pairwise_euclidean_blas : 0.0002963542938232422 sec.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([1.9572271 , 4.40013979, 1.22332715, ..., 0.68912051, 2.34021657,
-       2.94470813])
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([2.0469838 , 2.66759154, 1.14981729, ..., 0.88670592, 1.5430717 ,
+       1.97998036])
 </pre></div>
 </div>
 </div>
@@ -798,10 +792,10 @@ pairwise_euclidean_blas : 0.0002963542938232422 sec.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>pairwise : 0.1270918846130371 sec.
-pairwise_euclidean : 0.00045013427734375 sec.
-pairwise_euclidean_blas : 0.0002605915069580078 sec.
-pdist : 0.00014352798461914062 sec.
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>pairwise : 0.16309189796447754 sec.
+pairwise_euclidean : 0.00048732757568359375 sec.
+pairwise_euclidean_blas : 0.0002808570861816406 sec.
+pdist : 8.392333984375e-05 sec.
 </pre></div>
 </div>
 </div>
@@ -829,10 +823,10 @@ pdist : 0.00014352798461914062 sec.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>pairwise : 0.13336920738220215 sec.
-pairwise_euclidean : 0.00030159950256347656 sec.
-pairwise_euclidean_blas : 0.0003008842468261719 sec.
-sq_pdist : 0.00021910667419433594 sec.
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>pairwise : 0.1392068862915039 sec.
+pairwise_euclidean : 0.0004661083221435547 sec.
+pairwise_euclidean_blas : 0.0002753734588623047 sec.
+sq_pdist : 0.000186920166015625 sec.
 </pre></div>
 </div>
 </div>
