@@ -435,7 +435,7 @@
 \[\displaystyle a c x^{2} + a d x + b c x + b d\]</div>
 </div>
 </div>
-<p>We can calso factor an expression that has been expanded:</p>
+<p>We can also factor an expression that has been expanded:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">factor</span><span class="p">(</span><span class="n">ex</span><span class="p">)</span>
@@ -483,7 +483,7 @@
 \[\displaystyle 6.72\]</div>
 </div>
 </div>
-<p>SymPy uses arbitrary precision arithmetic.  The default precition is 10 decimal digits (between single and double precision), but you can increase the precision in <code class="docutils literal notranslate"><span class="pre">evalf</span></code></p>
+<p>SymPy uses arbitrary precision arithmetic.  The default precision is 10 decimal digits (between single and double precision), but you can increase the precision in <code class="docutils literal notranslate"><span class="pre">evalf</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sym</span><span class="o">.</span><span class="n">pi</span><span class="o">.</span><span class="n">evalf</span><span class="p">()</span>
@@ -656,7 +656,7 @@ cos(x)
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/sympy_42_0.png" src="../_images/sympy_42_0.png" />
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;sympy.plotting.plot.Plot at 0x7efccaead0d0&gt;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;sympy.plotting.plot.Plot at 0x7fa3a4489250&gt;
 </pre></div>
 </div>
 </div>
@@ -670,7 +670,7 @@ cos(x)
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/sympy_44_0.png" src="../_images/sympy_44_0.png" />
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;sympy.plotting.plot.Plot at 0x7efcc9436ac0&gt;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;sympy.plotting.plot.Plot at 0x7fa39530ef40&gt;
 </pre></div>
 </div>
 </div>
@@ -684,6 +684,32 @@ cos(x)
 <li><p>What is <span class="math notranslate nohighlight">\(\int_{1}^{\infty} x^{-2}\, dx\)</span>?</p></li>
 <li><p>Find a value of <code class="docutils literal notranslate"><span class="pre">x</span></code> where <code class="docutils literal notranslate"><span class="pre">sin(x)</span> <span class="pre">=</span> <span class="pre">cos(x)</span></code></p></li>
 </ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sym</span><span class="o">.</span><span class="n">integrate</span><span class="p">((</span><span class="n">x</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">oo</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle 1\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sympy.solvers</span> <span class="kn">import</span> <span class="n">solve</span>
+<span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">solve</span><span class="p">(</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">-</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="n">x</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[pi/4]
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 </div>
 

@@ -416,7 +416,7 @@
 <div class="section" id="some-places-where-linear-algebra-appears">
 <h2>Some Places where Linear Algebra Appears<a class="headerlink" href="#some-places-where-linear-algebra-appears" title="Permalink to this headline">¶</a></h2>
 <ol class="simple">
-<li><p>Linear regresssion (example of linear system)</p></li>
+<li><p>Linear regression (example of linear system)</p></li>
 <li><p>Principal components analysis (example of matrix analysis)</p></li>
 <li><p>Solving ODE/PDE (depending on details, involves basic operations and solving linear systems)</p></li>
 <li><p>Data Visualization (often use matrix analysis)</p></li>
@@ -428,7 +428,7 @@
 <h3>Example: Diffusion<a class="headerlink" href="#example-diffusion" title="Permalink to this headline">¶</a></h3>
 <p>One example where linear algebra appears is in measuring the strength of a signal at several sources from receivers.  Consider a simplified problem where we have several points that emit some pollutant.  We aren’t able to measure this pollutant directly at the sources.  This can happen for a variety of reasons, such as:</p>
 <ol class="simple">
-<li><p>The pollutant is completely incaccesible (e.g. far underwater)</p></li>
+<li><p>The pollutant is completely inaccessible (e.g. far underwater)</p></li>
 <li><p>We’re not able to get close for political reasons (people responsible won’t cooperate)</p></li>
 <li><p>It is much cheaper to measure from other locations where we already have equipment</p></li>
 </ol>
@@ -477,10 +477,10 @@
 </div>
 </div>
 </div>
-<p>We’ll assume the pollutant spreads via diffusion.  What follows next might look familiar if you have taken some Physics classes before.  If not, don’t worry - the basic idea is that polution spreads out evenly from each source.  As we get further away from the source, the pollution becomes less concentrated because it is spread out over a larger area.  The function that tells us the concentration of a unit of pollution emitted by the source some distance away is called the <em>Greens function</em>.</p>
-<p>Let <span class="math notranslate nohighlight">\(p\)</span> denote the strength of the pollutant as a funciton in the 2-dimensional plane.  This means that diffusion obeys the PDE $\Delta p = \sum_i f_i \delta_{x_i} $, where <span class="math notranslate nohighlight">\(\Delta\)</span> is the laplacian, and <span class="math notranslate nohighlight">\(\delta\)</span> is a dirac delta. We’re just going to measure the polutant at the points <span class="math notranslate nohighlight">\(y\)</span>, where the receivers are located. The amount of polutant at receiver <span class="math notranslate nohighlight">\(j\)</span> from source <span class="math notranslate nohighlight">\(i\)</span> is <span class="math notranslate nohighlight">\(-f_i \frac{1}{2\pi} \log \| x_i - y_j\|_2\)</span> (this is the Green’s function for <span class="math notranslate nohighlight">\(\Delta\)</span>).  Because the total amount of polution at each reciever is the sum of the pollution from each source measured at that receiver, we can write</p>
+<p>We’ll assume the pollutant spreads via diffusion.  What follows next might look familiar if you have taken some Physics classes before.  If not, don’t worry - the basic idea is that pollution spreads out evenly from each source.  As we get further away from the source, the pollution becomes less concentrated because it is spread out over a larger area.  The function that tells us the concentration of a unit of pollution emitted by the source some distance away is called the <em>Greens function</em>.</p>
+<p>Let <span class="math notranslate nohighlight">\(p\)</span> denote the strength of the pollutant as a function in the 2-dimensional plane.  This means that diffusion obeys the PDE $\Delta p = \sum_i f_i \delta_{x_i} $, where <span class="math notranslate nohighlight">\(\Delta\)</span> is the laplacian, and <span class="math notranslate nohighlight">\(\delta\)</span> is a dirac delta. We’re just going to measure the pollutant at the points <span class="math notranslate nohighlight">\(y\)</span>, where the receivers are located. The amount of pollutant at receiver <span class="math notranslate nohighlight">\(j\)</span> from source <span class="math notranslate nohighlight">\(i\)</span> is <span class="math notranslate nohighlight">\(-f_i \frac{1}{2\pi} \log \| x_i - y_j\|_2\)</span> (this is the Green’s function for <span class="math notranslate nohighlight">\(\Delta\)</span>).  Because the total amount of pollution at each reciever is the sum of the pollution from each source measured at that receiver, we can write</p>
 <p><span class="math notranslate nohighlight">\(p = G f\)</span></p>
-<p>where <code class="docutils literal notranslate"><span class="pre">p[j]</span></code> is the pollution at <code class="docutils literal notranslate"><span class="pre">y[j]</span></code>, <code class="docutils literal notranslate"><span class="pre">f[i]</span></code> is the rate of polution at source <code class="docutils literal notranslate"><span class="pre">x[i]</span></code>, and <code class="docutils literal notranslate"><span class="pre">G[i,j]</span></code> is <span class="math notranslate nohighlight">\(-\frac{1}{2\pi} \log \|x_i - y_j\|_2\)</span></p>
+<p>where <code class="docutils literal notranslate"><span class="pre">p[j]</span></code> is the pollution at <code class="docutils literal notranslate"><span class="pre">y[j]</span></code>, <code class="docutils literal notranslate"><span class="pre">f[i]</span></code> is the rate of pollution at source <code class="docutils literal notranslate"><span class="pre">x[i]</span></code>, and <code class="docutils literal notranslate"><span class="pre">G[i,j]</span></code> is <span class="math notranslate nohighlight">\(-\frac{1}{2\pi} \log \|x_i - y_j\|_2\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">ny</span><span class="p">,</span> <span class="n">nx</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
@@ -500,7 +500,7 @@
 </div>
 </div>
 </div>
-<p>Now, we can calculate the concentration of polution at the receivers using matrix-vector multipication</p>
+<p>Now, we can calculate the concentration of pollution at the receivers using matrix-vector multipication</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">G</span> <span class="o">@</span> <span class="n">f</span>
@@ -530,7 +530,7 @@
 </div>
 </div>
 <p>We see that the vector we solved for (<code class="docutils literal notranslate"><span class="pre">f2</span></code>) is very close to the true solution of <code class="docutils literal notranslate"><span class="pre">f</span></code>, and is close to machine precision.</p>
-<p>We are able to accurately obtain the rates at which the sources release polution based on measurements from some randomly placed sensors.</p>
+<p>We are able to accurately obtain the rates at which the sources release pollution based on measurements from some randomly placed sensors.</p>
 </div>
 </div>
 <div class="section" id="linear-algebra-in-numpy">
@@ -614,7 +614,7 @@
 </div>
 <div class="section" id="solving-linear-systems">
 <h3>Solving Linear Systems<a class="headerlink" href="#solving-linear-systems" title="Permalink to this headline">¶</a></h3>
-<p>Recall from our example that we said that you shouldn’t ever invert a matrix to solve a linear system for numerical reasons.  Let’s see an example where we solve <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">*</span> <span class="pre">x</span> <span class="pre">=</span> <span class="pre">b</span></code> for <code class="docutils literal notranslate"><span class="pre">x</span></code></p>
+<p>Recall from our example that for numerical reasons, you should never invert a matrix to solve a linear system. Let’s see an example where we solve <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">*</span> <span class="pre">x</span> <span class="pre">=</span> <span class="pre">b</span></code> for <code class="docutils literal notranslate"><span class="pre">x</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy.linalg</span> <span class="k">as</span> <span class="nn">la</span>
@@ -645,7 +645,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>0.053345680236816406 sec.
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>0.08017349243164062 sec.
 </pre></div>
 </div>
 <div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>3.4804090830990304e-11
@@ -664,7 +664,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>0.015989065170288086 sec.
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>0.014863252639770508 sec.
 </pre></div>
 </div>
 <div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>3.6248541274337918e-12
@@ -878,9 +878,43 @@
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span> 
+<span class="n">tlist</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+<span class="n">n</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mi">1000</span><span class="p">),</span> <span class="n">num</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span> 
+<span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">n</span><span class="p">:</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">x</span>
+    <span class="n">P</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">U</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">lu</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">L</span> <span class="o">@</span> <span class="n">x</span>
+
+    <span class="c1">#Time for solve_triangular</span>
+    <span class="n">t0Tri</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">la</span><span class="o">.</span><span class="n">solve_triangular</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lower</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">t1Tri</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">timeTri</span> <span class="o">=</span> <span class="n">t1Tri</span><span class="o">-</span><span class="n">t0Tri</span>
+    <span class="n">timeTri</span>
+    <span class="n">tlist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">timeTri</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">log</span><span class="p">(</span><span class="n">n</span><span class="p">),</span><span class="n">tlist</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;time vs log(n)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;n (in log) &quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Time&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/numpy_scipy_linalg_46_0.png" src="../_images/numpy_scipy_linalg_46_0.png" />
+</div>
+</div>
 <ol class="simple">
 <li><p>Suppose <span class="math notranslate nohighlight">\(A\)</span> is <span class="math notranslate nohighlight">\(n\times n\)</span>, so the <span class="math notranslate nohighlight">\(LU\)</span> factorization above takes <span class="math notranslate nohighlight">\(O(n^3)\)</span> time.  What is a big-O expression for the time to run <code class="docutils literal notranslate"><span class="pre">my_solve</span></code> on <span class="math notranslate nohighlight">\(A\)</span>?</p></li>
 </ol>
+<p>The big-O expression for the time to run my_solve on A is O(n^3) + O(n^2). LU factorization takes O(n^3) and each inverse of a triangular matrix takes O(n^2), but two triangular matrices are still O(n^2), and then we sum them up since there is an order performing the algorithm not composed.</p>
 </div>
 <div class="section" id="qr-decomposition">
 <h3>QR decomposition<a class="headerlink" href="#qr-decomposition" title="Permalink to this headline">¶</a></h3>
@@ -897,7 +931,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>4.927955366355708e-13
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>4.931440984490618e-13
 </pre></div>
 </div>
 </div>
@@ -922,7 +956,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>5.347174088985807e-13
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>5.33915547848351e-13
 </pre></div>
 </div>
 </div>
@@ -955,7 +989,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>4.6070186663912334e-14
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>4.560807461225405e-14
 </pre></div>
 </div>
 </div>
@@ -986,7 +1020,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>2.796406180190815e-13
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>2.0280803094050757e-13
 </pre></div>
 </div>
 </div>
@@ -1009,7 +1043,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>1.0536849602724264e-13
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>2.2896827912901233e-13
 </pre></div>
 </div>
 </div>
@@ -1020,13 +1054,122 @@
 <h3>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h3>
 <ol class="simple">
 <li><p>Both <code class="docutils literal notranslate"><span class="pre">eig</span></code> and <code class="docutils literal notranslate"><span class="pre">eigh</span></code> take <span class="math notranslate nohighlight">\(O(n^3)\)</span> time.  Which is faster in practice on a symmetric matrix?  Do they produce the same answer on the same symmetric matrix?</p></li>
+</ol>
+<p>As shown in the figure, <code class="docutils literal notranslate"><span class="pre">eigh</span></code> is much faster than <code class="docutils literal notranslate"><span class="pre">eig</span></code> in practice. We checked the eigenvalues produced by both methods (eigenvalues of <code class="docutils literal notranslate"><span class="pre">eigh</span></code> are sorted), they produced the same answer.</p>
+<ol class="simple">
 <li><p>Write a function that solves a linear system with a symmetric matrix using the Eigenvalue decomposition.  Is this function faster or slower than using LU in <code class="docutils literal notranslate"><span class="pre">my_solve</span></code>?</p></li>
 </ol>
+<p>As shown in the figure, <code class="docutils literal notranslate"><span class="pre">my_solve</span></code> is faster than <code class="docutils literal notranslate"><span class="pre">eigh</span></code> in practice.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Your code here</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">1. Compare the speed and difference of eig &amp; eigh</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mi">1000</span><span class="p">),</span> <span class="n">num</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span> 
+<span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+<span class="n">teig</span><span class="o">=</span><span class="nb">list</span><span class="p">()</span>
+<span class="n">teigh</span><span class="o">=</span><span class="nb">list</span><span class="p">()</span>
+<span class="n">valdiff</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">n</span><span class="p">:</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">A</span> <span class="o">+</span> <span class="n">A</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">t0eig</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">Lam1</span><span class="p">,</span> <span class="n">X</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="n">t1eig</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">teigdiff</span> <span class="o">=</span> <span class="n">t1eig</span><span class="o">-</span><span class="n">t0eig</span>
+    <span class="n">teig</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">teigdiff</span><span class="p">)</span>
+    
+    <span class="n">t0eigh</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">Lam2</span><span class="p">,</span> <span class="n">U</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="n">t1eigh</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">teighdiff</span> <span class="o">=</span> <span class="n">t1eigh</span><span class="o">-</span><span class="n">t0eigh</span>
+    <span class="n">teigh</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">teighdiff</span><span class="p">)</span>
+    
+    <span class="n">valdiff</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">Lam1</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">Lam2</span><span class="p">))))</span>
 </pre></div>
 </div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">1. Time comparison</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">n</span><span class="p">),</span><span class="n">teig</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;eig&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">n</span><span class="p">),</span><span class="n">teigh</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;eigh&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;n (in log) &quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Time&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">1. Difference</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">valdiff</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/numpy_scipy_linalg_66_0.png" src="../_images/numpy_scipy_linalg_66_0.png" />
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>1.6626700016786344e-12
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">2. Compare the speed of EVD v.s. LU when solving linear systems</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="k">def</span> <span class="nf">solve_eigh</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="n">Lam</span><span class="p">,</span> <span class="n">U</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="n">Ainv</span> <span class="o">=</span> <span class="n">U</span><span class="nd">@np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">Lam</span><span class="p">)</span><span class="nd">@U</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">Ainv</span><span class="nd">@b</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+
+<span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mi">1000</span><span class="p">),</span> <span class="n">num</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span> 
+<span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+<span class="n">tlu</span><span class="o">=</span><span class="nb">list</span><span class="p">()</span>
+<span class="n">teigh</span><span class="o">=</span><span class="nb">list</span><span class="p">()</span>
+<span class="n">valdiff</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">n</span><span class="p">:</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">A</span> <span class="o">+</span> <span class="n">A</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">x</span>
+    <span class="n">t0lu</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">x1</span> <span class="o">=</span> <span class="n">my_solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+    <span class="n">t1lu</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">tludiff</span> <span class="o">=</span> <span class="n">t1lu</span><span class="o">-</span><span class="n">t0lu</span>
+    <span class="n">tlu</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tludiff</span><span class="p">)</span>
+    
+    <span class="n">t0eigh</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">x2</span> <span class="o">=</span> <span class="n">solve_eigh</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+    <span class="n">t1eigh</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">teighdiff</span> <span class="o">=</span> <span class="n">t1eigh</span><span class="o">-</span><span class="n">t0eigh</span>
+    <span class="n">teigh</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">teighdiff</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">2. Time comparison</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">n</span><span class="p">),</span><span class="n">tlu</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;lu&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">n</span><span class="p">),</span><span class="n">teigh</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;eigh&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;n (in log) &quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Time&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/numpy_scipy_linalg_68_0.png" src="../_images/numpy_scipy_linalg_68_0.png" />
 </div>
 </div>
 </div>
@@ -1060,7 +1203,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/numpy_scipy_linalg_67_0.png" src="../_images/numpy_scipy_linalg_67_0.png" />
+<img alt="../_images/numpy_scipy_linalg_72_0.png" src="../_images/numpy_scipy_linalg_72_0.png" />
 </div>
 </div>
 </div>
@@ -1068,9 +1211,135 @@
 <h3>Exercises<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <ol class="simple">
 <li><p>Computing the SVD takes <span class="math notranslate nohighlight">\(O(n^3)\)</span> time for a <span class="math notranslate nohighlight">\(n\times n\)</span> matrix, just like all the other matrix factorizations we’ve seen.  Make plots of the runtimes of <code class="docutils literal notranslate"><span class="pre">svd</span></code>, <code class="docutils literal notranslate"><span class="pre">eigh</span></code>, <code class="docutils literal notranslate"><span class="pre">eig</span></code>, <code class="docutils literal notranslate"><span class="pre">qr</span></code> and <code class="docutils literal notranslate"><span class="pre">lu</span></code> as we increase <span class="math notranslate nohighlight">\(n\)</span>.  Which is fastest in practice?</p></li>
+</ol>
+<p>From the plot, we see that from slowest to fastest is: <code class="docutils literal notranslate"><span class="pre">eig,</span> <span class="pre">svd,</span> <span class="pre">eigh,</span> <span class="pre">qr,</span> <span class="pre">lu</span></code>. <code class="docutils literal notranslate"><span class="pre">lu</span></code> is fastest in practice.</p>
+<ol class="simple">
 <li><p>Write a function that solves a linear system using the Singular Value Decomposition.</p></li>
 <li><p>What is the SVD of a Hermitian (symmetric matrix)?  Is <code class="docutils literal notranslate"><span class="pre">svd</span></code> or <code class="docutils literal notranslate"><span class="pre">eigh</span></code> faster?</p></li>
 </ol>
+<p>From the last figure, we can see that <code class="docutils literal notranslate"><span class="pre">eigh</span></code> is faster on a Hermitian.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">1. Time comparison of SVD, eig, eigh, QR, LU</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mi">1000</span><span class="p">),</span> <span class="n">num</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span> 
+<span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+<span class="n">tsvd</span><span class="o">=</span><span class="nb">list</span><span class="p">()</span>
+<span class="n">teigh</span><span class="o">=</span><span class="nb">list</span><span class="p">()</span>
+<span class="n">teig</span><span class="o">=</span><span class="nb">list</span><span class="p">()</span>
+<span class="n">tqr</span><span class="o">=</span><span class="nb">list</span><span class="p">()</span>
+<span class="n">tlu</span><span class="o">=</span><span class="nb">list</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">n</span><span class="p">:</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+
+    <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">U</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">Vt</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">tsvd</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t1</span><span class="o">-</span><span class="n">t0</span><span class="p">)</span>
+    
+    <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>    
+    <span class="n">Lam</span><span class="p">,</span> <span class="n">U</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">teig</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t1</span><span class="o">-</span><span class="n">t0</span><span class="p">)</span>
+    
+    <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>    
+    <span class="n">Lam</span><span class="p">,</span> <span class="n">U</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">teigh</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t1</span><span class="o">-</span><span class="n">t0</span><span class="p">)</span>
+    
+    <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>    
+    <span class="n">Q</span><span class="p">,</span> <span class="n">R</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">qr</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;economic&#39;</span><span class="p">)</span> <span class="c1"># no pivoting</span>
+    <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">tqr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t1</span><span class="o">-</span><span class="n">t0</span><span class="p">)</span>
+    
+    <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>    
+    <span class="n">P</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">U</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">lu</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">tlu</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t1</span><span class="o">-</span><span class="n">t0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">1. Time comparison of SVD, eig, eigh, QR, LU</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">n</span><span class="p">),</span><span class="n">teig</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;eig&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">n</span><span class="p">),</span><span class="n">tsvd</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;svd&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">n</span><span class="p">),</span><span class="n">teigh</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;eigh&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">n</span><span class="p">),</span><span class="n">tqr</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;qr&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">n</span><span class="p">),</span><span class="n">tlu</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;lu&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;n (in log) &quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Time&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/numpy_scipy_linalg_75_0.png" src="../_images/numpy_scipy_linalg_75_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">2. Define a function that solves a linear system using SVD</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="k">def</span> <span class="nf">solve_svd</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="n">U</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">Vt</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="n">Ainv</span> <span class="o">=</span> <span class="n">U</span><span class="nd">@np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">S</span><span class="p">)</span><span class="nd">@Vt</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">Ainv</span><span class="nd">@b</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">3. Compare svd and eigh on symmetric matrices</span>
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mi">2000</span><span class="p">),</span> <span class="n">num</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span> 
+<span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+<span class="n">tsvd</span><span class="o">=</span><span class="nb">list</span><span class="p">()</span>
+<span class="n">teigh</span><span class="o">=</span><span class="nb">list</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">n</span><span class="p">:</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">A</span> <span class="o">+</span> <span class="n">A</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">U</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">Vt</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">tsvd</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t1</span><span class="o">-</span><span class="n">t0</span><span class="p">)</span>
+
+    <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>    
+    <span class="n">Lam</span><span class="p">,</span> <span class="n">U</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">teigh</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t1</span><span class="o">-</span><span class="n">t0</span><span class="p">)</span>
+    
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">n</span><span class="p">),</span><span class="n">tsvd</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;svd&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">n</span><span class="p">),</span><span class="n">teigh</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;eigh&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;n (in log) &quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Time&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/numpy_scipy_linalg_78_0.png" src="../_images/numpy_scipy_linalg_78_0.png" />
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -1084,16 +1353,16 @@
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "pycourse"
+            mode: "python"
         },
         kernelOptions: {
-            kernelName: "pycourse",
+            kernelName: "python3",
             path: "./02_linear_algebra"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'pycourse'</script>
+    <script>kernelName = 'python3'</script>
 
               </div>
               

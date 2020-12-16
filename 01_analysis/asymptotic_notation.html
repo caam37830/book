@@ -249,6 +249,11 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#answers-to-example-5-and-6">
+   Answers to example 5 and 6
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#complexity">
    Complexity
   </a>
@@ -256,6 +261,11 @@
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#exercise">
    Exercise
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#answer-to-the-exercise">
+   Answer to the exercise:
   </a>
  </li>
 </ul>
@@ -273,10 +283,10 @@
 <p>First, let’s review some asymptotic notation.  We’ll see it a fair amount in this course.</p>
 <p>Let <span class="math notranslate nohighlight">\(f(x), g(x)\)</span> be some functions.  We say
 <span class="math notranslate nohighlight">\($f = O(g)\)</span>$
-as <span class="math notranslate nohighlight">\(x\to \infty\)</span> if there exists some constant <span class="math notranslate nohighlight">\(c\ge 0\)</span> and <span class="math notranslate nohighlight">\(x_0\ge 0\)</span> so that $ |f(x)| \le c g(x) )$ for all <span class="math notranslate nohighlight">\(x \ge x_0\)</span>.</p>
+as <span class="math notranslate nohighlight">\(x\to \infty\)</span> if there exists some constant <span class="math notranslate nohighlight">\(c\ge 0\)</span> and <span class="math notranslate nohighlight">\(x_0\ge 0\)</span> so that $ |f(x)| \le c g(x)$ for all <span class="math notranslate nohighlight">\(x \ge x_0\)</span>.</p>
 <p>We say
 <span class="math notranslate nohighlight">\($f = \Omega(g)\)</span>$
-as <span class="math notranslate nohighlight">\(x\to \infty\)</span> if there exists some constant <span class="math notranslate nohighlight">\(c\ge 0\)</span> and <span class="math notranslate nohighlight">\(x_0\ge 0\)</span> so that $ |f(x)| \ge c g(x) )$ for all <span class="math notranslate nohighlight">\(x \ge x_0\)</span>.</p>
+as <span class="math notranslate nohighlight">\(x\to \infty\)</span> if there exists some constant <span class="math notranslate nohighlight">\(c\ge 0\)</span> and <span class="math notranslate nohighlight">\(x_0\ge 0\)</span> so that $ |f(x)| \ge c g(x)$ for all <span class="math notranslate nohighlight">\(x \ge x_0\)</span>.</p>
 <p>Finally,
 <span class="math notranslate nohighlight">\($f = \Theta(g)\)</span>$
 if <span class="math notranslate nohighlight">\(f = O(g)\)</span> and <span class="math notranslate nohighlight">\(f = \Omega(g)\)</span> (some constant multiples of <span class="math notranslate nohighlight">\(g\)</span> bound <span class="math notranslate nohighlight">\(f\)</span> above and below).</p>
@@ -298,6 +308,13 @@ if <span class="math notranslate nohighlight">\(f = O(g)\)</span> and <span clas
 <li><p><span class="math notranslate nohighlight">\(f = O(g)\)</span> and <span class="math notranslate nohighlight">\(g = O(h)\)</span> implies <span class="math notranslate nohighlight">\(f = O(h)\)</span> (exercise: prove this)</p></li>
 <li><p><span class="math notranslate nohighlight">\(f = O(g)\)</span> and <span class="math notranslate nohighlight">\(h = O(k)\)</span> implies <span class="math notranslate nohighlight">\(f\times h = O(g \times k)\)</span> (exercise: prove this as well)</p></li>
 </ol>
+</div>
+<div class="section" id="answers-to-example-5-and-6">
+<h2>Answers to example 5 and 6<a class="headerlink" href="#answers-to-example-5-and-6" title="Permalink to this headline">¶</a></h2>
+<p>Answer to example 5:</p>
+<p>By definition, since <span class="math notranslate nohighlight">\(f = O(g)\)</span>, we know there exists some constant <span class="math notranslate nohighlight">\(p\ge 0\)</span> and <span class="math notranslate nohighlight">\(x_0\ge 0\)</span> so that $ |f(x)| \le p g(x)$ for all <span class="math notranslate nohighlight">\(x \ge x_0\)</span>; since <span class="math notranslate nohighlight">\(g = O(h)\)</span>, we know there exists some constant <span class="math notranslate nohighlight">\(q\ge 0\)</span> and <span class="math notranslate nohighlight">\(x_1\ge 0\)</span> so that $ |g(x)| \le q h(x)$ for all <span class="math notranslate nohighlight">\(x \ge x_1\)</span>. Therefore, we get $ |f(x)| \le p g(x)$ $ \le (p*q) h(x)$ as $x \ge $ <span class="math notranslate nohighlight">\(max\)</span> {<span class="math notranslate nohighlight">\(x_0\)</span>, <span class="math notranslate nohighlight">\(x_1\)</span>}, which implies <span class="math notranslate nohighlight">\(f = O(h)\)</span>.</p>
+<p>Answer to example 6:
+Still, by definition, since <span class="math notranslate nohighlight">\(f = O(g)\)</span>, we know there exists some constant <span class="math notranslate nohighlight">\(p\ge 0\)</span> and <span class="math notranslate nohighlight">\(x_0\ge 0\)</span> so that $ |f(x)| \le p g(x)$ for all <span class="math notranslate nohighlight">\(x \ge x_0\)</span>; since <span class="math notranslate nohighlight">\(h = O(k)\)</span>, we know there exists some constant <span class="math notranslate nohighlight">\(q\ge 0\)</span> and <span class="math notranslate nohighlight">\(x_1\ge 0\)</span> so that $ |h(x)| \le q k(x)$ for all <span class="math notranslate nohighlight">\(x \ge x_1\)</span>. Now, take <span class="math notranslate nohighlight">\(x'\)</span> = <span class="math notranslate nohighlight">\(max\)</span> {<span class="math notranslate nohighlight">\(x_0\)</span>, <span class="math notranslate nohighlight">\(x_1\)</span>}, we know as <span class="math notranslate nohighlight">\(x\ge x'\)</span>, we have both $ |f(x)| \le p g(x)$ and $ |h(x)| \le q k(x)$. Therefore, now we have: <span class="math notranslate nohighlight">\(|(f\times h) (x)| \le |f(x)| * |h(x)| \le (p*q) g(x) k(x) = (p*q) (g\times k) (x)\)</span>, proved.</p>
 </div>
 <div class="section" id="complexity">
 <h2>Complexity<a class="headerlink" href="#complexity" title="Permalink to this headline">¶</a></h2>
@@ -373,7 +390,7 @@ t(n) &amp;\sim   c n^a\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.9142964722323901
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.8834275151253473
 </pre></div>
 </div>
 </div>
@@ -407,7 +424,7 @@ t(n) &amp;\sim   c n^a\
 </div>
 </div>
 </div>
-<p>we see that the length of output of <code class="docutils literal notranslate"><span class="pre">all_subarrays</span></code> grows as <span class="math notranslate nohighlight">\(2^n\)</span>, where <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">=</span> <span class="pre">len(x)</span></code>.  This is a good hint that the function has exponential time and space complexity <span class="math notranslate nohighlight">\(O(2^n)\)</span>.</p>
+<p>we see that the length of output of <code class="docutils literal notranslate"><span class="pre">all_subarrays</span></code> grows as <span class="math notranslate nohighlight">\(2^n\)</span>, where <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">=</span> <span class="pre">len(x)</span></code>.  This is a good hint that the function has exponential time complexity and space complexity <span class="math notranslate nohighlight">\(O(2^n)\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ns</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
@@ -440,8 +457,12 @@ t(n) &amp;\sim   c n^a\
 </div>
 <div class="section" id="exercise">
 <h2>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h2>
-<p>Why does a semilogy plot make sense for plotting the time it takes to run a function with exponential time complextiy?</p>
+<p>Why does a semilogy plot make sense for plotting the time it takes to run a function with exponential time complexity?</p>
 <p>How can you interpret the expected slope?</p>
+</div>
+<div class="section" id="answer-to-the-exercise">
+<h2>Answer to the exercise:<a class="headerlink" href="#answer-to-the-exercise" title="Permalink to this headline">¶</a></h2>
+<p>For a function with exponential time complexity, if we do not use semilogy plot, the values on the y-axis could be distributed in a large range. Also, using semilogy plot could provide us a nicer visualization since linear-like pattern could be shown.</p>
 </div>
 </div>
 

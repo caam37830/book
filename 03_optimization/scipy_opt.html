@@ -97,11 +97,6 @@
      Optimization in SciPy
     </a>
    </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="#added-by-weiqing-xu">
-     Added by Weiqing Xu
-    </a>
-   </li>
   </ul>
  </li>
  <li class="toctree-l1">
@@ -243,6 +238,84 @@
    Functions of One Variable
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#functions-of-multiple-variables">
+   Functions of Multiple variables
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-solving-a-linear-system">
+     Example: Solving a Linear System
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercises">
+     Exercises
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#constraints">
+   Constraints
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#linear-constraints">
+     Linear Constraints
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#nonlinear-constraints">
+     Nonlinear constraints
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-eigenvalues-and-eigenvectors">
+     Example: Eigenvalues and Eigenvectors
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optimization-options">
+   Optimization Options
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#jacobian">
+     Jacobian
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hessian">
+     Hessian
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#solvers">
+     Solvers
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#global-optimization">
+   Global Optimization
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#finding-roots">
+   Finding Roots
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise">
+     Exercise
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 
         </nav>
@@ -306,10 +379,6 @@
 </div>
 </div>
 <p>The return type gives you the function value <code class="docutils literal notranslate"><span class="pre">sol.fun</span></code>, as well as the value of <code class="docutils literal notranslate"><span class="pre">x</span></code> which achieve the minimum <code class="docutils literal notranslate"><span class="pre">sol.x</span></code></p>
-</div>
-</div>
-<div class="section" id="added-by-weiqing-xu">
-<h1>Added by Weiqing Xu<a class="headerlink" href="#added-by-weiqing-xu" title="Permalink to this headline">¶</a></h1>
 <p>Attention: You can’t use different variable notation other than <code class="docutils literal notranslate"><span class="pre">sol.x</span></code> when we want to get the <code class="docutils literal notranslate"><span class="pre">x</span></code> value which achieves minimum.
 For example, if you use letter <code class="docutils literal notranslate"><span class="pre">b</span></code> to represent variable, it will generate error when you run <code class="docutils literal notranslate"><span class="pre">sol.b</span></code>. The situation is different from the that we did in the IVP lecture.</p>
 <div class="cell docutils container">
@@ -323,7 +392,7 @@ For example, if you use letter <code class="docutils literal notranslate"><span 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/scipy_opt_9_0.png" src="../_images/scipy_opt_9_0.png" />
+<img alt="../_images/scipy_opt_8_0.png" src="../_images/scipy_opt_8_0.png" />
 </div>
 </div>
 <p>If you want to add constraints such as <span class="math notranslate nohighlight">\(x \ge 1\)</span>, you can use <code class="docutils literal notranslate"><span class="pre">bounds</span></code>, along with specifying the <code class="docutils literal notranslate"><span class="pre">bounded</span></code> method:</p>
@@ -339,7 +408,7 @@ For example, if you use letter <code class="docutils literal notranslate"><span 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/scipy_opt_11_0.png" src="../_images/scipy_opt_11_0.png" />
+<img alt="../_images/scipy_opt_10_0.png" src="../_images/scipy_opt_10_0.png" />
 </div>
 </div>
 <p>For more complicated functions, there may be multiple solutions</p>
@@ -354,7 +423,7 @@ For example, if you use letter <code class="docutils literal notranslate"><span 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/scipy_opt_13_0.png" src="../_images/scipy_opt_13_0.png" />
+<img alt="../_images/scipy_opt_12_0.png" src="../_images/scipy_opt_12_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -369,10 +438,11 @@ For example, if you use letter <code class="docutils literal notranslate"><span 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/scipy_opt_14_0.png" src="../_images/scipy_opt_14_0.png" />
+<img alt="../_images/scipy_opt_13_0.png" src="../_images/scipy_opt_13_0.png" />
 </div>
 </div>
 <p>Note that you will only find one minimum, and this minimum will generally only be a local minimum, not a global minimum.</p>
+</div>
 <div class="section" id="functions-of-multiple-variables">
 <h2>Functions of Multiple variables<a class="headerlink" href="#functions-of-multiple-variables" title="Permalink to this headline">¶</a></h2>
 <p>You might also wish to minimize functions of multiple variables.  In this case, you use <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize"><code class="docutils literal notranslate"><span class="pre">opt.minimize</span></code></a></p>
@@ -393,17 +463,17 @@ For example, if you use letter <code class="docutils literal notranslate"><span 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>      fun: 5.071373100021385e-16
- hess_inv: array([[ 1.94525983, -0.74753769],
-       [-0.74753769,  0.3959231 ]])
-      jac: array([ 2.58269562e-09, -1.73360361e-09])
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>      fun: 4.648785564182256e-12
+ hess_inv: array([[ 0.34752203, -0.42072614],
+       [-0.42072614,  1.1920472 ]])
+      jac: array([-6.66702736e-06, -2.86625481e-06])
   message: &#39;Optimization terminated successfully.&#39;
-     nfev: 24
-      nit: 7
-     njev: 8
+     nfev: 15
+      nit: 4
+     njev: 5
    status: 0
   success: True
-        x: array([0.69556758, 0.31900503])
+        x: array([0.66529495, 0.38612694])
 </pre></div>
 </div>
 </div>
@@ -418,9 +488,9 @@ For example, if you use letter <code class="docutils literal notranslate"><span 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[0.69556758 0.31900503]
-[0.69556755 0.31900505]
-3.611953748335047e-08
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[0.66529495 0.38612694]
+[0.66529608 0.38612755]
+1.2799295652225503e-06
 </pre></div>
 </div>
 </div>
@@ -443,7 +513,7 @@ For example, if you use letter <code class="docutils literal notranslate"><span 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>0.001518451667657519
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>4.591577768981448e-05
 </pre></div>
 </div>
 </div>
@@ -467,7 +537,7 @@ For example, if you use letter <code class="docutils literal notranslate"><span 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>2.3344786695656138e-07
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>9.889552209868846e-08
 </pre></div>
 </div>
 </div>
@@ -544,7 +614,7 @@ where <code class="docutils literal notranslate"><span class="pre">A</span> <spa
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/scipy_opt_29_0.png" src="../_images/scipy_opt_29_0.png" />
+<img alt="../_images/scipy_opt_28_0.png" src="../_images/scipy_opt_28_0.png" />
 </div>
 </div>
 <p>Now, let’s say we want to minimize a function <code class="docutils literal notranslate"><span class="pre">f(x)</span></code> subject to <code class="docutils literal notranslate"><span class="pre">x</span></code> obeying the constraints given above.  We can simply pass in the constraints</p>
@@ -557,15 +627,15 @@ where <code class="docutils literal notranslate"><span class="pre">A</span> <spa
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>     fun: -1.9999999999988842
-     jac: array([-2.,  1.])
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>     fun: -1.9999999999999478
+     jac: array([ 2., -1.])
  message: &#39;Optimization terminated successfully&#39;
     nfev: 15
      nit: 5
     njev: 5
   status: 0
  success: True
-       x: array([ 1., -2.])
+       x: array([-1.,  2.])
 </pre></div>
 </div>
 </div>
@@ -589,7 +659,7 @@ where <code class="docutils literal notranslate"><span class="pre">A</span> <spa
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/scipy_opt_33_0.png" src="../_images/scipy_opt_33_0.png" />
+<img alt="../_images/scipy_opt_32_0.png" src="../_images/scipy_opt_32_0.png" />
 </div>
 </div>
 <p>We see that <code class="docutils literal notranslate"><span class="pre">[-1,2]</span></code> does appear to be a minimum</p>
@@ -627,7 +697,7 @@ where <code class="docutils literal notranslate"><span class="pre">A</span> <spa
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/scipy_opt_38_0.png" src="../_images/scipy_opt_38_0.png" />
+<img alt="../_images/scipy_opt_37_0.png" src="../_images/scipy_opt_37_0.png" />
 </div>
 </div>
 <p>Let’s try minimizing the same function as before: <span class="math notranslate nohighlight">\(f(x) = x[0] * x[1]\)</span></p>
@@ -651,7 +721,7 @@ where <code class="docutils literal notranslate"><span class="pre">A</span> <spa
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/scipy_opt_40_0.png" src="../_images/scipy_opt_40_0.png" />
+<img alt="../_images/scipy_opt_39_0.png" src="../_images/scipy_opt_39_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -662,15 +732,15 @@ where <code class="docutils literal notranslate"><span class="pre">A</span> <spa
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>     fun: -2.0000006566134925
-     jac: array([ 1.41340277, -1.41502577])
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>     fun: -2.0000009997145076
+     jac: array([-1.41421318,  1.41421452])
  message: &#39;Optimization terminated successfully&#39;
-    nfev: 37
-     nit: 13
-    njev: 12
+    nfev: 41
+     nit: 10
+    njev: 10
   status: 0
  success: True
-       x: array([-1.41421499,  1.4142126 ])
+       x: array([ 1.41421455, -1.41421328])
 </pre></div>
 </div>
 </div>
@@ -698,15 +768,15 @@ where <code class="docutils literal notranslate"><span class="pre">A</span> <spa
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>     fun: -4.7697444863562275
-     jac: array([ 2.28712255, -2.24361587, -3.19093883,  3.11901665,  7.79915065])
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>     fun: -4.2138320256178154
+     jac: array([-4.91593236,  1.24228656, -3.18935549, -3.67391706,  4.6525473 ])
  message: &#39;Optimization terminated successfully&#39;
-    nfev: 201
-     nit: 31
-    njev: 31
+    nfev: 107
+     nit: 17
+    njev: 17
   status: 0
  success: True
-       x: array([-0.23975181,  0.235195  ,  0.33449726, -0.326959  , -0.81756455])
+       x: array([ 0.58336952, -0.14738083,  0.3784319 ,  0.4358421 , -0.55207781])
 </pre></div>
 </div>
 </div>
@@ -721,8 +791,8 @@ where <code class="docutils literal notranslate"><span class="pre">A</span> <spa
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(4.769744443434076,
- array([ 0.23975271, -0.23519042, -0.33449665,  0.3269594 ,  0.81756569]))
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(4.21383181631087,
+ array([ 0.58333557, -0.14742281,  0.37841681,  0.43591872, -0.55205228]))
 </pre></div>
 </div>
 </div>
@@ -735,8 +805,8 @@ where <code class="docutils literal notranslate"><span class="pre">A</span> <spa
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>error in eigenvalue: -4.292215116663556e-08
-error in eigenvector: 2.000000004499789
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>error in eigenvalue: -2.093069451092333e-07
+error in eigenvector: 9.830737114527541e-05
 </pre></div>
 </div>
 </div>
@@ -774,21 +844,21 @@ J_f[i,j] = \frac{\partial{f}_i}{\partial{x_j}}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 11.3 ms, sys: 2.02 ms, total: 13.4 ms
-Wall time: 10.5 ms
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.79 ms, sys: 2.95 ms, total: 4.73 ms
+Wall time: 3.8 ms
 </pre></div>
 </div>
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>      fun: -1.9999999999902398
- hess_inv: array([[0.99819976, 0.00109809],
-       [0.00109809, 0.99966399]])
-      jac: array([-4.23192978e-06,  1.22189522e-06])
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>      fun: -1.9999999999996034
+ hess_inv: array([[ 1.00768296, -0.00567672],
+       [-0.00567672,  1.00426931]])
+      jac: array([-7.74860382e-07,  4.32133675e-07])
   message: &#39;Optimization terminated successfully.&#39;
-     nfev: 33
-      nit: 8
-     njev: 11
+     nfev: 27
+      nit: 6
+     njev: 9
    status: 0
   success: True
-        x: array([ 3.1415884 , -1.57079512])
+        x: array([ 3.14159188, -1.57079589])
 </pre></div>
 </div>
 </div>
@@ -801,21 +871,21 @@ Wall time: 10.5 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.35 ms, sys: 1.88 ms, total: 3.24 ms
-Wall time: 2.33 ms
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 2.97 ms, sys: 48 µs, total: 3.01 ms
+Wall time: 2.2 ms
 </pre></div>
 </div>
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>      fun: -1.9999999999902707
- hess_inv: array([[0.99819955, 0.00109796],
-       [0.00109796, 0.99966363]])
-      jac: array([-4.23702503e-06,  1.22733775e-06])
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>      fun: -1.99999999999961
+ hess_inv: array([[ 1.00768335, -0.00567663],
+       [-0.00567663,  1.00426882]])
+      jac: array([-7.64923596e-07,  4.41577179e-07])
   message: &#39;Optimization terminated successfully.&#39;
-     nfev: 11
-      nit: 8
-     njev: 11
+     nfev: 9
+      nit: 6
+     njev: 9
    status: 0
   success: True
-        x: array([ 3.14158842, -1.5707951 ])
+        x: array([ 3.14159189, -1.57079589])
 </pre></div>
 </div>
 </div>
@@ -841,8 +911,8 @@ H[i,j] = \frac{\partial^2 f}{\partial x_i \partial x_j}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 2.98 ms, sys: 0 ns, total: 2.98 ms
-Wall time: 2.76 ms
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 3.11 ms, sys: 6 µs, total: 3.12 ms
+Wall time: 2.28 ms
 </pre></div>
 </div>
 <div class="stderr docutils container">
@@ -850,17 +920,17 @@ Wall time: 2.76 ms
   warn('Method %s does not use Hessian information (hess).' % method,
 </pre>
 </div>
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>      fun: -1.9999999999902707
- hess_inv: array([[0.99819955, 0.00109796],
-       [0.00109796, 0.99966363]])
-      jac: array([-4.23702503e-06,  1.22733775e-06])
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>      fun: -1.99999999999961
+ hess_inv: array([[ 1.00768335, -0.00567663],
+       [-0.00567663,  1.00426882]])
+      jac: array([-7.64923596e-07,  4.41577179e-07])
   message: &#39;Optimization terminated successfully.&#39;
-     nfev: 11
-      nit: 8
-     njev: 11
+     nfev: 9
+      nit: 6
+     njev: 9
    status: 0
   success: True
-        x: array([ 3.14158842, -1.5707951 ])
+        x: array([ 3.14159189, -1.57079589])
 </pre></div>
 </div>
 </div>
@@ -877,12 +947,12 @@ Wall time: 2.76 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 2.73 ms, sys: 50 µs, total: 2.78 ms
-Wall time: 1.88 ms
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 41.4 ms, sys: 1.91 ms, total: 43.3 ms
+Wall time: 42.9 ms
 </pre></div>
 </div>
 <div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>     fun: -2.0
-     jac: array([ 3.97429522e-10, -3.83021775e-10])
+     jac: array([-2.18828360e-14, -2.16991389e-14])
  message: &#39;Optimization terminated successfully.&#39;
     nfev: 6
     nhev: 5
@@ -935,22 +1005,22 @@ Wall time: 1.88 ms
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>                        fun: -2.0
  lowest_optimization_result:       fun: -2.0
- hess_inv: array([[ 0.83344291, -0.00124929],
-       [-0.00124929,  0.99999063]])
-      jac: array([0.00000000e+00, 1.49011612e-08])
+ hess_inv: array([[0.92038488, 0.08322104],
+       [0.08322104, 0.91300978]])
+      jac: array([2.98023224e-08, 2.98023224e-08])
   message: &#39;Optimization terminated successfully.&#39;
      nfev: 12
       nit: 3
      njev: 4
    status: 0
   success: True
-        x: array([ 3.14159265, -1.57079632])
+        x: array([ 3.14159267, -1.57079632])
                     message: [&#39;requested number of basinhopping iterations completed successfully&#39;]
       minimization_failures: 0
-                       nfev: 1230
+                       nfev: 1260
                         nit: 100
-                       njev: 410
-                          x: array([ 3.14159265, -1.57079632])
+                       njev: 420
+                          x: array([ 3.14159267, -1.57079632])
 </pre></div>
 </div>
 </div>
@@ -964,28 +1034,28 @@ Wall time: 1.88 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.61 s, sys: 2.66 ms, total: 1.61 s
-Wall time: 1.62 s
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.85 s, sys: 3.56 ms, total: 1.86 s
+Wall time: 1.89 s
 </pre></div>
 </div>
 <div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>                        fun: -2.0
  lowest_optimization_result:       fun: -2.0
- hess_inv: array([[ 0.91747957, -0.08328053],
-       [-0.08328053,  0.91595238]])
-      jac: array([1.49011612e-08, 0.00000000e+00])
+ hess_inv: array([[ 0.91917197, -0.08328148],
+       [-0.08328148,  0.9141906 ]])
+      jac: array([0.00000000e+00, 2.98023224e-08])
   message: &#39;Optimization terminated successfully.&#39;
      nfev: 12
       nit: 3
      njev: 4
    status: 0
   success: True
-        x: array([ 3.14159266, -1.57079633])
+        x: array([ 3.14159264, -1.57079632])
                     message: [&#39;requested number of basinhopping iterations completed successfully&#39;]
       minimization_failures: 0
-                       nfev: 17448
+                       nfev: 17325
                         nit: 1000
-                       njev: 5816
-                          x: array([ 3.14159266, -1.57079633])
+                       njev: 5775
+                          x: array([ 3.14159264, -1.57079632])
 </pre></div>
 </div>
 </div>
@@ -1000,19 +1070,19 @@ Wall time: 1.62 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 283 ms, sys: 1.02 ms, total: 284 ms
-Wall time: 285 ms
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 306 ms, sys: 1.04 ms, total: 307 ms
+Wall time: 305 ms
 </pre></div>
 </div>
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>     fun: -1.999999999999724
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>     fun: -1.999999999999935
  message: [&#39;Maximum number of iteration reached&#39;]
-    nfev: 4046
+    nfev: 4040
     nhev: 0
      nit: 1000
-    njev: 15
+    njev: 13
   status: 0
  success: True
-       x: array([ 3.14159333, -1.57079635])
+       x: array([ 3.14159298, -1.57079627])
 </pre></div>
 </div>
 </div>
@@ -1033,7 +1103,7 @@ Wall time: 285 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[-1.02986653] [-6.66133815e-16]
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[-1.02986653] [0.]
 </pre></div>
 </div>
 </div>
@@ -1073,8 +1143,8 @@ x_0 x_1 - x_1 - 5 = 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 188 µs, sys: 8 µs, total: 196 µs
-Wall time: 191 µs
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 304 µs, sys: 0 ns, total: 304 µs
+Wall time: 304 µs
 </pre></div>
 </div>
 <div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>    fjac: array([[-0.56248005, -0.82681085],
@@ -1120,8 +1190,8 @@ Wall time: 191 µs
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.24 ms, sys: 920 µs, total: 2.16 ms
-Wall time: 8.55 ms
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 2.02 ms, sys: 35 µs, total: 2.06 ms
+Wall time: 1.88 ms
 </pre></div>
 </div>
 <div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>   cov_x: array([[ 0.87470958, -0.02852752],

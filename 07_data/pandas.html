@@ -296,12 +296,22 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#missing-data">
+   Missing data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise">
+   Exercise
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#series">
    Series
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#exercise">
+    <a class="reference internal nav-link" href="#id1">
      Exercise
     </a>
    </li>
@@ -328,7 +338,7 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
+    <a class="reference internal nav-link" href="#id2">
      Exercise
     </a>
    </li>
@@ -813,7 +823,7 @@ Name: age, dtype: float64
 </div>
 </div>
 </div>
-<p>depending on they type of data held in the series, <code class="docutils literal notranslate"><span class="pre">describe</span></code> has different functionality.</p>
+<p>depending on the type of data held in the series, <code class="docutils literal notranslate"><span class="pre">describe</span></code> has different functionality.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;sex&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
@@ -1257,6 +1267,295 @@ Name: age, Length: 891, dtype: float64
 </div>
 </div>
 </div>
+<div class="section" id="missing-data">
+<h2>Missing data<a class="headerlink" href="#missing-data" title="Permalink to this headline">¶</a></h2>
+<p>In data analysis, knowing how to properly fill in missing data is very important, sometimes we don’t want to just ignore them, especially when the observational numbers are small. There are various ways to do it such as filling with the mean, K-Nearest Neighbors (KNN) methods and so on.</p>
+</div>
+<div class="section" id="exercise">
+<h2>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h2>
+<p>Here, as an exercise, suppose we are trying to replace missing values in age column as its mean from titanic dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">MissDataPra</span> <span class="o">=</span> <span class="n">titanic</span>
+<span class="n">MissDataPra</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>survived</th>
+      <th>pclass</th>
+      <th>sex</th>
+      <th>age</th>
+      <th>sibsp</th>
+      <th>parch</th>
+      <th>fare</th>
+      <th>embarked</th>
+      <th>class</th>
+      <th>who</th>
+      <th>adult_male</th>
+      <th>deck</th>
+      <th>embark_town</th>
+      <th>alive</th>
+      <th>alone</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>3</td>
+      <td>male</td>
+      <td>22.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>7.2500</td>
+      <td>S</td>
+      <td>Third</td>
+      <td>man</td>
+      <td>True</td>
+      <td>NaN</td>
+      <td>Southampton</td>
+      <td>no</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>1</td>
+      <td>female</td>
+      <td>38.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>71.2833</td>
+      <td>C</td>
+      <td>First</td>
+      <td>woman</td>
+      <td>False</td>
+      <td>C</td>
+      <td>Cherbourg</td>
+      <td>yes</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>3</td>
+      <td>female</td>
+      <td>26.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>7.9250</td>
+      <td>S</td>
+      <td>Third</td>
+      <td>woman</td>
+      <td>False</td>
+      <td>NaN</td>
+      <td>Southampton</td>
+      <td>yes</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>1</td>
+      <td>female</td>
+      <td>35.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>53.1000</td>
+      <td>S</td>
+      <td>First</td>
+      <td>woman</td>
+      <td>False</td>
+      <td>C</td>
+      <td>Southampton</td>
+      <td>yes</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>3</td>
+      <td>male</td>
+      <td>35.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>8.0500</td>
+      <td>S</td>
+      <td>Third</td>
+      <td>man</td>
+      <td>True</td>
+      <td>NaN</td>
+      <td>Southampton</td>
+      <td>no</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>886</th>
+      <td>0</td>
+      <td>2</td>
+      <td>male</td>
+      <td>27.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>13.0000</td>
+      <td>S</td>
+      <td>Second</td>
+      <td>man</td>
+      <td>True</td>
+      <td>NaN</td>
+      <td>Southampton</td>
+      <td>no</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>887</th>
+      <td>1</td>
+      <td>1</td>
+      <td>female</td>
+      <td>19.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>30.0000</td>
+      <td>S</td>
+      <td>First</td>
+      <td>woman</td>
+      <td>False</td>
+      <td>B</td>
+      <td>Southampton</td>
+      <td>yes</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>888</th>
+      <td>0</td>
+      <td>3</td>
+      <td>female</td>
+      <td>NaN</td>
+      <td>1</td>
+      <td>2</td>
+      <td>23.4500</td>
+      <td>S</td>
+      <td>Third</td>
+      <td>woman</td>
+      <td>False</td>
+      <td>NaN</td>
+      <td>Southampton</td>
+      <td>no</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>889</th>
+      <td>1</td>
+      <td>1</td>
+      <td>male</td>
+      <td>26.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>30.0000</td>
+      <td>C</td>
+      <td>First</td>
+      <td>man</td>
+      <td>True</td>
+      <td>C</td>
+      <td>Cherbourg</td>
+      <td>yes</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>890</th>
+      <td>0</td>
+      <td>3</td>
+      <td>male</td>
+      <td>32.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>7.7500</td>
+      <td>Q</td>
+      <td>Third</td>
+      <td>man</td>
+      <td>True</td>
+      <td>NaN</td>
+      <td>Queenstown</td>
+      <td>no</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+<p>891 rows × 15 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solution </span>
+<span class="n">ages</span> <span class="o">=</span> <span class="n">MissDataPra</span><span class="p">[</span><span class="s2">&quot;age&quot;</span><span class="p">]</span>
+<span class="n">ageMean</span> <span class="o">=</span> <span class="n">ages</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">MissDataPra</span><span class="p">[</span><span class="s2">&quot;age&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ages</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">ageMean</span><span class="p">)</span>
+<span class="n">MissDataPra</span><span class="p">[</span><span class="s2">&quot;age&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0      22.000000
+1      38.000000
+2      26.000000
+3      35.000000
+4      35.000000
+         ...    
+886    27.000000
+887    19.000000
+888    29.699118
+889    26.000000
+890    32.000000
+Name: age, Length: 891, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+</div>
 <div class="section" id="series">
 <h2>Series<a class="headerlink" href="#series" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
@@ -1305,11 +1604,11 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>a   -0.946611
-b    0.399699
-c   -0.897380
-d    1.300747
-e   -1.145056
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>a   -1.171116
+b   -0.365194
+c   -0.178805
+d    1.061174
+e    0.936595
 dtype: float64
 --------------------------------------------------
 Index([&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39;], dtype=&#39;object&#39;)
@@ -1324,7 +1623,7 @@ Index([&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39;], dtype=&
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>-0.9466106841326566
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>-1.1711157408626292
 </pre></div>
 </div>
 </div>
@@ -1371,11 +1670,11 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>a    0.383700
-b    0.182974
-c   -0.870116
-d    0.216060
-e    1.166069
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>a   -0.198556
+b   -0.081586
+c   -0.603652
+d   -0.474010
+e   -0.793344
 dtype: float64
 </pre></div>
 </div>
@@ -1388,9 +1687,9 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>b    0.182974
-c   -0.870116
-d    0.216060
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>b   -0.081586
+c   -0.603652
+d   -0.474010
 dtype: float64
 </pre></div>
 </div>
@@ -1403,9 +1702,8 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>a    0.383700
-d    0.216060
-e    1.166069
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>a   -0.198556
+b   -0.081586
 dtype: float64
 </pre></div>
 </div>
@@ -1420,11 +1718,11 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>a 0.3836996160091197
-b 0.1829736271767511
-c -0.8701155452858034
-d 0.2160599643532126
-e 1.1660694352714795
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>a -0.19855562905260105
+b -0.08158605064033972
+c -0.6036523512939252
+d -0.47400963143183794
+e -0.7933443621967579
 </pre></div>
 </div>
 </div>
@@ -1438,17 +1736,17 @@ e 1.1660694352714795
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>a    0.383700
-b    0.182974
-c   -0.870116
-d    0.216060
-e    1.166069
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>a   -0.198556
+b   -0.081586
+c   -0.603652
+d   -0.474010
+e   -0.793344
 dtype: float64
-c   -0.870116
-b    0.182974
-d    0.216060
-a    0.383700
-e    1.166069
+e   -0.793344
+c   -0.603652
+d   -0.474010
+a   -0.198556
+b   -0.081586
 dtype: float64
 </pre></div>
 </div>
@@ -1471,8 +1769,8 @@ dtype: int64
 </div>
 </div>
 </div>
-<div class="section" id="exercise">
-<h3>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id1">
+<h3>Exercise<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Consider the series <code class="docutils literal notranslate"><span class="pre">s</span></code> of letters in a sentence.</p></li>
 <li><p>What is count of each letter in the sentence, output a series which is sorted by the count</p></li>
@@ -1617,11 +1915,11 @@ d  NaN    3
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[{&#39;Column0&#39;: 55, &#39;Column1&#39;: 47, &#39;Column2&#39;: 77, &#39;Column3&#39;: 39, &#39;Column4&#39;: 15},
- {&#39;Column0&#39;: 28, &#39;Column1&#39;: 3, &#39;Column2&#39;: 54, &#39;Column3&#39;: 84, &#39;Column4&#39;: 98},
- {&#39;Column0&#39;: 74, &#39;Column1&#39;: 69, &#39;Column2&#39;: 65, &#39;Column3&#39;: 12, &#39;Column4&#39;: 91},
- {&#39;Column0&#39;: 4, &#39;Column1&#39;: 60, &#39;Column2&#39;: 56, &#39;Column3&#39;: 70, &#39;Column4&#39;: 96},
- {&#39;Column0&#39;: 55, &#39;Column1&#39;: 72, &#39;Column2&#39;: 56, &#39;Column3&#39;: 20, &#39;Column4&#39;: 64}]
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[{&#39;Column0&#39;: 80, &#39;Column1&#39;: 15, &#39;Column2&#39;: 96, &#39;Column3&#39;: 45, &#39;Column4&#39;: 97},
+ {&#39;Column0&#39;: 71, &#39;Column1&#39;: 5, &#39;Column2&#39;: 85, &#39;Column3&#39;: 82, &#39;Column4&#39;: 91},
+ {&#39;Column0&#39;: 65, &#39;Column1&#39;: 94, &#39;Column2&#39;: 65, &#39;Column3&#39;: 39, &#39;Column4&#39;: 26},
+ {&#39;Column0&#39;: 50, &#39;Column1&#39;: 21, &#39;Column2&#39;: 30, &#39;Column3&#39;: 26, &#39;Column4&#39;: 40},
+ {&#39;Column0&#39;: 73, &#39;Column1&#39;: 53, &#39;Column2&#39;: 87, &#39;Column3&#39;: 48, &#39;Column4&#39;: 42}]
 </pre></div>
 </div>
 </div>
@@ -1663,43 +1961,43 @@ d  NaN    3
   <tbody>
     <tr>
       <th>0</th>
-      <td>55</td>
-      <td>47</td>
-      <td>77</td>
-      <td>39</td>
+      <td>80</td>
       <td>15</td>
+      <td>96</td>
+      <td>45</td>
+      <td>97</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>28</td>
-      <td>3</td>
-      <td>54</td>
-      <td>84</td>
-      <td>98</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>74</td>
-      <td>69</td>
-      <td>65</td>
-      <td>12</td>
+      <td>71</td>
+      <td>5</td>
+      <td>85</td>
+      <td>82</td>
       <td>91</td>
     </tr>
     <tr>
+      <th>2</th>
+      <td>65</td>
+      <td>94</td>
+      <td>65</td>
+      <td>39</td>
+      <td>26</td>
+    </tr>
+    <tr>
       <th>3</th>
-      <td>4</td>
-      <td>60</td>
-      <td>56</td>
-      <td>70</td>
-      <td>96</td>
+      <td>50</td>
+      <td>21</td>
+      <td>30</td>
+      <td>26</td>
+      <td>40</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>55</td>
-      <td>72</td>
-      <td>56</td>
-      <td>20</td>
-      <td>64</td>
+      <td>73</td>
+      <td>53</td>
+      <td>87</td>
+      <td>48</td>
+      <td>42</td>
     </tr>
   </tbody>
 </table>
@@ -2030,17 +2328,17 @@ d  NaN    3
   <tbody>
     <tr>
       <th>2000-01-01</th>
-      <td>0.400769</td>
-      <td>1.125124</td>
-      <td>1.508233</td>
-      <td>-1.954874</td>
+      <td>-0.732874</td>
+      <td>0.325090</td>
+      <td>2.021836</td>
+      <td>-1.463958</td>
     </tr>
     <tr>
       <th>2000-01-02</th>
-      <td>0.849632</td>
-      <td>0.762701</td>
-      <td>-0.536038</td>
-      <td>-0.448857</td>
+      <td>-1.168446</td>
+      <td>0.112462</td>
+      <td>-0.852424</td>
+      <td>-0.231279</td>
     </tr>
     <tr>
       <th>...</th>
@@ -2051,17 +2349,17 @@ d  NaN    3
     </tr>
     <tr>
       <th>2000-01-07</th>
-      <td>1.686709</td>
-      <td>0.872637</td>
-      <td>-1.022097</td>
-      <td>0.092919</td>
+      <td>1.215063</td>
+      <td>-1.523869</td>
+      <td>0.381169</td>
+      <td>-1.398841</td>
     </tr>
     <tr>
       <th>2000-01-08</th>
-      <td>-0.163944</td>
-      <td>-0.710282</td>
-      <td>-0.348607</td>
-      <td>-1.231804</td>
+      <td>-1.574376</td>
+      <td>1.361658</td>
+      <td>-0.313416</td>
+      <td>-1.121838</td>
     </tr>
   </tbody>
 </table>
@@ -2076,11 +2374,11 @@ d  NaN    3
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>2000-01-01    0.400769
-2000-01-02    0.849632
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>2000-01-01   -0.732874
+2000-01-02   -1.168446
                 ...   
-2000-01-07    1.686709
-2000-01-08   -0.163944
+2000-01-07    1.215063
+2000-01-08   -1.574376
 Freq: D, Name: A, Length: 8, dtype: float64
 </pre></div>
 </div>
@@ -2119,13 +2417,13 @@ Freq: D, Name: A, Length: 8, dtype: float64
   <tbody>
     <tr>
       <th>2000-01-01</th>
-      <td>0.400769</td>
-      <td>1.125124</td>
+      <td>-0.732874</td>
+      <td>0.325090</td>
     </tr>
     <tr>
       <th>2000-01-02</th>
-      <td>0.849632</td>
-      <td>0.762701</td>
+      <td>-1.168446</td>
+      <td>0.112462</td>
     </tr>
     <tr>
       <th>...</th>
@@ -2134,13 +2432,13 @@ Freq: D, Name: A, Length: 8, dtype: float64
     </tr>
     <tr>
       <th>2000-01-07</th>
-      <td>1.686709</td>
-      <td>0.872637</td>
+      <td>1.215063</td>
+      <td>-1.523869</td>
     </tr>
     <tr>
       <th>2000-01-08</th>
-      <td>-0.163944</td>
-      <td>-0.710282</td>
+      <td>-1.574376</td>
+      <td>1.361658</td>
     </tr>
   </tbody>
 </table>
@@ -2180,13 +2478,13 @@ Freq: D, Name: A, Length: 8, dtype: float64
   <tbody>
     <tr>
       <th>2000-01-01</th>
-      <td>0.400769</td>
-      <td>1.125124</td>
+      <td>-0.732874</td>
+      <td>0.325090</td>
     </tr>
     <tr>
       <th>2000-01-02</th>
-      <td>0.849632</td>
-      <td>0.762701</td>
+      <td>-1.168446</td>
+      <td>0.112462</td>
     </tr>
     <tr>
       <th>...</th>
@@ -2195,13 +2493,13 @@ Freq: D, Name: A, Length: 8, dtype: float64
     </tr>
     <tr>
       <th>2000-01-07</th>
-      <td>1.686709</td>
-      <td>0.872637</td>
+      <td>1.215063</td>
+      <td>-1.523869</td>
     </tr>
     <tr>
       <th>2000-01-08</th>
-      <td>-0.163944</td>
-      <td>-0.710282</td>
+      <td>-1.574376</td>
+      <td>1.361658</td>
     </tr>
   </tbody>
 </table>
@@ -2243,31 +2541,31 @@ Freq: D, Name: A, Length: 8, dtype: float64
   <tbody>
     <tr>
       <th>2000-01-01</th>
-      <td>0.400769</td>
-      <td>1.125124</td>
-      <td>1.508233</td>
-      <td>-1.954874</td>
+      <td>-0.732874</td>
+      <td>0.325090</td>
+      <td>2.021836</td>
+      <td>-1.463958</td>
     </tr>
     <tr>
       <th>2000-01-02</th>
-      <td>0.849632</td>
-      <td>0.762701</td>
-      <td>-0.536038</td>
-      <td>-0.448857</td>
+      <td>-1.168446</td>
+      <td>0.112462</td>
+      <td>-0.852424</td>
+      <td>-0.231279</td>
     </tr>
     <tr>
       <th>2000-01-03</th>
-      <td>-0.044708</td>
-      <td>-0.267181</td>
-      <td>0.070264</td>
-      <td>-0.430547</td>
+      <td>-0.514564</td>
+      <td>-0.878145</td>
+      <td>0.630437</td>
+      <td>1.381971</td>
     </tr>
     <tr>
       <th>2000-01-04</th>
-      <td>0.499719</td>
-      <td>0.411809</td>
-      <td>0.571102</td>
-      <td>-0.832191</td>
+      <td>-0.557200</td>
+      <td>0.342891</td>
+      <td>0.200964</td>
+      <td>-1.357949</td>
     </tr>
   </tbody>
 </table>
@@ -2307,43 +2605,28 @@ Freq: D, Name: A, Length: 8, dtype: float64
   </thead>
   <tbody>
     <tr>
-      <th>2000-01-02</th>
-      <td>0.849632</td>
-      <td>0.762701</td>
-      <td>-0.536038</td>
-      <td>-0.448857</td>
-    </tr>
-    <tr>
       <th>2000-01-03</th>
-      <td>-0.044708</td>
-      <td>-0.267181</td>
-      <td>0.070264</td>
-      <td>-0.430547</td>
+      <td>-0.514564</td>
+      <td>-0.878145</td>
+      <td>0.630437</td>
+      <td>1.381971</td>
     </tr>
     <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
+      <th>2000-01-06</th>
+      <td>0.658213</td>
+      <td>0.551276</td>
+      <td>-1.153959</td>
+      <td>-0.265048</td>
     </tr>
     <tr>
       <th>2000-01-07</th>
-      <td>1.686709</td>
-      <td>0.872637</td>
-      <td>-1.022097</td>
-      <td>0.092919</td>
-    </tr>
-    <tr>
-      <th>2000-01-08</th>
-      <td>-0.163944</td>
-      <td>-0.710282</td>
-      <td>-0.348607</td>
-      <td>-1.231804</td>
+      <td>1.215063</td>
+      <td>-1.523869</td>
+      <td>0.381169</td>
+      <td>-1.398841</td>
     </tr>
   </tbody>
 </table>
-<p>6 rows × 4 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
@@ -2382,17 +2665,17 @@ Freq: D, Name: A, Length: 8, dtype: float64
   <tbody>
     <tr>
       <th>2000-01-01</th>
-      <td>1.125124</td>
-      <td>1.125124</td>
-      <td>1.508233</td>
-      <td>-1.954874</td>
+      <td>0.325090</td>
+      <td>0.325090</td>
+      <td>2.021836</td>
+      <td>-1.463958</td>
     </tr>
     <tr>
       <th>2000-01-02</th>
-      <td>0.762701</td>
-      <td>0.762701</td>
-      <td>-0.536038</td>
-      <td>-0.448857</td>
+      <td>0.112462</td>
+      <td>0.112462</td>
+      <td>-0.852424</td>
+      <td>-0.231279</td>
     </tr>
     <tr>
       <th>...</th>
@@ -2403,17 +2686,17 @@ Freq: D, Name: A, Length: 8, dtype: float64
     </tr>
     <tr>
       <th>2000-01-07</th>
-      <td>0.872637</td>
-      <td>0.872637</td>
-      <td>-1.022097</td>
-      <td>0.092919</td>
+      <td>-1.523869</td>
+      <td>-1.523869</td>
+      <td>0.381169</td>
+      <td>-1.398841</td>
     </tr>
     <tr>
       <th>2000-01-08</th>
-      <td>-0.710282</td>
-      <td>-0.710282</td>
-      <td>-0.348607</td>
-      <td>-1.231804</td>
+      <td>1.361658</td>
+      <td>1.361658</td>
+      <td>-0.313416</td>
+      <td>-1.121838</td>
     </tr>
   </tbody>
 </table>
@@ -2440,10 +2723,10 @@ Freq: D, Name: A, Length: 8, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>A    1.125124
-B    1.125124
-C    1.508233
-D   -1.954874
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>A    0.325090
+B    0.325090
+C    2.021836
+D   -1.463958
 Name: 2000-01-01 00:00:00, dtype: float64
 </pre></div>
 </div>
@@ -2482,15 +2765,15 @@ Name: 2000-01-01 00:00:00, dtype: float64
   <tbody>
     <tr>
       <th>2000-01-01</th>
-      <td>1.125124</td>
-      <td>1.125124</td>
-      <td>1.508233</td>
+      <td>0.325090</td>
+      <td>0.325090</td>
+      <td>2.021836</td>
     </tr>
     <tr>
       <th>2000-01-02</th>
-      <td>0.762701</td>
-      <td>0.762701</td>
-      <td>-0.536038</td>
+      <td>0.112462</td>
+      <td>0.112462</td>
+      <td>-0.852424</td>
     </tr>
     <tr>
       <th>...</th>
@@ -2500,15 +2783,15 @@ Name: 2000-01-01 00:00:00, dtype: float64
     </tr>
     <tr>
       <th>2000-01-07</th>
-      <td>0.872637</td>
-      <td>0.872637</td>
-      <td>-1.022097</td>
+      <td>-1.523869</td>
+      <td>-1.523869</td>
+      <td>0.381169</td>
     </tr>
     <tr>
       <th>2000-01-08</th>
-      <td>-0.710282</td>
-      <td>-0.710282</td>
-      <td>-0.348607</td>
+      <td>1.361658</td>
+      <td>1.361658</td>
+      <td>-0.313416</td>
     </tr>
   </tbody>
 </table>
@@ -2549,15 +2832,15 @@ Name: 2000-01-01 00:00:00, dtype: float64
   <tbody>
     <tr>
       <th>2000-01-01</th>
-      <td>1.125124</td>
-      <td>1.125124</td>
-      <td>1.508233</td>
+      <td>0.325090</td>
+      <td>0.325090</td>
+      <td>2.021836</td>
     </tr>
     <tr>
       <th>2000-01-02</th>
-      <td>0.762701</td>
-      <td>0.762701</td>
-      <td>-0.536038</td>
+      <td>0.112462</td>
+      <td>0.112462</td>
+      <td>-0.852424</td>
     </tr>
     <tr>
       <th>...</th>
@@ -2567,15 +2850,15 @@ Name: 2000-01-01 00:00:00, dtype: float64
     </tr>
     <tr>
       <th>2000-01-07</th>
-      <td>0.872637</td>
-      <td>0.872637</td>
-      <td>-1.022097</td>
+      <td>-1.523869</td>
+      <td>-1.523869</td>
+      <td>0.381169</td>
     </tr>
     <tr>
       <th>2000-01-08</th>
-      <td>-0.710282</td>
-      <td>-0.710282</td>
-      <td>-0.348607</td>
+      <td>1.361658</td>
+      <td>1.361658</td>
+      <td>-0.313416</td>
     </tr>
   </tbody>
 </table>
@@ -2630,17 +2913,17 @@ Name: 2000-01-01 00:00:00, dtype: float64
   <tbody>
     <tr>
       <th>0</th>
-      <td>-0.589397</td>
-      <td>-0.727652</td>
-      <td>1.530432</td>
-      <td>0.672239</td>
+      <td>0.586890</td>
+      <td>0.776454</td>
+      <td>-0.290712</td>
+      <td>1.630731</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>-2.202318</td>
-      <td>-0.384572</td>
-      <td>0.047527</td>
-      <td>0.118202</td>
+      <td>0.379681</td>
+      <td>-0.441459</td>
+      <td>1.952007</td>
+      <td>0.355769</td>
     </tr>
     <tr>
       <th>...</th>
@@ -2651,17 +2934,17 @@ Name: 2000-01-01 00:00:00, dtype: float64
     </tr>
     <tr>
       <th>8</th>
-      <td>0.528723</td>
-      <td>-0.208416</td>
-      <td>-0.177232</td>
-      <td>-0.136546</td>
+      <td>0.768317</td>
+      <td>1.063445</td>
+      <td>-1.591262</td>
+      <td>1.275304</td>
     </tr>
     <tr>
       <th>10</th>
-      <td>-0.978918</td>
-      <td>0.204876</td>
-      <td>-0.996347</td>
-      <td>0.889734</td>
+      <td>0.276342</td>
+      <td>0.714544</td>
+      <td>0.101705</td>
+      <td>-1.053293</td>
     </tr>
   </tbody>
 </table>
@@ -2703,24 +2986,24 @@ Name: 2000-01-01 00:00:00, dtype: float64
   <tbody>
     <tr>
       <th>0</th>
-      <td>-0.589397</td>
-      <td>-0.727652</td>
-      <td>1.530432</td>
-      <td>0.672239</td>
+      <td>0.586890</td>
+      <td>0.776454</td>
+      <td>-0.290712</td>
+      <td>1.630731</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>-2.202318</td>
-      <td>-0.384572</td>
-      <td>0.047527</td>
-      <td>0.118202</td>
+      <td>0.379681</td>
+      <td>-0.441459</td>
+      <td>1.952007</td>
+      <td>0.355769</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>-1.229783</td>
-      <td>-0.384656</td>
-      <td>0.624790</td>
-      <td>0.116621</td>
+      <td>0.266408</td>
+      <td>-0.463219</td>
+      <td>0.280465</td>
+      <td>1.131525</td>
     </tr>
   </tbody>
 </table>
@@ -2759,23 +3042,23 @@ Name: 2000-01-01 00:00:00, dtype: float64
   <tbody>
     <tr>
       <th>2</th>
-      <td>0.047527</td>
-      <td>0.118202</td>
+      <td>1.952007</td>
+      <td>0.355769</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.624790</td>
-      <td>0.116621</td>
+      <td>0.280465</td>
+      <td>1.131525</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>0.632225</td>
-      <td>-0.569571</td>
+      <td>-0.459622</td>
+      <td>0.363595</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>-0.177232</td>
-      <td>-0.136546</td>
+      <td>-1.591262</td>
+      <td>1.275304</td>
     </tr>
   </tbody>
 </table>
@@ -2814,18 +3097,18 @@ Name: 2000-01-01 00:00:00, dtype: float64
   <tbody>
     <tr>
       <th>2</th>
-      <td>-0.384572</td>
-      <td>0.118202</td>
+      <td>-0.441459</td>
+      <td>0.355769</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>2.051218</td>
-      <td>-0.569571</td>
+      <td>0.295426</td>
+      <td>0.363595</td>
     </tr>
     <tr>
       <th>10</th>
-      <td>0.204876</td>
-      <td>0.889734</td>
+      <td>0.714544</td>
+      <td>-1.053293</td>
     </tr>
   </tbody>
 </table>
@@ -2840,16 +3123,18 @@ Name: 2000-01-01 00:00:00, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>6     2.051218
-10    0.204876
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0     0.776454
+6     0.295426
+8     1.063445
+10    0.714544
 Name: 3, dtype: float64
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="section" id="id1">
-<h3>Exercise<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id2">
+<h3>Exercise<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <p>Given the dataframe <code class="docutils literal notranslate"><span class="pre">df</span></code> below, find the following</p>
 <ul class="simple">
 <li><p>Last two rows of columns A and D</p></li>
@@ -2891,17 +3176,17 @@ Name: 3, dtype: float64
   <tbody>
     <tr>
       <th>2000-01-01</th>
-      <td>0.151162</td>
-      <td>-0.479523</td>
-      <td>-0.841496</td>
-      <td>0.664438</td>
+      <td>1.726238</td>
+      <td>-1.093384</td>
+      <td>0.529840</td>
+      <td>0.402682</td>
     </tr>
     <tr>
       <th>2000-01-02</th>
-      <td>-0.646248</td>
-      <td>0.159475</td>
-      <td>-0.146019</td>
-      <td>0.499506</td>
+      <td>0.170478</td>
+      <td>0.034648</td>
+      <td>2.148830</td>
+      <td>-1.169246</td>
     </tr>
     <tr>
       <th>...</th>
@@ -2912,17 +3197,17 @@ Name: 3, dtype: float64
     </tr>
     <tr>
       <th>2000-01-07</th>
-      <td>0.424041</td>
-      <td>0.358564</td>
-      <td>-0.538394</td>
-      <td>-1.738601</td>
+      <td>1.646539</td>
+      <td>0.309871</td>
+      <td>1.121477</td>
+      <td>-0.900299</td>
     </tr>
     <tr>
       <th>2000-01-08</th>
-      <td>0.640561</td>
-      <td>1.167687</td>
-      <td>-0.397753</td>
-      <td>1.017208</td>
+      <td>-1.489596</td>
+      <td>0.961474</td>
+      <td>-0.896506</td>
+      <td>1.271520</td>
     </tr>
   </tbody>
 </table>
@@ -2932,6 +3217,68 @@ Name: 3, dtype: float64
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solution: Last two rows of columns A and D</span>
+<span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[[</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>D</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2000-01-07</th>
+      <td>1.646539</td>
+      <td>-0.900299</td>
+    </tr>
+    <tr>
+      <th>2000-01-08</th>
+      <td>-1.489596</td>
+      <td>1.271520</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solution: Last three rows such which statisfy that column A &gt; Column B</span>
+<span class="n">last3rows</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">5</span><span class="p">:</span><span class="mi">8</span><span class="p">,]</span>  <span class="c1"># last three rows </span>
+<span class="nb">print</span><span class="p">(</span><span class="n">last3rows</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">last3rows</span><span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">])</span> <span class="c1"># The boolean statement return true if column A &gt; Column B. </span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>2000-01-06    False
+2000-01-07     True
+2000-01-08    False
+Freq: D, dtype: bool
 </pre></div>
 </div>
 </div>
@@ -3042,7 +3389,7 @@ Name: 3, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/pandas_90_0.png" src="../_images/pandas_90_0.png" />
+<img alt="../_images/pandas_98_0.png" src="../_images/pandas_98_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3056,7 +3403,7 @@ Name: 3, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/pandas_91_0.png" src="../_images/pandas_91_0.png" />
+<img alt="../_images/pandas_99_0.png" src="../_images/pandas_99_0.png" />
 </div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">plot</span></code> just plots the value by index, and doesn’t make a lot of sense unless the index means something (like time).  In this case, a histogram makes more sense:</p>
@@ -3068,7 +3415,7 @@ Name: 3, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/pandas_93_0.png" src="../_images/pandas_93_0.png" />
+<img alt="../_images/pandas_101_0.png" src="../_images/pandas_101_0.png" />
 </div>
 </div>
 <p>we can also create scatter plots of two columns</p>
@@ -3080,7 +3427,7 @@ Name: 3, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/pandas_95_0.png" src="../_images/pandas_95_0.png" />
+<img alt="../_images/pandas_103_0.png" src="../_images/pandas_103_0.png" />
 </div>
 </div>
 <p>You can also create box plots</p>
@@ -3092,7 +3439,7 @@ Name: 3, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/pandas_97_0.png" src="../_images/pandas_97_0.png" />
+<img alt="../_images/pandas_105_0.png" src="../_images/pandas_105_0.png" />
 </div>
 </div>
 </div>
@@ -3665,7 +4012,7 @@ Name: pclass, Length: 6, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x7fb2252bd190&gt;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x7f6e85425b50&gt;
 </pre></div>
 </div>
 </div>
@@ -3729,7 +4076,7 @@ Name: pclass, Length: 6, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/pandas_117_0.png" src="../_images/pandas_117_0.png" />
+<img alt="../_images/pandas_125_0.png" src="../_images/pandas_125_0.png" />
 </div>
 </div>
 </div>
@@ -3776,15 +4123,15 @@ Name: pclass, Length: 6, dtype: int64
   <tbody>
     <tr>
       <th>female</th>
-      <td>34.611765</td>
-      <td>28.722973</td>
-      <td>21.750000</td>
+      <td>34.141405</td>
+      <td>28.748661</td>
+      <td>24.068493</td>
     </tr>
     <tr>
       <th>male</th>
-      <td>41.281386</td>
-      <td>30.740707</td>
-      <td>26.507589</td>
+      <td>39.287717</td>
+      <td>30.653908</td>
+      <td>27.372153</td>
     </tr>
   </tbody>
 </table>
@@ -3831,15 +4178,15 @@ Name: pclass, Length: 6, dtype: int64
   <tbody>
     <tr>
       <th>female</th>
-      <td>35.0</td>
-      <td>28.0</td>
-      <td>21.5</td>
+      <td>32.5</td>
+      <td>28.500000</td>
+      <td>28.000000</td>
     </tr>
     <tr>
       <th>male</th>
-      <td>40.0</td>
-      <td>30.0</td>
-      <td>25.0</td>
+      <td>36.0</td>
+      <td>29.699118</td>
+      <td>29.699118</td>
     </tr>
   </tbody>
 </table>
@@ -3993,17 +4340,17 @@ right:
   <tbody>
     <tr>
       <th>0</th>
-      <td>-0.513659</td>
-      <td>0.260552</td>
-      <td>-0.250445</td>
-      <td>0.149011</td>
+      <td>-1.084777</td>
+      <td>0.675745</td>
+      <td>0.300109</td>
+      <td>0.338987</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>1.231867</td>
-      <td>0.169671</td>
-      <td>2.080518</td>
-      <td>0.173914</td>
+      <td>-0.445142</td>
+      <td>-1.634966</td>
+      <td>0.163271</td>
+      <td>1.361727</td>
     </tr>
     <tr>
       <th>...</th>
@@ -4014,17 +4361,17 @@ right:
     </tr>
     <tr>
       <th>8</th>
-      <td>-0.146053</td>
-      <td>-0.294055</td>
-      <td>-1.035112</td>
-      <td>-0.818197</td>
+      <td>-0.489951</td>
+      <td>-0.907580</td>
+      <td>1.098121</td>
+      <td>1.353287</td>
     </tr>
     <tr>
       <th>10</th>
-      <td>1.264653</td>
-      <td>0.605171</td>
-      <td>-1.555069</td>
-      <td>0.083564</td>
+      <td>-0.174557</td>
+      <td>1.066299</td>
+      <td>1.072301</td>
+      <td>-0.643807</td>
     </tr>
   </tbody>
 </table>
@@ -4039,10 +4386,10 @@ right:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>a    0.659157
-b   -0.260799
-c   -0.305214
-d   -0.293950
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>a   -0.557271
+b   -0.305068
+c    0.388250
+d    0.041693
 dtype: float64
 </pre></div>
 </div>
@@ -4056,11 +4403,11 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0    -0.088635
-2     0.913993
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0     0.057516
+2    -0.138777
         ...   
-8    -0.573354
-10    0.099580
+8     0.263469
+10    0.330059
 Length: 6, dtype: float64
 </pre></div>
 </div>
@@ -4101,17 +4448,17 @@ Length: 6, dtype: float64
   <tbody>
     <tr>
       <th>0</th>
-      <td>-1.362930</td>
-      <td>0.487728</td>
-      <td>0.043353</td>
-      <td>0.528920</td>
+      <td>-0.985983</td>
+      <td>0.931252</td>
+      <td>-0.118021</td>
+      <td>0.255373</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.665546</td>
-      <td>0.402708</td>
-      <td>1.888451</td>
-      <td>0.558656</td>
+      <td>0.209586</td>
+      <td>-1.262698</td>
+      <td>-0.301247</td>
+      <td>1.133899</td>
     </tr>
     <tr>
       <th>...</th>
@@ -4122,17 +4469,17 @@ Length: 6, dtype: float64
     </tr>
     <tr>
       <th>8</th>
-      <td>-0.935735</td>
-      <td>-0.031111</td>
-      <td>-0.577758</td>
-      <td>-0.625981</td>
+      <td>0.125831</td>
+      <td>-0.572068</td>
+      <td>0.950520</td>
+      <td>1.126649</td>
     </tr>
     <tr>
       <th>10</th>
-      <td>0.703647</td>
-      <td>0.810121</td>
-      <td>-0.989336</td>
-      <td>0.450772</td>
+      <td>0.715347</td>
+      <td>1.302071</td>
+      <td>0.915947</td>
+      <td>-0.588840</td>
     </tr>
   </tbody>
 </table>
@@ -4173,17 +4520,17 @@ Length: 6, dtype: float64
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.598302</td>
-      <td>1.297646</td>
-      <td>0.778454</td>
-      <td>1.160686</td>
+      <td>0.337977</td>
+      <td>1.965497</td>
+      <td>1.350006</td>
+      <td>1.403525</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>3.427622</td>
-      <td>1.184915</td>
-      <td>8.008617</td>
-      <td>1.189954</td>
+      <td>0.640733</td>
+      <td>0.194959</td>
+      <td>1.177356</td>
+      <td>3.902929</td>
     </tr>
     <tr>
       <th>...</th>
@@ -4194,17 +4541,17 @@ Length: 6, dtype: float64
     </tr>
     <tr>
       <th>8</th>
-      <td>0.864112</td>
-      <td>0.745236</td>
-      <td>0.355187</td>
-      <td>0.441226</td>
+      <td>0.612656</td>
+      <td>0.403499</td>
+      <td>2.998528</td>
+      <td>3.870125</td>
     </tr>
     <tr>
       <th>10</th>
-      <td>3.541864</td>
-      <td>1.831565</td>
-      <td>0.211175</td>
-      <td>1.087154</td>
+      <td>0.839829</td>
+      <td>2.904610</td>
+      <td>2.922097</td>
+      <td>0.525289</td>
     </tr>
   </tbody>
 </table>
