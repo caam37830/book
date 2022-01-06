@@ -22,6 +22,7 @@
   - file: 01_analysis/asymptotic_notation
   - file: 01_analysis/recursion
   - file: 01_analysis/convergence
+  - file: 01_analysis/average_case
 
 - file: 02_linear_algebra/linear_algebra
   sections:
@@ -33,6 +34,7 @@
   - file: 02_linear_algebra/sparse_linalg
   - file: 02_linear_algebra/pytorch
   - file: 02_linear_algebra/convolutions
+  - file: 02_linear_algebra/fft
 
 - file: 03_optimization/optimization
   sections:
