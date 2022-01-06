@@ -422,6 +422,19 @@
 </div>
 </div>
 </div>
+<p>you can also extend lists using the <code class="docutils literal notranslate"><span class="pre">+</span></code> operator</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[1, 2, 3, 4, 5, 6]
+</pre></div>
+</div>
+</div>
+</div>
 <p>You can also generate lists using <a class="reference external" href="https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions">list comprehensions</a>.  Comprehensions are “Pythonic” which is a vauge term roughly meaning</p>
 <p>Pythonic: “something a Python programmer would write”</p>
 <div class="cell docutils container">
@@ -701,7 +714,7 @@ cat
 6
 int64
 8
-&lt;memory at 0x7fd31d0efba0&gt;
+&lt;memory at 0x7f7e1dcb1e10&gt;
   C_CONTIGUOUS : True
   F_CONTIGUOUS : False
   OWNDATA : True
@@ -743,9 +756,9 @@ int64
 [[1. 1.]
  [1. 1.]
  [1. 1.]]
-[[-1.37199796 -0.28001974]
- [-0.85528402 -0.3961657 ]
- [-0.17544054 -0.08497679]]
+[[ 0.04783957  0.92772063]
+ [-1.44300302  0.22313857]
+ [-0.6936732  -0.81331493]]
 </pre></div>
 </div>
 </div>
@@ -883,13 +896,6 @@ int64
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>np.dot?
-</pre></div>
-</div>
-</div>
-</div>
 <p>Numpy provides a variety of mathematics functions that you can use with numpy arrays.  Numpy is <em>vectorized</em>, meaning that it is typically much faster to perform array operations than to use explicit for loops.  This should be a familiar concept to Matlab users.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -914,22 +920,22 @@ int64
 <span class="n">xnp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
 <span class="c1"># square elements in-place</span>
-<span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">monotonic</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
     <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-<span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">monotonic</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;time for loop over list: </span><span class="si">{:.3}</span><span class="s2"> sec.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t1</span> <span class="o">-</span> <span class="n">t0</span><span class="p">))</span>
 
-<span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">monotonic</span><span class="p">()</span>
 <span class="n">xnp</span> <span class="o">=</span> <span class="n">xnp</span> <span class="o">*</span> <span class="n">xnp</span>
-<span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">monotonic</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;time for numpy vectorization: </span><span class="si">{:.3}</span><span class="s2"> sec.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t1</span> <span class="o">-</span> <span class="n">t0</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>time for loop over list: 0.165 sec.
-time for numpy vectorization: 0.00211 sec.
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>time for loop over list: 0.132 sec.
+time for numpy vectorization: 0.00176 sec.
 </pre></div>
 </div>
 </div>
@@ -960,7 +966,7 @@ time for numpy vectorization: 0.00211 sec.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/basic_packages_56_0.png" src="../_images/basic_packages_56_0.png" />
+<img alt="../_images/basic_packages_57_0.png" src="../_images/basic_packages_57_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -977,7 +983,7 @@ time for numpy vectorization: 0.00211 sec.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/basic_packages_57_0.png" src="../_images/basic_packages_57_0.png" />
+<img alt="../_images/basic_packages_58_0.png" src="../_images/basic_packages_58_0.png" />
 </div>
 </div>
 </div>
@@ -1471,7 +1477,7 @@ Name: temperature, Length: 1000, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/basic_packages_72_0.png" src="../_images/basic_packages_72_0.png" />
+<img alt="../_images/basic_packages_73_0.png" src="../_images/basic_packages_73_0.png" />
 </div>
 </div>
 </div>

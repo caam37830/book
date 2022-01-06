@@ -127,6 +127,11 @@
      Convolutions and Fourier Transforms
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="fft.html">
+     The Fast Fourier Transform
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1">
@@ -342,8 +347,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([[0.10439697, 0.05117326],
-       [0.0004951 , 0.06040803]])
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([[0.37175278, 0.58540582],
+       [0.53771694, 0.42104212]])
 </pre></div>
 </div>
 </div>
@@ -356,8 +361,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>tensor([[0.1044, 0.0512],
-        [0.0005, 0.0604]])
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>tensor([[0.3718, 0.5854],
+        [0.5377, 0.4210]])
 </pre></div>
 </div>
 </div>
@@ -385,10 +390,10 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>tensor([[0.1044, 0.0512],
-        [0.0005, 0.0604]], device=&#39;cuda:0&#39;)
-tensor([[0.1044, 0.0512],
-        [0.0005, 0.0604]])
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>tensor([[0.3718, 0.5854],
+        [0.5377, 0.4210]], device=&#39;cuda:0&#39;)
+tensor([[0.3718, 0.5854],
+        [0.5377, 0.4210]])
 </pre></div>
 </div>
 </div>
@@ -400,8 +405,8 @@ tensor([[0.1044, 0.0512],
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>tensor([[0.1044, 0.0512],
-        [0.0005, 0.0604]], device=&#39;cuda:0&#39;)
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>tensor([[0.3718, 0.5854],
+        [0.5377, 0.4210]], device=&#39;cuda:0&#39;)
 </pre></div>
 </div>
 </div>
@@ -459,16 +464,16 @@ tensor([[0.1044, 0.0512],
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>numpy
-CPU times: user 3.25 ms, sys: 0 ns, total: 3.25 ms
-Wall time: 948 µs
+CPU times: user 2.92 ms, sys: 0 ns, total: 2.92 ms
+Wall time: 849 µs
 
 device = cpu
-CPU times: user 856 µs, sys: 0 ns, total: 856 µs
-Wall time: 275 µs
+CPU times: user 782 µs, sys: 194 µs, total: 976 µs
+Wall time: 328 µs
 
 device = cuda
-CPU times: user 211 µs, sys: 55 µs, total: 266 µs
-Wall time: 70.3 µs
+CPU times: user 250 µs, sys: 0 ns, total: 250 µs
+Wall time: 69.6 µs
 </pre></div>
 </div>
 </div>
@@ -495,16 +500,16 @@ Wall time: 70.3 µs
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>numpy
-CPU times: user 1.56 ms, sys: 395 µs, total: 1.95 ms
-Wall time: 614 µs
+CPU times: user 2.42 ms, sys: 0 ns, total: 2.42 ms
+Wall time: 507 µs
 
 device = cpu
-CPU times: user 590 µs, sys: 145 µs, total: 735 µs
-Wall time: 243 µs
+CPU times: user 317 µs, sys: 0 ns, total: 317 µs
+Wall time: 275 µs
 
 device = cuda
-CPU times: user 132 µs, sys: 33 µs, total: 165 µs
-Wall time: 42.4 µs
+CPU times: user 129 µs, sys: 31 µs, total: 160 µs
+Wall time: 38.1 µs
 </pre></div>
 </div>
 </div>
@@ -533,16 +538,16 @@ Wall time: 42.4 µs
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>numpy
-CPU times: user 99.1 ms, sys: 0 ns, total: 99.1 ms
-Wall time: 25 ms
+CPU times: user 68.3 ms, sys: 1.3 ms, total: 69.6 ms
+Wall time: 18 ms
 
 device = cpu
-CPU times: user 44.7 ms, sys: 188 µs, total: 44.9 ms
-Wall time: 11.3 ms
+CPU times: user 28.2 ms, sys: 34 µs, total: 28.2 ms
+Wall time: 7.09 ms
 
 device = cuda
-CPU times: user 129 µs, sys: 27 µs, total: 156 µs
-Wall time: 37.9 µs
+CPU times: user 102 µs, sys: 21 µs, total: 123 µs
+Wall time: 32.7 µs
 </pre></div>
 </div>
 </div>
@@ -579,20 +584,18 @@ Wall time: 37.9 µs
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>numpy
-CPU times: user 425 ms, sys: 72.8 ms, total: 498 ms
-Wall time: 125 ms
+CPU times: user 279 ms, sys: 56.3 ms, total: 336 ms
+Wall time: 84.6 ms
 
 device = cpu
 </pre></div>
 </div>
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 212 ms, sys: 5.8 ms, total: 218 ms
-Wall time: 54.7 ms
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 117 ms, sys: 17.9 ms, total: 135 ms
+Wall time: 34 ms
 
 device = cuda
-</pre></div>
-</div>
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 233 µs, sys: 29 µs, total: 262 µs
-Wall time: 266 µs
+CPU times: user 240 µs, sys: 31 µs, total: 271 µs
+Wall time: 234 µs
 </pre></div>
 </div>
 </div>

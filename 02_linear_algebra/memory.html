@@ -127,6 +127,11 @@
      Convolutions and Fourier Transforms
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="fft.html">
+     The Fast Fourier Transform
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1">
@@ -329,7 +334,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>3.32 µs ± 25.7 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>2.79 µs ± 42.8 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
 </pre></div>
 </div>
 </div>
@@ -341,7 +346,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>5.73 µs ± 50.7 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>4.98 µs ± 116 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
 </pre></div>
 </div>
 </div>
@@ -361,7 +366,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>5.52 µs ± 155 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>5.26 µs ± 369 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
 </pre></div>
 </div>
 </div>
@@ -373,7 +378,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>3.39 µs ± 38.3 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>2.95 µs ± 173 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
 </pre></div>
 </div>
 </div>
@@ -409,7 +414,7 @@ We can access CPU registers in 1 clock cycle, but we can only hold a small numbe
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[0 1 2 3 4]
-&lt;memory at 0x7f9a73d65580&gt;
+&lt;memory at 0x7fc585067580&gt;
 </pre></div>
 </div>
 </div>
@@ -582,7 +587,7 @@ Column major:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>23.7 ms ± 391 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>22 ms ± 508 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre></div>
 </div>
 </div>
@@ -594,7 +599,7 @@ Column major:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>43.7 ms ± 292 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>45.2 ms ± 2.72 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre></div>
 </div>
 </div>
@@ -620,7 +625,7 @@ Column major:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>40.1 ms ± 720 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>40.6 ms ± 670 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre></div>
 </div>
 </div>
@@ -632,7 +637,7 @@ Column major:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>9.11 ms ± 110 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>10.1 ms ± 736 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
 </pre></div>
 </div>
 </div>
@@ -678,7 +683,7 @@ Column major:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>23.7 ms ± 130 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>21.6 ms ± 235 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre></div>
 </div>
 </div>
@@ -690,7 +695,7 @@ Column major:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>9.45 ms ± 102 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>9.69 ms ± 550 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
 </pre></div>
 </div>
 </div>
@@ -703,7 +708,7 @@ Column major:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>9.36 ms ± 13.4 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>9.46 ms ± 527 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
 </pre></div>
 </div>
 </div>
@@ -750,7 +755,7 @@ Column major:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>9.89 ms ± 106 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>8.81 ms ± 591 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
 </pre></div>
 </div>
 </div>
@@ -762,7 +767,7 @@ Column major:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>9.33 ms ± 15.6 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>10.3 ms ± 312 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
 </pre></div>
 </div>
 </div>

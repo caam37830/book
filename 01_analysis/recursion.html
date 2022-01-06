@@ -97,6 +97,11 @@
      Convergence of Algorithms
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="average_case.html">
+     Average Case Analysis
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1">
@@ -264,8 +269,13 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#quick-sort">
-     Quick Sort
+    <a class="reference internal nav-link" href="#quicksort">
+     Quicksort
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#binary-search">
+     Binary Search
     </a>
    </li>
   </ul>
@@ -281,11 +291,31 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#analysis-of-binary-search">
+     Analysis of Binary Search
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#exercise">
      Exercise
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Exercise
+    </a>
+   </li>
   </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tail-recursion">
+   Tail Recursion
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#memoization">
+   Memoization
+  </a>
  </li>
 </ul>
 
@@ -447,8 +477,8 @@
 </div>
 </div>
 </div>
-<div class="section" id="quick-sort">
-<h3>Quick Sort<a class="headerlink" href="#quick-sort" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="quicksort">
+<h3>Quicksort<a class="headerlink" href="#quicksort" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Quicksort">Quicksort</a> was named by SIAM editors as one of the <a class="reference external" href="https://archive.siam.org/pdf/news/637.pdf">top-10 algorithms of the 20th centry</a>.  Like mergesort, it also uses a divide and conquer strategy.</p>
 <p>Quicksort works by partitioning a list into two halves divided by a <em>pivot</em>.  All elements less than the pivot are moved to the first part of the list, and all elements greater than the pivot are moved to the second part of the list.</p>
 <div class="cell docutils container">
@@ -525,6 +555,42 @@
 </div>
 </div>
 </div>
+<div class="section" id="binary-search">
+<h3>Binary Search<a class="headerlink" href="#binary-search" title="Permalink to this headline">¶</a></h3>
+<p>Binary search seeks to find where an element <code class="docutils literal notranslate"><span class="pre">x</span></code> appears in a sorted list <code class="docutils literal notranslate"><span class="pre">a</span></code>. The divide and conquer idea is to look at the element <code class="docutils literal notranslate"><span class="pre">i=n//2</span></code> of the center of the list.  If <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">a[i]</span></code> then we’re done.  Otherwise, we can recurse into either the left-hand or right-hand side of the list depending on whether <code class="docutils literal notranslate"><span class="pre">x&lt;a[i]</span></code> or <code class="docutils literal notranslate"><span class="pre">x&gt;a[i]</span></code>.  We should also handle the case where <code class="docutils literal notranslate"><span class="pre">x</span></code> does not appear in the list - in this case, we return <code class="docutils literal notranslate"><span class="pre">-1</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">binary_search</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">lo</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">hi</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    find the position of x in a sorted list a.</span>
+<span class="sd">    If x is not in a, return -1</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">hi</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">hi</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+        
+    <span class="k">if</span> <span class="n">lo</span> <span class="o">&gt;</span> <span class="n">hi</span><span class="p">:</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span> <span class="c1"># element not in array</span>
+        
+    <span class="n">i</span> <span class="o">=</span> <span class="p">(</span><span class="n">hi</span> <span class="o">-</span> <span class="n">lo</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">lo</span>
+    <span class="k">if</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">x</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">i</span>
+    <span class="k">elif</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">x</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">binary_search</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">hi</span><span class="p">)</span> <span class="c1"># recurse on right half</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">binary_search</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">lo</span><span class="p">,</span> <span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># recurse on left half</span>
+    
+    
+<span class="n">binary_search</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>3
+</pre></div>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div class="section" id="analysis-of-recursive-algorithms">
 <h2>Analysis of Recursive Algorithms<a class="headerlink" href="#analysis-of-recursive-algorithms" title="Permalink to this headline">¶</a></h2>
@@ -544,10 +610,26 @@ where <span class="math notranslate nohighlight">\(f(n)\)</span> is the work don
 </ol>
 <p>For example, in our <code class="docutils literal notranslate"><span class="pre">maximum</span></code> function, we split into two subproblems of size <span class="math notranslate nohighlight">\(n/2\)</span>, so <span class="math notranslate nohighlight">\(a = 2, b=2\)</span>, and <span class="math notranslate nohighlight">\(c = 1\)</span>.  <span class="math notranslate nohighlight">\(f(n)\)</span> is the time to take the max of two numbers, so is <span class="math notranslate nohighlight">\(O(1)\)</span>.  This means we are in case 1 above, and the time complexity of <code class="docutils literal notranslate"><span class="pre">maximum</span></code> is <span class="math notranslate nohighlight">\(\Theta(n^c) = \Theta(n)\)</span>.</p>
 </div>
+<div class="section" id="analysis-of-binary-search">
+<h3>Analysis of Binary Search<a class="headerlink" href="#analysis-of-binary-search" title="Permalink to this headline">¶</a></h3>
+<p>Let’s apply the Master theorem to our <code class="docutils literal notranslate"><span class="pre">binary_search</span></code> function.  It takes a constant amount of work to compute the center index of the array <code class="docutils literal notranslate"><span class="pre">a</span></code> between <code class="docutils literal notranslate"><span class="pre">lo</span></code> and <code class="docutils literal notranslate"><span class="pre">hi</span></code>, and perform the comparison of <code class="docutils literal notranslate"><span class="pre">a[i]</span></code> with <code class="docutils literal notranslate"><span class="pre">x</span></code>.  We then recurse into (at most) one subproblem of half the size.  So in the above expression, <span class="math notranslate nohighlight">\(a = 1\)</span>, <span class="math notranslate nohighlight">\(b = 2\)</span>, and <span class="math notranslate nohighlight">\(f(n)\)</span> is <span class="math notranslate nohighlight">\(O(1)\)</span>.  <span class="math notranslate nohighlight">\(c = \log_2 1 = 0\)</span> so <span class="math notranslate nohighlight">\(n^c\)</span> is <span class="math notranslate nohighlight">\(O(1)\)</span> and thus <span class="math notranslate nohighlight">\(f(n) = \Theta(n^c)\)</span>.  We can conclude that the time complexity of <code class="docutils literal notranslate"><span class="pre">binary_search</span></code> is <span class="math notranslate nohighlight">\(\Theta(n^c \log n) = \Theta(\log n)\)</span>.</p>
+</div>
 <div class="section" id="exercise">
 <h3>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h3>
 <p>Apply the master theorem to obtain the complexity of merge sort.</p>
 </div>
+<div class="section" id="id1">
+<h3>Exercise<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Implement the correlation coefficient defined in <a class="reference external" href="https://www-tandfonline-com.proxy.uchicago.edu/doi/full/10.1080/01621459.2020.1758115">this paper</a></p>
+</div>
+</div>
+<div class="section" id="tail-recursion">
+<h2>Tail Recursion<a class="headerlink" href="#tail-recursion" title="Permalink to this headline">¶</a></h2>
+<p>TODO: this isn’t handled by the Python interpreter, but you can do it yourself!</p>
+</div>
+<div class="section" id="memoization">
+<h2>Memoization<a class="headerlink" href="#memoization" title="Permalink to this headline">¶</a></h2>
+<p>TODO: example on Fibonacci</p>
 </div>
 </div>
 

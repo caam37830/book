@@ -328,7 +328,7 @@
   <div class="section" id="bits-bytes-and-numbers">
 <h1>Bits, Bytes, and Numbers<a class="headerlink" href="#bits-bytes-and-numbers" title="Permalink to this headline">¶</a></h1>
 <p>In order to do math on a computer, you should have some idea of how computers represent numbers and do computations.</p>
-<p>Unlike strongly typed languages (e.g. C), you don’t have to worry too much about type if you’re just scripting.  However, you will have to think about this for most algorithms.</p>
+<p>Unlike strongly typed languages (e.g. C), you don’t have to worry too much about type if you’re just scripting.  However, you will have to think about this for many algorithms in scientific computing.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">5</span> <span class="c1"># an integer type</span>
@@ -393,32 +393,34 @@
 </div>
 </div>
 </div>
-<p>To count in hexadecimal:</p>
+<p>Let’s count in hexadecimal and binary:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">17</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:x}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;hex</span><span class="se">\t</span><span class="s2">bin</span><span class="se">\t</span><span class="s2">dec&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mh">0x11</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:x}</span><span class="se">\t</span><span class="si">{:b}</span><span class="se">\t</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>0
-1
-2
-3
-4
-5
-6
-7
-8
-9
-a
-b
-c
-d
-e
-f
-10
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>hex	bin	dec
+0	0	0
+1	1	1
+2	10	2
+3	11	3
+4	100	4
+5	101	5
+6	110	6
+7	111	7
+8	1000	8
+9	1001	9
+a	1010	10
+b	1011	11
+c	1100	12
+d	1101	13
+e	1110	14
+f	1111	15
+10	10000	16
 </pre></div>
 </div>
 </div>
@@ -512,13 +514,13 @@ f
 <p>You can perform operations on bit strings in Python:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">hexprint</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:04x}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">binprint</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:04b}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="p">))</span> <span class="c1"># 4 digits, padded by 0 in the front</span>
     
-<span class="n">hexprint</span><span class="p">(</span><span class="mh">0x1100</span> <span class="o">&amp;</span> <span class="mh">0x0101</span><span class="p">)</span> <span class="c1"># bitwise and</span>
-<span class="n">hexprint</span><span class="p">(</span><span class="mh">0x1100</span> <span class="o">|</span> <span class="mh">0x0101</span><span class="p">)</span> <span class="c1"># bitwise or</span>
-<span class="n">hexprint</span><span class="p">(</span><span class="mh">0x1100</span> <span class="o">^</span> <span class="mh">0x0101</span><span class="p">)</span> <span class="c1"># bitwise xor</span>
-<span class="n">hexprint</span><span class="p">(</span><span class="o">~</span><span class="mh">0x1100</span><span class="p">)</span> <span class="c1"># negation</span>
+<span class="n">binprint</span><span class="p">(</span><span class="mb">0b1100</span> <span class="o">&amp;</span> <span class="mb">0b0101</span><span class="p">)</span> <span class="c1"># bitwise and</span>
+<span class="n">binprint</span><span class="p">(</span><span class="mb">0b1100</span> <span class="o">|</span> <span class="mb">0b0101</span><span class="p">)</span> <span class="c1"># bitwise or</span>
+<span class="n">binprint</span><span class="p">(</span><span class="mb">0b1100</span> <span class="o">^</span> <span class="mb">0b0101</span><span class="p">)</span> <span class="c1"># bitwise xor</span>
+<span class="n">binprint</span><span class="p">(</span><span class="o">~</span><span class="mb">0b1100</span><span class="p">)</span> <span class="c1"># negation</span>
 </pre></div>
 </div>
 </div>
@@ -592,7 +594,7 @@ f
 </div>
 </div>
 <p>32-bit floating point numbers corrsepond to a <code class="docutils literal notranslate"><span class="pre">float</span></code> in C, and are also known as <strong>single precision</strong> numbers.  64-bit floating point numbers correspond to a <code class="docutils literal notranslate"><span class="pre">double</span></code> in C, and are also known as <strong>double precision</strong> numbers.  16-bit floats are half-precision, and 128-bit floats are quad-precision.</p>
-<p>Double precision is the standard for numerical codes.  Quad- (or higher) precision is sometimes useful.  A big trend in deep learning is to use lower-precision formats.</p>
+<p>Double precision is the standard for many numerical codes.  Quad- (or higher) precision is sometimes useful.  A big trend in deep learning is to use lower-precision formats.</p>
 <p>Floating point numbers are numbers written in scientific notation (in base-2).  E.g. <span class="math notranslate nohighlight">\(1.1 * 2^{10} = 1.5 * 2^2\)</span> in base-10 = 6.  They contain a sign bit, a set of bits for the decimal (called the significand or mantissa), and a set of bits for the exponent.</p>
 <p>For further reading on potential considerations with floating point numbers, see <a class="reference external" href="https://docs.python.org/3/tutorial/floatingpoint.html">the Python documentation</a></p>
 <div class="section" id="print-formatting">

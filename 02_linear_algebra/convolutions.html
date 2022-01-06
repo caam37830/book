@@ -39,7 +39,7 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Optimization" href="../03_optimization/optimization.html" />
+    <link rel="next" title="The Fast Fourier Transform" href="fft.html" />
     <link rel="prev" title="Linear Algebra in PyTorch" href="pytorch.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -125,6 +125,11 @@
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
      Convolutions and Fourier Transforms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="fft.html">
+     The Fast Fourier Transform
     </a>
    </li>
   </ul>
@@ -403,13 +408,13 @@ g(-2) &amp; g(-1) &amp; g(0) &amp; \dots\
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>standard solve
-CPU times: user 2.84 ms, sys: 229 µs, total: 3.07 ms
-Wall time: 14.4 ms
+CPU times: user 1.03 ms, sys: 2.97 ms, total: 4 ms
+Wall time: 18.8 ms
 
 toeplitz solve
-CPU times: user 172 µs, sys: 0 ns, total: 172 µs
-Wall time: 169 µs
-3.595623510747639e-13
+CPU times: user 504 µs, sys: 0 ns, total: 504 µs
+Wall time: 471 µs
+1.7233200029739625e-11
 </pre></div>
 </div>
 </div>
@@ -434,13 +439,13 @@ Wall time: 169 µs
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>standard solve
-CPU times: user 0 ns, sys: 1.06 ms, total: 1.06 ms
-Wall time: 547 µs
+CPU times: user 3.09 ms, sys: 154 µs, total: 3.24 ms
+Wall time: 2.01 ms
 
 circulant solve
-CPU times: user 0 ns, sys: 491 µs, total: 491 µs
-Wall time: 438 µs
-6.009427500768542e-15
+CPU times: user 704 µs, sys: 1.84 ms, total: 2.54 ms
+Wall time: 1.81 ms
+1.664492332567906e-14
 </pre></div>
 </div>
 </div>
@@ -457,7 +462,7 @@ Wall time: 438 µs
 \end{equation}</p>
 <p>A discrete Fourier transform (DFT) operates on a signal represented as a finite dimensional vector.  On a signal of length <span class="math notranslate nohighlight">\(N\)</span>, we have</p>
 <p>\begin{equation}
-\hat{f}<em>k = \sum</em>{n=0}^{N-1} f_n e^{2\pi i k n / N}
+\hat{f}<em>k = \frac{1}{N} \sum</em>{n=0}^{N-1} f_n e^{-2\pi i k n / N}
 \end{equation}</p>
 <p>In practice, discrete Fourier transforms are often computed using the Fast Fourier Transform (FFT) algorithm, which runs in <span class="math notranslate nohighlight">\(O(N\log N)\)</span> time for a signal of length <span class="math notranslate nohighlight">\(N\)</span>.  Scipy provides funcitons for FFT as well as the inverse iFFT.</p>
 <div class="cell docutils container">
@@ -546,13 +551,13 @@ h = f \ast g \Leftrightarrow \hat{h} = \hat{f} \hat{g}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 23 µs, sys: 2 µs, total: 25 µs
-Wall time: 27.7 µs
-CPU times: user 0 ns, sys: 332 µs, total: 332 µs
-Wall time: 213 µs
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 27 µs, sys: 2 µs, total: 29 µs
+Wall time: 160 µs
+CPU times: user 318 µs, sys: 0 ns, total: 318 µs
+Wall time: 298 µs
 </pre></div>
 </div>
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>4.8773930012977553e-14
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>4.974548890863351e-14
 </pre></div>
 </div>
 </div>
@@ -590,13 +595,13 @@ Wall time: 213 µs
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 576 µs, sys: 48 µs, total: 624 µs
-Wall time: 648 µs
-CPU times: user 838 µs, sys: 0 ns, total: 838 µs
-Wall time: 677 µs
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 522 µs, sys: 45 µs, total: 567 µs
+Wall time: 350 µs
+CPU times: user 327 µs, sys: 7 µs, total: 334 µs
+Wall time: 282 µs
 </pre></div>
 </div>
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>1.2998336225781745e-15
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>7.685513233982406e-15
 </pre></div>
 </div>
 </div>
@@ -682,8 +687,8 @@ Wall time: 677 µs
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 259 ms, sys: 9.8 ms, total: 269 ms
-Wall time: 269 ms
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 287 ms, sys: 13.2 ms, total: 300 ms
+Wall time: 316 ms
 </pre></div>
 </div>
 <img alt="../_images/convolutions_27_1.png" src="../_images/convolutions_27_1.png" />
@@ -714,8 +719,8 @@ Wall time: 269 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 27.3 ms, sys: 6.05 ms, total: 33.4 ms
-Wall time: 8.24 ms
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 84.4 ms, sys: 3.19 ms, total: 87.6 ms
+Wall time: 26.6 ms
 </pre></div>
 </div>
 </div>
@@ -893,7 +898,7 @@ Wall time: 8.24 ms
     <div class='prev-next-bottom'>
         
     <a class='left-prev' id="prev-link" href="pytorch.html" title="previous page">Linear Algebra in PyTorch</a>
-    <a class='right-next' id="next-link" href="../03_optimization/optimization.html" title="next page">Optimization</a>
+    <a class='right-next' id="next-link" href="fft.html" title="next page">The Fast Fourier Transform</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
