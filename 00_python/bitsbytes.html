@@ -536,7 +536,7 @@ f	1111	15
 </div>
 <div class="section" id="floating-point-numbers">
 <h2>Floating Point Numbers<a class="headerlink" href="#floating-point-numbers" title="Permalink to this headline">¶</a></h2>
-<p>Real numbers are represented as floating point numbers on a computer.  Almost all real numbers must be approximated, which means you can’t always ask for exact equality</p>
+<p>Real numbers are typically represented as floating point numbers on a computer.  Almost all real numbers must be approximated, which means you can’t always ask for exact equality</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.0</span><span class="o">/</span><span class="mf">3.0</span>
@@ -596,7 +596,77 @@ f	1111	15
 <p>32-bit floating point numbers corrsepond to a <code class="docutils literal notranslate"><span class="pre">float</span></code> in C, and are also known as <strong>single precision</strong> numbers.  64-bit floating point numbers correspond to a <code class="docutils literal notranslate"><span class="pre">double</span></code> in C, and are also known as <strong>double precision</strong> numbers.  16-bit floats are half-precision, and 128-bit floats are quad-precision.</p>
 <p>Double precision is the standard for many numerical codes.  Quad- (or higher) precision is sometimes useful.  A big trend in deep learning is to use lower-precision formats.</p>
 <p>Floating point numbers are numbers written in scientific notation (in base-2).  E.g. <span class="math notranslate nohighlight">\(1.1 * 2^{10} = 1.5 * 2^2\)</span> in base-10 = 6.  They contain a sign bit, a set of bits for the decimal (called the significand or mantissa), and a set of bits for the exponent.</p>
+<p>For example, float32 has 1 bit for the sign, 8 bits for the exponent, and 23 bits for the mantissa.</p>
+<p><img alt="img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Float_example.svg/1920px-Float_example.svg.png" /></p>
 <p>For further reading on potential considerations with floating point numbers, see <a class="reference external" href="https://docs.python.org/3/tutorial/floatingpoint.html">the Python documentation</a></p>
+<p>You can inspect the bits used in a floating point number in python using the <code class="docutils literal notranslate"><span class="pre">bitstring</span></code> package</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(pycourse) $ conda install bistring -c conda-forge
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">bitstring</span>
+<span class="k">def</span> <span class="nf">fmt_float32_bits</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    prints bits of a 32-bit float</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># for printing color</span>
+    <span class="n">CRED</span>    <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\33</span><span class="s1">[31m&#39;</span>
+    <span class="n">CGREEN</span>  <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\33</span><span class="s1">[32m&#39;</span>
+    <span class="n">CBLUE</span>   <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\33</span><span class="s1">[34m&#39;</span>
+    <span class="n">CEND</span>      <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\33</span><span class="s1">[0m&#39;</span>
+    
+    <span class="n">b</span> <span class="o">=</span> <span class="n">bitstring</span><span class="o">.</span><span class="n">BitArray</span><span class="p">(</span><span class="nb">float</span><span class="o">=</span><span class="n">a</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">32</span><span class="p">)</span>
+    <span class="n">bs</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">bin</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">CBLUE</span> <span class="o">+</span> <span class="n">bs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">CEND</span> <span class="o">+</span> <span class="n">CGREEN</span> <span class="o">+</span> <span class="n">bs</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">8</span><span class="p">]</span> <span class="o">+</span> <span class="n">CEND</span> <span class="o">+</span> <span class="n">CRED</span> <span class="o">+</span> <span class="n">bs</span><span class="p">[</span><span class="mi">8</span><span class="p">:]</span> <span class="o">+</span> <span class="n">CEND</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{: .2e}</span><span class="s2"> = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">fmt_float32_bits</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{: .2e}</span><span class="s2"> = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">fmt_float32_bits</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{: .2e}</span><span class="s2"> = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="mi">126</span><span class="p">),</span> <span class="n">fmt_float32_bits</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="mi">126</span><span class="p">))))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{: .2e}</span><span class="s2"> = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">((</span><span class="mi">2</span><span class="o">**</span><span class="mi">126</span><span class="p">),</span><span class="n">fmt_float32_bits</span><span class="p">((</span><span class="mi">2</span><span class="o">**</span><span class="mi">126</span><span class="p">))))</span>
+
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span> 1.00e+00 = [34m0[0m[32m0111111[0m[31m100000000000000000000000[0m
+-1.00e+00 = [34m1[0m[32m0111111[0m[31m100000000000000000000000[0m
+ 1.18e-38 = [34m0[0m[32m0000000[0m[31m100000000000000000000000[0m
+ 8.51e+37 = [34m0[0m[32m1111110[0m[31m100000000000000000000000[0m
+</pre></div>
+</div>
+</div>
+</div>
+<p>as a result, you can’t count on floating point numbers to count:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="mi">24</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="mi">24</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>0.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">fmt_float32_bits</span><span class="p">(</span><span class="n">a</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;b = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">fmt_float32_bits</span><span class="p">(</span><span class="n">b</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>a = [34m0[0m[32m1001011[0m[31m100000000000000000000000[0m
+b = [34m0[0m[32m1001011[0m[31m100000000000000000000000[0m
+</pre></div>
+</div>
+</div>
+</div>
 <div class="section" id="print-formatting">
 <h3>Print Formatting<a class="headerlink" href="#print-formatting" title="Permalink to this headline">¶</a></h3>
 <p>It is often convenient to format floating point numbers for printing without showing full precision.  An explanation of available options can be found in the <a class="reference external" href="https://docs.python.org/3/library/string.html#format-specification-mini-language">format specification mini-language documentation</a>.  We’ll cover a few examples.</p>
