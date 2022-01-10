@@ -1,37 +1,51 @@
 
-
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Asymptotic Notation &#8212; Scientific Computing with Python</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
-    <link href="../_static/css/index.css" rel="stylesheet">
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script src="../_static/sphinx-book-theme.js"></script>
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/mystnb.js"></script>
-    <script src="../_static/sphinx-book-theme.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
@@ -41,14 +55,17 @@
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Recursion" href="recursion.html" />
     <link rel="prev" title="Analysis of Algorithms" href="analysis.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="docsearch:language" content="en">
-
-
-
+    <!-- Google Analytics -->
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -57,30 +74,102 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="../index.html">
-  
-  
-  <h1 class="site-logo" id="site-title">Scientific Computing with Python</h1>
-  
-</a>
-</div>
-
-<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Scientific Computing with Python</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-  <ul class="current nav sidenav_l1">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
+  <a class="reference internal" href="../introduction.html">
+   Introduction
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../00_python/python.html">
    Python
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_python/using_python.html">
+     Using Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_python/basics.html">
+     Basics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_python/bitsbytes.html">
+     Bits, Bytes, and Numbers
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_python/basic_packages.html">
+     Basic Containers and Packages
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_python/functions.html">
+     Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_python/classes.html">
+     Object-Oriented Programming
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_python/modules.html">
+     Modules and Packages
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_python/decorators.html">
+     Decorators
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_python/iterators.html">
+     Iterators and Generators
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_python/pyplot.html">
+     Matlotlib &amp; PyPlot
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_python/misc.html">
+     Miscellaneous
+    </a>
+   </li>
+  </ul>
  </li>
- <li class="toctree-l1 current active">
+ <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="analysis.html">
    Analysis of Algorithms
   </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
   <ul class="current">
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
@@ -104,51 +193,303 @@
    </li>
   </ul>
  </li>
- <li class="toctree-l1">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../02_linear_algebra/linear_algebra.html">
    Linear Algebra
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02_linear_algebra/memory.html">
+     Memory and Performance
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02_linear_algebra/numpy_scipy_linalg.html">
+     Dense Linear Algebra in NumPy and SciPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02_linear_algebra/blas_lapack.html">
+     BLAS and LAPACK
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02_linear_algebra/sparse.html">
+     Sparse Matrices
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02_linear_algebra/linearoperators.html">
+     Linear Operators
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02_linear_algebra/sparse_linalg.html">
+     Sparse Linear Algebra
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02_linear_algebra/pytorch.html">
+     Linear Algebra in PyTorch
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02_linear_algebra/convolutions.html">
+     Convolutions and Fourier Transforms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02_linear_algebra/fft.html">
+     The Fast Fourier Transform
+    </a>
+   </li>
+  </ul>
  </li>
- <li class="toctree-l1">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../03_optimization/optimization.html">
    Optimization
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03_optimization/scipy_opt.html">
+     Optimization in SciPy
+    </a>
+   </li>
+  </ul>
  </li>
- <li class="toctree-l1">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../04_functions/functions.html">
    Functions
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04_functions/sympy.html">
+     Symbolic Computing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04_functions/roots.html">
+     Root Finding
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04_functions/differentiation.html">
+     Differentiation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04_functions/ode_initial.html">
+     Initial Value Problems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04_functions/interpolation.html">
+     Interpolation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04_functions/integration.html">
+     Integration &amp; Quadrature
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04_functions/bvp.html">
+     Boundary Value Problems
+    </a>
+   </li>
+  </ul>
  </li>
- <li class="toctree-l1">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../05_graphs/graphs.html">
    Graphs
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05_graphs/networkx.html">
+     NetworkX
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05_graphs/spectral.html">
+     Spectral Graph Theory
+    </a>
+   </li>
+  </ul>
  </li>
- <li class="toctree-l1">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../06_probability_statistics/prob_stat.html">
    Probability and Statistics
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06_probability_statistics/generating_random.html">
+     Generating Random Numbers
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06_probability_statistics/scipy_stats.html">
+     Scipy
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       stats
+      </span>
+     </code>
+     package
+    </a>
+   </li>
+  </ul>
  </li>
- <li class="toctree-l1">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../07_data/data.html">
    Data
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07_data/pandas.html">
+     Pandas
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07_data/sklearn.html">
+     SciKit Learn
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07_data/dimension_reduction.html">
+     Dimension Reduction and Data Visualization
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07_data/pytorch.html">
+     PyTorch Neural Networks
+    </a>
+   </li>
+  </ul>
  </li>
- <li class="toctree-l1">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../08_geometry/geometry.html">
    Geometry
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08_geometry/distances.html">
+     Distances
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08_geometry/nearestneighbor.html">
+     Nearest Neighbors
+    </a>
+   </li>
+  </ul>
  </li>
- <li class="toctree-l1">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../09_computing/computing.html">
    Computing
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09_computing/basic_bash.html">
+     Basic Bash
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09_computing/git.html">
+     Git Version Control
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09_computing/unittest.html">
+     Unit Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09_computing/packages.html">
+     Packages and Setup
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../09_computing/performance/performance.html">
+     Performance
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+    <label for="toctree-checkbox-11">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../09_computing/performance/ipython.html">
+       Measuring Performance in Python
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../09_computing/performance/numpy_ufuncs.html">
+       Vectorization, Numpy Universal Functions
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09_computing/environments.html">
+     Environments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09_computing/agent_based_models.html">
+     Agent Based Models
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
-</nav>
+    </div>
+</nav> <!-- To handle the deprecated key -->
 
- <!-- To handle the deprecated key -->
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
 
 </div>
 
@@ -159,25 +500,25 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        <div class="dropdown-buttons-trigger">
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
 
-    
     <div class="dropdown-buttons">
         <!-- ipynb file if we had a myst markdown file -->
         
@@ -187,11 +528,11 @@
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
-    
 </div>
-        <!-- Source interaction buttons -->
+
+            <!-- Source interaction buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -209,13 +550,14 @@
     </div>
 </div>
 
+            <!-- Full screen (wrap in <a> to have style consistency -->
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -239,15 +581,16 @@
     </div>
 </div>
 
-    </div>
-
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
         </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#examples">
    Examples
@@ -275,26 +618,70 @@
  </li>
 </ul>
 
-        </nav>
+            </nav>
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Asymptotic Notation</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#examples">
+   Examples
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#answers-to-example-5-and-6">
+   Answers to example 5 and 6
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#complexity">
+   Complexity
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise">
+   Exercise
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#answer-to-the-exercise">
+   Answer to the exercise:
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
-  <div class="section" id="asymptotic-notation">
+  <div class="tex2jax_ignore mathjax_ignore section" id="asymptotic-notation">
 <h1>Asymptotic Notation<a class="headerlink" href="#asymptotic-notation" title="Permalink to this headline">¶</a></h1>
 <p>First, let’s review some asymptotic notation.  We’ll see it a fair amount in this course.</p>
 <p>Let <span class="math notranslate nohighlight">\(f(x), g(x)\)</span> be some functions.  We say
-<span class="math notranslate nohighlight">\($f = O(g)\)</span>$
-as <span class="math notranslate nohighlight">\(x\to \infty\)</span> if there exists some constant <span class="math notranslate nohighlight">\(c\ge 0\)</span> and <span class="math notranslate nohighlight">\(x_0\ge 0\)</span> so that $ |f(x)| \le c g(x)$ for all <span class="math notranslate nohighlight">\(x \ge x_0\)</span>.</p>
+$<span class="math notranslate nohighlight">\(f = O(g)\)</span><span class="math notranslate nohighlight">\(
+as \)</span>x\to \infty<span class="math notranslate nohighlight">\( if there exists some constant \)</span>c\ge 0<span class="math notranslate nohighlight">\( and \)</span>x_0\ge 0<span class="math notranslate nohighlight">\( so that \)</span> |f(x)| \le c g(x)<span class="math notranslate nohighlight">\( for all \)</span>x \ge x_0$.</p>
 <p>We say
-<span class="math notranslate nohighlight">\($f = \Omega(g)\)</span>$
-as <span class="math notranslate nohighlight">\(x\to \infty\)</span> if there exists some constant <span class="math notranslate nohighlight">\(c\ge 0\)</span> and <span class="math notranslate nohighlight">\(x_0\ge 0\)</span> so that $ |f(x)| \ge c g(x)$ for all <span class="math notranslate nohighlight">\(x \ge x_0\)</span>.</p>
+$<span class="math notranslate nohighlight">\(f = \Omega(g)\)</span><span class="math notranslate nohighlight">\(
+as \)</span>x\to \infty<span class="math notranslate nohighlight">\( if there exists some constant \)</span>c\ge 0<span class="math notranslate nohighlight">\( and \)</span>x_0\ge 0<span class="math notranslate nohighlight">\( so that \)</span> |f(x)| \ge c g(x)<span class="math notranslate nohighlight">\( for all \)</span>x \ge x_0$.</p>
 <p>Finally,
-<span class="math notranslate nohighlight">\($f = \Theta(g)\)</span>$
-if <span class="math notranslate nohighlight">\(f = O(g)\)</span> and <span class="math notranslate nohighlight">\(f = \Omega(g)\)</span> (some constant multiples of <span class="math notranslate nohighlight">\(g\)</span> bound <span class="math notranslate nohighlight">\(f\)</span> above and below).</p>
+$<span class="math notranslate nohighlight">\(f = \Theta(g)\)</span><span class="math notranslate nohighlight">\(
+if \)</span>f = O(g)<span class="math notranslate nohighlight">\( and \)</span>f = \Omega(g)<span class="math notranslate nohighlight">\( (some constant multiples of \)</span>g<span class="math notranslate nohighlight">\( bound \)</span>f$ above and below).</p>
 <p>Often we’re interested in bounding worst-case behavior.  This means you’ll see a lot of <span class="math notranslate nohighlight">\(O\)</span>, and less of <span class="math notranslate nohighlight">\(\Omega\)</span> and <span class="math notranslate nohighlight">\(\Theta\)</span>.</p>
 <p>You may also see little-o notation such as <span class="math notranslate nohighlight">\(f = o(g)\)</span>, or the corresponding <span class="math notranslate nohighlight">\(f = \omega(g)\)</span>.  In these cases the inequalities are strict.  If <span class="math notranslate nohighlight">\(f = o(g)\)</span>, then for any <span class="math notranslate nohighlight">\(c &gt; 0\)</span>, there exists an <span class="math notranslate nohighlight">\(x_0\ge 0\)</span> so that <span class="math notranslate nohighlight">\(|f(x)| &lt; c g(x)\)</span> for <span class="math notranslate nohighlight">\(x\ge x_0\)</span>.  If <span class="math notranslate nohighlight">\(f = O(g)\)</span> it can grow at the same rate, but if <span class="math notranslate nohighlight">\(f = o(g)\)</span>, it grows at a slower rate.</p>
 <p>Note that because we can scale by constant multiples, we typically drop them.</p>
@@ -317,9 +704,9 @@ if <span class="math notranslate nohighlight">\(f = O(g)\)</span> and <span clas
 <div class="section" id="answers-to-example-5-and-6">
 <h2>Answers to example 5 and 6<a class="headerlink" href="#answers-to-example-5-and-6" title="Permalink to this headline">¶</a></h2>
 <p>Answer to example 5:</p>
-<p>By definition, since <span class="math notranslate nohighlight">\(f = O(g)\)</span>, we know there exists some constant <span class="math notranslate nohighlight">\(p\ge 0\)</span> and <span class="math notranslate nohighlight">\(x_0\ge 0\)</span> so that $ |f(x)| \le p g(x)$ for all <span class="math notranslate nohighlight">\(x \ge x_0\)</span>; since <span class="math notranslate nohighlight">\(g = O(h)\)</span>, we know there exists some constant <span class="math notranslate nohighlight">\(q\ge 0\)</span> and <span class="math notranslate nohighlight">\(x_1\ge 0\)</span> so that $ |g(x)| \le q h(x)$ for all <span class="math notranslate nohighlight">\(x \ge x_1\)</span>. Therefore, we get $ |f(x)| \le p g(x)$ $ \le (p*q) h(x)$ as $x \ge $ <span class="math notranslate nohighlight">\(max\)</span> {<span class="math notranslate nohighlight">\(x_0\)</span>, <span class="math notranslate nohighlight">\(x_1\)</span>}, which implies <span class="math notranslate nohighlight">\(f = O(h)\)</span>.</p>
+<p>By definition, since <span class="math notranslate nohighlight">\(f = O(g)\)</span>, we know there exists some constant <span class="math notranslate nohighlight">\(p\ge 0\)</span> and <span class="math notranslate nohighlight">\(x_0\ge 0\)</span> so that <span class="math notranslate nohighlight">\( |f(x)| \le p g(x)\)</span> for all <span class="math notranslate nohighlight">\(x \ge x_0\)</span>; since <span class="math notranslate nohighlight">\(g = O(h)\)</span>, we know there exists some constant <span class="math notranslate nohighlight">\(q\ge 0\)</span> and <span class="math notranslate nohighlight">\(x_1\ge 0\)</span> so that <span class="math notranslate nohighlight">\( |g(x)| \le q h(x)\)</span> for all <span class="math notranslate nohighlight">\(x \ge x_1\)</span>. Therefore, we get <span class="math notranslate nohighlight">\( |f(x)| \le p g(x)\)</span> <span class="math notranslate nohighlight">\( \le (p*q) h(x)\)</span> as <span class="math notranslate nohighlight">\(x \ge \)</span> <span class="math notranslate nohighlight">\(max\)</span> {<span class="math notranslate nohighlight">\(x_0\)</span>, <span class="math notranslate nohighlight">\(x_1\)</span>}, which implies <span class="math notranslate nohighlight">\(f = O(h)\)</span>.</p>
 <p>Answer to example 6:
-Still, by definition, since <span class="math notranslate nohighlight">\(f = O(g)\)</span>, we know there exists some constant <span class="math notranslate nohighlight">\(p\ge 0\)</span> and <span class="math notranslate nohighlight">\(x_0\ge 0\)</span> so that $ |f(x)| \le p g(x)$ for all <span class="math notranslate nohighlight">\(x \ge x_0\)</span>; since <span class="math notranslate nohighlight">\(h = O(k)\)</span>, we know there exists some constant <span class="math notranslate nohighlight">\(q\ge 0\)</span> and <span class="math notranslate nohighlight">\(x_1\ge 0\)</span> so that $ |h(x)| \le q k(x)$ for all <span class="math notranslate nohighlight">\(x \ge x_1\)</span>. Now, take <span class="math notranslate nohighlight">\(x'\)</span> = <span class="math notranslate nohighlight">\(max\)</span> {<span class="math notranslate nohighlight">\(x_0\)</span>, <span class="math notranslate nohighlight">\(x_1\)</span>}, we know as <span class="math notranslate nohighlight">\(x\ge x'\)</span>, we have both $ |f(x)| \le p g(x)$ and $ |h(x)| \le q k(x)$. Therefore, now we have: <span class="math notranslate nohighlight">\(|(f\times h) (x)| \le |f(x)| * |h(x)| \le (p*q) g(x) k(x) = (p*q) (g\times k) (x)\)</span>, proved.</p>
+Still, by definition, since <span class="math notranslate nohighlight">\(f = O(g)\)</span>, we know there exists some constant <span class="math notranslate nohighlight">\(p\ge 0\)</span> and <span class="math notranslate nohighlight">\(x_0\ge 0\)</span> so that <span class="math notranslate nohighlight">\( |f(x)| \le p g(x)\)</span> for all <span class="math notranslate nohighlight">\(x \ge x_0\)</span>; since <span class="math notranslate nohighlight">\(h = O(k)\)</span>, we know there exists some constant <span class="math notranslate nohighlight">\(q\ge 0\)</span> and <span class="math notranslate nohighlight">\(x_1\ge 0\)</span> so that <span class="math notranslate nohighlight">\( |h(x)| \le q k(x)\)</span> for all <span class="math notranslate nohighlight">\(x \ge x_1\)</span>. Now, take <span class="math notranslate nohighlight">\(x'\)</span> = <span class="math notranslate nohighlight">\(max\)</span> {<span class="math notranslate nohighlight">\(x_0\)</span>, <span class="math notranslate nohighlight">\(x_1\)</span>}, we know as <span class="math notranslate nohighlight">\(x\ge x'\)</span>, we have both <span class="math notranslate nohighlight">\( |f(x)| \le p g(x)\)</span> and <span class="math notranslate nohighlight">\( |h(x)| \le q k(x)\)</span>. Therefore, now we have: <span class="math notranslate nohighlight">\(|(f\times h) (x)| \le |f(x)| * |h(x)| \le (p*q) g(x) k(x) = (p*q) (g\times k) (x)\)</span>, proved.</p>
 </div>
 <div class="section" id="complexity">
 <h2>Complexity<a class="headerlink" href="#complexity" title="Permalink to this headline">¶</a></h2>
@@ -328,7 +715,7 @@ Still, by definition, since <span class="math notranslate nohighlight">\(f = O(g
 <p>For example, consider the following function:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="k">def</span> <span class="nf">maximum</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -346,7 +733,7 @@ Still, by definition, since <span class="math notranslate nohighlight">\(f = O(g
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>3
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3
 </pre></div>
 </div>
 </div>
@@ -354,7 +741,7 @@ Still, by definition, since <span class="math notranslate nohighlight">\(f = O(g
 <p>our <code class="docutils literal notranslate"><span class="pre">maximum</span></code> function loops over the list once, and at each step of the iteration we do a constant amount of work. If <code class="docutils literal notranslate"><span class="pre">maximum</span></code> takes in an array of length <code class="docutils literal notranslate"><span class="pre">n</span></code> as input, this means there are <code class="docutils literal notranslate"><span class="pre">n</span></code> iterations of the for-loop, so <code class="docutils literal notranslate"><span class="pre">maximum</span></code> takes <span class="math notranslate nohighlight">\(O(n)\)</span> time to compute.  Note that we don’t need to create any additional arrays, so we can also say <code class="docutils literal notranslate"><span class="pre">maximum</span></code> uses <span class="math notranslate nohighlight">\(O(1)\)</span> (constant) extra space.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">time</span>
 
 <span class="n">ns</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="o">**</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">8</span><span class="p">)]</span>
@@ -387,7 +774,7 @@ t(n) &amp;\sim   c n^a\
 <p>I.e. the polynomial exponent is the slope of the line.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ln</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">ns</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ln</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">ns</span><span class="p">)</span>
 <span class="n">lt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">ts</span><span class="p">)</span>
 <span class="n">coeff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">ln</span><span class="p">,</span> <span class="n">lt</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># fit a polynomial</span>
 <span class="n">coeff</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># highest degree (linear) term</span>
@@ -395,7 +782,7 @@ t(n) &amp;\sim   c n^a\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.9258092235104938
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9108366960173627
 </pre></div>
 </div>
 </div>
@@ -403,7 +790,7 @@ t(n) &amp;\sim   c n^a\
 <p>Let’s now consider the following function</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">all_subarrays</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">all_subarrays</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    return all sub-arrays of x</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -424,7 +811,7 @@ t(n) &amp;\sim   c n^a\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[[0], [], [0, 1], [1], [0, 2], [2], [0, 1, 2], [1, 2]]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0], [], [0, 1], [1], [0, 2], [2], [0, 1, 2], [1, 2]]
 </pre></div>
 </div>
 </div>
@@ -432,7 +819,7 @@ t(n) &amp;\sim   c n^a\
 <p>we see that the length of output of <code class="docutils literal notranslate"><span class="pre">all_subarrays</span></code> grows as <span class="math notranslate nohighlight">\(2^n\)</span>, where <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">=</span> <span class="pre">len(x)</span></code>.  This is a good hint that the function has exponential time complexity and space complexity <span class="math notranslate nohighlight">\(O(2^n)\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ns</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ns</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
 <span class="n">ts</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">ns</span><span class="p">:</span>
     <span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
@@ -447,7 +834,7 @@ t(n) &amp;\sim   c n^a\
 <p>In this case, it is better to use a <code class="docutils literal notranslate"><span class="pre">semilogy</span></code> plot.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">ns</span><span class="p">,</span> <span class="n">ts</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">ns</span><span class="p">,</span> <span class="n">ts</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;n&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;time (sec.)&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;time to form all subarrays&#39;</span><span class="p">)</span>
@@ -493,33 +880,42 @@ t(n) &amp;\sim   c n^a\
 
               </div>
               
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="analysis.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Analysis of Algorithms</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="recursion.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Recursion</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
         </div>
     </div>
+    <footer class="footer">
+  <p>
     
+      By Brad Nelson<br/>
     
-    <div class='prev-next-bottom'>
-        
-    <a class='left-prev' id="prev-link" href="analysis.html" title="previous page">Analysis of Algorithms</a>
-    <a class='right-next' id="next-link" href="recursion.html" title="next page">Recursion</a>
-
-    </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          By Brad Nelson<br/>
-        
-            &copy; Copyright 2020.<br/>
-      </p>
-    </div>
-  </footer>
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
 </main>
 
 
       </div>
     </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-    <script src="../_static/js/index.js"></script>
-    
   </body>
 </html>

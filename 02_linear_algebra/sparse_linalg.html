@@ -1,37 +1,49 @@
 
-
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sparse Linear Algebra &#8212; Scientific Computing with Python</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
-    <link href="../_static/css/index.css" rel="stylesheet">
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script src="../_static/sphinx-book-theme.js"></script>
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/mystnb.js"></script>
-    <script src="../_static/sphinx-book-theme.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
@@ -41,14 +53,17 @@
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Linear Algebra in PyTorch" href="pytorch.html" />
     <link rel="prev" title="Linear Operators" href="linearoperators.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="docsearch:language" content="en">
-
-
-
+    <!-- Google Analytics -->
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -57,35 +72,134 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="../index.html">
-  
-  
-  <h1 class="site-logo" id="site-title">Scientific Computing with Python</h1>
-  
-</a>
-</div>
-
-<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Scientific Computing with Python</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-  <ul class="current nav sidenav_l1">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
+  <a class="reference internal" href="../introduction.html">
+   Introduction
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../00_python/python.html">
    Python
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_python/using_python.html">
+     Using Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_python/basics.html">
+     Basics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_python/bitsbytes.html">
+     Bits, Bytes, and Numbers
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_python/basic_packages.html">
+     Basic Containers and Packages
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_python/functions.html">
+     Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_python/classes.html">
+     Object-Oriented Programming
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_python/modules.html">
+     Modules and Packages
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_python/decorators.html">
+     Decorators
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_python/iterators.html">
+     Iterators and Generators
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_python/pyplot.html">
+     Matlotlib &amp; PyPlot
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00_python/misc.html">
+     Miscellaneous
+    </a>
+   </li>
+  </ul>
  </li>
- <li class="toctree-l1">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../01_analysis/analysis.html">
    Analysis of Algorithms
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01_analysis/asymptotic_notation.html">
+     Asymptotic Notation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01_analysis/recursion.html">
+     Recursion
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01_analysis/convergence.html">
+     Convergence of Algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01_analysis/average_case.html">
+     Average Case Analysis
+    </a>
+   </li>
+  </ul>
  </li>
- <li class="toctree-l1 current active">
+ <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="linear_algebra.html">
    Linear Algebra
   </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
   <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="memory.html">
@@ -134,46 +248,246 @@
    </li>
   </ul>
  </li>
- <li class="toctree-l1">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../03_optimization/optimization.html">
    Optimization
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03_optimization/scipy_opt.html">
+     Optimization in SciPy
+    </a>
+   </li>
+  </ul>
  </li>
- <li class="toctree-l1">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../04_functions/functions.html">
    Functions
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04_functions/sympy.html">
+     Symbolic Computing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04_functions/roots.html">
+     Root Finding
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04_functions/differentiation.html">
+     Differentiation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04_functions/ode_initial.html">
+     Initial Value Problems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04_functions/interpolation.html">
+     Interpolation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04_functions/integration.html">
+     Integration &amp; Quadrature
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04_functions/bvp.html">
+     Boundary Value Problems
+    </a>
+   </li>
+  </ul>
  </li>
- <li class="toctree-l1">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../05_graphs/graphs.html">
    Graphs
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05_graphs/networkx.html">
+     NetworkX
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05_graphs/spectral.html">
+     Spectral Graph Theory
+    </a>
+   </li>
+  </ul>
  </li>
- <li class="toctree-l1">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../06_probability_statistics/prob_stat.html">
    Probability and Statistics
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06_probability_statistics/generating_random.html">
+     Generating Random Numbers
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06_probability_statistics/scipy_stats.html">
+     Scipy
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       stats
+      </span>
+     </code>
+     package
+    </a>
+   </li>
+  </ul>
  </li>
- <li class="toctree-l1">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../07_data/data.html">
    Data
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07_data/pandas.html">
+     Pandas
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07_data/sklearn.html">
+     SciKit Learn
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07_data/dimension_reduction.html">
+     Dimension Reduction and Data Visualization
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07_data/pytorch.html">
+     PyTorch Neural Networks
+    </a>
+   </li>
+  </ul>
  </li>
- <li class="toctree-l1">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../08_geometry/geometry.html">
    Geometry
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08_geometry/distances.html">
+     Distances
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08_geometry/nearestneighbor.html">
+     Nearest Neighbors
+    </a>
+   </li>
+  </ul>
  </li>
- <li class="toctree-l1">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../09_computing/computing.html">
    Computing
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09_computing/basic_bash.html">
+     Basic Bash
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09_computing/git.html">
+     Git Version Control
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09_computing/unittest.html">
+     Unit Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09_computing/packages.html">
+     Packages and Setup
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../09_computing/performance/performance.html">
+     Performance
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+    <label for="toctree-checkbox-11">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../09_computing/performance/ipython.html">
+       Measuring Performance in Python
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../09_computing/performance/numpy_ufuncs.html">
+       Vectorization, Numpy Universal Functions
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09_computing/environments.html">
+     Environments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09_computing/agent_based_models.html">
+     Agent Based Models
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
-</nav>
+    </div>
+</nav> <!-- To handle the deprecated key -->
 
- <!-- To handle the deprecated key -->
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
 
 </div>
 
@@ -184,25 +498,25 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        <div class="dropdown-buttons-trigger">
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
 
-    
     <div class="dropdown-buttons">
         <!-- ipynb file if we had a myst markdown file -->
         
@@ -212,11 +526,11 @@
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
-    
 </div>
-        <!-- Source interaction buttons -->
+
+            <!-- Source interaction buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -234,13 +548,14 @@
     </div>
 </div>
 
+            <!-- Full screen (wrap in <a> to have style consistency -->
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -264,15 +579,16 @@
     </div>
 </div>
 
-    </div>
-
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
         </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#sparse-direct-methods">
    Sparse Direct Methods
@@ -312,29 +628,85 @@
  </li>
 </ul>
 
-        </nav>
+            </nav>
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Sparse Linear Algebra</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sparse-direct-methods">
+   Sparse Direct Methods
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sparse-iterative-methods">
+   Sparse Iterative Methods
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sparse-direct-vs-iterative-methods">
+     Sparse Direct vs. Iterative Methods
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#preconditioning">
+     Preconditioning
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#eigenvalues-and-eigenvectors">
+   Eigenvalues and Eigenvectors
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#randomized-linear-algebra">
+   Randomized Linear Algebra
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercises">
+   Exercises
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
-  <div class="section" id="sparse-linear-algebra">
+  <div class="tex2jax_ignore mathjax_ignore section" id="sparse-linear-algebra">
 <h1>Sparse Linear Algebra<a class="headerlink" href="#sparse-linear-algebra" title="Permalink to this headline">¶</a></h1>
 <p>So far, we have seen how sparse matrices and linear operators can be used to speed up basic matrix-vector and matrix-matrix operations, and decrease the memory footprint of the representation of a linear map.</p>
 <p>Just as there are special data types for sparse and structured matrices, there are specialized linear algebra routines which allow you to take advantage of sparsity and fast matrix-vector products.</p>
 <p>Routines for sparse linear algebra are found in <code class="docutils literal notranslate"><span class="pre">scipy.sparse.linalg</span></code>, which we’ll import as <code class="docutils literal notranslate"><span class="pre">sla</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">pylab</span> <span class="n">inline</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">pylab</span> inline
 <span class="kn">import</span> <span class="nn">scipy.sparse</span> <span class="k">as</span> <span class="nn">sparse</span>
 <span class="kn">import</span> <span class="nn">scipy.sparse.linalg</span> <span class="k">as</span> <span class="nn">sla</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Populating the interactive namespace from numpy and matplotlib
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Populating the interactive namespace from numpy and matplotlib
 </pre></div>
 </div>
 </div>
@@ -347,7 +719,7 @@
 <p>We’ll just use the function <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.linalg.splu.html#scipy.sparse.linalg.splu"><code class="docutils literal notranslate"><span class="pre">sla.splu</span></code></a> (SParse LU) at a high level, which produces a factorization object that can be used to solve linear systems.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
 <span class="n">A</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span> <span class="o">+</span> <span class="n">sparse</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">spy</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -360,14 +732,14 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">tocsc</span><span class="p">()</span> <span class="c1"># need to convert to CSC form first</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">tocsc</span><span class="p">()</span> <span class="c1"># need to convert to CSC form first</span>
 <span class="n">LU</span> <span class="o">=</span> <span class="n">sla</span><span class="o">.</span><span class="n">splu</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
 <span class="n">LU</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;SuperLU at 0x7fea9a3fbae0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;SuperLU at 0x7f03aa6afae0&gt;
 </pre></div>
 </div>
 </div>
@@ -375,7 +747,7 @@
 <p>The resulting object stores the factors necessary to compute <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">=</span> <span class="pre">PLUQ</span></code> (<code class="docutils literal notranslate"><span class="pre">P</span></code> permutes rows, and <code class="docutils literal notranslate"><span class="pre">Q</span></code> permutes columns).  It is computed using the <a class="reference external" href="https://portal.nersc.gov/project/sparse/superlu/">SuperLU library</a>.  Typically, you will just use the <code class="docutils literal notranslate"><span class="pre">solve</span></code> method on this object.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
 <span class="n">b</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">x</span>
 
 <span class="n">x2</span> <span class="o">=</span> <span class="n">LU</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
@@ -384,7 +756,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>9.796999613279917e-16
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8.488471886679091e-16
 </pre></div>
 </div>
 </div>
@@ -392,13 +764,13 @@
 <p>you can also use the <code class="docutils literal notranslate"><span class="pre">sla.spsolve</span></code> function, which wraps this factorization.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x2</span> <span class="o">=</span> <span class="n">sla</span><span class="o">.</span><span class="n">spsolve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x2</span> <span class="o">=</span> <span class="n">sla</span><span class="o">.</span><span class="n">spsolve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x2</span> <span class="o">-</span> <span class="n">x</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>9.796999613279917e-16
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8.488471886679091e-16
 </pre></div>
 </div>
 </div>
@@ -418,20 +790,20 @@
 <p>For example, we can use <code class="docutils literal notranslate"><span class="pre">gmres</span></code> with the same matrix we used for <code class="docutils literal notranslate"><span class="pre">splu</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x2</span><span class="p">,</span> <span class="n">exit</span> <span class="o">=</span> <span class="n">sla</span><span class="o">.</span><span class="n">gmres</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">)</span> <span class="c1"># exit code: 0 if successful</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x2</span><span class="p">,</span> <span class="n">exit</span> <span class="o">=</span> <span class="n">sla</span><span class="o">.</span><span class="n">gmres</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">)</span> <span class="c1"># exit code: 0 if successful</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x2</span> <span class="o">-</span> <span class="n">x</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>2.4846910452323563e-08
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.1880734830669155e-07
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
 <span class="n">x2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty_like</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
 <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
@@ -447,8 +819,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>GMRES in 0.0009334087371826172 sec.
-spsolve in 0.0007541179656982422 sec.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GMRES in 0.0008304119110107422 sec.
+spsolve in 0.0009243488311767578 sec.
 </pre></div>
 </div>
 </div>
@@ -469,7 +841,7 @@ spsolve in 0.0007541179656982422 sec.
 <p>Finding a good preconditioner is a huge field of research, and can be very domain-dependent.  A general-purpose method to obtain a preconditioner is to use an Incomplete LU decomposition (this is an LU factorization that stops when the fill-in gets too large). You can obtain one using <code class="docutils literal notranslate"><span class="pre">sla.spilu</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ILUfact</span> <span class="o">=</span> <span class="n">sla</span><span class="o">.</span><span class="n">spilu</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ILUfact</span> <span class="o">=</span> <span class="n">sla</span><span class="o">.</span><span class="n">spilu</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -477,7 +849,7 @@ spsolve in 0.0007541179656982422 sec.
 <p>You can construct a preconditioner using a <code class="docutils literal notranslate"><span class="pre">LinearOperator</span></code> around the ILU object’s solve method</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">M</span> <span class="o">=</span> <span class="n">sla</span><span class="o">.</span><span class="n">LinearOperator</span><span class="p">(</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">M</span> <span class="o">=</span> <span class="n">sla</span><span class="o">.</span><span class="n">LinearOperator</span><span class="p">(</span>
     <span class="n">shape</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span>
     <span class="n">matvec</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">b</span><span class="p">:</span> <span class="n">ILUfact</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
 <span class="p">)</span>
@@ -487,20 +859,20 @@ spsolve in 0.0007541179656982422 sec.
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x2</span><span class="p">,</span> <span class="n">exit</span> <span class="o">=</span> <span class="n">sla</span><span class="o">.</span><span class="n">gmres</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">M</span><span class="o">=</span><span class="n">M</span><span class="p">)</span> <span class="c1"># exit code: 0 if successful</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x2</span><span class="p">,</span> <span class="n">exit</span> <span class="o">=</span> <span class="n">sla</span><span class="o">.</span><span class="n">gmres</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">M</span><span class="o">=</span><span class="n">M</span><span class="p">)</span> <span class="c1"># exit code: 0 if successful</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x2</span> <span class="o">-</span> <span class="n">x</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>1.3192070198612302e-15
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.979534604436364e-15
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
 <span class="n">x2</span><span class="p">,</span> <span class="n">exit</span> <span class="o">=</span> <span class="n">sla</span><span class="o">.</span><span class="n">gmres</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
 <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;GMRES in </span><span class="si">{}</span><span class="s2"> sec.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t1</span> <span class="o">-</span> <span class="n">t0</span><span class="p">))</span>
@@ -515,10 +887,10 @@ spsolve in 0.0007541179656982422 sec.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>GMRES in 0.0011298656463623047 sec.
-8.059084516064213e-05
-preconditioned GMRES in 0.0009131431579589844 sec.
-1.3192070198612302e-15
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GMRES in 0.0012965202331542969 sec.
+3.678662916418831e-05
+preconditioned GMRES in 0.0009918212890625 sec.
+1.979534604436364e-15
 </pre></div>
 </div>
 </div>
@@ -533,7 +905,7 @@ preconditioned GMRES in 0.0009131431579589844 sec.
 <p>Let’s look at an example for a linear operator which acts as the matrix of all ones.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># works on square matrices</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># works on square matrices</span>
 <span class="n">Afun</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">X</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="n">m</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1"># linear operator of size 10</span>
@@ -553,19 +925,19 @@ preconditioned GMRES in 0.0009131431579589844 sec.
 <p>This operator is Hermitian, so we’ll use <code class="docutils literal notranslate"><span class="pre">eigsh</span></code>.  By default, <code class="docutils literal notranslate"><span class="pre">eigsh</span></code> will compute the largest magnitude eigenvalues.  You can change which eigenvalues you’re looking for using the <code class="docutils literal notranslate"><span class="pre">which</span></code> keyword argument, and the number of eigenvalues using the <code class="docutils literal notranslate"><span class="pre">k</span></code> argument.  See <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.linalg.eigsh.html#scipy.sparse.linalg.eigsh">the documentation</a> for details.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Lam</span><span class="p">,</span> <span class="n">V</span> <span class="o">=</span> <span class="n">sla</span><span class="o">.</span><span class="n">eigsh</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Lam</span><span class="p">,</span> <span class="n">V</span> <span class="o">=</span> <span class="n">sla</span><span class="o">.</span><span class="n">eigsh</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Lam</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Lam</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([-5.86174617e-18, -3.50871500e-32,  2.38837756e-32,  2.87286167e-32,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-5.86174617e-18, -3.50871500e-32,  2.38837756e-32,  2.87286167e-32,
         1.78221859e-15,  1.00000000e+01])
 </pre></div>
 </div>
@@ -574,12 +946,12 @@ preconditioned GMRES in 0.0009131431579589844 sec.
 <p>we see there is one eigenvalue with a numerically non-zero value (10).  Let’s take a look at the eigenvector</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">V</span><span class="p">[:,</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">V</span><span class="p">[:,</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([-0.31622777, -0.31622777, -0.31622777, -0.31622777, -0.31622777,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0.31622777, -0.31622777, -0.31622777, -0.31622777, -0.31622777,
        -0.31622777, -0.31622777, -0.31622777, -0.31622777, -0.31622777])
 </pre></div>
 </div>
@@ -597,7 +969,7 @@ preconditioned GMRES in 0.0009131431579589844 sec.
 <p>Let’s see how this works in practice:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy.linalg</span> <span class="k">as</span> <span class="nn">la</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy.linalg</span> <span class="k">as</span> <span class="nn">la</span>
 
 <span class="k">def</span> <span class="nf">random_span_k</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">power</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -626,14 +998,14 @@ preconditioned GMRES in 0.0009131431579589844 sec.
 <p>Let’s test this on a diagonal matrix with entries 0 to <code class="docutils literal notranslate"><span class="pre">n-1</span></code> along the main diagonal.  In this case, the eigenvalues are integers, and the eigenvectors are the standard basis vectors.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
 <span class="n">D</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">dia_matrix</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">))</span>
 <span class="n">D</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;100x100 sparse matrix of type &#39;&lt;class &#39;numpy.int64&#39;&gt;&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;100x100 sparse matrix of type &#39;&lt;class &#39;numpy.int64&#39;&gt;&#39;
 	with 100 stored elements (1 diagonals) in DIAgonal format&gt;
 </pre></div>
 </div>
@@ -641,7 +1013,7 @@ preconditioned GMRES in 0.0009131431579589844 sec.
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">k</span> <span class="o">=</span> <span class="mi">5</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">k</span> <span class="o">=</span> <span class="mi">5</span>
 <span class="n">U</span> <span class="o">=</span> <span class="n">random_span_k</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -649,14 +1021,14 @@ preconditioned GMRES in 0.0009131431579589844 sec.
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lam</span><span class="p">,</span> <span class="n">V</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">D</span><span class="o">.</span><span class="n">todense</span><span class="p">())</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lam</span><span class="p">,</span> <span class="n">V</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">D</span><span class="o">.</span><span class="n">todense</span><span class="p">())</span>
 <span class="n">V_true</span> <span class="o">=</span> <span class="n">V</span><span class="p">[:,</span><span class="o">-</span><span class="n">k</span><span class="p">:]</span>
 <span class="n">V_true</span><span class="p">[</span><span class="o">-</span><span class="n">k</span><span class="p">:,:]</span> <span class="c1"># should see identity</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([[1., 0., 0., 0., 0.],
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1., 0., 0., 0., 0.],
        [0., 1., 0., 0., 0.],
        [0., 0., 1., 0., 0.],
        [0., 0., 0., 1., 0.],
@@ -668,112 +1040,112 @@ preconditioned GMRES in 0.0009131431579589844 sec.
 <p>Let’s take a look at how well <code class="docutils literal notranslate"><span class="pre">U</span></code> captures each eigenvector.  The distance from this subspace from the <code class="docutils literal notranslate"><span class="pre">i</span></code>th eigenvector is <code class="docutils literal notranslate"><span class="pre">norm(V[:,i].T*U)</span></code>.  Because the eigenvectors are canonical basis vectors, this is just the norm of the <code class="docutils literal notranslate"><span class="pre">i</span></code>th row of <code class="docutils literal notranslate"><span class="pre">U</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:02d}</span><span class="s2"> : </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">U</span><span class="p">[</span><span class="n">i</span><span class="p">])))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>00 : 1.5273449659913243e-16
-01 : 0.00766294309712882
-02 : 0.014093072407802398
-03 : 0.0245659684457293
-04 : 0.03458247646364512
-05 : 0.0432183555129895
-06 : 0.04329226616407876
-07 : 0.051944922476095855
-08 : 0.07417698512636602
-09 : 0.060492683205985054
-10 : 0.08025822844252255
-11 : 0.0690658860777194
-12 : 0.07920095303814265
-13 : 0.13246539339708782
-14 : 0.13135592201918508
-15 : 0.15371870642458246
-16 : 0.10578103041747107
-17 : 0.13039695788022787
-18 : 0.13841161908509694
-19 : 0.13200360712583487
-20 : 0.17187940237318466
-21 : 0.11568686003908693
-22 : 0.13855107945344217
-23 : 0.20059339158820336
-24 : 0.1891204780218045
-25 : 0.20198327155194004
-26 : 0.2214130459240297
-27 : 0.21928410953140576
-28 : 0.2646505634979487
-29 : 0.16181574486247588
-30 : 0.19182190923951642
-31 : 0.18779301192112574
-32 : 0.26468310308609816
-33 : 0.269882035230798
-34 : 0.33800353012608786
-35 : 0.2575087696400874
-36 : 0.2178537448279015
-37 : 0.26969784521167506
-38 : 0.22184507938254328
-39 : 0.29659532988921117
-40 : 0.2571204734529968
-41 : 0.2119754466602844
-42 : 0.26770887743597066
-43 : 0.3688824603611613
-44 : 0.22498080901064862
-45 : 0.49500722927642327
-46 : 0.324045644308353
-47 : 0.32889367730083174
-48 : 0.34267174882549045
-49 : 0.43296299778338515
-50 : 0.45541326288259654
-51 : 0.3265643967310583
-52 : 0.44648300366223526
-53 : 0.3976705624700063
-54 : 0.2866565094514977
-55 : 0.3976188574265335
-56 : 0.49805482320169225
-57 : 0.3789269057982547
-58 : 0.3744966380950322
-59 : 0.42710172624891934
-60 : 0.3791041244008797
-61 : 0.5046072998943008
-62 : 0.6078465449027154
-63 : 0.5406967488425335
-64 : 0.546113169845921
-65 : 0.5268081120352571
-66 : 0.37802315734235836
-67 : 0.3965881218737578
-68 : 0.48399953255835176
-69 : 0.3418942423838855
-70 : 0.3877704716343983
-71 : 0.5636426324415793
-72 : 0.46815834981927146
-73 : 0.43849435536148945
-74 : 0.6872344014695574
-75 : 0.4845159936835526
-76 : 0.5542961044645363
-77 : 0.39131446014814886
-78 : 0.4623274729016615
-79 : 0.6410388794904032
-80 : 0.5316550744604099
-81 : 0.6479634162161672
-82 : 0.6115264062137594
-83 : 0.6017007532996907
-84 : 0.44809570808079296
-85 : 0.5141576080934201
-86 : 0.5347674810362112
-87 : 0.4589144076200191
-88 : 0.47704291509860125
-89 : 0.5327048392037688
-90 : 0.4722157484474478
-91 : 0.5944872005297582
-92 : 0.5545004187111057
-93 : 0.488872553380437
-94 : 0.5315676469019712
-95 : 0.5539049964994353
-96 : 0.5399251637656146
-97 : 0.7224790329367131
-98 : 0.5800756429265992
-99 : 0.5702549280025278
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>00 : 2.038724493704508e-16
+01 : 0.004056739998784409
+02 : 0.016190052096713613
+03 : 0.0178214159568191
+04 : 0.05463525867968747
+05 : 0.03459108389717204
+06 : 0.046557813669655626
+07 : 0.041719258893748064
+08 : 0.0748830408440591
+09 : 0.05863590174372426
+10 : 0.07818974263881993
+11 : 0.07199539189015432
+12 : 0.08445181727568116
+13 : 0.10190096019399124
+14 : 0.10864582751473234
+15 : 0.13089439401126057
+16 : 0.08302212444831711
+17 : 0.14735828776422422
+18 : 0.20443429778079428
+19 : 0.10488486943882215
+20 : 0.13718568872065046
+21 : 0.21393424578081427
+22 : 0.17103432050071699
+23 : 0.14666212154521358
+24 : 0.20360781009844117
+25 : 0.13020743881967228
+26 : 0.16946918099810768
+27 : 0.22246521577280937
+28 : 0.24120247005265882
+29 : 0.15135193515407372
+30 : 0.2158038989241644
+31 : 0.2545254839954589
+32 : 0.18050480453610454
+33 : 0.2258147777582025
+34 : 0.20909170072923305
+35 : 0.2108176055896858
+36 : 0.3021729610158541
+37 : 0.20850340114392743
+38 : 0.33153196843144545
+39 : 0.34181663099939175
+40 : 0.31435177010566356
+41 : 0.2918245984109002
+42 : 0.26118412878780956
+43 : 0.29386526737149
+44 : 0.3787987491804566
+45 : 0.2779191173591876
+46 : 0.3646662465817297
+47 : 0.3919028292329545
+48 : 0.3225243981805606
+49 : 0.41788253969284744
+50 : 0.3556118103078301
+51 : 0.3562788550570397
+52 : 0.37137982404498626
+53 : 0.3203141074840623
+54 : 0.3286419899542942
+55 : 0.4313182154007324
+56 : 0.35947548632860715
+57 : 0.46052093958124074
+58 : 0.34210011867524526
+59 : 0.3574184813655678
+60 : 0.47118101964139664
+61 : 0.4104567687059172
+62 : 0.34060144143767723
+63 : 0.4342464699595759
+64 : 0.35697955723349684
+65 : 0.430443423256608
+66 : 0.5648556425253082
+67 : 0.3400758040966315
+68 : 0.6077894358213017
+69 : 0.5069278902099799
+70 : 0.46567834080663817
+71 : 0.42102733471171083
+72 : 0.48917875432463365
+73 : 0.5465601625817627
+74 : 0.465909215870095
+75 : 0.4839683649358866
+76 : 0.5469875502232104
+77 : 0.5616764706578494
+78 : 0.43077348900128654
+79 : 0.4019788049405478
+80 : 0.5514349466488083
+81 : 0.6631183269877353
+82 : 0.4155839114991858
+83 : 0.5118925980188214
+84 : 0.6744188393921478
+85 : 0.5921491663348044
+86 : 0.6799324455035817
+87 : 0.5162264844837691
+88 : 0.6452024174335508
+89 : 0.6090158438348314
+90 : 0.6131627677795067
+91 : 0.5472842273271387
+92 : 0.5648906702179022
+93 : 0.6235642684469646
+94 : 0.5315917444713371
+95 : 0.4428856491535461
+96 : 0.7133544504722907
+97 : 0.6023463913843283
+98 : 0.6882440081701822
+99 : 0.49517068511262863
 </pre></div>
 </div>
 </div>
@@ -782,113 +1154,113 @@ preconditioned GMRES in 0.0009131431579589844 sec.
 <p>We can improve this estimate by running a couple of power iterations on the subspace (the <code class="docutils literal notranslate"><span class="pre">power</span></code> keyword defined above):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">U</span> <span class="o">=</span> <span class="n">random_span_k</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">power</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">U</span> <span class="o">=</span> <span class="n">random_span_k</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">power</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:02d}</span><span class="s2"> : </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">U</span><span class="p">[</span><span class="n">i</span><span class="p">])))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>00 : 1.439297883147029e-16
-01 : 2.5457841389541525e-12
-02 : 2.093114527513018e-10
-03 : 1.3103351192562437e-09
-04 : 1.0943408790480209e-08
-05 : 4.310288289115353e-08
-06 : 1.162807640553277e-07
-07 : 3.2480371448096074e-07
-08 : 8.982256573232772e-07
-09 : 1.8444483918829291e-06
-10 : 2.682167998374089e-06
-11 : 4.256371437446211e-06
-12 : 7.3148821484048725e-06
-13 : 1.0579775382742066e-05
-14 : 1.7218642075099564e-05
-15 : 2.3351969664400807e-05
-16 : 5.9953864338546726e-05
-17 : 8.517040974445808e-05
-18 : 9.255800000845296e-05
-19 : 0.00010343114557111612
-20 : 0.0001585959360781019
-21 : 0.0003345938878870032
-22 : 0.0002475298928564466
-23 : 0.0005444516067233186
-24 : 0.0005396226134696433
-25 : 0.000846974507038819
-26 : 0.00112645899309979
-27 : 0.0007765886832399112
-28 : 0.0013079343604158235
-29 : 0.0014217057363820485
-30 : 0.001827245451259915
-31 : 0.0019288691124149258
-32 : 0.003671247095606711
-33 : 0.0031327719484565567
-34 : 0.002885993972510389
-35 : 0.004530759561693426
-36 : 0.0047819878340245306
-37 : 0.0061133200662736135
-38 : 0.0121511361073699
-39 : 0.01232620465786142
-40 : 0.010891201563234728
-41 : 0.0076361472724498745
-42 : 0.008144660662731682
-43 : 0.013989803405969716
-44 : 0.018500362034621406
-45 : 0.023954853789306653
-46 : 0.017422937007386688
-47 : 0.027777803638203657
-48 : 0.022445249603091855
-49 : 0.02419099140002481
-50 : 0.0341090894212982
-51 : 0.05515045345523911
-52 : 0.05504813098468438
-53 : 0.06706380785419327
-54 : 0.06429363201109686
-55 : 0.09502506639232548
-56 : 0.07438113216660473
-57 : 0.08733571635069931
-58 : 0.0834111911498315
-59 : 0.09874370360968081
-60 : 0.1854948579001179
-61 : 0.09588493051682528
-62 : 0.14884187011615943
-63 : 0.0949699030058461
-64 : 0.17010696932165711
-65 : 0.12774635079306065
-66 : 0.21839402940342445
-67 : 0.21551046080916833
-68 : 0.27803429844408134
-69 : 0.24155289950560146
-70 : 0.46872643628045835
-71 : 0.2335104097273564
-72 : 0.4805034385002018
-73 : 0.2689245225155067
-74 : 0.5164337378503687
-75 : 0.5973891316581498
-76 : 0.3342161697872882
-77 : 0.5247528498389205
-78 : 0.6283874705100196
-79 : 0.4370771953450577
-80 : 0.6188509569014337
-81 : 0.48352160842764114
-82 : 0.6783790469971818
-83 : 0.5207991936659727
-84 : 0.6072104034975121
-85 : 0.5194810393944517
-86 : 0.9013654009649605
-87 : 0.7884656651369821
-88 : 0.8467429390720858
-89 : 0.8356989392356852
-90 : 0.877118285032758
-91 : 0.8602020466961293
-92 : 0.7918231194470621
-93 : 0.8283900661912872
-94 : 0.8214172993082247
-95 : 0.8172020252910632
-96 : 0.9266295597446753
-97 : 0.9473620830792172
-98 : 0.9057366576312146
-99 : 0.9163368512746354
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>00 : 5.776915683787074e-17
+01 : 1.6100594842131506e-12
+02 : 1.0899098689789326e-10
+03 : 1.1834205147097656e-09
+04 : 7.62634922185943e-09
+05 : 2.914479891020549e-08
+06 : 1.2634001662034944e-07
+07 : 4.5295325540364e-07
+08 : 4.768756458941504e-07
+09 : 1.4488530323012457e-06
+10 : 2.434918326522412e-06
+11 : 3.773378304536716e-06
+12 : 7.185116117586523e-06
+13 : 1.7335706000744085e-05
+14 : 2.1701468726894258e-05
+15 : 3.245880272205118e-05
+16 : 2.3859274452511627e-05
+17 : 5.305145662533553e-05
+18 : 9.346711730785553e-05
+19 : 0.00010260147631957447
+20 : 0.0001435871994752169
+21 : 0.00014206868486154678
+22 : 0.00015984785980038124
+23 : 0.0004794518543421917
+24 : 0.0006978868665687086
+25 : 0.0004200311102089944
+26 : 0.0008831466426719506
+27 : 0.00060385055135277
+28 : 0.001852139598159693
+29 : 0.0011652308329592066
+30 : 0.001170726242931226
+31 : 0.002111677492551207
+32 : 0.0014644044201548364
+33 : 0.0034343682690357335
+34 : 0.005340817463860386
+35 : 0.00569509670984472
+36 : 0.00746379648807441
+37 : 0.008985895983052829
+38 : 0.009452913829014392
+39 : 0.008951225620032545
+40 : 0.006811197967281691
+41 : 0.009358480475269252
+42 : 0.010548754805634058
+43 : 0.00784651136212201
+44 : 0.012497674020831956
+45 : 0.020583919300618054
+46 : 0.015226328564730272
+47 : 0.03165477490114796
+48 : 0.035746172632173064
+49 : 0.025029296765374073
+50 : 0.039590210682663815
+51 : 0.0346963825057359
+52 : 0.042297259962305704
+53 : 0.05560969941397112
+54 : 0.07833224039655858
+55 : 0.05689036219363427
+56 : 0.09844592573648779
+57 : 0.1405976474976309
+58 : 0.07602970067585813
+59 : 0.11596193907134546
+60 : 0.11196081867853067
+61 : 0.09751056605138608
+62 : 0.14712484931771308
+63 : 0.1575654449950996
+64 : 0.17749845477540066
+65 : 0.16376002855161526
+66 : 0.16535997371768096
+67 : 0.25645391537155576
+68 : 0.2919985471804636
+69 : 0.31503838039568477
+70 : 0.38457269529895516
+71 : 0.21851784591901563
+72 : 0.4227240896920161
+73 : 0.44969820638432545
+74 : 0.36403840077785904
+75 : 0.41900942555334
+76 : 0.6095657206130481
+77 : 0.5322461739806071
+78 : 0.6049845380716631
+79 : 0.46353104721833044
+80 : 0.5914523380932548
+81 : 0.7693255003825747
+82 : 0.36632779499244095
+83 : 0.6240339687682033
+84 : 0.6804885297677242
+85 : 0.7079687933134396
+86 : 0.6647778891709087
+87 : 0.6983147969341498
+88 : 0.7888849663470147
+89 : 0.7424640620933282
+90 : 0.7286300781911617
+91 : 0.9183116920556132
+92 : 0.82907861751619
+93 : 0.8183378486458016
+94 : 0.8271111235161305
+95 : 0.9595260313246028
+96 : 0.9383090461938627
+97 : 0.9770481161514604
+98 : 0.8917650634136092
+99 : 0.9518063240741083
 </pre></div>
 </div>
 </div>
@@ -911,7 +1283,7 @@ For, example, use <code class="docutils literal notranslate"><span class="pre">m
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Your code here</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Your code here</span>
 </pre></div>
 </div>
 </div>
@@ -941,33 +1313,42 @@ For, example, use <code class="docutils literal notranslate"><span class="pre">m
 
               </div>
               
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="linearoperators.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Linear Operators</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="pytorch.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Linear Algebra in PyTorch</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
         </div>
     </div>
+    <footer class="footer">
+  <p>
     
+      By Brad Nelson<br/>
     
-    <div class='prev-next-bottom'>
-        
-    <a class='left-prev' id="prev-link" href="linearoperators.html" title="previous page">Linear Operators</a>
-    <a class='right-next' id="next-link" href="pytorch.html" title="next page">Linear Algebra in PyTorch</a>
-
-    </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          By Brad Nelson<br/>
-        
-            &copy; Copyright 2020.<br/>
-      </p>
-    </div>
-  </footer>
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
 </main>
 
 
       </div>
     </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-    <script src="../_static/js/index.js"></script>
-    
   </body>
 </html>
