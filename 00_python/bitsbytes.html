@@ -607,10 +607,20 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#two-s-complement">
+   Two’s Complement
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#floating-point-numbers">
    Floating Point Numbers
   </a>
   <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#converting-from-floating-point">
+     Converting From Floating Point
+    </a>
+   </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#print-formatting">
      Print Formatting
@@ -659,10 +669,20 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#two-s-complement">
+   Two’s Complement
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#floating-point-numbers">
    Floating Point Numbers
   </a>
   <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#converting-from-floating-point">
+     Converting From Floating Point
+    </a>
+   </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#print-formatting">
      Print Formatting
@@ -870,12 +890,53 @@ f	1111	15
 </div>
 <div class="section" id="bitwise-operations">
 <h2>Bitwise operations<a class="headerlink" href="#bitwise-operations" title="Permalink to this headline">¶</a></h2>
-<p>You can perform operations on bit strings in Python:</p>
+<p>You can perform operations on bit strings in Python.  To start with, we recall operations in boolean algebra: <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> (and), <code class="docutils literal notranslate"><span class="pre">|</span></code> (or), and <code class="docutils literal notranslate"><span class="pre">^</span></code> (xor) <code class="docutils literal notranslate"><span class="pre">~</span></code> (not)</p>
+<p>Here’s a list of possible values for <code class="docutils literal notranslate"><span class="pre">&amp;</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]:</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> &amp; </span><span class="si">{}</span><span class="s2"> = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="o">&amp;</span><span class="n">j</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 &amp; 0 = 0
+0 &amp; 1 = 0
+1 &amp; 0 = 0
+1 &amp; 1 = 1
+</pre></div>
+</div>
+</div>
+</div>
+<p>Performing an operation bitwise just performs the operation on each set of bit grouped by position (i.e. you can read off each column of the below using the table above)</p>
+<div class="highlight-. notranslate"><div class="highlight"><pre><span></span>  0b1100
+&amp; 0b0101
+--------
+  0b0100
+</pre></div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">binprint</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    formats an input integer n to 4 digit binary</span>
+<span class="sd">    </span>
+<span class="sd">    n input</span>
+<span class="sd">    </span>
+<span class="sd">    prints n</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:04b}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="p">))</span> <span class="c1"># 4 digits, padded by 0 in the front</span>
     
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;the binprint function simply formats a number in binary and zero-pads on the left up to 4 digits&quot;</span><span class="p">)</span>
+<span class="n">binprint</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">binprint</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">binprint</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">binprint</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;bitwise operations&quot;</span><span class="p">)</span>
 <span class="n">binprint</span><span class="p">(</span><span class="mb">0b1100</span> <span class="o">&amp;</span> <span class="mb">0b0101</span><span class="p">)</span> <span class="c1"># bitwise and</span>
 <span class="n">binprint</span><span class="p">(</span><span class="mb">0b1100</span> <span class="o">|</span> <span class="mb">0b0101</span><span class="p">)</span> <span class="c1"># bitwise or</span>
 <span class="n">binprint</span><span class="p">(</span><span class="mb">0b1100</span> <span class="o">^</span> <span class="mb">0b0101</span><span class="p">)</span> <span class="c1"># bitwise xor</span>
@@ -884,7 +945,15 @@ f	1111	15
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0100
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>the binprint function simply formats a number in binary and zero-pads on the left up to 4 digits
+0001
+0010
+0100
+1000
+
+
+bitwise operations
+0100
 1101
 1001
 -1101
@@ -892,6 +961,144 @@ f	1111	15
 </div>
 </div>
 </div>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> and <code class="docutils literal notranslate"><span class="pre">and</span></code> are not equivalent.  <code class="docutils literal notranslate"><span class="pre">and</span></code> does not operate bitwise - it interprets both as logical values (where <code class="docutils literal notranslate"><span class="pre">0</span></code> is <code class="docutils literal notranslate"><span class="pre">False</span></code> and any other number is <code class="docutils literal notranslate"><span class="pre">True</span></code>)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">binprint</span><span class="p">(</span><span class="mb">0b1100</span> <span class="o">&amp;</span> <span class="mb">0b0101</span><span class="p">)</span>
+<span class="n">binprint</span><span class="p">(</span><span class="mb">0b1100</span> <span class="ow">and</span> <span class="mb">0b0101</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0100
+0101
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="two-s-complement">
+<h2>Two’s Complement<a class="headerlink" href="#two-s-complement" title="Permalink to this headline">¶</a></h2>
+<p>You’ll notice in the above, that <code class="docutils literal notranslate"><span class="pre">~</span></code> has a potentially unexpected output.  We might have expected something like the following:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">binprint</span><span class="p">(</span><span class="o">~</span><span class="mb">0b1100</span> <span class="o">&amp;</span> <span class="mb">0b1111</span><span class="p">)</span> <span class="c1"># negation, with bitmask for last 4 digits</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0011
+</pre></div>
+</div>
+</div>
+</div>
+<p>To explain why, we need to understand how negative integers are represented.  Let’s consider a signed 8-bit integer.  The first bit is the sign bit (<code class="docutils literal notranslate"><span class="pre">0</span></code> indicates the number is positive, and <code class="docutils literal notranslate"><span class="pre">1</span></code> indicates the number is negative).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">bitstring</span>
+
+<span class="k">def</span> <span class="nf">print_int8</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    print a as if it were an 8-bit signed integer</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># for printing color</span>
+    <span class="n">CRED</span>    <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\33</span><span class="s1">[31m&#39;</span>
+    <span class="n">CBLUE</span>   <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\33</span><span class="s1">[34m&#39;</span>
+    <span class="n">CEND</span>      <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\33</span><span class="s1">[0m&#39;</span>
+    
+    <span class="n">b</span> <span class="o">=</span> <span class="n">bitstring</span><span class="o">.</span><span class="n">BitArray</span><span class="p">(</span><span class="nb">int</span><span class="o">=</span><span class="n">a</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+    <span class="n">bs</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">bin</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">CBLUE</span> <span class="o">+</span> <span class="n">bs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">CEND</span> <span class="o">+</span> <span class="n">CRED</span> <span class="o">+</span> <span class="n">bs</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">+</span> <span class="n">CEND</span><span class="p">)</span>
+    
+<span class="n">print_int8</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">print_int8</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">print_int8</span><span class="p">(</span><span class="mi">64</span><span class="p">)</span>
+<span class="n">print_int8</span><span class="p">(</span><span class="mi">127</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Blue">0</span><span class=" -Color -Color-Red">0000001</span>
+<span class=" -Color -Color-Blue">0</span><span class=" -Color -Color-Red">0001000</span>
+<span class=" -Color -Color-Blue">0</span><span class=" -Color -Color-Red">1000000</span>
+<span class=" -Color -Color-Blue">0</span><span class=" -Color -Color-Red">1111111</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>What about a negative number?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">print_int8</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">print_int8</span><span class="p">(</span><span class="o">-</span><span class="mi">127</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Blue">1</span><span class=" -Color -Color-Red">1111111</span>
+<span class=" -Color -Color-Blue">1</span><span class=" -Color -Color-Red">0000001</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Naively, if we ignore the sign bit, <code class="docutils literal notranslate"><span class="pre">-1</span></code> looks like “-“<code class="docutils literal notranslate"><span class="pre">127</span></code>, and <code class="docutils literal notranslate"><span class="pre">-127</span></code> looks like “-“<code class="docutils literal notranslate"><span class="pre">1</span></code>.  This is because negative integers are using <a class="reference external" href="https://en.wikipedia.org/wiki/Two%27s_complement">two’s complement</a> to represent negative integers, so you can’t just read off the number by ignoring the sign bit in the way you might expect.</p>
+<p>You can compute the two’s complement of a number by inverting bits using a bit-wise not operation and adding <code class="docutils literal notranslate"><span class="pre">1</span></code> (ignoring integer overflow).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">print_int8</span><span class="p">(</span><span class="o">~</span><span class="mi">4</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">print_int8</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Blue">1</span><span class=" -Color -Color-Red">1111100</span>
+<span class=" -Color -Color-Blue">1</span><span class=" -Color -Color-Red">1111100</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The two’s complement operation is its own inverse.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">twos_complement</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    compute the two&#39;s complement of an integer n</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="o">~</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">print_int8</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">print_int8</span><span class="p">(</span><span class="n">twos_complement</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">print_int8</span><span class="p">(</span><span class="n">twos_complement</span><span class="p">(</span><span class="n">twos_complement</span><span class="p">(</span><span class="mi">4</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Blue">0</span><span class=" -Color -Color-Red">0000100</span>
+<span class=" -Color -Color-Blue">1</span><span class=" -Color -Color-Red">1111100</span>
+<span class=" -Color -Color-Blue">0</span><span class=" -Color -Color-Red">0000100</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that positive numbers can go up to 127, but negative numbers go down to -128.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">print_int8</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">print_int8</span><span class="p">(</span><span class="mi">127</span><span class="p">)</span>
+<span class="n">print_int8</span><span class="p">(</span><span class="o">-</span><span class="mi">128</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Blue">0</span><span class=" -Color -Color-Red">0000000</span>
+<span class=" -Color -Color-Blue">0</span><span class=" -Color -Color-Red">1111111</span>
+<span class=" -Color -Color-Blue">1</span><span class=" -Color -Color-Red">0000000</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Why use two’s complement?  The reason why is that using this representation you can use the same circuits in hardware for addition, subtraction, and multiplication of negative integers that you can for positive integers.</p>
 </div>
 <div class="section" id="floating-point-numbers">
 <h2>Floating Point Numbers<a class="headerlink" href="#floating-point-numbers" title="Permalink to this headline">¶</a></h2>
@@ -995,6 +1202,18 @@ f	1111	15
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{: .2e}</span><span class="s2"> = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">),</span><span class="n">fmt_float32_bits</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 3.14e+00 = <span class=" -Color -Color-Blue">0</span><span class=" -Color -Color-Green">1000000</span><span class=" -Color -Color-Red">010010010000111111011011</span>
+</pre></div>
+</div>
+</div>
+</div>
 <p>as a result, you can’t count on floating point numbers to count:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1024,6 +1243,61 @@ b = <span class=" -Color -Color-Blue">0</span><span class=" -Color -Color-Green"
 </pre></div>
 </div>
 </div>
+</div>
+<p>For floats, there are two equivalent zeros</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot; 0.0 = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">fmt_float32_bits</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-0.0 = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">fmt_float32_bits</span><span class="p">(</span><span class="o">-</span><span class="mf">0.0</span><span class="p">)))</span>
+<span class="mf">0.0</span> <span class="o">==</span> <span class="o">-</span><span class="mf">0.0</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 0.0 = <span class=" -Color -Color-Blue">0</span><span class=" -Color -Color-Green">0000000</span><span class=" -Color -Color-Red">000000000000000000000000</span>
+-0.0 = <span class=" -Color -Color-Blue">1</span><span class=" -Color -Color-Green">0000000</span><span class=" -Color -Color-Red">000000000000000000000000</span>
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you want to convert the binary floating point representation to a decimal, you can read off the sign, exponent, and significand independently.</p>
+<p>The sign bit is straightforward (<code class="docutils literal notranslate"><span class="pre">0</span></code> is positive, <code class="docutils literal notranslate"><span class="pre">1</span></code> is negative)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot; 0.0 = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">fmt_float32_bits</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-0.0 = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">fmt_float32_bits</span><span class="p">(</span><span class="o">-</span><span class="mf">0.0</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 0.0 = <span class=" -Color -Color-Blue">0</span><span class=" -Color -Color-Green">0000000</span><span class=" -Color -Color-Red">000000000000000000000000</span>
+-0.0 = <span class=" -Color -Color-Blue">1</span><span class=" -Color -Color-Green">0000000</span><span class=" -Color -Color-Red">000000000000000000000000</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The exponent has a “bias” equal to half the number of possible bits.  So to get the value of an 8-bit exponent, we subtract <code class="docutils literal notranslate"><span class="pre">2**7-1</span> <span class="pre">=</span> <span class="pre">127</span> <span class="pre">=</span> <span class="pre">0b01111111</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">2</span><span class="o">**-</span><span class="mi">126</span><span class="p">,</span> <span class="mf">1e0</span><span class="p">,</span> <span class="mi">2</span><span class="o">**</span><span class="mi">126</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span> <span class="s2">&quot;</span><span class="si">{:.2e}</span><span class="s2"> = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">fmt_float32_bits</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.18e-38 = <span class=" -Color -Color-Blue">0</span><span class=" -Color -Color-Green">0000000</span><span class=" -Color -Color-Red">100000000000000000000000</span>
+1.00e+00 = <span class=" -Color -Color-Blue">0</span><span class=" -Color -Color-Green">0111111</span><span class=" -Color -Color-Red">100000000000000000000000</span>
+8.51e+37 = <span class=" -Color -Color-Blue">0</span><span class=" -Color -Color-Green">1111110</span><span class=" -Color -Color-Red">100000000000000000000000</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>You obtain the number by raising the significand to the base multiplied by the exponent</p>
+<div class="section" id="converting-from-floating-point">
+<h3>Converting From Floating Point<a class="headerlink" href="#converting-from-floating-point" title="Permalink to this headline">¶</a></h3>
 </div>
 <div class="section" id="print-formatting">
 <h3>Print Formatting<a class="headerlink" href="#print-formatting" title="Permalink to this headline">¶</a></h3>
