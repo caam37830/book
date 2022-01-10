@@ -1,8 +1,7 @@
-
-
-- file: introduction
-  title: Start Here
-
+format: jb-article
+root: introduction
+title: Start Here
+sections:
 - file: 00_python/python
   sections:
   - file: 00_python/using_python
@@ -16,14 +15,12 @@
   - file: 00_python/iterators
   - file: 00_python/pyplot
   - file: 00_python/misc
-
 - file: 01_analysis/analysis
   sections:
   - file: 01_analysis/asymptotic_notation
   - file: 01_analysis/recursion
   - file: 01_analysis/convergence
   - file: 01_analysis/average_case
-
 - file: 02_linear_algebra/linear_algebra
   sections:
   - file: 02_linear_algebra/memory
@@ -35,11 +32,9 @@
   - file: 02_linear_algebra/pytorch
   - file: 02_linear_algebra/convolutions
   - file: 02_linear_algebra/fft
-
 - file: 03_optimization/optimization
   sections:
   - file: 03_optimization/scipy_opt
-
 - file: 04_functions/functions
   sections:
   - file: 04_functions/sympy
@@ -49,30 +44,24 @@
   - file: 04_functions/interpolation
   - file: 04_functions/integration
   - file: 04_functions/bvp
-
-
 - file: 05_graphs/graphs
   sections:
   - file: 05_graphs/networkx
   - file: 05_graphs/spectral
-
 - file: 06_probability_statistics/prob_stat
   sections:
   - file: 06_probability_statistics/generating_random
   - file: 06_probability_statistics/scipy_stats
-
 - file: 07_data/data
   sections:
   - file: 07_data/pandas
   - file: 07_data/sklearn
   - file: 07_data/dimension_reduction
   - file: 07_data/pytorch
-
 - file: 08_geometry/geometry
   sections:
   - file: 08_geometry/distances
   - file: 08_geometry/nearestneighbor
-
 - file: 09_computing/computing
   sections:
   - file: 09_computing/basic_bash
