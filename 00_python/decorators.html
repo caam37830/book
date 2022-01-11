@@ -630,14 +630,14 @@
 <p>Again, we want to write a function that wraps another function.  We can define this as</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">time</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">monotonic</span>
 
 <span class="k">def</span> <span class="nf">time_wrapper</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
     
     <span class="k">def</span> <span class="nf">inner_wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
+        <span class="n">t0</span> <span class="o">=</span> <span class="n">monotonic</span><span class="p">()</span>
         <span class="n">ret</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
+        <span class="n">t1</span> <span class="o">=</span> <span class="n">monotonic</span><span class="p">()</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> sec. elapsed&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t1</span> <span class="o">-</span> <span class="n">t0</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">ret</span>
     
@@ -657,16 +657,16 @@
 
 <span class="n">generate_random</span> <span class="o">=</span> <span class="n">time_wrapper</span><span class="p">(</span><span class="n">generate_random</span><span class="p">)</span>
 
-<span class="n">generate_random</span><span class="p">(</span><span class="mi">100000</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">generate_random</span><span class="p">(</span><span class="mi">100000</span><span class="p">)</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0010204315185546875 sec. elapsed
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.001354997992166318 sec. elapsed
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.45166009, 0.74411815, 0.08087183, ..., 0.22285726, 0.54752146,
-       0.80098863])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100000
 </pre></div>
 </div>
 </div>
@@ -686,11 +686,11 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0012459754943847656 sec. elapsed
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0011515039950609207 sec. elapsed
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.00810669, 0.35514188, 0.27539036, ..., 0.04644445, 0.05852395,
-       0.22021387])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.33319928, 0.004895  , 0.76005218, ..., 0.17565576, 0.96067993,
+       0.09966051])
 </pre></div>
 </div>
 </div>
@@ -720,9 +720,9 @@ inner_wrapper(*args, **kwargs)
     
     <span class="nd">@wraps</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">inner_wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
+        <span class="n">t0</span> <span class="o">=</span> <span class="n">monotonic</span><span class="p">()</span>
         <span class="n">ret</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
+        <span class="n">t1</span> <span class="o">=</span> <span class="n">monotonic</span><span class="p">()</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> sec. elapsed&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t1</span> <span class="o">-</span> <span class="n">t0</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">ret</span>
     
@@ -740,11 +740,11 @@ inner_wrapper(*args, **kwargs)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0009875297546386719 sec. elapsed
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.001442632987163961 sec. elapsed
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.91822091, 0.8017956 , 0.75401335, ..., 0.16734121, 0.74930175,
-       0.95564739])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.44753162, 0.09087641, 0.57884903, ..., 0.88053606, 0.67266288,
+       0.79162613])
 </pre></div>
 </div>
 </div>
