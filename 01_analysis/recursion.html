@@ -1033,7 +1033,7 @@
 <p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Master_theorem_(analysis_of_algorithms)">master theorem</a> helps us to obtain asymptotic time complexity for divide and conquer algorithms.  The first step is to write down the time it takes to run a function on input size <span class="math notranslate nohighlight">\(n\)</span>, <span class="math notranslate nohighlight">\(T(n)\)</span>, in terms of the time it takes to run subproblems
 $<span class="math notranslate nohighlight">\( T(n) = a T(n/b) + f(n)\)</span><span class="math notranslate nohighlight">\(
 where \)</span>f(n)$ is the work done to stitch the subproblems together.</p>
-<p>The critical exponent is defined as <span class="math notranslate nohighlight">\(c = \log_b a\)</span>.  There are three regimes:</p>
+<p>The critical exponent is defined as <span class="math notranslate nohighlight">\(c = \log_b a\)</span>.  The amount of work to complete all <em>trivial</em> subproblems is <span class="math notranslate nohighlight">\(\Theta(n^c)\)</span>.  There are three regimes:</p>
 <ol class="simple">
 <li><p><span class="math notranslate nohighlight">\(f(n) = o(n^c)\)</span>.  In this case, the work to do the subproblems dominate, and the time complexity is <span class="math notranslate nohighlight">\(T(n) = \Theta(n^c)\)</span>.</p></li>
 <li><p><span class="math notranslate nohighlight">\(f(n) = \Theta(n^c)\)</span>.  In this case, the work to do subproblems and combine them is comparible.  The complexity is <span class="math notranslate nohighlight">\(T(n) = \Theta(n^c \log n)\)</span></p></li>
