@@ -723,7 +723,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;__main__.Rational object at 0x7fd618590a00&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;__main__.Rational object at 0x7fdb8cebb970&gt;
 x = 1 / 2
 </pre></div>
 </div>
@@ -760,7 +760,7 @@ x = 1 / 2
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1 / 2
-&lt;__main__.Rational object at 0x7fd618590fd0&gt;
+&lt;__main__.Rational object at 0x7fdb8cea3790&gt;
 </pre></div>
 </div>
 </div>
@@ -790,13 +790,13 @@ x = 1 / 2
     
 
 <span class="n">x</span> <span class="o">=</span> <span class="n">Rational</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;x = </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
 <span class="n">x</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1 / 2
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>x = 1 / 2
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Rational(1, 2)
@@ -828,7 +828,7 @@ x = 1 / 2
     
     <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Rational addition</span>
+<span class="sd">        Rational addition, self + other</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Rational</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">p</span> <span class="o">*</span> <span class="n">other</span><span class="o">.</span><span class="n">q</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">q</span> <span class="o">*</span> <span class="n">other</span><span class="o">.</span><span class="n">p</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">q</span> <span class="o">*</span> <span class="n">other</span><span class="o">.</span><span class="n">q</span><span class="p">)</span>
     
@@ -1046,7 +1046,7 @@ x = 1 / 2
         
         <span class="bp">self</span><span class="o">.</span><span class="n">p</span> <span class="o">=</span> <span class="n">p</span> <span class="c1"># store p as a parameter</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">q</span> <span class="o">=</span> <span class="n">q</span> <span class="c1"># store q as a parameter</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">simplify</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_simplify</span><span class="p">()</span>
         
     <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="si">}</span><span class="s2"> / </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">q</span><span class="si">}</span><span class="s2">&quot;</span>
@@ -1078,7 +1078,7 @@ x = 1 / 2
     <span class="k">def</span> <span class="fm">__abs__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">Rational</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">q</span><span class="p">)</span>
     
-    <span class="k">def</span> <span class="nf">simplify</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_simplify</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        simplify fraction to lowest terms, and ensure denominator is positive</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -1152,6 +1152,7 @@ x = 1 / 2
     <span class="k">def</span> <span class="fm">__rmul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This is called if the other type is multiplied on the left</span>
+<span class="sd">        other * self</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">numbers</span><span class="o">.</span><span class="n">Number</span><span class="p">):</span>
             <span class="c1"># other is a scalar</span>
@@ -1210,19 +1211,19 @@ x = 1 / 2
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 <span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">A</span> <span class="o">*</span> <span class="n">x</span>
 
-<span class="nn">&lt;ipython-input-12-2c1b2d289ea5&gt;</span> in <span class="ni">__mul__</span><span class="nt">(self, other)</span>
+<span class="nn">&lt;ipython-input-12-db0b9c4e454d&gt;</span> in <span class="ni">__mul__</span><span class="nt">(self, other)</span>
 <span class="g g-Whitespace">     </span><span class="mi">44</span>         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
 <span class="g g-Whitespace">     </span><span class="mi">45</span>             <span class="c1"># other is a vector</span>
 <span class="ne">---&gt; </span><span class="mi">46</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
 <span class="g g-Whitespace">     </span><span class="mi">47</span>         <span class="k">else</span><span class="p">:</span>
 <span class="g g-Whitespace">     </span><span class="mi">48</span>             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;unsupported type for multiplication&#39;</span><span class="p">)</span>
 
-<span class="nn">&lt;ipython-input-12-2c1b2d289ea5&gt;</span> in <span class="ni">matmul</span><span class="nt">(self, x)</span>
-<span class="g g-Whitespace">     </span><span class="mi">65</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">@</span> <span class="n">x</span> <span class="c1"># numpy matrix-vector multiplication</span>
-<span class="g g-Whitespace">     </span><span class="mi">66</span>         <span class="k">else</span><span class="p">:</span>
-<span class="ne">---&gt; </span><span class="mi">67</span>             <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;matmul&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">68</span> 
-<span class="g g-Whitespace">     </span><span class="mi">69</span>     <span class="k">def</span> <span class="nf">trace</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="nn">&lt;ipython-input-12-db0b9c4e454d&gt;</span> in <span class="ni">matmul</span><span class="nt">(self, x)</span>
+<span class="g g-Whitespace">     </span><span class="mi">66</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">@</span> <span class="n">x</span> <span class="c1"># numpy matrix-vector multiplication</span>
+<span class="g g-Whitespace">     </span><span class="mi">67</span>         <span class="k">else</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">68</span>             <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;matmul&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">69</span> 
+<span class="g g-Whitespace">     </span><span class="mi">70</span>     <span class="k">def</span> <span class="nf">trace</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 
 <span class="ne">NotImplementedError</span>: matmul
 </pre></div>
@@ -1241,7 +1242,7 @@ x = 1 / 2
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LinearMap(&lt;class &#39;numpy.ndarray&#39;&gt;)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.64580206, 0.54912683])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.19703971, 0.07614441])
 </pre></div>
 </div>
 </div>
@@ -1307,13 +1308,14 @@ x = 1 / 2
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">SumMap</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
 <span class="n">A</span> <span class="o">*</span> <span class="n">x</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([5., 5.])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[5.],
+       [5.]])
 </pre></div>
 </div>
 </div>
@@ -1331,7 +1333,8 @@ x = 1 / 2
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ProdMap(SumMap(3, 2), SumMap(3, 2))
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([25., 25.])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[25.],
+       [25.]])
 </pre></div>
 </div>
 </div>
@@ -1366,7 +1369,7 @@ x = 1 / 2
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-37.90871169880462, -37.908711698804574)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-124.50961244079777, -124.50961244079781)
 </pre></div>
 </div>
 </div>
@@ -1391,12 +1394,13 @@ x = 1 / 2
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>time elapsed: 0.021671325957868248 sec.
-time elapsed: 0.0009547020308673382 sec.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>time elapsed: 0.02155948698054999 sec.
+time elapsed: 0.0008220209856517613 sec.
 </pre></div>
 </div>
 </div>
 </div>
+<p>Why is the <code class="docutils literal notranslate"><span class="pre">ProdMap</span></code> faster?  One way to reason about this is that it only stores about 1/100th of the data of the dense matrix: <span class="math notranslate nohighlight">\((2000 \times 10 \times 2) / (2000 \times 2000)  = 1/100\)</span>.  Because matrix-vector multiplication requires us to look at every element of the matrix, it should take about 1/100th of the time to loop over the data in <code class="docutils literal notranslate"><span class="pre">ProdMap</span></code> (there’s more to consider, but this is an ok rule of thumb).</p>
 <div class="section" id="id1">
 <h3>Exercise<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="part-1-more-derived-classes">
@@ -1522,7 +1526,7 @@ where <code class="docutils literal notranslate"><span class="pre">tol</span></c
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100.99999999999996
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>101.00000000000001
 </pre></div>
 </div>
 </div>
@@ -1535,7 +1539,7 @@ where <code class="docutils literal notranslate"><span class="pre">tol</span></c
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0145630219268167
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0072034638701906
 </pre></div>
 </div>
 </div>
