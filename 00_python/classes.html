@@ -723,7 +723,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;__main__.Rational object at 0x7f02752489d0&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;__main__.Rational object at 0x7fd618590a00&gt;
 x = 1 / 2
 </pre></div>
 </div>
@@ -760,12 +760,12 @@ x = 1 / 2
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1 / 2
-&lt;__main__.Rational object at 0x7f02752305b0&gt;
+&lt;__main__.Rational object at 0x7fd618590fd0&gt;
 </pre></div>
 </div>
 </div>
 </div>
-<p>However, the <code class="docutils literal notranslate"><span class="pre">tostring</span></code> method doesn’t play nicely with things like <code class="docutils literal notranslate"><span class="pre">print</span></code>.  The solution is to use one of Python’s <a class="reference external" href="https://www.geeksforgeeks.org/dunder-magic-methods-python/">dunder (“magic”) methods</a>.  These are special methods, always surrounded by a double underscore (like <code class="docutils literal notranslate"><span class="pre">__init__</span></code>), which Python knows to look for in certain situations.</p>
+<p>However, the <code class="docutils literal notranslate"><span class="pre">tostring</span></code> method doesn’t play nicely with things like <code class="docutils literal notranslate"><span class="pre">print</span></code>.  The solution is to use one of Python’s <a class="reference external" href="https://www.geeksforgeeks.org/dunder-magic-methods-python/">dunder (“magic”) methods</a>.  These are special methods, always surrounded by a double underscore (“dunder” = “Double UNDERscore”) like <code class="docutils literal notranslate"><span class="pre">__init__</span></code>, which Python knows to look for in certain situations.</p>
 <p>The magic method to turn an object into a string is the <code class="docutils literal notranslate"><span class="pre">__str__()</span></code> method.</p>
 <p>The <a class="reference external" href="https://docs.python.org/3/reference/datamodel.html#object.__repr__"><code class="docutils literal notranslate"><span class="pre">__repr__()</span></code> method</a> is the official representation of the object.</p>
 <div class="cell docutils container">
@@ -1111,6 +1111,17 @@ x = 1 / 2
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
         
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">shape</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        return the shape of the Linear Map</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span> <span class="ow">is</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span> <span class="c1"># assume data has a shape</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span> <span class="c1"># indeterminate shape</span>
+ 
+        
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;LinearMap(</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span><span class="si">}</span><span class="s2">)&quot;</span>
     
@@ -1156,6 +1167,26 @@ x = 1 / 2
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">@</span> <span class="n">x</span> <span class="c1"># numpy matrix-vector multiplication</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;matmul&quot;</span><span class="p">)</span>
+            
+    <span class="k">def</span> <span class="nf">trace</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute the trace of LinearMap, assuming shape is determinate</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+                <span class="n">n</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">s</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># running sum</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+                    <span class="n">ei</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+                    <span class="n">ei</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+                    <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">ei</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">ei</span><span class="p">))</span>
+                <span class="k">return</span> <span class="n">s</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;LinearMap is not square!&#39;</span><span class="p">)</span>
+        
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;LinearMap has indeterminate shape&#39;</span><span class="p">)</span>
+            
     
 <span class="n">x</span> <span class="o">=</span> <span class="n">LinearMap</span><span class="p">()</span>
 </pre></div>
@@ -1179,19 +1210,19 @@ x = 1 / 2
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 <span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">A</span> <span class="o">*</span> <span class="n">x</span>
 
-<span class="nn">&lt;ipython-input-12-fa19717cfba9&gt;</span> in <span class="ni">__mul__</span><span class="nt">(self, other)</span>
-<span class="g g-Whitespace">     </span><span class="mi">33</span>         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
-<span class="g g-Whitespace">     </span><span class="mi">34</span>             <span class="c1"># other is a vector</span>
-<span class="ne">---&gt; </span><span class="mi">35</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">36</span>         <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">37</span>             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;unsupported type for multiplication&#39;</span><span class="p">)</span>
+<span class="nn">&lt;ipython-input-12-2c1b2d289ea5&gt;</span> in <span class="ni">__mul__</span><span class="nt">(self, other)</span>
+<span class="g g-Whitespace">     </span><span class="mi">44</span>         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">45</span>             <span class="c1"># other is a vector</span>
+<span class="ne">---&gt; </span><span class="mi">46</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">47</span>         <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">48</span>             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;unsupported type for multiplication&#39;</span><span class="p">)</span>
 
-<span class="nn">&lt;ipython-input-12-fa19717cfba9&gt;</span> in <span class="ni">matmul</span><span class="nt">(self, x)</span>
-<span class="g g-Whitespace">     </span><span class="mi">54</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">@</span> <span class="n">x</span> <span class="c1"># numpy matrix-vector multiplication</span>
-<span class="g g-Whitespace">     </span><span class="mi">55</span>         <span class="k">else</span><span class="p">:</span>
-<span class="ne">---&gt; </span><span class="mi">56</span>             <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;matmul&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">57</span> 
-<span class="g g-Whitespace">     </span><span class="mi">58</span> <span class="n">x</span> <span class="o">=</span> <span class="n">LinearMap</span><span class="p">()</span>
+<span class="nn">&lt;ipython-input-12-2c1b2d289ea5&gt;</span> in <span class="ni">matmul</span><span class="nt">(self, x)</span>
+<span class="g g-Whitespace">     </span><span class="mi">65</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">@</span> <span class="n">x</span> <span class="c1"># numpy matrix-vector multiplication</span>
+<span class="g g-Whitespace">     </span><span class="mi">66</span>         <span class="k">else</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">67</span>             <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;matmul&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">68</span> 
+<span class="g g-Whitespace">     </span><span class="mi">69</span>     <span class="k">def</span> <span class="nf">trace</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 
 <span class="ne">NotImplementedError</span>: matmul
 </pre></div>
@@ -1210,7 +1241,20 @@ x = 1 / 2
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LinearMap(&lt;class &#39;numpy.ndarray&#39;&gt;)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.74154371, 0.60215795])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.64580206, 0.54912683])
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">&#64;property</span></code> decorator makes a method accessible as a property</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(2, 2)
 </pre></div>
 </div>
 </div>
@@ -1225,6 +1269,11 @@ x = 1 / 2
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">A</span> <span class="o">=</span> <span class="n">A</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">B</span> <span class="o">=</span> <span class="n">B</span>
+        
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">shape</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">B</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        
         
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;ProdMap(</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">B</span><span class="si">}</span><span class="s2">)&quot;</span>
@@ -1241,6 +1290,10 @@ x = 1 / 2
         <span class="bp">self</span><span class="o">.</span><span class="n">A</span> <span class="o">=</span> <span class="n">A</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">B</span> <span class="o">=</span> <span class="n">B</span>
         
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">shape</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">B</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">B</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;SumMap(</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">B</span><span class="si">}</span><span class="s2">)&quot;</span>
         
@@ -1308,31 +1361,38 @@ x = 1 / 2
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">time</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">AB2</span><span class="o">.</span><span class="n">trace</span><span class="p">(),</span> <span class="n">AB</span><span class="o">.</span><span class="n">trace</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-37.90871169880462, -37.908711698804574)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-<span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">monotonic</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">AB</span> <span class="o">@</span> <span class="n">x</span>
-<span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
+<span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">monotonic</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;time elapsed: </span><span class="si">{}</span><span class="s2"> sec.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t1</span> <span class="o">-</span> <span class="n">t0</span><span class="p">))</span>
 
-<span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
+<span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">monotonic</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">AB2</span> <span class="o">*</span> <span class="n">x</span>
-<span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
+<span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">monotonic</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;time elapsed: </span><span class="si">{}</span><span class="s2"> sec.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t1</span> <span class="o">-</span> <span class="n">t0</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>time elapsed: 0.021643877029418945 sec.
-time elapsed: 0.0009124279022216797 sec.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>time elapsed: 0.021671325957868248 sec.
+time elapsed: 0.0009547020308673382 sec.
 </pre></div>
 </div>
 </div>
@@ -1385,7 +1445,7 @@ where <code class="docutils literal notranslate"><span class="pre">tol</span></c
 <span class="sd">    &quot;&quot;&quot;</span>
     
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">pass</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="kc">None</span>
     
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s2">&quot;IdentityMap()&quot;</span>
@@ -1400,6 +1460,10 @@ where <code class="docutils literal notranslate"><span class="pre">tol</span></c
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">A</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">A</span> <span class="o">=</span> <span class="n">A</span>
+        
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">shape</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s2">&quot;SymmetricMap(</span><span class="si">{}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">A</span><span class="p">))</span>
@@ -1451,6 +1515,18 @@ where <code class="docutils literal notranslate"><span class="pre">tol</span></c
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="o">.</span><span class="n">trace</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100.99999999999996
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
@@ -1459,7 +1535,7 @@ where <code class="docutils literal notranslate"><span class="pre">tol</span></c
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.005687501452982
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0145630219268167
 </pre></div>
 </div>
 </div>
