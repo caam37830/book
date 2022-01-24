@@ -768,6 +768,58 @@ $<span class="math notranslate nohighlight">\( x_{k+1} = x_{k} - \frac{f(x_{k})}
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Your code here</span>
+<span class="k">def</span> <span class="nf">bisection_root_recursive</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">lb</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">ub</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    search for a root of f between lower bound and upper bound</span>
+<span class="sd">    </span>
+<span class="sd">    inputs:</span>
+<span class="sd">        f - function</span>
+<span class="sd">        lb - lower bound of interval containing root</span>
+<span class="sd">        ub - upper bound of interval containing root</span>
+<span class="sd">        tol - tolerance for deciding if we&#39;ve found root i.e. |f(x)| &lt; tol</span>
+<span class="sd">        </span>
+<span class="sd">    assume f(lb) &lt; 0 &lt; f(ub)</span>
+<span class="sd">    </span>
+<span class="sd">    returns:</span>
+<span class="sd">        x - root satisfying |f(x)| &lt; tol</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">bisection_root_recursive</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">lb</span><span class="o">=-</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">ub</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    search for a root of f between lower bound and upper bound</span>
+<span class="sd">    </span>
+<span class="sd">    inputs:</span>
+<span class="sd">        f - function</span>
+<span class="sd">        lb - lower bound of interval containing root</span>
+<span class="sd">        ub - upper bound of interval containing root</span>
+<span class="sd">        tol - tolerance for deciding if we&#39;ve found root i.e. |f(x)| &lt; tol</span>
+<span class="sd">        </span>
+<span class="sd">    assume f(lb) &lt; 0 &lt; f(ub)</span>
+<span class="sd">    </span>
+<span class="sd">    returns:</span>
+<span class="sd">        x - root satisfying |f(x)| &lt; tol</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="n">lb</span> <span class="o">+</span> <span class="n">ub</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+    <span class="n">fx</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">fx</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">tol</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">x</span>
+    <span class="k">elif</span> <span class="n">fx</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">bisection_root_recursive</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">lb</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">ub</span><span class="o">=</span><span class="n">ub</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="n">tol</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span><span class="c1"># fx &gt; 0</span>
+        <span class="k">return</span> <span class="n">bisection_root_recursive</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">lb</span><span class="o">=</span><span class="n">lb</span><span class="p">,</span> <span class="n">ub</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="n">tol</span><span class="p">)</span>
+    
+<span class="n">bisection_root_recursive</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.00006103515625
 </pre></div>
 </div>
 </div>
@@ -894,7 +946,7 @@ $<span class="math notranslate nohighlight">\( x_{k+1} = x_{k} - \frac{f(x_{k})}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/roots_17_0.png" src="../_images/roots_17_0.png" />
+<img alt="../_images/roots_18_0.png" src="../_images/roots_18_0.png" />
 </div>
 </div>
 <p>The below function comes from the section on <a class="reference internal" href="../01_analysis/convergence.html"><span class="doc std std-doc">convergence</span></a>:</p>

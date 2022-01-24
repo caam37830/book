@@ -666,16 +666,22 @@
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="convergence-of-algorithms">
 <h1>Convergence of Algorithms<a class="headerlink" href="#convergence-of-algorithms" title="Permalink to this headline">¶</a></h1>
-<p>Many numerical algorithms <em>converge</em> to a solution, meaning they produce better and better approximations to a solution.  We’ll let <span class="math notranslate nohighlight">\(x_\ast\)</span> denote the true solution, and <span class="math notranslate nohighlight">\(x_k\)</span> denote the <span class="math notranslate nohighlight">\(k\)</span>th iterate of an algorithm.  Let <span class="math notranslate nohighlight">\(\epsilon_k = |x_k - x_\ast|\)</span> denote the <em>error</em>.  An algorithm converges if
-$<span class="math notranslate nohighlight">\(\lim_{k\to\infty} \epsilon_k = 0\)</span>$</p>
+<p>Many numerical algorithms <em>converge</em> to a solution, meaning they produce better and better approximations to a solution.  We’ll let <span class="math notranslate nohighlight">\(x_\ast\)</span> denote the true solution, and <span class="math notranslate nohighlight">\(x_k\)</span> denote the <span class="math notranslate nohighlight">\(k\)</span>th iterate of an algorithm.  Let <span class="math notranslate nohighlight">\(\epsilon_k = |x_k - x_\ast|\)</span> denote the <em>error</em>.  An algorithm converges if</p>
+<div class="math notranslate nohighlight">
+\[
+\lim_{k\to\infty} \epsilon_k = 0
+\]</div>
 <p>In practice, we typically don’t know the value of <span class="math notranslate nohighlight">\(x_\ast\)</span>.  We can either truncate the algorithm after <span class="math notranslate nohighlight">\(N\)</span> iterations, in which case we estimate <span class="math notranslate nohighlight">\(\tilde{\epsilon}_k = |x_k - x_N|\)</span></p>
 <p>Alternatively, we can monitor the difference <span class="math notranslate nohighlight">\(\delta_k = |x_k - x_{k-1}|\)</span>.  If the algorithm is converging, we expect <span class="math notranslate nohighlight">\(\delta_k \to 0\)</span> as well, and we can stop the algorithm when <span class="math notranslate nohighlight">\(\delta_k\)</span> is sufficiently small.</p>
 <p>In this class, we aren’t going to worry too much about proving that algorithms converge.  However, we do want to be able verify that an algorithm is converging, measure the <em>rate</em> of convergence, and generally compare two algorithms using experimental convergence data.</p>
 <div class="section" id="rate-of-convergence">
 <h2>Rate of Convergence<a class="headerlink" href="#rate-of-convergence" title="Permalink to this headline">¶</a></h2>
-<p>There are a <a class="reference external" href="https://en.wikipedia.org/wiki/Rate_of_convergence">variety of ways</a> in which the rate of convergence is defined.  Mostly, we’re interested in the ratio <span class="math notranslate nohighlight">\(\epsilon_{k+1} / \epsilon_k\)</span>.  We say the convergence of <span class="math notranslate nohighlight">\(\epsilon\)</span> is of order <span class="math notranslate nohighlight">\(q\)</span> if
-$<span class="math notranslate nohighlight">\(\lim_{k\to \infty} \frac{\epsilon_{k+1}}{\epsilon_k^q} &lt; C\)</span><span class="math notranslate nohighlight">\(
-for some constant \)</span>C&gt; 0$.</p>
+<p>There are a <a class="reference external" href="https://en.wikipedia.org/wiki/Rate_of_convergence">variety of ways</a> in which the rate of convergence is defined.  Mostly, we’re interested in the ratio <span class="math notranslate nohighlight">\(\epsilon_{k+1} / \epsilon_k\)</span>.  We say the convergence of <span class="math notranslate nohighlight">\(\epsilon\)</span> is of order <span class="math notranslate nohighlight">\(q\)</span> if</p>
+<div class="math notranslate nohighlight">
+\[
+\lim_{k\to \infty} \frac{\epsilon_{k+1}}{\epsilon_k^q} &lt; C
+\]</div>
+<p>for some constant <span class="math notranslate nohighlight">\(C&gt; 0\)</span>.</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(q = 1\)</span> and <span class="math notranslate nohighlight">\(C \in (0,1)\)</span> is called <em>linear</em> convergence</p></li>
 <li><p><span class="math notranslate nohighlight">\(q = 2\)</span> is called <em>quadratic</em> convergence</p></li>
