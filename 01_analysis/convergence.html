@@ -834,6 +834,55 @@
 <li><p>Generate a converging sequence with <span class="math notranslate nohighlight">\(q = 1.5\)</span>, and estimate <span class="math notranslate nohighlight">\(q\)</span> using the above method</p></li>
 <li><p>Generate sublinear sequences with <span class="math notranslate nohighlight">\(\epsilon_k = 1/k\)</span> (as above) for lengths 50, 100, 500, 1000, 5000, and 10000. How does our estimate of <span class="math notranslate nohighlight">\(q\)</span> change with the length of the sequence?</p></li>
 </ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># generates a quadratically converging sequence</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">9</span>
+<span class="n">C</span> <span class="o">=</span> <span class="mf">1.5</span>
+<span class="n">q</span> <span class="o">=</span> <span class="mf">1.5</span>
+<span class="n">eps2</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">eps2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">C</span> <span class="o">*</span> <span class="n">eps2</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="n">q</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">eps2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\epsilon$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;q = </span><span class="si">{}</span><span class="s2"> convergence&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">q</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/convergence_12_0.png" src="../_images/convergence_12_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gen_sublinear</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">eps</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">eps</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mf">1.0</span><span class="o">/</span><span class="n">k</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">eps</span>
+
+<span class="n">ns</span> <span class="o">=</span> <span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">5000</span><span class="p">,</span> <span class="mi">10000</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">ns</span><span class="p">:</span>
+    <span class="n">eps</span> <span class="o">=</span> <span class="n">gen_sublinear</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">estimate_q</span><span class="p">(</span><span class="n">eps</span><span class="p">))</span>
+    
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9466399163308074
+0.9720402367424485
+0.994118748919332
+0.9970337839193604
+0.9994017352310425
+0.9997004753046203
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>

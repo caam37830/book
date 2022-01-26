@@ -691,7 +691,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.87 µs ± 57.6 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.68 µs ± 118 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
 </pre></div>
 </div>
 </div>
@@ -703,7 +703,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.93 µs ± 132 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.85 µs ± 198 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
 </pre></div>
 </div>
 </div>
@@ -723,7 +723,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.78 µs ± 126 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.81 µs ± 189 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
 </pre></div>
 </div>
 </div>
@@ -735,7 +735,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.85 µs ± 101 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.86 µs ± 107 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
 </pre></div>
 </div>
 </div>
@@ -757,7 +757,7 @@
 As we go down the list, the amount of available storage decreases, but we are able to access data much faster.
 We can access CPU registers in 1 clock cycle, but we can only hold a small number (e.g. 8) 64-bit floats.</p>
 <p>When you loop over an array, memory is copied from one location to the next down the list.  Usually you’re going to start in RAM, where you generate data or load from disk.</p>
-<p>Every element in an array has a unique address (in RAM) - for a 64-bit architecture, every address is for a 64-bit (8-byte) word.  This will hold exactly one 64-bit float.</p>
+<p>Every element in an array has a unique address (in RAM) - for a 64-bit architecture, every address is for a 64-bit (8-byte) word.  This will hold exactly one 64-bit double.</p>
 <p>Typically, arrays are stored in contiguous blocks of memory, meaning that the first element is stored at some address <code class="docutils literal notranslate"><span class="pre">a</span></code>, the second element is stored at the address <code class="docutils literal notranslate"><span class="pre">a+1</span></code> (64-bits later), and generally the ith element is stored at address <code class="docutils literal notranslate"><span class="pre">a+i</span></code></p>
 <p>An array will contain a pointer to the start of the data (i.e. the address of the start of the array), and when you get an element of an array <code class="docutils literal notranslate"><span class="pre">x[i]</span></code>, you first look up the starting address <code class="docutils literal notranslate"><span class="pre">a</span></code>, and then look up the data in address <code class="docutils literal notranslate"><span class="pre">a+i</span></code>.</p>
 <div class="cell docutils container">
@@ -771,7 +771,7 @@ We can access CPU registers in 1 clock cycle, but we can only hold a small numbe
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0 1 2 3 4]
-&lt;memory at 0x7f8870920580&gt;
+&lt;memory at 0x7fb710660580&gt;
 </pre></div>
 </div>
 </div>
@@ -809,7 +809,7 @@ We can access CPU registers in 1 clock cycle, but we can only hold a small numbe
 <p>Two-dimensional arrays have two indices, so at most one of them can be used to access adjacent addresses in memory.  If we store rows (1st index) of a 2-dimensional array in contiguous memory, we say the array is in <strong>row major</strong> format.  If we store columns (2nd index) of a 2-dimensional array in contiguous memory, we say the array is in <strong>column major</strong> format.</p>
 <p>C/C++ and Python store multi-dimensional arrays in <strong>row major</strong> format</p>
 <p>Fortran, Matlab, R, and Julia store multi-dimensional arrays in <strong>column major</strong> format</p>
-<p>Because numerical libraries are often written in C/C++ or Fortran, there will be no end to having to worry about row vs. column major formats in scientific computing.  However, for a variety of reasons column major is considered the default.</p>
+<p>Because numerical libraries are often written in C/C++ or Fortran, there will be no end to having to worry about row vs. column major formats in scientific computing.  However, for a variety of reasons column major is considered the default (in particular, BLAS is column-major).</p>
 <p>Numpy supports both row and column major format, but is row-major by default.  You can see this by accessing the <code class="docutils literal notranslate"><span class="pre">flags</span></code> field</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -943,7 +943,7 @@ Column major:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22 ms ± 440 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>23.3 ms ± 1.56 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre></div>
 </div>
 </div>
@@ -955,7 +955,7 @@ Column major:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>44.2 ms ± 2.2 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>44.4 ms ± 1.39 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre></div>
 </div>
 </div>
@@ -981,7 +981,7 @@ Column major:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>40.7 ms ± 473 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>40.3 ms ± 617 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre></div>
 </div>
 </div>
@@ -993,7 +993,7 @@ Column major:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10.5 ms ± 996 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9.45 ms ± 276 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
 </pre></div>
 </div>
 </div>
@@ -1039,7 +1039,7 @@ Column major:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>21.9 ms ± 707 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22.5 ms ± 617 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre></div>
 </div>
 </div>
@@ -1051,7 +1051,7 @@ Column major:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9.28 ms ± 134 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9.79 ms ± 264 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
 </pre></div>
 </div>
 </div>
@@ -1064,7 +1064,7 @@ Column major:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9.42 ms ± 220 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9.73 ms ± 383 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
 </pre></div>
 </div>
 </div>
@@ -1111,7 +1111,7 @@ Column major:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8.9 ms ± 501 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9.57 ms ± 620 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
 </pre></div>
 </div>
 </div>
@@ -1123,7 +1123,7 @@ Column major:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8.99 ms ± 98.6 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9.28 ms ± 286 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
 </pre></div>
 </div>
 </div>
