@@ -739,7 +739,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;SuperLU at 0x7f03aa6afae0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;SuperLU at 0x7f8e7ea24ae0&gt;
 </pre></div>
 </div>
 </div>
@@ -756,7 +756,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8.488471886679091e-16
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7.860388883948672e-16
 </pre></div>
 </div>
 </div>
@@ -770,7 +770,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8.488471886679091e-16
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7.860388883948672e-16
 </pre></div>
 </div>
 </div>
@@ -796,7 +796,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.1880734830669155e-07
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0430853509559895e-07
 </pre></div>
 </div>
 </div>
@@ -819,8 +819,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GMRES in 0.0008304119110107422 sec.
-spsolve in 0.0009243488311767578 sec.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GMRES in 0.0008144378662109375 sec.
+spsolve in 0.000492095947265625 sec.
 </pre></div>
 </div>
 </div>
@@ -865,7 +865,7 @@ spsolve in 0.0009243488311767578 sec.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.979534604436364e-15
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.6754435310081238e-15
 </pre></div>
 </div>
 </div>
@@ -875,22 +875,22 @@ spsolve in 0.0009243488311767578 sec.
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
 <span class="n">x2</span><span class="p">,</span> <span class="n">exit</span> <span class="o">=</span> <span class="n">sla</span><span class="o">.</span><span class="n">gmres</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
 <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;GMRES in </span><span class="si">{}</span><span class="s2"> sec.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t1</span> <span class="o">-</span> <span class="n">t0</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;GMRES in </span><span class="si">{:.3e}</span><span class="s2"> sec.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t1</span> <span class="o">-</span> <span class="n">t0</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x2</span> <span class="o">-</span> <span class="n">x</span><span class="p">))</span>
 
 <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
 <span class="n">x2</span><span class="p">,</span> <span class="n">exit</span> <span class="o">=</span> <span class="n">sla</span><span class="o">.</span><span class="n">gmres</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">M</span><span class="o">=</span><span class="n">M</span><span class="p">)</span>
 <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;preconditioned GMRES in </span><span class="si">{}</span><span class="s2"> sec.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t1</span> <span class="o">-</span> <span class="n">t0</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;preconditioned GMRES in </span><span class="si">{:.3e}</span><span class="s2"> sec.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t1</span> <span class="o">-</span> <span class="n">t0</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x2</span> <span class="o">-</span> <span class="n">x</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GMRES in 0.0012965202331542969 sec.
-3.678662916418831e-05
-preconditioned GMRES in 0.0009918212890625 sec.
-1.979534604436364e-15
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GMRES in 8.023e-04 sec.
+9.158821829392305e-05
+preconditioned GMRES in 9.449e-04 sec.
+1.6754435310081238e-15
 </pre></div>
 </div>
 </div>
@@ -971,7 +971,7 @@ preconditioned GMRES in 0.0009918212890625 sec.
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy.linalg</span> <span class="k">as</span> <span class="nn">la</span>
 
-<span class="k">def</span> <span class="nf">random_span_k</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">power</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">random_span_k_svd</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">power</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Compute subspace whose span is close to contaning the top-k eigenspace of A</span>
 <span class="sd">    </span>
@@ -995,6 +995,39 @@ preconditioned GMRES in 0.0009918212890625 sec.
 </div>
 </div>
 </div>
+<p>Here’s a version that uses <code class="docutils literal notranslate"><span class="pre">orgqr</span></code> from LAPACK</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.linalg</span> <span class="kn">import</span> <span class="n">lapack</span>
+
+<span class="k">def</span> <span class="nf">random_span_k</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">power</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute subspace whose span is close to contaning the top-k eigenspace of A</span>
+<span class="sd">    </span>
+<span class="sd">    p = number of dimensions to pad</span>
+<span class="sd">    power : number of times to run a power iteration on the subspace</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">m</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span>
+        
+    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="o">+</span><span class="n">p</span><span class="p">)</span>
+    <span class="n">Y</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">X</span>
+    
+    <span class="n">m</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">Y</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">lwork</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">qr</span><span class="p">,</span> <span class="n">tau</span><span class="p">,</span> <span class="n">work</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">lapack</span><span class="o">.</span><span class="n">dgeqrf</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span> <span class="n">lwork</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># overwrite A = True</span>
+    <span class="n">Y</span><span class="p">,</span> <span class="n">work</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">lapack</span><span class="o">.</span><span class="n">dorgqr</span><span class="p">(</span><span class="n">qr</span><span class="p">,</span> <span class="n">tau</span><span class="p">,</span> <span class="n">lwork</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># overwrite qr = True</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">power</span><span class="p">):</span>
+        <span class="n">Y</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">Y</span>
+        <span class="n">qr</span><span class="p">,</span> <span class="n">tau</span><span class="p">,</span> <span class="n">work</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">lapack</span><span class="o">.</span><span class="n">dgeqrf</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span> <span class="n">lwork</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># overwrite A = True</span>
+        <span class="n">Y</span><span class="p">,</span> <span class="n">work</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">lapack</span><span class="o">.</span><span class="n">dorgqr</span><span class="p">(</span><span class="n">qr</span><span class="p">,</span> <span class="n">tau</span><span class="p">,</span> <span class="n">lwork</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># overwrite qr = True</span>
+    
+    
+    <span class="k">return</span> <span class="n">Y</span>
+</pre></div>
+</div>
+</div>
+</div>
 <p>Let’s test this on a diagonal matrix with entries 0 to <code class="docutils literal notranslate"><span class="pre">n-1</span></code> along the main diagonal.  In this case, the eigenvalues are integers, and the eigenvectors are the standard basis vectors.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1007,6 +1040,38 @@ preconditioned GMRES in 0.0009918212890625 sec.
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;100x100 sparse matrix of type &#39;&lt;class &#39;numpy.int64&#39;&gt;&#39;
 	with 100 stored elements (1 diagonals) in DIAgonal format&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s compare the two versions</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">k</span> <span class="o">=</span> <span class="mi">5</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> U = random_span_k_svd(D, k)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>386 µs ± 1.47 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> U = random_span_k(D, k)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>284 µs ± 7.5 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
 </pre></div>
 </div>
 </div>
@@ -1040,114 +1105,20 @@ preconditioned GMRES in 0.0009918212890625 sec.
 <p>Let’s take a look at how well <code class="docutils literal notranslate"><span class="pre">U</span></code> captures each eigenvector.  The distance from this subspace from the <code class="docutils literal notranslate"><span class="pre">i</span></code>th eigenvector is <code class="docutils literal notranslate"><span class="pre">norm(V[:,i].T*U)</span></code>.  Because the eigenvectors are canonical basis vectors, this is just the norm of the <code class="docutils literal notranslate"><span class="pre">i</span></code>th row of <code class="docutils literal notranslate"><span class="pre">U</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:02d}</span><span class="s2"> : </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">U</span><span class="p">[</span><span class="n">i</span><span class="p">])))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Ui_norms</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">Ui_norms</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">U</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+<span class="c1">#     print(&quot;{:02d} : {}&quot;.format(i, np.linalg.norm(U[i])))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Ui_norms</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;eigenvector&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;weight&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>00 : 2.038724493704508e-16
-01 : 0.004056739998784409
-02 : 0.016190052096713613
-03 : 0.0178214159568191
-04 : 0.05463525867968747
-05 : 0.03459108389717204
-06 : 0.046557813669655626
-07 : 0.041719258893748064
-08 : 0.0748830408440591
-09 : 0.05863590174372426
-10 : 0.07818974263881993
-11 : 0.07199539189015432
-12 : 0.08445181727568116
-13 : 0.10190096019399124
-14 : 0.10864582751473234
-15 : 0.13089439401126057
-16 : 0.08302212444831711
-17 : 0.14735828776422422
-18 : 0.20443429778079428
-19 : 0.10488486943882215
-20 : 0.13718568872065046
-21 : 0.21393424578081427
-22 : 0.17103432050071699
-23 : 0.14666212154521358
-24 : 0.20360781009844117
-25 : 0.13020743881967228
-26 : 0.16946918099810768
-27 : 0.22246521577280937
-28 : 0.24120247005265882
-29 : 0.15135193515407372
-30 : 0.2158038989241644
-31 : 0.2545254839954589
-32 : 0.18050480453610454
-33 : 0.2258147777582025
-34 : 0.20909170072923305
-35 : 0.2108176055896858
-36 : 0.3021729610158541
-37 : 0.20850340114392743
-38 : 0.33153196843144545
-39 : 0.34181663099939175
-40 : 0.31435177010566356
-41 : 0.2918245984109002
-42 : 0.26118412878780956
-43 : 0.29386526737149
-44 : 0.3787987491804566
-45 : 0.2779191173591876
-46 : 0.3646662465817297
-47 : 0.3919028292329545
-48 : 0.3225243981805606
-49 : 0.41788253969284744
-50 : 0.3556118103078301
-51 : 0.3562788550570397
-52 : 0.37137982404498626
-53 : 0.3203141074840623
-54 : 0.3286419899542942
-55 : 0.4313182154007324
-56 : 0.35947548632860715
-57 : 0.46052093958124074
-58 : 0.34210011867524526
-59 : 0.3574184813655678
-60 : 0.47118101964139664
-61 : 0.4104567687059172
-62 : 0.34060144143767723
-63 : 0.4342464699595759
-64 : 0.35697955723349684
-65 : 0.430443423256608
-66 : 0.5648556425253082
-67 : 0.3400758040966315
-68 : 0.6077894358213017
-69 : 0.5069278902099799
-70 : 0.46567834080663817
-71 : 0.42102733471171083
-72 : 0.48917875432463365
-73 : 0.5465601625817627
-74 : 0.465909215870095
-75 : 0.4839683649358866
-76 : 0.5469875502232104
-77 : 0.5616764706578494
-78 : 0.43077348900128654
-79 : 0.4019788049405478
-80 : 0.5514349466488083
-81 : 0.6631183269877353
-82 : 0.4155839114991858
-83 : 0.5118925980188214
-84 : 0.6744188393921478
-85 : 0.5921491663348044
-86 : 0.6799324455035817
-87 : 0.5162264844837691
-88 : 0.6452024174335508
-89 : 0.6090158438348314
-90 : 0.6131627677795067
-91 : 0.5472842273271387
-92 : 0.5648906702179022
-93 : 0.6235642684469646
-94 : 0.5315917444713371
-95 : 0.4428856491535461
-96 : 0.7133544504722907
-97 : 0.6023463913843283
-98 : 0.6882440081701822
-99 : 0.49517068511262863
-</pre></div>
-</div>
+<img alt="../_images/sparse_linalg_41_0.png" src="../_images/sparse_linalg_41_0.png" />
 </div>
 </div>
 <p>As we see, <code class="docutils literal notranslate"><span class="pre">U</span></code> is closer to the larger eigenvectors, rather than the smaller eigenvectors.</p>
@@ -1155,114 +1126,49 @@ preconditioned GMRES in 0.0009918212890625 sec.
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">U</span> <span class="o">=</span> <span class="n">random_span_k</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">power</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">Ui_norms</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:02d}</span><span class="s2"> : </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">U</span><span class="p">[</span><span class="n">i</span><span class="p">])))</span>
+    <span class="n">Ui_norms</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">U</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+    
+<span class="c1">#     print(&quot;{:02d} : {}&quot;.format(i, np.linalg.norm(U[i])))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Ui_norms</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;eigenvector&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;weight&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>00 : 5.776915683787074e-17
-01 : 1.6100594842131506e-12
-02 : 1.0899098689789326e-10
-03 : 1.1834205147097656e-09
-04 : 7.62634922185943e-09
-05 : 2.914479891020549e-08
-06 : 1.2634001662034944e-07
-07 : 4.5295325540364e-07
-08 : 4.768756458941504e-07
-09 : 1.4488530323012457e-06
-10 : 2.434918326522412e-06
-11 : 3.773378304536716e-06
-12 : 7.185116117586523e-06
-13 : 1.7335706000744085e-05
-14 : 2.1701468726894258e-05
-15 : 3.245880272205118e-05
-16 : 2.3859274452511627e-05
-17 : 5.305145662533553e-05
-18 : 9.346711730785553e-05
-19 : 0.00010260147631957447
-20 : 0.0001435871994752169
-21 : 0.00014206868486154678
-22 : 0.00015984785980038124
-23 : 0.0004794518543421917
-24 : 0.0006978868665687086
-25 : 0.0004200311102089944
-26 : 0.0008831466426719506
-27 : 0.00060385055135277
-28 : 0.001852139598159693
-29 : 0.0011652308329592066
-30 : 0.001170726242931226
-31 : 0.002111677492551207
-32 : 0.0014644044201548364
-33 : 0.0034343682690357335
-34 : 0.005340817463860386
-35 : 0.00569509670984472
-36 : 0.00746379648807441
-37 : 0.008985895983052829
-38 : 0.009452913829014392
-39 : 0.008951225620032545
-40 : 0.006811197967281691
-41 : 0.009358480475269252
-42 : 0.010548754805634058
-43 : 0.00784651136212201
-44 : 0.012497674020831956
-45 : 0.020583919300618054
-46 : 0.015226328564730272
-47 : 0.03165477490114796
-48 : 0.035746172632173064
-49 : 0.025029296765374073
-50 : 0.039590210682663815
-51 : 0.0346963825057359
-52 : 0.042297259962305704
-53 : 0.05560969941397112
-54 : 0.07833224039655858
-55 : 0.05689036219363427
-56 : 0.09844592573648779
-57 : 0.1405976474976309
-58 : 0.07602970067585813
-59 : 0.11596193907134546
-60 : 0.11196081867853067
-61 : 0.09751056605138608
-62 : 0.14712484931771308
-63 : 0.1575654449950996
-64 : 0.17749845477540066
-65 : 0.16376002855161526
-66 : 0.16535997371768096
-67 : 0.25645391537155576
-68 : 0.2919985471804636
-69 : 0.31503838039568477
-70 : 0.38457269529895516
-71 : 0.21851784591901563
-72 : 0.4227240896920161
-73 : 0.44969820638432545
-74 : 0.36403840077785904
-75 : 0.41900942555334
-76 : 0.6095657206130481
-77 : 0.5322461739806071
-78 : 0.6049845380716631
-79 : 0.46353104721833044
-80 : 0.5914523380932548
-81 : 0.7693255003825747
-82 : 0.36632779499244095
-83 : 0.6240339687682033
-84 : 0.6804885297677242
-85 : 0.7079687933134396
-86 : 0.6647778891709087
-87 : 0.6983147969341498
-88 : 0.7888849663470147
-89 : 0.7424640620933282
-90 : 0.7286300781911617
-91 : 0.9183116920556132
-92 : 0.82907861751619
-93 : 0.8183378486458016
-94 : 0.8271111235161305
-95 : 0.9595260313246028
-96 : 0.9383090461938627
-97 : 0.9770481161514604
-98 : 0.8917650634136092
-99 : 0.9518063240741083
+<img alt="../_images/sparse_linalg_43_0.png" src="../_images/sparse_linalg_43_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">powers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">64</span><span class="p">]</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">pi</span><span class="p">,</span> <span class="n">power</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">powers</span><span class="p">):</span>
+    <span class="n">U</span> <span class="o">=</span> <span class="n">random_span_k</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">power</span><span class="o">=</span><span class="n">power</span><span class="p">)</span>
+    <span class="n">Ui_norms</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">Ui_norms</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">U</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+
+    <span class="c1">#     print(&quot;{:02d} : {}&quot;.format(i, np.linalg.norm(U[i])))</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Ui_norms</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">power</span><span class="p">))</span>
+    
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;eigenvector&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;weight&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;iterations&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/sparse_linalg_44_0.png" src="../_images/sparse_linalg_44_0.png" />
 </div>
 </div>
 </div>

@@ -826,7 +826,7 @@
 <p>A <strong>vector space</strong> <span class="math notranslate nohighlight">\(V\)</span> over a field <span class="math notranslate nohighlight">\(\mathbb{F}\)</span> consists of a set of vectors which are related by addition and scalar multiplication</p>
 <ol class="simple">
 <li><p><span class="math notranslate nohighlight">\(v, w\in V\)</span> implies <span class="math notranslate nohighlight">\(v + w \in V\)</span> (addition)</p></li>
-<li><p><span class="math notranslate nohighlight">\(v \in V, \alpha \in \mathbb{F}\)</span> implies <span class="math notranslate nohighlight">\(\alpha v \in \mathbb{F}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(v \in V, \alpha \in \mathbb{F}\)</span> implies <span class="math notranslate nohighlight">\(\alpha v \in V\)</span></p></li>
 </ol>
 <p>These operations are associative and commutative, etc.  Usually what makes things interesting is the existence of a linear map.</p>
 <p>A <strong>linear map</strong> <span class="math notranslate nohighlight">\(M: V\to W\)</span> is a map from one vector space (<span class="math notranslate nohighlight">\(V\)</span>) to another (<span class="math notranslate nohighlight">\(W\)</span>, over the same field <span class="math notranslate nohighlight">\(\mathbb{F}\)</span>) which satisfies
@@ -969,6 +969,18 @@
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">@</span> <span class="n">f2</span> <span class="o">-</span> <span class="n">p</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0.00000000e+00,  0.00000000e+00, -2.77555756e-17])
+</pre></div>
+</div>
+</div>
+</div>
 <p>We see that the vector we solved for (<code class="docutils literal notranslate"><span class="pre">f2</span></code>) is very close to the true solution of <code class="docutils literal notranslate"><span class="pre">f</span></code>, and is close to machine precision.</p>
 <p>We are able to accurately obtain the rates at which the sources release pollution based on measurements from some randomly placed sensors.</p>
 </div>
@@ -1085,7 +1097,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.13945651054382324 sec.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0452113151550293 sec.
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.4804090830990304e-11
@@ -1104,7 +1116,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.01542520523071289 sec.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.015586614608764648 sec.
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.6248541274337918e-12
@@ -1348,7 +1360,7 @@ $<span class="math notranslate nohighlight">\(A^{-1} = U^{-1} L^{-1} P^T\)</span
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/numpy_scipy_linalg_46_0.png" src="../_images/numpy_scipy_linalg_46_0.png" />
+<img alt="../_images/numpy_scipy_linalg_47_0.png" src="../_images/numpy_scipy_linalg_47_0.png" />
 </div>
 </div>
 <ol class="simple">
@@ -1488,6 +1500,18 @@ $<span class="math notranslate nohighlight">\(A^{-1} = U^{-1} L^{-1} P^T\)</span
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">U</span> <span class="o">@</span> <span class="n">U</span><span class="o">.</span><span class="n">T</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.888115434370349e-12
+</pre></div>
+</div>
+</div>
+</div>
 <p>Computing eigenvector decompositions takes <span class="math notranslate nohighlight">\(O(n^3)\)</span> time for a <span class="math notranslate nohighlight">\(n\times n\)</span> matrix.</p>
 </div>
 <div class="section" id="exercises">
@@ -1558,7 +1582,7 @@ $<span class="math notranslate nohighlight">\(A^{-1} = U^{-1} L^{-1} P^T\)</span
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/numpy_scipy_linalg_67_0.png" src="../_images/numpy_scipy_linalg_67_0.png" />
+<img alt="../_images/numpy_scipy_linalg_69_0.png" src="../_images/numpy_scipy_linalg_69_0.png" />
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.6626700016786344e-12
 </pre></div>
 </div>
@@ -1616,7 +1640,7 @@ $<span class="math notranslate nohighlight">\(A^{-1} = U^{-1} L^{-1} P^T\)</span
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/numpy_scipy_linalg_69_0.png" src="../_images/numpy_scipy_linalg_69_0.png" />
+<img alt="../_images/numpy_scipy_linalg_71_0.png" src="../_images/numpy_scipy_linalg_71_0.png" />
 </div>
 </div>
 </div>
@@ -1650,7 +1674,7 @@ $<span class="math notranslate nohighlight">\(A^{-1} = U^{-1} L^{-1} P^T\)</span
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/numpy_scipy_linalg_73_0.png" src="../_images/numpy_scipy_linalg_73_0.png" />
+<img alt="../_images/numpy_scipy_linalg_75_0.png" src="../_images/numpy_scipy_linalg_75_0.png" />
 </div>
 </div>
 </div>
@@ -1734,7 +1758,7 @@ $<span class="math notranslate nohighlight">\(A^{-1} = U^{-1} L^{-1} P^T\)</span
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/numpy_scipy_linalg_77_0.png" src="../_images/numpy_scipy_linalg_77_0.png" />
+<img alt="../_images/numpy_scipy_linalg_79_0.png" src="../_images/numpy_scipy_linalg_79_0.png" />
 </div>
 </div>
 <div class="cell tag_hide-cell docutils container">
@@ -1791,7 +1815,7 @@ $<span class="math notranslate nohighlight">\(A^{-1} = U^{-1} L^{-1} P^T\)</span
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/numpy_scipy_linalg_80_0.png" src="../_images/numpy_scipy_linalg_80_0.png" />
+<img alt="../_images/numpy_scipy_linalg_82_0.png" src="../_images/numpy_scipy_linalg_82_0.png" />
 </div>
 </div>
 </div>
