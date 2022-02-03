@@ -1,0 +1,51 @@
+Traceback (most recent call last):
+  File "/home/brad/miniconda3/envs/pycourse/lib/python3.8/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
+    executenb(
+  File "/home/brad/miniconda3/envs/pycourse/lib/python3.8/site-packages/nbclient/client.py", line 1077, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/home/brad/miniconda3/envs/pycourse/lib/python3.8/site-packages/nbclient/util.py", line 74, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/home/brad/miniconda3/envs/pycourse/lib/python3.8/site-packages/nbclient/util.py", line 53, in just_run
+    return loop.run_until_complete(coro)
+  File "/home/brad/miniconda3/envs/pycourse/lib/python3.8/asyncio/base_events.py", line 616, in run_until_complete
+    return future.result()
+  File "/home/brad/miniconda3/envs/pycourse/lib/python3.8/site-packages/nbclient/client.py", line 526, in async_execute
+    await self.async_execute_cell(
+  File "/home/brad/miniconda3/envs/pycourse/lib/python3.8/site-packages/nbclient/client.py", line 822, in async_execute_cell
+    self._check_raise_for_error(cell, exec_reply)
+  File "/home/brad/miniconda3/envs/pycourse/lib/python3.8/site-packages/nbclient/client.py", line 730, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply['content'])
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+T = 100 # number of days to simulate
+counts = [count_enlightened(pop)]
+for t in range(T):
+    # update the population
+    for i in range(N):
+        if pop[i].is_enlightened():
+            # person i enlightens all their contacts
+            contacts = randint(N, size=k)
+            for j in contacts:
+                if rand() < p:
+                    pop[j].enlighten()
+            if rand() < q:
+                #pop[j].unenelighten() # sets enligtened to false
+                pop[j].enlightened = False
+                    
+                    
+    # add to our counts
+    counts.append(count_enlightened(pop))
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mNameError[0m                                 Traceback (most recent call last)
+[0;32m<ipython-input-8-0d00b760c40e>[0m in [0;36m<module>[0;34m[0m
+[1;32m     10[0m                 [0;32mif[0m [0mrand[0m[0;34m([0m[0;34m)[0m [0;34m<[0m [0mp[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     11[0m                     [0mpop[0m[0;34m[[0m[0mj[0m[0;34m][0m[0;34m.[0m[0menlighten[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 12[0;31m             [0;32mif[0m [0mrand[0m[0;34m([0m[0;34m)[0m [0;34m<[0m [0mq[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     13[0m                 [0;31m#pop[j].unenelighten() # sets enligtened to false[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     14[0m                 [0mpop[0m[0;34m[[0m[0mj[0m[0;34m][0m[0;34m.[0m[0menlightened[0m [0;34m=[0m [0;32mFalse[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mNameError[0m: name 'q' is not defined
+NameError: name 'q' is not defined
+

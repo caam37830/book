@@ -843,6 +843,22 @@ An object is an <strong>iterator</strong> if it implements the <code class="docu
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ri</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">ri</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">ri</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+3
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">my_range_iterator</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">,</span> <span class="n">stride</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">start</span>
@@ -962,21 +978,6 @@ An object is an <strong>iterator</strong> if it implements the <code class="docu
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">my_range2</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
-1
-2
-</pre></div>
-</div>
-</div>
-</div>
 </div>
 <div class="section" id="using-iterators-for-computation">
 <h2>Using Iterators for Computation<a class="headerlink" href="#using-iterators-for-computation" title="Permalink to this headline">¶</a></h2>
@@ -1034,6 +1035,13 @@ An object is an <strong>iterator</strong> if it implements the <code class="docu
 <div class="section" id="exercise">
 <h3>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h3>
 <p>Define <code class="docutils literal notranslate"><span class="pre">FibonacciIterator</span></code> so it will iterate over all Fibonacci numbers until they are greater than a parameter <code class="docutils literal notranslate"><span class="pre">n</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="generators">
@@ -1160,6 +1168,42 @@ An object is an <strong>iterator</strong> if it implements the <code class="docu
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">FibonacciGenerator</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">while</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">a</span>
+        <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+        
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">FibonacciGenerator</span><span class="p">(</span><span class="mi">1000</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+1
+1
+2
+3
+5
+8
+13
+21
+34
+55
+89
+144
+233
+377
+610
+987
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="iteration-tools">
@@ -1207,7 +1251,10 @@ An object is an <strong>iterator</strong> if it implements the <code class="docu
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 a
-1 b
+1
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> b
 2 c
 </pre></div>
 </div>
@@ -1219,6 +1266,52 @@ An object is an <strong>iterator</strong> if it implements the <code class="docu
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_zip</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="n">ai</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="n">bi</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="nb">next</span><span class="p">(</span><span class="n">ai</span><span class="p">),</span> <span class="nb">next</span><span class="p">(</span><span class="n">bi</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">return</span>
+        
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">my_zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="s1">&#39;abc&#39;</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 a
+1 b
+2 c
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_enumerate</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+    <span class="n">ct</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">a</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">ct</span><span class="p">,</span> <span class="n">x</span>
+        <span class="n">ct</span> <span class="o">=</span> <span class="n">ct</span> <span class="o">+</span> <span class="mi">1</span>
+        
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">my_enumerate</span><span class="p">(</span><span class="s1">&#39;abcd&#39;</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 a
+1 b
+2 c
+3 d
 </pre></div>
 </div>
 </div>
@@ -1239,10 +1332,27 @@ An object is an <strong>iterator</strong> if it implements the <code class="docu
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 0
+0 1
+0 2
+1 0
+1 1
+1 2
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 0
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># equivalent to:</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 0
 0 1
 0 2
 1 0
@@ -1303,6 +1413,50 @@ An object is an <strong>iterator</strong> if it implements the <code class="docu
 </div>
 </div>
 </div>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_product</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">a</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">b</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
+            
+<span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">my_product</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 0
+0 1
+0 2
+1 0
+1 1
+1 2
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_repeat</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">ct</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ct</span><span class="p">):</span>
+        <span class="k">yield</span> <span class="n">n</span>
+        
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">my_repeat</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10
+10
+10
+10
+10
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="iterators-for-scientific-computing">
@@ -1316,6 +1470,9 @@ An object is an <strong>iterator</strong> if it implements the <code class="docu
 <span class="k">def</span> <span class="nf">PowerMethodGenerator</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
     
     <span class="k">def</span> <span class="nf">RayleighQuotient</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        x^T A x / x^T x</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">A</span> <span class="o">@</span> <span class="n">x</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
     
     <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
@@ -1338,9 +1495,11 @@ An object is an <strong>iterator</strong> if it implements the <code class="docu
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># here&#39;s a version that uses the generator in a while-loop</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
 <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
-<span class="n">A</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">A</span><span class="o">.</span><span class="n">T</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">A</span><span class="o">.</span><span class="n">T</span> <span class="o">+</span> <span class="mi">5</span> <span class="c1"># constant increases eigenvalue in constant vector direction</span>
 <span class="n">x0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
 
 <span class="n">solver</span> <span class="o">=</span> <span class="n">PowerMethodGenerator</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">x0</span><span class="p">)</span>
@@ -1355,84 +1514,27 @@ An object is an <strong>iterator</strong> if it implements the <code class="docu
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>89.79921294910105 inf
-245.29913741517976 155.4999244660787
-297.6891665006395 52.39002908545973
-323.95906730804376 26.26990080740427
-339.3014898522942 15.34242254425044
-348.9947847812616 9.693294928967418
-355.3404436318054 6.345658850543771
-359.5837538237822 4.243310191976832
-362.4852968046054 2.9015429808231943
-364.5215529938813 2.036256189275889
-365.9903639917038 1.4688109978225157
-367.0782387105444
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 1.0878747188405669
-367.9033873932433 0.8251486826989094
-368.54228193867493 0.6388945454316399
-369.0456619672852 0.5033800286102519
-369.4481140286043 0.40245206131913847
-369.7738433923419 0.32572936373759376
-370.04020877660344 0.266365384261519
-370.2599353479135 0.2197265713100478
-370.44253499882507 0.18259965091158392
-370.5952411208645 0.152706122039433
-370.7236388082608 0.12839768739627289
-370.83209921036416 0.1084604021033897
-370.9240849039141 0.09198569354992969
-371.00236843813326 0.07828353421916745
-371.0691912673758 0.06682282924253968
-371.1263810351046 0.05718976772880069
-371.17543930379713 0.0490582686925336
-371.2176080165033 0.0421687127061432
-371.25392045328 0.036312436776711365
-371.28524074532186 0.031320292041868925
-371.31229484579444 0.02705410047258283
-371.3356950493159 0.02340020352147576
-371.3559595859107 0.020264536594766014
-371.3735284140291 0.01756882811844207
-371.3887760501281 0.015247636098990824
-371.40202206496394 0.0132460148358291
-371.41353972564264 0.011517660678691755
-371.42356315132076 0.010023425678127751
-371.4322932679292 0.008730116608433036
-371.43990278542805 0.007609517498849527
-371.4465403742739 0.0066375888458765075
-371.4523341819863 0.005793807712393573
-371.45739480306736 0.005060621081042882
-371.46181779399757 0.004422990930208925
-371.4656858080937 0.0038680140961560028
-371.469070411574 0.00338460348029912
-371.4720336314305 0.002963219856496835
-371.474629277036 0.0025956456054814225
-371.476904070386 0.0022747933500113504
-371.4788986141257 0.001994543739670007
-371.48064822179623 0.0017496076705469932
-371.48218363084027 0.0015354090440382606
-371.483531615675 0.0013479848347515144
-371.48471551545555 0.0011838997805284635
-371.4857556889068 0.001040173451258397
-371.4866699067207 0.0009142178138858981
-371.487473690436 0.0008037837152983229
-371.488180605392 0.0007069149560265942
-371.4888025142187 0.0006219088267016559
-371.48934979638534 0.0005472821666216987
-371.4898315385204 0.00048174213503671126
-371.4902556995372 0.0004241610168378429
-371.49062925402154 0.0003735544843266325
-371.49095831684133 0.0003290628197873957
-371.49124825152654 0.0002899346852132112
-371.49150376460034 0.00025551307379600985
-371.49172898774617 0.00022522314583284242
-371.49192754942726 0.0001985616810884494
-371.49210263735813 0.00017508793087017693
-371.49225705302933 0.0001544156712043332
-371.4923932593279 0.00013620629857769018
-371.49251342215433 0.0001201628264198007
-371.4926194468106 0.00010602465624742763
-371.49271300983884 9.356302825835883e-05
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>105.19696872759084 inf
+281.63511492463675 176.4381461970459
+326.7192591328154 45.08414420817866
+352.50704592651266 25.78778679369725
+391.7108945621984 39.203848635685745
+460.83794809636106 69.12705353416266
+540.3664504666252 79.52850237026416
+592.0237369196417 51.65728645301647
+614.2130807999849 22.189343880343245
+622.058528516079 7.8454477160941
+624.6490855951763 2.590557079097266
+625.4882828792902 0.8391972841138795
+625.7592874771177 0.2710045978275275
+625.8469290763087 0.08764159919098802
+625.8753406319709 0.028411555662160026
+625.884573120211 0.009232488240172643
+625.8875796627136 0.003006542502589582
+625.8885605557036 0.0009808929900145813
+625.8888810944816 0.0003205387779416924
+625.8889859914814 0.00010489699980098521
+625.8890203634668 3.4371985407233296e-05
 </pre></div>
 </div>
 </div>
@@ -1451,43 +1553,66 @@ An object is an <strong>iterator</strong> if it implements the <code class="docu
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>371.49279558688977 8.257705093228651e-05
-371.4928684771319 7.28902421087696e-05
-371.4929328246401 6.43475082142686e-05
-371.492989637145 5.681250490852108e-05
-371.49303980247964 5.016533464186068e-05
-371.4930841030085 4.4300528884377854e-05
-371.493123228294 3.912528546834437e-05
-371.49315778621934 3.45579253462347e-05
-371.49318831275974 3.052654039947811e-05
-371.493215280569 2.6967809276357002e-05
-371.4932391065277 2.3825958692214044e-05
-371.4932601583811 2.105185336631621e-05
-371.49327876057697 1.8602195893890894e-05
-371.4932951994037 1.643882671942265e-05
-371.4933097275108 1.4528107101341448e-05
-371.49332256788966 1.2840378872169822e-05
-371.4933339173783 1.134948865910701e-05
-371.49334394974863 1.0032370312273997e-05
-371.49335281842525 8.86867661620272e-06
-371.4933606588825 7.840457271868218e-06
-371.49336759075607 6.9318735427259526e-06
-371.49337371970455 6.128948484729335e-06
-371.49337913905043 5.419345882273774e-06
-371.4933839312281 4.792177662693575e-06
-371.4933881690597 4.237831603859377e-06
-371.4933919168807 3.7478209833352594e-06
-371.49339523153395 3.3146532700811804e-06
-371.4933981632454 2.9317114353943907e-06
-371.4934007563975 2.593152089502837e-06
-371.493403050212 2.2938145320949843e-06
-371.49340507935193 2.0291399209781957e-06
-371.4934068744534 1.7951014683603717e-06
-371.4934084625957 1.5881423109931347e-06
-371.49340986771455 1.4051188372832257e-06
-371.49341111096925 1.243254700966645e-06
-371.4934122110653 1.1000960284945904e-06
-371.4934131845399 9.734746413414541e-07
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>625.8890316394298 1.1275963061052607e-05
+625.8890353425546 3.7031247757113306e-06
+625.8890365599013 1.2173467212051037e-06
+625.8890369604569 4.005555638286751e-07
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can do the same thing with for-loops</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># here&#39;s a version that uses the generator in a for-loop</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+<span class="n">A</span> <span class="o">=</span> <span class="p">(</span><span class="n">A</span> <span class="o">@</span> <span class="n">A</span><span class="o">.</span><span class="n">T</span><span class="p">)</span> <span class="o">+</span> <span class="mi">5</span> <span class="c1"># constant increases eigenvalue in constant vector direction</span>
+<span class="n">x0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+<span class="n">solver</span> <span class="o">=</span> <span class="n">PowerMethodGenerator</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">x0</span><span class="p">)</span>
+<span class="n">tol</span> <span class="o">=</span> <span class="mf">1e-4</span>
+
+<span class="k">for</span> <span class="n">rq</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">eps</span> <span class="ow">in</span> <span class="n">solver</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">rq</span><span class="p">,</span> <span class="n">eps</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">eps</span> <span class="o">&lt;</span> <span class="n">tol</span><span class="p">:</span>
+        <span class="k">break</span>
+
+<span class="n">tol</span> <span class="o">=</span> <span class="mf">1e-6</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">resuming iteration after decreasing tolerance</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">rq</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">eps</span> <span class="ow">in</span> <span class="n">solver</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">rq</span><span class="p">,</span> <span class="n">eps</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">eps</span> <span class="o">&lt;</span> <span class="n">tol</span><span class="p">:</span>
+        <span class="k">break</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>146.2065417420594 inf
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>443.4881333603037 297.2815916182443
+600.5673146162095 157.07918125590578
+641.394615191388 40.82730057517847
+650.083503914267 8.688888722879028
+652.0672892607818 1.9837853465147646
+652.565176438465 0.49788717768319657
+652.6996569481961 0.13448050973113368
+652.73788334235 0.03822639415386675
+652.7491297140693 0.011246371719380477
+652.752516481088 0.003386767018696446
+652.7535531163754 0.0010366352873916185
+652.753874213889 0.0003210975136198613
+652.7539745923442 0.00010037845515853405
+652.7540062074261 3.161508186622086e-05
+
+resuming iteration after decreasing tolerance
+
+652.7540162285405 1.0021114462688274e-05
+652.754019422857 3.194316491317295e-06
+652.7540204462541 1.0233970897388645e-06
+652.7540207756615 3.29407384924707e-07
 </pre></div>
 </div>
 </div>
