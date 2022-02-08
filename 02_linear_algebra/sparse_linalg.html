@@ -739,7 +739,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;SuperLU at 0x7f8e7ea24ae0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;SuperLU at 0x7fe016b4ea50&gt;
 </pre></div>
 </div>
 </div>
@@ -756,7 +756,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7.860388883948672e-16
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7.892057678545134e-16
 </pre></div>
 </div>
 </div>
@@ -770,7 +770,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7.860388883948672e-16
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7.892057678545134e-16
 </pre></div>
 </div>
 </div>
@@ -796,7 +796,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0430853509559895e-07
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.8840644705608314e-09
 </pre></div>
 </div>
 </div>
@@ -819,8 +819,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GMRES in 0.0008144378662109375 sec.
-spsolve in 0.000492095947265625 sec.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GMRES in 0.0008156299591064453 sec.
+spsolve in 0.0004031658172607422 sec.
 </pre></div>
 </div>
 </div>
@@ -842,6 +842,31 @@ spsolve in 0.000492095947265625 sec.
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ILUfact</span> <span class="o">=</span> <span class="n">sla</span><span class="o">.</span><span class="n">spilu</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="n">ILUfact</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;SuperLU at 0x7fe016b1d270&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">x</span>
+
+<span class="n">x2</span> <span class="o">=</span> <span class="n">LU</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">x2</span><span class="p">))</span>
+<span class="n">x3</span> <span class="o">=</span> <span class="n">ILUfact</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">x3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.1781876100516644e-15
+0.00020301844173399326
 </pre></div>
 </div>
 </div>
@@ -865,7 +890,7 @@ spsolve in 0.000492095947265625 sec.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.6754435310081238e-15
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.4705799953272913e-15
 </pre></div>
 </div>
 </div>
@@ -887,10 +912,10 @@ spsolve in 0.000492095947265625 sec.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GMRES in 8.023e-04 sec.
-9.158821829392305e-05
-preconditioned GMRES in 9.449e-04 sec.
-1.6754435310081238e-15
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GMRES in 1.076e-03 sec.
+0.00013444484628655706
+preconditioned GMRES in 1.052e-03 sec.
+2.4705799953272913e-15
 </pre></div>
 </div>
 </div>
@@ -908,7 +933,7 @@ preconditioned GMRES in 9.449e-04 sec.
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># works on square matrices</span>
 <span class="n">Afun</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">X</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
-<span class="n">m</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1"># linear operator of size 10</span>
+<span class="n">m</span> <span class="o">=</span><span class="mi">10</span> <span class="c1"># linear operator of size 10</span>
 
 <span class="n">A</span> <span class="o">=</span> <span class="n">sla</span><span class="o">.</span><span class="n">LinearOperator</span><span class="p">(</span>
     <span class="n">shape</span>   <span class="o">=</span> <span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">m</span><span class="p">),</span>
@@ -925,7 +950,7 @@ preconditioned GMRES in 9.449e-04 sec.
 <p>This operator is Hermitian, so we’ll use <code class="docutils literal notranslate"><span class="pre">eigsh</span></code>.  By default, <code class="docutils literal notranslate"><span class="pre">eigsh</span></code> will compute the largest magnitude eigenvalues.  You can change which eigenvalues you’re looking for using the <code class="docutils literal notranslate"><span class="pre">which</span></code> keyword argument, and the number of eigenvalues using the <code class="docutils literal notranslate"><span class="pre">k</span></code> argument.  See <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.linalg.eigsh.html#scipy.sparse.linalg.eigsh">the documentation</a> for details.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Lam</span><span class="p">,</span> <span class="n">V</span> <span class="o">=</span> <span class="n">sla</span><span class="o">.</span><span class="n">eigsh</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Lam</span><span class="p">,</span> <span class="n">V</span> <span class="o">=</span> <span class="n">sla</span><span class="o">.</span><span class="n">eigsh</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;LM&#39;</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -937,8 +962,7 @@ preconditioned GMRES in 9.449e-04 sec.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-5.86174617e-18, -3.50871500e-32,  2.38837756e-32,  2.87286167e-32,
-        1.78221859e-15,  1.00000000e+01])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-5.86174617e-18, -3.50871500e-32,  1.78221859e-15,  1.00000000e+01])
 </pre></div>
 </div>
 </div>
@@ -1059,7 +1083,7 @@ preconditioned GMRES in 9.449e-04 sec.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>386 µs ± 1.47 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>398 µs ± 4.57 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
 </pre></div>
 </div>
 </div>
@@ -1071,7 +1095,7 @@ preconditioned GMRES in 9.449e-04 sec.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>284 µs ± 7.5 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>289 µs ± 12.3 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
 </pre></div>
 </div>
 </div>
@@ -1118,7 +1142,7 @@ preconditioned GMRES in 9.449e-04 sec.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/sparse_linalg_41_0.png" src="../_images/sparse_linalg_41_0.png" />
+<img alt="../_images/sparse_linalg_42_0.png" src="../_images/sparse_linalg_42_0.png" />
 </div>
 </div>
 <p>As we see, <code class="docutils literal notranslate"><span class="pre">U</span></code> is closer to the larger eigenvectors, rather than the smaller eigenvectors.</p>
@@ -1140,7 +1164,7 @@ preconditioned GMRES in 9.449e-04 sec.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/sparse_linalg_43_0.png" src="../_images/sparse_linalg_43_0.png" />
+<img alt="../_images/sparse_linalg_44_0.png" src="../_images/sparse_linalg_44_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1168,7 +1192,19 @@ preconditioned GMRES in 9.449e-04 sec.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/sparse_linalg_44_0.png" src="../_images/sparse_linalg_44_0.png" />
+<img alt="../_images/sparse_linalg_45_0.png" src="../_images/sparse_linalg_45_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">U</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(100, 15)
+</pre></div>
+</div>
 </div>
 </div>
 </div>
@@ -1190,6 +1226,91 @@ For, example, use <code class="docutils literal notranslate"><span class="pre">m
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fname</span> <span class="o">=</span> <span class="s1">&#39;1138_bus.mtx&#39;</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">genfromtxt</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="n">comments</span><span class="o">=</span><span class="s1">&#39;%&#39;</span><span class="p">)</span> <span class="c1"># skip any rows that begin with `%`</span>
+<span class="n">data</span><span class="o">.</span><span class="n">shape</span>
+
+<span class="n">m</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+
+<span class="n">rows</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="n">cols</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="n">vals</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">coo_matrix</span><span class="p">((</span><span class="n">vals</span><span class="p">,</span> <span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">cols</span><span class="p">)),</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="p">))</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">tocsc</span><span class="p">()</span>
+<span class="n">A</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;1138x1138 sparse matrix of type &#39;&lt;class &#39;numpy.float64&#39;&gt;&#39;
+	with 2596 stored elements in Compressed Sparse Column format&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Direct method</p>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">LU</span> <span class="o">=</span> <span class="n">sla</span><span class="o">.</span><span class="n">splu</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">x</span>
+
+<span class="n">x2</span> <span class="o">=</span> <span class="n">LU</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x2</span> <span class="o">-</span> <span class="n">x</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.729624510424685e-15
+</pre></div>
+</div>
+</div>
+</div>
+<p>Iterative method.  matrix is not symmetric, so use GMRES</p>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x3</span><span class="p">,</span> <span class="n">exit_status</span> <span class="o">=</span> <span class="n">sla</span><span class="o">.</span><span class="n">gmres</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x3</span> <span class="o">-</span> <span class="n">x</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.1062499070369447
+</pre></div>
+</div>
+</div>
+</div>
+<p>GMRES is very imprecise here, try preconditioning</p>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ILUfact</span> <span class="o">=</span> <span class="n">sla</span><span class="o">.</span><span class="n">spilu</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+
+<span class="n">M</span> <span class="o">=</span> <span class="n">sla</span><span class="o">.</span><span class="n">LinearOperator</span><span class="p">(</span>
+    <span class="n">shape</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span>
+    <span class="n">matvec</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">b</span><span class="p">:</span> <span class="n">ILUfact</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">x3</span><span class="p">,</span> <span class="n">exit_status</span> <span class="o">=</span> <span class="n">sla</span><span class="o">.</span><span class="n">gmres</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">M</span><span class="o">=</span><span class="n">M</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x3</span> <span class="o">-</span> <span class="n">x</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.777111230904957e-07
 </pre></div>
 </div>
 </div>

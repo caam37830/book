@@ -696,6 +696,18 @@
 <p>Generally, you define classes that inherit from <code class="docutils literal notranslate"><span class="pre">unittest.TestCase</span></code>.  Then you can add methods which test different functionality.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;foo&#39;</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="o">.</span><span class="n">isupper</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">unittest</span>
 
 <span class="k">class</span> <span class="nc">TestStringMethods</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
@@ -704,7 +716,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span> <span class="s1">&#39;FOO&#39;</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">test_isupper</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="s1">&#39;FOO&#39;</span><span class="o">.</span><span class="n">isupper</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="s1">&#39;ABC&#39;</span><span class="o">.</span><span class="n">isupper</span><span class="p">())</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="s1">&#39;Foo&#39;</span><span class="o">.</span><span class="n">isupper</span><span class="p">())</span>
 
     <span class="k">def</span> <span class="nf">test_split</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -735,12 +747,12 @@
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----------------------------------------------------------------------
-Ran 3 tests in 0.004s
+Ran 3 tests in 0.003s
 
 OK
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;unittest.main.TestProgram at 0x7f4db518c610&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;unittest.main.TestProgram at 0x7fd12d3f29a0&gt;
 </pre></div>
 </div>
 </div>
@@ -797,17 +809,17 @@ OK
 FAIL: test_exact (__main__.TestFloatArithmetic)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File &quot;&lt;ipython-input-4-bc6eae005c7e&gt;&quot;, line 7, in test_exact
+  File &quot;&lt;ipython-input-5-bc6eae005c7e&gt;&quot;, line 7, in test_exact
     self.assertEqual(1.2 - 1.0, 0.2 )
 AssertionError: 0.19999999999999996 != 0.2
 
 ----------------------------------------------------------------------
-Ran 5 tests in 0.002s
+Ran 5 tests in 0.003s
 
 FAILED (failures=1)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;unittest.main.TestProgram at 0x7f4db490af40&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;unittest.main.TestProgram at 0x7fd12c376e80&gt;
 </pre></div>
 </div>
 </div>
