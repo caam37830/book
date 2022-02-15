@@ -712,6 +712,19 @@
 <p>A <code class="docutils literal notranslate"><span class="pre">figure</span></code> is a high level object which holds together everything in a plot.  However, an <code class="docutils literal notranslate"><span class="pre">Axis</span></code> object does most of the work in displaying a plot.  You can have multiple axis objects in a figure, displayed as subplots.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/pyplot_4_0.png" src="../_images/pyplot_4_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span> <span class="c1"># figure with a single axis</span>
 
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
@@ -723,7 +736,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/pyplot_4_0.png" src="../_images/pyplot_4_0.png" />
+<img alt="../_images/pyplot_5_0.png" src="../_images/pyplot_5_0.png" />
 </div>
 </div>
 <p>When you create multipule subplots, <code class="docutils literal notranslate"><span class="pre">ax</span></code> contains an array of axes</p>
@@ -746,7 +759,19 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/pyplot_6_0.png" src="../_images/pyplot_6_0.png" />
+<img alt="../_images/pyplot_7_0.png" src="../_images/pyplot_7_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>numpy.ndarray
+</pre></div>
+</div>
 </div>
 </div>
 <p>If you want to customize the location and shape of subplots, you can use <code class="docutils literal notranslate"><span class="pre">gridspec</span></code> - see the <a class="reference external" href="https://matplotlib.org/tutorials/intermediate/gridspec.html#sphx-glr-tutorials-intermediate-gridspec-py">tutorial</a> for more details</p>
@@ -770,7 +795,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/pyplot_8_0.png" src="../_images/pyplot_8_0.png" />
+<img alt="../_images/pyplot_10_0.png" src="../_images/pyplot_10_0.png" />
 </div>
 </div>
 </div>
@@ -789,7 +814,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/pyplot_10_0.png" src="../_images/pyplot_10_0.png" />
+<img alt="../_images/pyplot_12_0.png" src="../_images/pyplot_12_0.png" />
 </div>
 </div>
 <p>You can control the appearance of ticks on each axis using <code class="docutils literal notranslate"><span class="pre">Locator</span></code>s (for the location of ticks) and <code class="docutils literal notranslate"><span class="pre">Formatter</span></code>s for the appearance.  You can see a <a class="reference external" href="https://matplotlib.org/3.1.0/gallery/ticks_and_spines/major_minor_demo.html">demo here</a>.  Using our example:</p>
@@ -800,7 +825,7 @@
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
 
-<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_minor_locator</span><span class="p">(</span><span class="n">MultipleLocator</span><span class="p">(</span><span class="mf">0.5</span><span class="p">))</span><span class="c1"># minor ticks are multiples of 0.5 on X-axis</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_minor_locator</span><span class="p">((</span><span class="mf">0.5</span><span class="p">))</span><span class="c1"># minor ticks are multiples of 0.5 on X-axis</span>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">FixedLocator</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">1</span><span class="p">)))</span> <span class="c1"># set major tick labels manually</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">FixedFormatter</span><span class="p">((</span><span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$\dfrac</span><span class="si">{1}{2}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">)))</span> <span class="c1"># manual labels - you can use latex</span>
@@ -811,7 +836,33 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/pyplot_12_0.png" src="../_images/pyplot_12_0.png" />
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>---------------------------------------------------------------------------
+TypeError                                 Traceback (most recent call last)
+&lt;ipython-input-8-13ea6ad91021&gt; in &lt;module&gt;
+      4 ax.plot(x, f(x))
+      5 
+----&gt; 6 ax.xaxis.set_minor_locator((0.5))# minor ticks are multiples of 0.5 on X-axis
+      7 
+      8 ax.yaxis.set_major_locator(FixedLocator((0,0.5,1))) # set major tick labels manually
+
+~/miniconda3/envs/pycourse/lib/python3.8/site-packages/matplotlib/axis.py in set_minor_locator(self, locator)
+   1670         locator : `~matplotlib.ticker.Locator`
+   1671         &quot;&quot;&quot;
+-&gt; 1672         cbook._check_isinstance(mticker.Locator, locator=locator)
+   1673         self.isDefault_minloc = False
+   1674         self.minor.locator = locator
+
+~/miniconda3/envs/pycourse/lib/python3.8/site-packages/matplotlib/cbook/__init__.py in _check_isinstance(_types, **kwargs)
+   2121     for k, v in kwargs.items():
+   2122         if not isinstance(v, types):
+-&gt; 2123             raise TypeError(
+   2124                 &quot;{!r} must be an instance of {}, not a {}&quot;.format(
+   2125                     k,
+
+TypeError: &#39;locator&#39; must be an instance of matplotlib.ticker.Locator, not a float
+</pre></div>
+</div>
+<img alt="../_images/pyplot_14_1.png" src="../_images/pyplot_14_1.png" />
 </div>
 </div>
 <p>You can set axes labels using <code class="docutils literal notranslate"><span class="pre">set_ylabel</span></code> and <code class="docutils literal notranslate"><span class="pre">set_xlabel</span></code> methods, and title with <code class="docutils literal notranslate"><span class="pre">set_title</span></code></p>
@@ -835,7 +886,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/pyplot_14_0.png" src="../_images/pyplot_14_0.png" />
+<img alt="../_images/pyplot_16_0.png" src="../_images/pyplot_16_0.png" />
 </div>
 </div>
 <p>You can also impose a grid on the axes</p>
@@ -862,7 +913,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/pyplot_16_0.png" src="../_images/pyplot_16_0.png" />
+<img alt="../_images/pyplot_18_0.png" src="../_images/pyplot_18_0.png" />
 </div>
 </div>
 </div>
@@ -893,7 +944,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/pyplot_18_0.png" src="../_images/pyplot_18_0.png" />
+<img alt="../_images/pyplot_20_0.png" src="../_images/pyplot_20_0.png" />
 </div>
 </div>
 </div>
@@ -905,6 +956,290 @@
 <li><p>markers: also single character abbreviations (see <code class="docutils literal notranslate"><span class="pre">help(plt.plot)</span></code> for full list)</p></li>
 <li><p>line style: <code class="docutils literal notranslate"><span class="pre">-</span></code>, <code class="docutils literal notranslate"><span class="pre">--</span></code>, <code class="docutils literal notranslate"><span class="pre">-.</span></code>, and <code class="docutils literal notranslate"><span class="pre">:</span></code></p></li>
 </ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Help on function plot in module matplotlib.pyplot:
+
+plot(*args, scalex=True, scaley=True, data=None, **kwargs)
+    Plot y versus x as lines and/or markers.
+    
+    Call signatures::
+    
+        plot([x], y, [fmt], *, data=None, **kwargs)
+        plot([x], y, [fmt], [x2], y2, [fmt2], ..., **kwargs)
+    
+    The coordinates of the points or line nodes are given by *x*, *y*.
+    
+    The optional parameter *fmt* is a convenient way for defining basic
+    formatting like color, marker and linestyle. It&#39;s a shortcut string
+    notation described in the *Notes* section below.
+    
+    &gt;&gt;&gt; plot(x, y)        # plot x and y using default line style and color
+    &gt;&gt;&gt; plot(x, y, &#39;bo&#39;)  # plot x and y using blue circle markers
+    &gt;&gt;&gt; plot(y)           # plot y using x as index array 0..N-1
+    &gt;&gt;&gt; plot(y, &#39;r+&#39;)     # ditto, but with red plusses
+    
+    You can use `.Line2D` properties as keyword arguments for more
+    control on the appearance. Line properties and *fmt* can be mixed.
+    The following two calls yield identical results:
+    
+    &gt;&gt;&gt; plot(x, y, &#39;go--&#39;, linewidth=2, markersize=12)
+    &gt;&gt;&gt; plot(x, y, color=&#39;green&#39;, marker=&#39;o&#39;, linestyle=&#39;dashed&#39;,
+    ...      linewidth=2, markersize=12)
+    
+    When conflicting with *fmt*, keyword arguments take precedence.
+    
+    
+    **Plotting labelled data**
+    
+    There&#39;s a convenient way for plotting objects with labelled data (i.e.
+    data that can be accessed by index ``obj[&#39;y&#39;]``). Instead of giving
+    the data in *x* and *y*, you can provide the object in the *data*
+    parameter and just give the labels for *x* and *y*::
+    
+    &gt;&gt;&gt; plot(&#39;xlabel&#39;, &#39;ylabel&#39;, data=obj)
+    
+    All indexable objects are supported. This could e.g. be a `dict`, a
+    `pandas.DataFame` or a structured numpy array.
+    
+    
+    **Plotting multiple sets of data**
+    
+    There are various ways to plot multiple sets of data.
+    
+    - The most straight forward way is just to call `plot` multiple times.
+      Example:
+    
+      &gt;&gt;&gt; plot(x1, y1, &#39;bo&#39;)
+      &gt;&gt;&gt; plot(x2, y2, &#39;go&#39;)
+    
+    - Alternatively, if your data is already a 2d array, you can pass it
+      directly to *x*, *y*. A separate data set will be drawn for every
+      column.
+    
+      Example: an array ``a`` where the first column represents the *x*
+      values and the other columns are the *y* columns::
+    
+      &gt;&gt;&gt; plot(a[0], a[1:])
+    
+    - The third way is to specify multiple sets of *[x]*, *y*, *[fmt]*
+      groups::
+    
+      &gt;&gt;&gt; plot(x1, y1, &#39;g^&#39;, x2, y2, &#39;g-&#39;)
+    
+      In this case, any additional keyword argument applies to all
+      datasets. Also this syntax cannot be combined with the *data*
+      parameter.
+    
+    By default, each line is assigned a different style specified by a
+    &#39;style cycle&#39;. The *fmt* and line property parameters are only
+    necessary if you want explicit deviations from these defaults.
+    Alternatively, you can also change the style cycle using
+    :rc:`axes.prop_cycle`.
+    
+    
+    Parameters
+    ----------
+    x, y : array-like or scalar
+        The horizontal / vertical coordinates of the data points.
+        *x* values are optional and default to `range(len(y))`.
+    
+        Commonly, these parameters are 1D arrays.
+    
+        They can also be scalars, or two-dimensional (in that case, the
+        columns represent separate data sets).
+    
+        These arguments cannot be passed as keywords.
+    
+    fmt : str, optional
+        A format string, e.g. &#39;ro&#39; for red circles. See the *Notes*
+        section for a full description of the format strings.
+    
+        Format strings are just an abbreviation for quickly setting
+        basic line properties. All of these and more can also be
+        controlled by keyword arguments.
+    
+        This argument cannot be passed as keyword.
+    
+    data : indexable object, optional
+        An object with labelled data. If given, provide the label names to
+        plot in *x* and *y*.
+    
+        .. note::
+            Technically there&#39;s a slight ambiguity in calls where the
+            second label is a valid *fmt*. `plot(&#39;n&#39;, &#39;o&#39;, data=obj)`
+            could be `plt(x, y)` or `plt(y, fmt)`. In such cases,
+            the former interpretation is chosen, but a warning is issued.
+            You may suppress the warning by adding an empty format string
+            `plot(&#39;n&#39;, &#39;o&#39;, &#39;&#39;, data=obj)`.
+    
+    Other Parameters
+    ----------------
+    scalex, scaley : bool, optional, default: True
+        These parameters determined if the view limits are adapted to
+        the data limits. The values are passed on to `autoscale_view`.
+    
+    **kwargs : `.Line2D` properties, optional
+        *kwargs* are used to specify properties like a line label (for
+        auto legends), linewidth, antialiasing, marker face color.
+        Example::
+    
+        &gt;&gt;&gt; plot([1, 2, 3], [1, 2, 3], &#39;go-&#39;, label=&#39;line 1&#39;, linewidth=2)
+        &gt;&gt;&gt; plot([1, 2, 3], [1, 4, 9], &#39;rs&#39;, label=&#39;line 2&#39;)
+    
+        If you make multiple lines with one plot command, the kwargs
+        apply to all those lines.
+    
+        Here is a list of available `.Line2D` properties:
+    
+        Properties:
+        agg_filter: a filter function, which takes a (m, n, 3) float array and a dpi value, and returns a (m, n, 3) array
+        alpha: float or None
+        animated: bool
+        antialiased or aa: bool
+        clip_box: `.Bbox`
+        clip_on: bool
+        clip_path: Patch or (Path, Transform) or None
+        color or c: color
+        contains: callable
+        dash_capstyle: {&#39;butt&#39;, &#39;round&#39;, &#39;projecting&#39;}
+        dash_joinstyle: {&#39;miter&#39;, &#39;round&#39;, &#39;bevel&#39;}
+        dashes: sequence of floats (on/off ink in points) or (None, None)
+        data: (2, N) array or two 1D arrays
+        drawstyle or ds: {&#39;default&#39;, &#39;steps&#39;, &#39;steps-pre&#39;, &#39;steps-mid&#39;, &#39;steps-post&#39;}, default: &#39;default&#39;
+        figure: `.Figure`
+        fillstyle: {&#39;full&#39;, &#39;left&#39;, &#39;right&#39;, &#39;bottom&#39;, &#39;top&#39;, &#39;none&#39;}
+        gid: str
+        in_layout: bool
+        label: object
+        linestyle or ls: {&#39;-&#39;, &#39;--&#39;, &#39;-.&#39;, &#39;:&#39;, &#39;&#39;, (offset, on-off-seq), ...}
+        linewidth or lw: float
+        marker: marker style
+        markeredgecolor or mec: color
+        markeredgewidth or mew: float
+        markerfacecolor or mfc: color
+        markerfacecoloralt or mfcalt: color
+        markersize or ms: float
+        markevery: None or int or (int, int) or slice or List[int] or float or (float, float)
+        path_effects: `.AbstractPathEffect`
+        picker: float or callable[[Artist, Event], Tuple[bool, dict]]
+        pickradius: float
+        rasterized: bool or None
+        sketch_params: (scale: float, length: float, randomness: float)
+        snap: bool or None
+        solid_capstyle: {&#39;butt&#39;, &#39;round&#39;, &#39;projecting&#39;}
+        solid_joinstyle: {&#39;miter&#39;, &#39;round&#39;, &#39;bevel&#39;}
+        transform: `matplotlib.transforms.Transform`
+        url: str
+        visible: bool
+        xdata: 1D array
+        ydata: 1D array
+        zorder: float
+    
+    Returns
+    -------
+    lines
+        A list of `.Line2D` objects representing the plotted data.
+    
+    See Also
+    --------
+    scatter : XY scatter plot with markers of varying size and/or color (
+        sometimes also called bubble chart).
+    
+    Notes
+    -----
+    **Format Strings**
+    
+    A format string consists of a part for color, marker and line::
+    
+        fmt = &#39;[marker][line][color]&#39;
+    
+    Each of them is optional. If not provided, the value from the style
+    cycle is used. Exception: If ``line`` is given, but no ``marker``,
+    the data will be a line without markers.
+    
+    Other combinations such as ``[color][marker][line]`` are also
+    supported, but note that their parsing may be ambiguous.
+    
+    **Markers**
+    
+    =============    ===============================
+    character        description
+    =============    ===============================
+    ``&#39;.&#39;``          point marker
+    ``&#39;,&#39;``          pixel marker
+    ``&#39;o&#39;``          circle marker
+    ``&#39;v&#39;``          triangle_down marker
+    ``&#39;^&#39;``          triangle_up marker
+    ``&#39;&lt;&#39;``          triangle_left marker
+    ``&#39;&gt;&#39;``          triangle_right marker
+    ``&#39;1&#39;``          tri_down marker
+    ``&#39;2&#39;``          tri_up marker
+    ``&#39;3&#39;``          tri_left marker
+    ``&#39;4&#39;``          tri_right marker
+    ``&#39;s&#39;``          square marker
+    ``&#39;p&#39;``          pentagon marker
+    ``&#39;*&#39;``          star marker
+    ``&#39;h&#39;``          hexagon1 marker
+    ``&#39;H&#39;``          hexagon2 marker
+    ``&#39;+&#39;``          plus marker
+    ``&#39;x&#39;``          x marker
+    ``&#39;D&#39;``          diamond marker
+    ``&#39;d&#39;``          thin_diamond marker
+    ``&#39;|&#39;``          vline marker
+    ``&#39;_&#39;``          hline marker
+    =============    ===============================
+    
+    **Line Styles**
+    
+    =============    ===============================
+    character        description
+    =============    ===============================
+    ``&#39;-&#39;``          solid line style
+    ``&#39;--&#39;``         dashed line style
+    ``&#39;-.&#39;``         dash-dot line style
+    ``&#39;:&#39;``          dotted line style
+    =============    ===============================
+    
+    Example format strings::
+    
+        &#39;b&#39;    # blue markers with default shape
+        &#39;or&#39;   # red circles
+        &#39;-g&#39;   # green solid line
+        &#39;--&#39;   # dashed line with default color
+        &#39;^k:&#39;  # black triangle_up markers connected by a dotted line
+    
+    **Colors**
+    
+    The supported color abbreviations are the single letter codes
+    
+    =============    ===============================
+    character        color
+    =============    ===============================
+    ``&#39;b&#39;``          blue
+    ``&#39;g&#39;``          green
+    ``&#39;r&#39;``          red
+    ``&#39;c&#39;``          cyan
+    ``&#39;m&#39;``          magenta
+    ``&#39;y&#39;``          yellow
+    ``&#39;k&#39;``          black
+    ``&#39;w&#39;``          white
+    =============    ===============================
+    
+    and the ``&#39;CN&#39;`` colors that index into the default property cycle.
+    
+    If the color is the only part of the format string, you can
+    additionally use any  `matplotlib.colors` spec, e.g. full names
+    (``&#39;green&#39;``) or hex strings (``&#39;#008000&#39;``).
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
@@ -920,7 +1255,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/pyplot_20_0.png" src="../_images/pyplot_20_0.png" />
+<img alt="../_images/pyplot_23_0.png" src="../_images/pyplot_23_0.png" />
 </div>
 </div>
 <p>You can also format scatter plot markers with similar characters</p>
@@ -939,7 +1274,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/pyplot_22_0.png" src="../_images/pyplot_22_0.png" />
+<img alt="../_images/pyplot_25_0.png" src="../_images/pyplot_25_0.png" />
 </div>
 </div>
 </div>
@@ -962,7 +1297,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/pyplot_24_0.png" src="../_images/pyplot_24_0.png" />
+<img alt="../_images/pyplot_27_0.png" src="../_images/pyplot_27_0.png" />
 </div>
 </div>
 <p>see <code class="docutils literal notranslate"><span class="pre">help(plt.legend)</span></code> for the many options you can use.  One useful command can be used to place a legend outside the axis box:</p>
@@ -982,7 +1317,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/pyplot_26_0.png" src="../_images/pyplot_26_0.png" />
+<img alt="../_images/pyplot_29_0.png" src="../_images/pyplot_29_0.png" />
 </div>
 </div>
 </div>

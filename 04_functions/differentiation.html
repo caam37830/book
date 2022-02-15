@@ -814,7 +814,7 @@ f(x) = \exp(-(x^2 - x - 1)^2)
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/differentiation_9_0.png" src="../_images/differentiation_9_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;sympy.plotting.plot.Plot at 0x7f791df63850&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;sympy.plotting.plot.Plot at 0x7f0fb58bc7f0&gt;
 </pre></div>
 </div>
 </div>
@@ -963,7 +963,7 @@ central_difference : 0.7357588760470435
     <span class="k">return</span> <span class="n">sparse</span><span class="o">.</span><span class="n">coo_matrix</span><span class="p">((</span><span class="n">data</span><span class="p">,</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)),</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span><span class="o">.</span><span class="n">tocsr</span><span class="p">()</span>
     
 <span class="n">D</span> <span class="o">=</span> <span class="n">forward_diff_matrix</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">gx</span><span class="p">))</span> <span class="o">/</span> <span class="n">h</span>
-<span class="n">gx1</span> <span class="o">=</span> <span class="n">D</span><span class="o">*</span><span class="n">gx</span>
+<span class="n">gx1</span> <span class="o">=</span> <span class="n">D</span><span class="nd">@gx</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">gx1</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -1108,7 +1108,7 @@ central_difference : 0.7357588760470435
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x7f791d51d490&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x7f0fb4e9c460&gt;
 </pre></div>
 </div>
 <img alt="../_images/differentiation_32_1.png" src="../_images/differentiation_32_1.png" />
@@ -1245,8 +1245,16 @@ central_difference : 0.7357588760470435
 <p>We want to create an operator that will act as a derivative on the function treated as a vector.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">100</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">100</span><span class="p">))</span>
-<span class="n">g2d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">xx</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">yy</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">xx</span><span class="p">,</span> <span class="n">yy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="c1"># xx[i,j] = x[j], yy[i,j] = y[i]</span>
+<span class="n">g2d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">xx</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">yy</span><span class="p">)</span> <span class="c1"># g2d[i,j] = sin(x[j]) + cos(y[i])</span>
+
+<span class="c1"># # this is equivalent</span>
+<span class="c1"># for j in range(len(x)):</span>
+<span class="c1">#     for i in range(len(y)):</span>
+<span class="c1">#         g2d[i,j] = np.sin(x[j]) + np.cos(y[i])</span>
+        
 <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">g2d</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -1254,6 +1262,23 @@ central_difference : 0.7357588760470435
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/differentiation_49_0.png" src="../_images/differentiation_49_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[array([[-1.,  0.,  1.],
+        [-1.,  0.,  1.],
+        [-1.,  0.,  1.]]),
+ array([[-1., -1., -1.],
+        [ 0.,  0.,  0.],
+        [ 1.,  1.,  1.]])]
+</pre></div>
+</div>
 </div>
 </div>
 <div class="cell docutils container">
@@ -1278,7 +1303,7 @@ central_difference : 0.7357588760470435
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/differentiation_52_0.png" src="../_images/differentiation_52_0.png" />
+<img alt="../_images/differentiation_53_0.png" src="../_images/differentiation_53_0.png" />
 </div>
 </div>
 <p>The derivative of our function <code class="docutils literal notranslate"><span class="pre">g</span></code> with respect to the <code class="docutils literal notranslate"><span class="pre">x</span></code> variable is <code class="docutils literal notranslate"><span class="pre">cos(x)</span></code>:</p>
@@ -1291,7 +1316,7 @@ central_difference : 0.7357588760470435
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/differentiation_54_0.png" src="../_images/differentiation_54_0.png" />
+<img alt="../_images/differentiation_55_0.png" src="../_images/differentiation_55_0.png" />
 </div>
 </div>
 <p>If we want to create a numerical y derivative <span class="math notranslate nohighlight">\(\partial_y\)</span>, we can reverse the arguments of <code class="docutils literal notranslate"><span class="pre">kron</span></code>.</p>
@@ -1303,10 +1328,10 @@ central_difference : 0.7357588760470435
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x7f791df3e850&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x7f0fb57be730&gt;
 </pre></div>
 </div>
-<img alt="../_images/differentiation_56_1.png" src="../_images/differentiation_56_1.png" />
+<img alt="../_images/differentiation_57_1.png" src="../_images/differentiation_57_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1318,7 +1343,26 @@ central_difference : 0.7357588760470435
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/differentiation_57_0.png" src="../_images/differentiation_57_0.png" />
+<img alt="../_images/differentiation_58_0.png" src="../_images/differentiation_58_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">col</span> <span class="o">=</span> <span class="n">Dx</span><span class="p">[:,</span><span class="mi">220</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">col</span><span class="o">.</span><span class="n">nonzero</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([219, 221], dtype=int32), array([0, 0], dtype=int32))
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="exercise-the-laplacian">

@@ -904,7 +904,7 @@ If we have <span class="math notranslate nohighlight">\(a = x_0 \le x_1 \le ... 
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">fixed_quad</span><span class="p">,</span> <span class="n">quadrature</span>
 
-<span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">**</span><span class="mi">10</span>
 </pre></div>
 </div>
 </div>
@@ -912,12 +912,24 @@ If we have <span class="math notranslate nohighlight">\(a = x_0 \le x_1 \le ... 
 <p><code class="docutils literal notranslate"><span class="pre">fixed_quad</span></code> integrates up to fixed polynomial order</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fixed_quad</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span><span class="o">/</span><span class="mi">11</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.33333333333333326, None)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.09090909090909091
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fixed_quad</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span> <span class="c1"># n is order of polynomial</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.09090909090909102, None)
 </pre></div>
 </div>
 </div>
@@ -931,7 +943,21 @@ If we have <span class="math notranslate nohighlight">\(a = x_0 \le x_1 \le ... 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.3333333333333333, 5.551115123125783e-17)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.09090909090909097, 1.1102230246251565e-16)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">ifunction</span> <span class="ow">in</span> <span class="p">(</span><span class="n">fixed_quad</span><span class="p">,</span> <span class="n">quadrature</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">ifunction</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.09090765936004021
+0.09090909090909097
 </pre></div>
 </div>
 </div>
@@ -990,7 +1016,7 @@ If we have <span class="math notranslate nohighlight">\(a = x_0 \le x_1 \le ... 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/integration_32_0.png" src="../_images/integration_32_0.png" />
+<img alt="../_images/integration_34_0.png" src="../_images/integration_34_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1021,7 +1047,10 @@ If we have <span class="math notranslate nohighlight">\(a = x_0 \le x_1 \le ... 
 <div class="section" id="functions-with-singularities">
 <h3>Functions with Singularities<a class="headerlink" href="#functions-with-singularities" title="Permalink to this headline">¶</a></h3>
 <p>Depending on the type of singularity, you can pass in different arguments into the <code class="docutils literal notranslate"><span class="pre">weight</span></code> and <code class="docutils literal notranslate"><span class="pre">wvar</span></code> parameters of <code class="docutils literal notranslate"><span class="pre">quad</span></code>.  See <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.quad.html#scipy.integrate.quad">the documentation</a> for details.</p>
-<p>Here is an example</p>
+<p>For example, let’s say we want to compute</p>
+<p>\begin{equation}
+\int_{-1}^2 \frac{1}{x},dx
+\end{equation}</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">x</span>
@@ -1033,16 +1062,22 @@ If we have <span class="math notranslate nohighlight">\(a = x_0 \le x_1 \le ... 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ipython-input-20-74bd56e45931&gt;:1: RuntimeWarning: divide by zero encountered in true_divide
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ipython-input-22-74bd56e45931&gt;:1: RuntimeWarning: divide by zero encountered in true_divide
   f = lambda x : 1 / x
 </pre></div>
 </div>
-<img alt="../_images/integration_36_1.png" src="../_images/integration_36_1.png" />
+<img alt="../_images/integration_38_1.png" src="../_images/integration_38_1.png" />
 </div>
 </div>
+<p>There is an odd symmetry in the interval <span class="math notranslate nohighlight">\([-1,1]\)</span>, so we can calculate</p>
+<p>\begin{equation}
+\int_{-1}^2 \frac{1}{x},dx = \int_1^2 \frac{1}{x},dx = \log(2) - \log(1) = \log(2)
+\end{equation}</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">'cauchy'</span></code> weight will calculate the integral of <span class="math notranslate nohighlight">\(\frac{f(x)}{x - {\tt wvar}}\)</span> (i.e. we will weight the fuction <span class="math notranslate nohighlight">\(f\)</span> by the Cauchy distribution <span class="math notranslate nohighlight">\(\frac{1}{x - {\tt wvar}}\)</span>).</p>
+<p>So we can use <code class="docutils literal notranslate"><span class="pre">weight='cauchy'</span></code> with <code class="docutils literal notranslate"><span class="pre">wvar=0</span></code> on the function <code class="docutils literal notranslate"><span class="pre">f(x)</span> <span class="pre">=</span> <span class="pre">1</span></code> to compute our integral.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">quad</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s1">&#39;cauchy&#39;</span><span class="p">,</span> <span class="n">wvar</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">quad</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s1">&#39;cauchy&#39;</span><span class="p">,</span> <span class="n">wvar</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># mulitply function by 1/x and do integration</span>
 </pre></div>
 </div>
 </div>
@@ -1113,9 +1148,9 @@ If we have <span class="math notranslate nohighlight">\(a = x_0 \le x_1 \le ... 
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_pi_mc</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span>
-    <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="k">return</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">r</span> <span class="o">&lt;</span> <span class="mf">1.</span><span class="p">)</span> <span class="o">/</span> <span class="n">n</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span> <span class="c1"># sampled in [-1,1] x [-1,1]</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># computes radius of each point</span>
+    <span class="k">return</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">r</span> <span class="o">&lt;=</span> <span class="mf">1.</span><span class="p">)</span> <span class="o">/</span> <span class="n">n</span>
 </pre></div>
 </div>
 </div>
@@ -1127,11 +1162,11 @@ If we have <span class="math notranslate nohighlight">\(a = x_0 \le x_1 \le ... 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 526 ms, sys: 45.6 ms, total: 572 ms
-Wall time: 583 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 390 ms, sys: 41.9 ms, total: 432 ms
+Wall time: 433 ms
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.1417392
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.1413256
 </pre></div>
 </div>
 </div>
@@ -1159,11 +1194,11 @@ Wall time: 583 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 686 ms, sys: 119 ms, total: 805 ms
-Wall time: 808 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 749 ms, sys: 112 ms, total: 861 ms
+Wall time: 880 ms
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.1423792
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.1416048
 </pre></div>
 </div>
 </div>
@@ -1190,11 +1225,11 @@ Wall time: 808 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.19 s, sys: 187 ms, total: 1.38 s
-Wall time: 917 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.21 s, sys: 190 ms, total: 1.4 s
+Wall time: 966 ms
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.1414944
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.1408412
 </pre></div>
 </div>
 </div>
