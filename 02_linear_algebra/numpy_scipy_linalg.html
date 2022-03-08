@@ -288,11 +288,6 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../04_functions/differentiation.html">
-     Differentiation
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="../04_functions/ode_initial.html">
      Initial Value Problems
     </a>
@@ -1097,7 +1092,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0452113151550293 sec.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.08504891395568848 sec.
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.4804090830990304e-11
@@ -1116,7 +1111,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.015586614608764648 sec.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.023474693298339844 sec.
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.6248541274337918e-12
@@ -1450,6 +1445,7 @@ $<span class="math notranslate nohighlight">\(A^{-1} = U^{-1} L^{-1} P^T\)</span
 <div class="section" id="excercise">
 <h3>Excercise<a class="headerlink" href="#excercise" title="Permalink to this headline">¶</a></h3>
 <p>Suppose <span class="math notranslate nohighlight">\(A\)</span> is a <span class="math notranslate nohighlight">\(n\times n\)</span> matrix, and that the <span class="math notranslate nohighlight">\(QR\)</span> factorization takes <span class="math notranslate nohighlight">\(O(n^3)\)</span> time.  What is the time to run <code class="docutils literal notranslate"><span class="pre">my_lstsq</span></code> using <span class="math notranslate nohighlight">\(A\)</span> in big-O notation?</p>
+<p>The computational complexity of QR factorization is <span class="math notranslate nohighlight">\(O(n^3)\)</span>, and the matirx-vector multiplication “<span class="math notranslate nohighlight">\( Q^{T} b\)</span>” costs <span class="math notranslate nohighlight">\( O (n^2)\)</span>. Then solving <span class="math notranslate nohighlight">\( Rx = Q^{T}b\)</span> has the cost of solving a triangular system <span class="math notranslate nohighlight">\( O (n^2) \)</span>. Thus, the overall computational complexity of <code class="docutils literal notranslate"><span class="pre">my_lstsq</span></code> is (<span class="math notranslate nohighlight">\(O(n^3) + O (n^2)\)</span>) or just <span class="math notranslate nohighlight">\( O(n^3)\)</span> (because we usually omit the lower orders).</p>
 </div>
 <div class="section" id="eigenvalue-decompositions">
 <h3>Eigenvalue Decompositions<a class="headerlink" href="#eigenvalue-decompositions" title="Permalink to this headline">¶</a></h3>
@@ -1582,7 +1578,7 @@ $<span class="math notranslate nohighlight">\(A^{-1} = U^{-1} L^{-1} P^T\)</span
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/numpy_scipy_linalg_69_0.png" src="../_images/numpy_scipy_linalg_69_0.png" />
+<img alt="../_images/numpy_scipy_linalg_70_0.png" src="../_images/numpy_scipy_linalg_70_0.png" />
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.6626700016786344e-12
 </pre></div>
 </div>
@@ -1640,7 +1636,7 @@ $<span class="math notranslate nohighlight">\(A^{-1} = U^{-1} L^{-1} P^T\)</span
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/numpy_scipy_linalg_71_0.png" src="../_images/numpy_scipy_linalg_71_0.png" />
+<img alt="../_images/numpy_scipy_linalg_72_0.png" src="../_images/numpy_scipy_linalg_72_0.png" />
 </div>
 </div>
 </div>
@@ -1674,7 +1670,7 @@ $<span class="math notranslate nohighlight">\(A^{-1} = U^{-1} L^{-1} P^T\)</span
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/numpy_scipy_linalg_75_0.png" src="../_images/numpy_scipy_linalg_75_0.png" />
+<img alt="../_images/numpy_scipy_linalg_76_0.png" src="../_images/numpy_scipy_linalg_76_0.png" />
 </div>
 </div>
 </div>
@@ -1758,7 +1754,7 @@ $<span class="math notranslate nohighlight">\(A^{-1} = U^{-1} L^{-1} P^T\)</span
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/numpy_scipy_linalg_79_0.png" src="../_images/numpy_scipy_linalg_79_0.png" />
+<img alt="../_images/numpy_scipy_linalg_80_0.png" src="../_images/numpy_scipy_linalg_80_0.png" />
 </div>
 </div>
 <div class="cell tag_hide-cell docutils container">
@@ -1815,7 +1811,7 @@ $<span class="math notranslate nohighlight">\(A^{-1} = U^{-1} L^{-1} P^T\)</span
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/numpy_scipy_linalg_82_0.png" src="../_images/numpy_scipy_linalg_82_0.png" />
+<img alt="../_images/numpy_scipy_linalg_83_0.png" src="../_images/numpy_scipy_linalg_83_0.png" />
 </div>
 </div>
 </div>

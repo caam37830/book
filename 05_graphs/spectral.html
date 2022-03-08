@@ -288,11 +288,6 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../04_functions/differentiation.html">
-     Differentiation
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="../04_functions/ode_initial.html">
      Initial Value Problems
     </a>
@@ -744,7 +739,7 @@ Note that <span class="math notranslate nohighlight">\(B^T\)</span> acts as a so
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;100x100 sparse matrix of type &#39;&lt;class &#39;numpy.int64&#39;&gt;&#39;
-	with 952 stored elements in Compressed Sparse Row format&gt;
+	with 876 stored elements in Compressed Sparse Row format&gt;
 </pre></div>
 </div>
 </div>
@@ -756,8 +751,8 @@ Note that <span class="math notranslate nohighlight">\(B^T\)</span> acts as a so
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;100x476 sparse matrix of type &#39;&lt;class &#39;numpy.float64&#39;&gt;&#39;
-	with 952 stored elements in Compressed Sparse Column format&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;100x438 sparse matrix of type &#39;&lt;class &#39;numpy.float64&#39;&gt;&#39;
+	with 876 stored elements in Compressed Sparse Column format&gt;
 </pre></div>
 </div>
 </div>
@@ -770,7 +765,7 @@ Note that <span class="math notranslate nohighlight">\(B^T\)</span> acts as a so
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;100x100 sparse matrix of type &#39;&lt;class &#39;numpy.int64&#39;&gt;&#39;
-	with 1052 stored elements in Compressed Sparse Row format&gt;
+	with 976 stored elements in Compressed Sparse Row format&gt;
 </pre></div>
 </div>
 </div>
@@ -859,10 +854,7 @@ We then calculate the stationary vector <span class="math notranslate nohighligh
 <span class="n">OneOneT</span> <span class="o">=</span> <span class="n">sla</span><span class="o">.</span><span class="n">LinearOperator</span><span class="p">(</span>
     <span class="n">shape</span>   <span class="o">=</span> <span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">m</span><span class="p">),</span>
     <span class="n">matvec</span>  <span class="o">=</span> <span class="n">Onefun</span><span class="p">,</span>
-    <span class="n">rmatvec</span> <span class="o">=</span> <span class="n">Onefun</span><span class="p">,</span>
-    <span class="n">matmat</span>  <span class="o">=</span> <span class="n">Onefun</span><span class="p">,</span>
-    <span class="n">rmatmat</span> <span class="o">=</span> <span class="n">Onefun</span><span class="p">,</span>
-    <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float</span>   
+    <span class="n">rmatvec</span> <span class="o">=</span> <span class="n">Onefun</span>   
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -875,13 +867,26 @@ We then calculate the stationary vector <span class="math notranslate nohighligh
 
 <span class="n">P</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">)</span> <span class="o">*</span> <span class="n">sla</span><span class="o">.</span><span class="n">aslinearoperator</span><span class="p">(</span><span class="n">A</span> <span class="o">@</span> <span class="n">Dinv</span><span class="p">)</span> <span class="o">+</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">OneOneT</span>
 
-<span class="n">lam</span><span class="p">,</span> <span class="n">V</span> <span class="o">=</span> <span class="n">sla</span><span class="o">.</span><span class="n">eigs</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;LM&#39;</span><span class="p">)</span>
+<span class="n">lam</span><span class="p">,</span> <span class="n">V</span> <span class="o">=</span> <span class="n">sla</span><span class="o">.</span><span class="n">eigs</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;LM&#39;</span><span class="p">)</span>
 <span class="n">lam</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1.        +0.j, 0.83936036+0.j])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1.        +0.j, 0.83936036+0.j, 0.79746166+0.j, 0.74936377+0.j,
+       0.70144813+0.j])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span><span class="n">j</span><span class="o">**</span><span class="mi">2</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
 </pre></div>
 </div>
 </div>
@@ -978,7 +983,7 @@ We then calculate the stationary vector <span class="math notranslate nohighligh
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/spectral_23_0.png" src="../_images/spectral_23_0.png" />
+<img alt="../_images/spectral_24_0.png" src="../_images/spectral_24_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -988,7 +993,7 @@ We then calculate the stationary vector <span class="math notranslate nohighligh
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/spectral_24_0.png" src="../_images/spectral_24_0.png" />
+<img alt="../_images/spectral_25_0.png" src="../_images/spectral_25_0.png" />
 </div>
 </div>
 </div>
@@ -1007,7 +1012,7 @@ C(S) = \frac{|E(S, \bar{S})|}{\min {|S|, |\bar{S}|}}
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ns</span> <span class="o">=</span> <span class="p">[</span><span class="mi">25</span><span class="p">,</span> <span class="mi">25</span><span class="p">]</span> <span class="c1"># size of clusters</span>
-<span class="n">ps</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">]]</span> <span class="c1"># probability of edge</span>
+<span class="n">ps</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">]]</span> <span class="c1"># probability of edge</span>
 <span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">stochastic_block_model</span><span class="p">(</span><span class="n">ns</span><span class="p">,</span> <span class="n">ps</span><span class="p">)</span>
 <span class="n">true_clusters</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">nx</span><span class="o">.</span><span class="n">get_node_attributes</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="s1">&#39;block&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
 
@@ -1019,7 +1024,7 @@ C(S) = \frac{|E(S, \bar{S})|}{\min {|S|, |\bar{S}|}}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/spectral_26_0.png" src="../_images/spectral_26_0.png" />
+<img alt="../_images/spectral_27_0.png" src="../_images/spectral_27_0.png" />
 </div>
 </div>
 <p>Now, let’s use spectral clustering to partition into two clusters</p>
@@ -1036,7 +1041,7 @@ C(S) = \frac{|E(S, \bar{S})|}{\min {|S|, |\bar{S}|}}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/spectral_28_0.png" src="../_images/spectral_28_0.png" />
+<img alt="../_images/spectral_29_0.png" src="../_images/spectral_29_0.png" />
 </div>
 </div>
 <p>We’ll use the <a class="reference external" href="https://scikit-learn.org/stable/modules/clustering.html#adjusted-rand-index">adjusted rand index</a> to measure the quality of the clustering we obtained.  A value of 1 means that we found the true clusters.</p>
@@ -1070,7 +1075,7 @@ C(S) = \frac{|E(S, \bar{S})|}{\min {|S|, |\bar{S}|}}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/spectral_32_0.png" src="../_images/spectral_32_0.png" />
+<img alt="../_images/spectral_33_0.png" src="../_images/spectral_33_0.png" />
 </div>
 </div>
 <p>we’ll use K-means clustering in scikit learn to assign clusters.</p>
@@ -1089,7 +1094,7 @@ C(S) = \frac{|E(S, \bar{S})|}{\min {|S|, |\bar{S}|}}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/spectral_34_0.png" src="../_images/spectral_34_0.png" />
+<img alt="../_images/spectral_35_0.png" src="../_images/spectral_35_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1099,7 +1104,7 @@ C(S) = \frac{|E(S, \bar{S})|}{\min {|S|, |\bar{S}|}}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.326530612244898
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6949883931241722
 </pre></div>
 </div>
 </div>

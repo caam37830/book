@@ -288,11 +288,6 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../04_functions/differentiation.html">
-     Differentiation
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="../04_functions/ode_initial.html">
      Initial Value Problems
     </a>
@@ -816,6 +811,75 @@ d(x,y) = |x - y|_2
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">cos_sim</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">y</span><span class="p">))</span>
+<span class="n">cos_dis</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="p">:</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">cos_sim</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">euc_dis</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">y</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cos_sim</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="p">),</span> <span class="n">cos_dis</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="p">),</span> <span class="n">euc_dis</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cos_sim</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="o">-</span><span class="n">x</span><span class="p">),</span> <span class="n">cos_dis</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="o">-</span><span class="n">x</span><span class="p">),</span> <span class="n">euc_dis</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="o">-</span><span class="n">x</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cos_sim</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">),</span> <span class="n">cos_dis</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">),</span> <span class="n">euc_dis</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0 0.0 0.0
+-1.0 2.0 7.483314773547883
+0.8571428571428571 0.1428571428571429 2.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.8389823765022792
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">@</span> <span class="n">X</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 2.83898238,  1.16304231, -2.32948147, ..., -3.38312712,
+         1.07988589, -0.24763674],
+       [ 1.16304231,  8.2530741 , -1.27677546, ...,  0.17204936,
+         3.0345908 , -2.39239586],
+       [-2.32948147, -1.27677546,  2.23607767, ...,  3.43250478,
+        -0.99733681,  0.47330705],
+       ...,
+       [-3.38312712,  0.17204936,  3.43250478, ...,  6.01431271,
+        -0.77625925,  0.24180186],
+       [ 1.07988589,  3.0345908 , -0.99733681, ..., -0.77625925,
+         1.27487243, -0.85996136],
+       [-0.24763674, -2.39239586,  0.47330705, ...,  0.24180186,
+        -0.85996136,  0.795015  ]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -946,7 +1010,7 @@ d(x,y) = | x- y |_A = \sqrt{(x - y)^T A (x - y)}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.140844024973258
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.5730650597233107
 </pre></div>
 </div>
 </div>
@@ -1012,11 +1076,11 @@ d(x, y; w) = \sqrt{\sum_i w_i(x_i - y_i)^2}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.        , 0.85713   , 1.4695271 , 0.22504282, 2.02975701],
-       [0.85713   , 0.        , 1.99812882, 1.08201601, 1.99428779],
-       [1.4695271 , 1.99812882, 0.        , 1.39534828, 1.31911504],
-       [0.22504282, 1.08201601, 1.39534828, 0.        , 2.10660701],
-       [2.02975701, 1.99428779, 1.31911504, 2.10660701, 0.        ]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.        , 1.93355563, 1.69804168, 1.84887352, 1.86117462],
+       [1.93355563, 0.        , 1.30364128, 0.53174555, 0.65387795],
+       [1.69804168, 1.30364128, 0.        , 0.79595082, 0.68934765],
+       [1.84887352, 0.53174555, 0.79595082, 0.        , 0.12250706],
+       [1.86117462, 0.65387795, 0.68934765, 0.12250706, 0.        ]])
 </pre></div>
 </div>
 </div>
@@ -1028,11 +1092,11 @@ d(x, y; w) = \sqrt{\sum_i w_i(x_i - y_i)^2}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.        , 0.85067992, 1.77032215, 0.22417679, 2.39182537],
-       [0.85067992, 0.        , 2.09165384, 1.07478057, 2.51083401],
-       [1.77032215, 2.09165384, 0.        , 1.73500063, 1.275722  ],
-       [0.22417679, 1.07478057, 1.73500063, 0.        , 2.39697589],
-       [2.39182537, 2.51083401, 1.275722  , 2.39697589, 0.        ]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.        , 1.90448822, 1.69516033, 1.78652978, 1.80889064],
+       [1.90448822, 0.        , 1.62901861, 0.63161768, 0.77284517],
+       [1.69516033, 1.62901861, 0.        , 1.00254106, 0.86383667],
+       [1.78652978, 0.63161768, 1.00254106, 0.        , 0.14146722],
+       [1.80889064, 0.77284517, 0.86383667, 0.14146722, 0.        ]])
 </pre></div>
 </div>
 </div>
@@ -1069,7 +1133,7 @@ D = \sqrt{1 x^{2T} + x^2 1^T - 2 X X^T}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9.930136612989092e-16
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.304351991299644e-16
 </pre></div>
 </div>
 </div>
@@ -1136,7 +1200,7 @@ a : rank-2 array(&#39;d&#39;) with bounds (n,n)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7.731808680624463e-16
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.510833468576701e-16
 </pre></div>
 </div>
 </div>
@@ -1160,9 +1224,9 @@ a : rank-2 array(&#39;d&#39;) with bounds (n,n)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pairwise : 0.09777259826660156 sec.
-pairwise_euclidean : 0.0006721019744873047 sec.
-pairwise_euclidean_blas : 0.00028133392333984375 sec.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pairwise : 0.12298965454101562 sec.
+pairwise_euclidean : 0.0006000995635986328 sec.
+pairwise_euclidean_blas : 0.0002651214599609375 sec.
 </pre></div>
 </div>
 </div>
@@ -1244,8 +1308,8 @@ pairwise_euclidean_blas : 0.00028133392333984375 sec.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([4.7440275 , 3.54265299, 5.72738633, ..., 2.69293743, 1.05872094,
-       1.63421649])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([2.56905948, 1.03224862, 3.14994077, ..., 2.14184371, 0.92547433,
+       3.06648737])
 </pre></div>
 </div>
 </div>
@@ -1270,10 +1334,10 @@ pairwise_euclidean_blas : 0.00028133392333984375 sec.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pairwise : 0.10174012184143066 sec.
-pairwise_euclidean : 0.00038814544677734375 sec.
-pairwise_euclidean_blas : 0.0002560615539550781 sec.
-pdist : 0.00016951560974121094 sec.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pairwise : 0.10127639770507812 sec.
+pairwise_euclidean : 0.00022554397583007812 sec.
+pairwise_euclidean_blas : 0.0003819465637207031 sec.
+pdist : 0.0001583099365234375 sec.
 </pre></div>
 </div>
 </div>
@@ -1301,10 +1365,23 @@ pdist : 0.00016951560974121094 sec.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pairwise : 0.10001993179321289 sec.
-pairwise_euclidean : 0.0003724098205566406 sec.
-pairwise_euclidean_blas : 0.00027179718017578125 sec.
-sq_pdist : 0.0001857280731201172 sec.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pairwise : 0.1405320167541504 sec.
+pairwise_euclidean : 0.0004215240478515625 sec.
+pairwise_euclidean_blas : 0.0002703666687011719 sec.
+sq_pdist : 0.0002224445343017578 sec.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">D</span> <span class="o">=</span> <span class="n">cdist</span><span class="p">(</span><span class="n">X</span><span class="p">[:</span><span class="mi">30</span><span class="p">],</span><span class="n">X</span><span class="p">[</span><span class="mi">30</span><span class="p">:])</span>
+<span class="n">D</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(30, 70)
 </pre></div>
 </div>
 </div>

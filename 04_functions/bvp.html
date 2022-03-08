@@ -288,11 +288,6 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="differentiation.html">
-     Differentiation
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="ode_initial.html">
      Initial Value Problems
     </a>
@@ -701,20 +696,34 @@ u(1) = b
 <p>Finally, we use <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.solve_bvp.html"><code class="docutils literal notranslate"><span class="pre">solve_bvp</span></code></a> from <code class="docutils literal notranslate"><span class="pre">scipy.integrate</span></code> to solve the boundary value problem:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0., 0., 0.],
+       [3., 4., 5.]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">5</span>
 <span class="n">b</span> <span class="o">=</span> <span class="mi">1</span>
 
 <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
     <span class="s2">&quot;right hand side of ODE&quot;</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">,:],</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])])</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">,:],</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])])</span> <span class="c1"># du/dx = p, dp/dx = 0</span>
     
-<span class="k">def</span> <span class="nf">bc</span><span class="p">(</span><span class="n">ya</span><span class="p">,</span> <span class="n">yb</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">bc</span><span class="p">(</span><span class="n">y0</span><span class="p">,</span> <span class="n">y1</span><span class="p">):</span> <span class="c1"># ya = y[:,0], yb = y[:,-1]</span>
     <span class="s2">&quot;boundary condition residual&quot;</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">ya</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">a</span><span class="p">,</span> <span class="n">yb</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">b</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">y0</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">a</span><span class="p">,</span> <span class="n">y1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">b</span><span class="p">])</span>
 
 <span class="n">n</span> <span class="o">=</span> <span class="mi">100</span> <span class="c1"># number of points</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
-<span class="n">y0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="n">n</span><span class="p">))</span>
+<span class="c1"># y0 = np.zeros((2,n))</span>
+<span class="n">y0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
 
 <span class="c1"># solve bvp</span>
 <span class="n">sol</span> <span class="o">=</span> <span class="n">solve_bvp</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">bc</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y0</span><span class="p">)</span>
@@ -733,7 +742,7 @@ u(1) = b
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/bvp_6_0.png" src="../_images/bvp_6_0.png" />
+<img alt="../_images/bvp_7_0.png" src="../_images/bvp_7_0.png" />
 </div>
 </div>
 <p>we see the solution is a linear function from (0,5) to (1,1).  You can check that such a linear function solves the BVP mathematically.</p>
@@ -776,7 +785,7 @@ u(1) = b
   insert_2, = np.nonzero(rms_res &gt;= 100 * tol)
 </pre></div>
 </div>
-<img alt="../_images/bvp_9_1.png" src="../_images/bvp_9_1.png" />
+<img alt="../_images/bvp_10_1.png" src="../_images/bvp_10_1.png" />
 </div>
 </div>
 </div>
@@ -857,7 +866,7 @@ u(x,t) = v(x) e^{i\omega t}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/bvp_14_0.png" src="../_images/bvp_14_0.png" />
+<img alt="../_images/bvp_15_0.png" src="../_images/bvp_15_0.png" />
 </div>
 </div>
 <p>Let’s plot the eigenvectors with the 4 smallest-magnitude eigenvalues:</p>
@@ -872,7 +881,7 @@ u(x,t) = v(x) e^{i\omega t}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/bvp_16_0.png" src="../_images/bvp_16_0.png" />
+<img alt="../_images/bvp_17_0.png" src="../_images/bvp_17_0.png" />
 </div>
 </div>
 <p>the eigenvectors are of the form <span class="math notranslate nohighlight">\(v(x) = \cos(k \pi x)\)</span> for <span class="math notranslate nohighlight">\(k= 0,1,2,\dots\)</span></p>
@@ -916,7 +925,7 @@ v[0] = a\qquad v[-1] = b
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/bvp_20_0.png" src="../_images/bvp_20_0.png" />
+<img alt="../_images/bvp_21_0.png" src="../_images/bvp_21_0.png" />
 </div>
 </div>
 </div>
@@ -994,8 +1003,8 @@ v[0] = a\qquad v[-1] = b
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/bvp_28_0.png" src="../_images/bvp_28_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;sympy.plotting.plot.Plot at 0x7f6fb78dd3d0&gt;
+<img alt="../_images/bvp_29_0.png" src="../_images/bvp_29_0.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;sympy.plotting.plot.Plot at 0x7f60d29d7b20&gt;
 </pre></div>
 </div>
 </div>
@@ -1057,8 +1066,8 @@ v[0] = a\qquad v[-1] = b
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/bvp_35_0.png" src="../_images/bvp_35_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;sympy.plotting.plot.Plot at 0x7f6fb7780160&gt;
+<img alt="../_images/bvp_36_0.png" src="../_images/bvp_36_0.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;sympy.plotting.plot.Plot at 0x7f60d28616a0&gt;
 </pre></div>
 </div>
 </div>
@@ -1215,7 +1224,7 @@ Function evaluations 27, initial cost 5.3960e+03, final cost 5.3860e+01, first-o
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/bvp_42_0.png" src="../_images/bvp_42_0.png" />
+<img alt="../_images/bvp_43_0.png" src="../_images/bvp_43_0.png" />
 </div>
 </div>
 </div>
