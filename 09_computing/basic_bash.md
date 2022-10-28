@@ -4,7 +4,7 @@
 
 You can use bash to navigate and modify your computer's file system, execute programs, control jobs, and as a scripting language (so basically you can do everything).
 
-Importantly, you can do many things in bash that are impossible to do just using your standard file system graphical browers.  Also importantly, when you access remote machines, you will have no other choice than to use bash.
+Importantly, you can do many things in bash that are impossible to do just using your standard file system graphical browsers.  Also importantly, when you access remote machines, you will have no other choice than to use bash.
 
 Here is basic use, which will assume you have opened a terminal.  Comments follow a pound symbol (`#`).  Open up a terminal and follow along.
 
